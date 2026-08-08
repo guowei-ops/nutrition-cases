@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #555555;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--dark-gray);
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 10px 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .header-card .subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 10px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.15);
+        padding: 6px 14px;
+        border-radius: 20px;
+    }
+
+    /* Search Bar */
+    .search-container {
+        margin-bottom: 25px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+        border-color: var(--secondary-blue);
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+        background-color: var(--light-blue);
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 14px;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .dialogue-block {
+        border-left: 4px solid #ccc;
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+    }
+
+    .speaker-team {
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 4px 0 12px 0;
+        background-color: #f9f9f9;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+
+    /* Part 2 Specifics */
+    .mind-card {
+        background-color: var(--green-bg);
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        color: var(--doctor-green);
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: monospace;
+        color: #2e7d32;
+        margin: 10px 0;
+        border-left: 3px solid var(--doctor-green);
+    }
+
+    /* Part 3 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.7);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 8px 0;
+    }
+
+    /* Part 5 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 4px solid var(--purple-knowledge);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 15px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        color: var(--purple-knowledge);
+    }
+
+    /* Part 6 Training Card */
+    .training-card {
+        background: #ffffff;
+        border: 2px solid var(--primary-blue);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .training-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 10px; }
+        .training-grid { grid-template-columns: 1fr; }
+        .header-card { padding: 20px; }
+        .header-card h1 { font-size: 22px; }
+    }
+
+    @media print {
+        .search-container { display: none; }
+        body { background-color: white; padding: 0; }
+        .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>日期：</strong>2026年8月8日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>直肠癌术后重度体重下降伴吞咽/进食误吸风险患者的经口/管饲营养决策与饮食误区纠正</div>
+        </div>
+    </div>
+
+    <!-- 关键词搜索框 -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索会诊记录（如：骨骼肌、造瘘、鸡汤、安素、误吸）..." onkeyup="filterContent()">
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录（完整保留）</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>性别：</strong>男</div>
+            <div class="info-item"><strong>年龄：</strong>老年患者（家属提及“倔强的老头”）</div>
+            <div class="info-item"><strong>疾病诊断：</strong>直肠癌（行直肠手术）</div>
+            <div class="info-item"><strong>手术/治疗情况：</strong>去年完成直肠癌手术，曾留置鼻胃管1个月；目前每周需返院进行后续治疗</div>
+            <div class="info-item"><strong>当前主要问题：</strong>重度消瘦（近期体重下降10余公斤）、进食液体易呛咳误吸、肌肉量衰减（人体成分示骨骼肌小）、误食高脂高油食物</div>
+        </div>
+
+        <h3>2. 营养相关现状</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>当前体重：</strong>未明确提及数值，但急剧消瘦</div>
+            <div class="info-item"><strong>近期体重变化：</strong>自4月29日至今瘦了10多公斤</div>
+            <div class="info-item"><strong>食欲与进食量：</strong>进食量减半约1个月；不爱喝水与冲调营养液</div>
+            <div class="info-item"><strong>饮食结构：</strong>主食为半流食/五谷粥、蛋羹；极少吃蔬菜；喜食肥肉（扣肉、猪头肉、内脏）；不爱喝纯牛奶及清淡汤水</div>
+            <div class="info-item"><strong>吞咽/消化情况：</strong>饮用稀液体（水、粥汤）时频繁呛咳；无腹泻便秘急性发作，大便1周1次（直肠术后改变，但不干不费劲）</div>
+            <div class="info-item"><strong>ONS/管饲历史：</strong>抗拒冲调型特医食品（安素），曾留置鼻饲管1个月（出院后撤除），目前极度排斥再插鼻胃管；医护建议评估胃造瘘（PEG）或改用即饮型液体ONS</div>
+        </div>
+
+        <h3>3. 会诊现场复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：诊前医护沟通与人体成分评估</h4>
+            <div class="speaker-team">讲话人1 / 讲话人2（营养科医生/医护人员）：</div>
+            <div class="transcript-text">“量血压的那等……这个骨骼肌小啊……你看才写的吃得不好，尤其是下肢……今天上午有些别的事来的比较晚……还在抽血吗？一会儿我们营养师过去见个面……”</div>
+            <div class="speaker-team">广播通知：</div>
+            <div class="transcript-text">“杜群祥听到广播到日间病房……”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：膳食摄入调查与体重下降评估</h4>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“我们是营养科的大夫。我看之前病历说吃饭少了一半是吗？有多长时间了？”</div>
+            <div class="speaker-patient">讲话人3（家属/妻子）：</div>
+            <div class="transcript-text">“有一个月了吧。以前还行。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“但是体重的话，从上次4月29号到现在瘦了10多公斤了。现在主要是吃软食、半流食还是什么？”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“半流食吧，自己打的那个，五谷粥、蛋羹，偶尔吃点软米饭，水果吃得少，蔬菜他也不怎么吃。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“肉类呢？是怎么吃的？”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“肉包在饺子里比较嫩比较软烂。还有他爱吃扣肉。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“扣肉？肥肉以后一点都不要给他吃了，只吃瘦肉。因为他体内有炎症，肥肉会刺激炎症，而且本身也不健康。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：液体摄入与吞咽呛咳/管饲评估</h4>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“奶制品吃吗？每天水、汤、粥等所有液体加起来有多少毫升？”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“牛奶不太爱喝，一喝多了好像放坏了似的。液体加起来可能两三千毫升吧，但是喝了以后还是呛，一边呛一边喝。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“这种情况之前有没有考虑插个管？从鼻子插个管。”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“去年做完手术出院后插过一个月，后来撤了。现在不太接受再插鼻管了，觉得难受。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“如果不插管，每天能努力喝到2000毫升还可以，但如果低于1500毫升且一直呛，还是最好通过管路，否则误吸风险很大。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：排便情况与胃造瘘（PEG）可行性沟通</h4>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“大小便怎么样？”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“直肠手术后一周排便一次，但不干也不费劲。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“除了家常米糊，补充过营养粉或营养液吗？”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“医院开过安素（蓝罐），但他嫌味道不好，不喜欢喝，家里还剩十几罐。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“如果不接受鼻胃管，可以考虑在胃里做个造瘘（PEG）。不需要自己打，挂个小泵缓慢输入，不影响平时活动，想上厕所可以随时断开。”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“上次病友也做过这个，放疗期间反倒胖了，我们也想弄一个，但他脾气倔，不太配合。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块五：优质蛋白质补充与汤类食补误区纠正</h4>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“他蛋白指标居然不低，但我天天给他打五谷豆浆，是不是这个起作用了？”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“五谷豆浆其实并不是补充清蛋白（白蛋白）最好的方法。补蛋白最好的方法是：鸡蛋羹、奶制品（酸奶/牛奶）、豆腐脑、瘦肉泥（猪肉、鱼、虾打成泥）。肥肉（猪头肉、五花肉、内脏）千万不能吃。”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“那我给他熬的鸡汤呢？”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“鸡汤、肉汤都不能喝！汤里主要是脂肪和嘌呤，营养都在肉里。如果是鲈鱼汤，不放油盐单纯熬一点还可以，但加了油熬成白汤，喝进去的全是油，不建议喝一大碗。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块六：ONS制剂调整与后续跟诊安排</h4>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“既然他不爱喝冲调的粉剂，我们给他换成瓶装/袋装即饮型的营养液试试，不需要自己冲，打开直接喝。”</div>
+            <div class="speaker-patient">讲话人3（家属）：</div>
+            <div class="transcript-text">“行，只要味道能接受，先开两箱试试。我们是异地医保转过来的，门诊能报销。”</div>
+            <div class="speaker-doctor">讲话人4（营养科医生）：</div>
+            <div class="transcript-text">“先开一整周的量试试。我是周一下午的门诊，有问题随时线上咨询。尽最大努力能喝多少喝多少，把体重保住，才能跟上后续治疗。”</div>
+        </div>
+    </div>
+
+    <!-- 第二部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点 1：追问进食量减少的时间与具体体重下降数值</h4>
+            <p><strong>医生问：</strong>“吃饭少了一半有多长时间了？”“从上次4月29号到现在瘦了多少？”</p>
+            <p><strong>可能目的：</strong>判断患者是否存在恶性肿瘤引起的重度营养风险及肿瘤恶病质（Cachexia）阶段，评估体重下降速率（3个月内下降>10kg属于重度体重丢失）。发掘治疗依从性下降的临床根源。</p>
+            <div class="reasoning-path">
+                现象：进食量减半1个月，体重下降>10kg <br>
+                ↓ 原因分析：摄入严重不足 + 肿瘤高代谢消耗 <br>
+                ↓ 风险判断：重度营养不良、肌肉减少症（Sarcopenia）、抗肿瘤治疗耐受性急剧下降 <br>
+                ↓ 营养干预：必须启动医学营养治疗（ONS或管饲喂养）
+            </div>
+            <p><strong>对治疗决策影响：</strong>确定干预的紧迫性，若不及时遏制体重下降，患者将无法耐受周度的放化疗。</p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点 2：详细盘问食物种类、形态及液体吞咽反应</h4>
+            <p><strong>医生问：</strong>“主要吃软食还是半流食？”“水和汤喝了以后呛不呛？”</p>
+            <p><strong>可能目的：</strong>评估患者的吞咽功能及误吸风险。稀液体（水、清汤）极易在吞咽反射迟钝或咽部肌肉萎缩时引发呛咳，导致吸入性肺炎。</p>
+            <div class="reasoning-path">
+                现象：饮用稀液体时“一边呛一边喝” <br>
+                ↓ 原因分析：吞咽障碍（液体摄入安全性差） <br>
+                ↓ 风险判断：吸入性肺炎、隐匿性误吸、因恐惧呛咳导致继发性脱水 <br>
+                ↓ 营养干预：停止大量饮用稀液体；改变食物黏稠度或采用管饲途径（PEG）
+            </div>
+            <p><strong>对治疗决策影响：</strong>由简单的“鼓励多喝水/多喝汤”转变为“限制稀液体经口摄入”，强制推进管饲评估（造瘘）或使用凝固剂/高能量密度液体。</p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点 3：评估对鼻胃管/胃造瘘（PEG）的接受度与家属支持体系</h4>
+            <p><strong>医生问：</strong>“现在还接受再插鼻管吗？”“做个胃造瘘（PEG）挂个小泵可以吗？”</p>
+            <p><strong>可能目的：</strong>遵循营养治疗阶梯（经口→ONS→肠内管饲EN→肠外PN）。患者经口摄入不足且伴误吸风险，达到管饲指征；评估患者心理耐受度以决定最佳给药途径。</p>
+            <div class="reasoning-path">
+                现象：经口摄入不安全且不足 + 极度排斥鼻胃管 <br>
+                ↓ 原因分析：鼻胃管带来咽部异物感及心理体验差 <br>
+                ↓ 风险判断：强行插鼻胃管依从性极差，易自行拔管 <br>
+                ↓ 营养干预：沟通创伤小、隐蔽性高的皮下胃造瘘（PEG）或过渡为即饮型ONS
+            </div>
+            <p><strong>对治疗决策影响：</strong>制定兼顾临床安全性与患者心理依从性的个性化方案。</p>
+        </div>
+    </div>
+
+    <!-- 第三部分：患者及家属营养误区提炼 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第三部分 ⚠️ 患者及家属营养误区提炼</h2>
+
+        <div class="misconception-card">
+            <h4>误区 1：认为喝“五谷豆浆”就能有效补充蛋白质，解释白蛋白不低的原因</h4>
+            <div class="misconception-quote">患者/家属原话：“他蛋白为什么不低呢？就是我天天都打那个五谷豆浆，天天打。”</div>
+            <p><strong>医生现场纠正：</strong>“五谷豆浆其实并不是补充清蛋白（白蛋白）最好的方法。”</p>
+            <p><strong>临床解释：</strong>五谷杂粮及大豆主要提供植物蛋白和碳水化合物，其氨基酸模式与人体需求存在差异，利用率低于动物性蛋白。血清白蛋白水平受肝脏合成能力、体液分布及炎症状态（急性时相反应）影响，短期内白蛋白指标正常并不代表体内无肌肉衰减（患者人体成分已提示骨骼肌显著减少）。</p>
+            <p><strong>营养宣教表达：</strong>“阿姨，豆浆虽好，但它里面的植物蛋白人体吸收率有限。要想真正长肌肉、维持血蛋白，必须靠‘优质蛋白’——比如鸡蛋羹、瘦肉泥、酸奶和豆腐脑。”</p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区 2：靠“熬鸡汤/鱼汤”来给肿瘤患者补营养</h4>
+            <div class="misconception-quote">患者/家属原话：“我给他弄的鸡汤，鸡汤他也不喝……鱼汤也不能喝吗？”</div>
+            <p><strong>医生现场纠正：</strong>“鸡汤、肉汤本身都不应该喝。如果是单纯熬鲈鱼汤不放油盐还可以，但如果放油熬成白汤，喝进去的全是油。”</p>
+            <p><strong>临床解释：</strong>肉汤中溶解的主要是油脂、嘌呤、无机盐及微量游离氨基酸，95%以上的优质蛋白质仍保留在肉质本身中。肿瘤患者大量饮汤不仅无法补充蛋白质，反而会占用有限的胃容量，加重消化负担，且乳化白汤中高额的脂肪会加重体内炎症反应。</p>
+            <p><strong>营养宣教表达：</strong>“营养都在肉里，不在汤里。熬得白白的汤其实全都是脂肪颗粒。给老爷子补身体，要把鱼肉、瘦肉打成肉泥吃下去，而不是只喝汤。”</p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区 3：偏爱食用肥肉、扣肉、猪头肉等高脂食物</h4>
+            <div class="misconception-quote">患者/家属原话：“他就天天想着吃油……要吃肥肉、扣肉、猪头肉、内脏。”</div>
+            <p><strong>医生现场纠正：</strong>“肥肉一点都不要给他吃了，只吃瘦肉。因为它有炎症，肥肉会刺激炎症。”</p>
+            <p><strong>临床解释：</strong>饱和脂肪酸及高脂食物可诱发或加重机体的慢性低度炎症（Somatic Inflammation），增加消化道负担，对于直肠癌术后及肿瘤恶病质患者，高脂饮食会进一步促发肿瘤相关炎症因子的释放，加速全身消耗。急需限制饱和脂肪，补充优质瘦肉。</p>
+            <p><strong>营养宣教表达：</strong>“肿瘤本身会导致身体处于‘发炎’状态，肥肉和动物内脏就像往火里加油，会加重这种消耗。我们必须换成清淡的瘦猪肉泥、虾泥。”</p>
+        </div>
+    </div>
+
+    <!-- 第四部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第四部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong><br>
+        此前我认为，只要患者化疗期间白蛋白指标在正常范围内，营养状态就基本安全；对于进食困难的患者，家属打五谷糊、熬高汤也是一种可行的补充营养方式，只需鼓励患者多经口吃喝即可。</p>
+
+        <p><strong>今天新的认识：</strong><br>
+        观察到临床上白蛋白“假性正常”与严重骨骼肌丢失（Sarcopenia）共存的现象。意识到“进食安全性（误吸）”优先于“经口摄入量”；液体呛咳是极为危险的临床信号，盲目鼓励“多喝水/多喝汤”可能导致吸入性肺炎甚至危及生命。此外，对于依从性差的患者，方案的心理可行性（如从粉剂改即饮型ONS，从鼻胃管改PEG）与医学必要性同等重要。</p>
+
+        <p><strong>最大收获：</strong></p>
+        <ol>
+            <li><strong>问诊逻辑决定临床决策：</strong>医生优先询问“进食量减少时长”与“饮水是否呛咳”，精准把控了“摄入不足”与“误吸风险”两大核心矛盾。</li>
+            <li><strong>严格区分“能量补充”与“优质蛋白/高脂炎症”：</strong>高脂肥肉与浓汤不仅不补蛋白质，反而刺激机体炎症，必须坚决纠正。</li>
+            <li><strong>灵活运用营养阶梯与产品形态：</strong>当患者对常规粉剂ONS产生味觉厌恶时，及时切换为即饮型液体剂型，能极大地改善社区/居家依从性。</li>
+        </ol>
+    </div>
+
+    <!-- 第五部分 📚 本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第五部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>1. 肿瘤恶病质（Cancer Cachexia）与肌少症评估</h4>
+            <p>肿瘤恶病质以持续性骨骼肌量减少为特征，不能被传统营养支持完全逆转。临床上不能仅依赖血清白蛋白评估，需结合人体成分分析（BIA）中的“骨骼肌指数（SMI）”及近期体重下降百分比（3个月内下降>5%即提示高风险）。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>2. 经皮内镜下胃造瘘术（PEG）的临床适应证</h4>
+            <p><strong>适应证：</strong>吞咽障碍、头颈部/消化道肿瘤导致经口摄入不足（&lt;60%目标量）预计超过2-4周，且中枢及上消化道通畅者。<br>
+            <strong>优势：</strong>比鼻胃管（NGT）更隐蔽、无咽部刺激与食管反流风险，患者可携带进行日常活动与放化疗。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>3. 口服营养补充（ONS）的剂型选择与依从性管理</h4>
+            <p>粉剂需自行冲调，容易受水温、浓度及甜腻口感影响导致患者拒服（如本例患者拒绝饮用安素）；即饮型液体ONS（Ready-to-drink）具备高能量密度、渗透压适宜及口味多样性，能显著提高老年肿瘤患者的每日遵医嘱服药率。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>4. 吞咽障碍与液体改性</h4>
+            <p>稀液体（Water/Clear Soup）流速极快，最易误入气道。对伴有呛咳的患者，应增加液体黏稠度（使用食物凝固剂）或改用半固态/泥状高蛋白食物（蛋羹、肉泥），必要时行吞咽造影（VFSS）评估。</p>
+        </div>
+    </div>
+
+    <!-- 第六部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第六部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card">
+            <div class="training-grid">
+                <div><strong>患者：</strong>老年男性，直肠癌术后定期返院治疗者</div>
+                <div><strong>疾病：</strong>直肠癌术后，伴肿瘤相关体重消耗</div>
+                <div><strong>核心营养问题：</strong>重度体重丢失（>10kg/3个月）、吞咽稀液体误吸风险、高脂高油饮食误区、ONS依从性差</div>
+                <div><strong>医生首先关注：</strong>进食量减半持续时间、近期体重下降绝对值、饮水/喝汤是否呛咳</div>
+                <div><strong>为什么：</strong>确定营养不良严重程度及是否存在吸入性肺炎危险，决定是否需要强制管饲干预</div>
+                <div><strong>关键风险：</strong>重度恶病质导致化疗中断；液体误吸引发重症吸入性肺炎</div>
+                <div><strong>营养决策：</strong>限制稀液体经口摄入；停用肥肉高汤，改为瘦肉泥/蛋羹；换用即饮型液体ONS；积极建议胃造瘘（PEG）</div>
+                <div><strong>我的临床思维变化：</strong>从“关注指标与鼓励多吃”转变为“先评估吞咽安全性，再精准干预蛋白质质量与给药途径”。</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function filterContent() {
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toLowerCase();
+    var sections = document.getElementsByClassName('searchable-section');
+
+    for (var i = 0; i < sections.length; i++) {
+        var section = sections[i];
+        var text = section.textContent || section.innerText;
+        if (text.toLowerCase().indexOf(filter) > -1) {
+            section.style.display = "";
+        } else {
+            section.style.display = "none";
+        }
+    }
+}
+</script>
+
+</body>
+</html>
