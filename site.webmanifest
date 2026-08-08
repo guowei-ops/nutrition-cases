@@ -1,0 +1,16 @@
+{
+  "name": "北肿临床营养科会诊思维录",
+  "short_name": "北肿营养",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f7f3",
+  "theme_color": "#176b62",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
