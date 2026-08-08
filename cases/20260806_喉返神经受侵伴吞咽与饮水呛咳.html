@@ -1,554 +1,512 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北肿临床营养科会诊思维录</title>
-    <style>
-        :root {
-            --primary-blue: #1a5276;
-            --light-blue: #ebf5fb;
-            --dark-gray: #2c3e50;
-            --text-main: #333333;
-            --green-think: #1e8449;
-            --green-bg: #eafaf1;
-            --orange-mis: #d35400;
-            --orange-bg: #fef5e7;
-            --purple-know: #6c3483;
-            --purple-bg: #f4ecf7;
-            --border-color: #d6dbdf;
-            --card-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #555555;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            line-height: 1.6;
-            color: var(--text-main);
-            background-color: #f8f9f9;
-            margin: 0;
-            padding: 15px;
-        }
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--dark-gray);
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.1);
-        }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 
-        /* 标题设计 */
-        .header {
-            text-align: center;
-            border-bottom: 3px solid var(--primary-blue);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+    }
 
-        .header h1 {
-            color: var(--primary-blue);
-            font-size: 26px;
-            margin: 0 0 10px 0;
-            letter-spacing: 1px;
-        }
+    .header-card h1 {
+        margin: 0 0 10px 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
 
-        .header .subtitle {
-            font-size: 15px;
-            color: #566573;
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
+    .header-card .subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 10px;
+    }
 
-        .header .meta-info {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 14px;
-            color: #7f8c8d;
-            flex-wrap: wrap;
-        }
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 14px;
+    }
 
-        .header .meta-info span {
-            background: #f2f4f4;
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
+    .meta-item {
+        background: rgba(255,255,255,0.15);
+        padding: 6px 14px;
+        border-radius: 20px;
+    }
 
-        /* 搜索框 */
-        .search-container {
-            margin-bottom: 25px;
-        }
+    /* Search Bar */
+    .search-container {
+        margin-bottom: 25px;
+    }
 
-        .search-input {
-            width: 100%;
-            padding: 12px 15px;
-            font-size: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: 6px;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.3s;
-        }
+    .search-input {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.3s;
+    }
 
-        .search-input:focus {
-            border-color: var(--primary-blue);
-        }
+    .search-input:focus {
+        border-color: var(--secondary-blue);
+    }
 
-        /* 通用卡片组件 */
-        .section-card {
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 25px;
-            box-shadow: var(--card-shadow);
-        }
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+    }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 0;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    .section-title {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
 
-        /* 区域特定样式 */
-        /* 蓝色：病例信息 */
-        .theme-blue {
-            border-left: 5px solid var(--primary-blue);
-        }
-        .theme-blue .section-title {
-            color: var(--primary-blue);
-            border-bottom-color: var(--primary-blue);
-        }
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
 
-        /* 深灰：原始录音 */
-        .theme-gray {
-            border-left: 5px solid var(--dark-gray);
-            background-color: #fafafa;
-        }
-        .theme-gray .section-title {
-            color: var(--dark-gray);
-            border-bottom-color: var(--dark-gray);
-        }
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+        background-color: var(--light-blue);
+        padding: 15px;
+        border-radius: 8px;
+    }
 
-        /* 绿色：临床思维 */
-        .theme-green {
-            border-left: 5px solid var(--green-think);
-            background-color: #fbfdfb;
-        }
-        .theme-green .section-title {
-            color: var(--green-think);
-            border-bottom-color: var(--green-think);
-        }
+    .info-item {
+        font-size: 14px;
+    }
 
-        /* 橙色：误区提炼 */
-        .theme-orange {
-            border-left: 5px solid var(--orange-mis);
-            background-color: #fffdfa;
-        }
-        .theme-orange .section-title {
-            color: var(--orange-mis);
-            border-bottom-color: var(--orange-mis);
-        }
+    .info-item strong {
+        color: var(--primary-blue);
+    }
 
-        /* 紫色：知识整理 */
-        .theme-purple {
-            border-left: 5px solid var(--purple-know);
-            background-color: #fcfafc;
-        }
-        .theme-purple .section-title {
-            color: var(--purple-know);
-            border-bottom-color: var(--purple-know);
-        }
+    .dialogue-block {
+        border-left: 4px solid #ccc;
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
 
-        /* 内部数据展示 */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 12px;
-            margin-bottom: 15px;
-        }
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+    }
 
-        .info-item {
-            background: var(--light-blue);
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+    }
 
-        .info-item strong {
-            color: var(--primary-blue);
-        }
+    .speaker-team {
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
 
-        /* 对话体 */
-        .dialogue-block {
-            margin-bottom: 12px;
-            font-size: 14.5px;
-        }
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 4px 0 12px 0;
+        background-color: #f9f9f9;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
 
-        .speaker-doctor {
-            color: var(--green-think);
-            font-weight: bold;
-        }
+    /* Part 2 Specifics */
+    .mind-card {
+        background-color: var(--green-bg);
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
 
-        .speaker-patient {
-            color: #7f8c8d;
-            font-weight: bold;
-        }
+    .mind-card h4 {
+        margin-top: 0;
+        color: var(--doctor-green);
+    }
 
-        .dialogue-text {
-            background: #ffffff;
-            padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #e5e7e9;
-            margin-top: 4px;
-        }
+    .reasoning-path {
+        background: white;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: monospace;
+        color: #2e7d32;
+        margin: 10px 0;
+        border-left: 3px solid var(--doctor-green);
+    }
 
-        /* 思维推理链 */
-        .chain-box {
-            background: var(--green-bg);
-            border-radius: 6px;
-            padding: 12px;
-            margin: 10px 0;
-            font-size: 14px;
-        }
+    /* Part 3 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
 
-        .chain-arrow {
-            text-align: center;
-            color: var(--green-think);
-            font-weight: bold;
-            margin: 2px 0;
-        }
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.7);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 8px 0;
+    }
 
-        /* 训练卡表格 */
-        .training-card {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    /* Part 5 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 4px solid var(--purple-knowledge);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 15px;
+    }
 
-        .training-card th, .training-card td {
-            border: 1px solid var(--border-color);
-            padding: 10px 12px;
-            text-align: left;
-            font-size: 14px;
-        }
+    .knowledge-box h4 {
+        margin-top: 0;
+        color: var(--purple-knowledge);
+    }
 
-        .training-card th {
-            background-color: var(--light-blue);
-            color: var(--primary-blue);
-            width: 25%;
-        }
+    /* Part 6 Training Card */
+    .training-card {
+        background: #ffffff;
+        border: 2px solid var(--primary-blue);
+        border-radius: 10px;
+        padding: 20px;
+    }
 
-        .system-note {
-            font-size: 12px;
-            color: #95a5a6;
-            font-style: italic;
-            margin-top: 5px;
-        }
+    .training-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
 
-        /* 打印样式支持 */
-        @media print {
-            body { background: #ffffff; padding: 0; }
-            .container { box-shadow: none; max-width: 100%; padding: 0; }
-            .search-container { display: none; }
-            .section-card { page-break-inside: avoid; }
-        }
-    </style>
+    @media (max-width: 768px) {
+        body { padding: 10px; }
+        .training-grid { grid-template-columns: 1fr; }
+        .header-card { padding: 20px; }
+        .header-card h1 { font-size: 22px; }
+    }
+
+    @media print {
+        .search-container { display: none; }
+        body { background-color: white; padding: 0; }
+        .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    }
+</style>
 </head>
 <body>
 
 <div class="container">
 
-    <!-- 输出标题 -->
-    <div class="header">
+    <!-- Header Card -->
+    <div class="header-card">
         <h1>《北肿临床营养科会诊思维录》</h1>
         <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
         <div class="meta-info">
-            <span><strong>整理人：</strong>郭伟</span>
-            <span><strong>日期：</strong>2026年8月8日</span>
-            <span><strong>会诊主题：</strong>喉返神经受侵伴吞咽/饮水呛咳患者的阶段性饮食评估与肠内营养（ONS）短肽方案调整</span>
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>日期：</strong>2026年8月8日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>喉返神经受侵伴进食减少与吞咽呛咳患者的短肽型肠内营养决策与胃肠耐受性管理</div>
         </div>
     </div>
 
-    <!-- 关键词搜索 -->
+    <!-- Search Bar -->
     <div class="search-container">
-        <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜索病例关键词（如：短肽、腹胀、喉返神经、能全素、呛咳）..." onkeyup="filterContent()">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索会诊记录（如：喉返神经、短肽、瑞代、腹胀、呛咳、水肿）..." onkeyup="filterContent()">
     </div>
 
-    <!-- 第一部分 原始会诊记录 -->
-    <div class="section-card theme-blue searchable-item">
-        <div class="section-title">第一部分 🎙 原始会诊记录（完整保留）</div>
-        
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录（完整保留）</h2>
+
         <h3>1. 患者基本信息</h3>
-        <div class="info-grid">
-            <div class="info-item"><strong>性别：</strong>未明确提及（由家属代诊/陪同）</div>
-            <div class="info-item"><strong>年龄：</strong>老年患者（既往40多岁时即不吃冰冷食物）</div>
-            <div class="info-item"><strong>疾病诊断：</strong>肿瘤侵犯喉返神经（神经受损）</div>
-            <div class="info-item"><strong>手术/治疗情况：</strong>既往有手术史，当前处于术后/放化疗后康复期；受侵犯导致喉返神经麻痹</div>
-            <div class="info-item"><strong>当前主要问题：</strong>吞咽功能受限，饮水及稀液体呛咳；摄入量持续下降；口服普通肠内营养粉（能全素）后明显腹胀；5个月内体重下降近5公斤</div>
+        <div class="patient-grid">
+            <div class="info-item"><strong>性别：</strong>未明确提及（听录音倾向于中老年患者）</div>
+            <div class="info-item"><strong>年龄：</strong>中老年（曾提及“四十多岁的时候”）</div>
+            <div class="info-item"><strong>疾病诊断：</strong>肿瘤侵犯喉返神经（导致吞咽/发音及呛咳相关症状）</div>
+            <div class="info-item"><strong>手术/治疗情况：</strong>既往有手术史，目前因病情进展导致进食困难与身体衰弱，需定期抽血复查</div>
+            <div class="info-item"><strong>当前主要问题：</strong>持续纯流食/打糊进食、体重5个月内进行性下降、饮水呛咳、腹胀胃肠不耐受、步态无力（气短乏力）</div>
         </div>
 
         <h3>2. 营养相关现状</h3>
-        <div class="info-grid">
-            <div class="info-item"><strong>体重变化：</strong>3月份至今（5个月）体重下降近5kg</div>
-            <div class="info-item"><strong>进食形态：</strong>纯流食占一半以上时间（近2-3个月），固体食物完全无法进食</div>
-            <div class="info-item"><strong>摄入总量：</strong>早餐半碗米粥/包子/豆腐脑；全天液体（含水、奶、营养液）约1000~2000ml（约4瓶矿泉水）</div>
-            <div class="info-item"><strong>胃肠道反应：</strong>喝能全素后“肚子胀鼓”，无法耐受；喝某些营养液觉得有酸味/胃肠不适</div>
-            <div class="info-item"><strong>吞咽/呛咳：</strong>饮水及稀液体容易呛（喝水喝猛了会呛），嗓子干、有紧绷感；偏好较稠的豆腐脑、蛋黄、蒸糊状物</div>
-            <div class="info-item"><strong>ONS使用情况：</strong>既往使用能全素（8勺+3勺牛奶）、瑞能（耐受度差）；曾自行购买并服用4箱小瓶装短肽营养液，接受度较好</div>
-            <div class="info-item"><strong>活动能力：</strong>步态乏力，无法坚持长时间行走，全天步数不足1000~2000步，伴有呼吸气促（“气站不上来”）</div>
+        <div class="patient-grid">
+            <div class="info-item"><strong>当前体重：</strong>消瘦明显，无法稳站立（“站不上去”）</div>
+            <div class="info-item"><strong>近期体重变化：</strong>从3月份至今5个月，体重持续下降（家属描述“大概下降不到5公斤”）</div>
+            <div class="info-item"><strong>食欲与进食量：</strong>进食量显著减少，大部分食物仅能吃下一半或留底；纯流食状态已持续近2-3个月</div>
+            <div class="info-item"><strong>饮食结构：</strong>早餐米粥/鸡蛋包子/豆腐脑只能吃一半；午晚餐以打糊的肉/蔬菜/五谷/山药/胡萝卜/红薯为主；不爱吃凉食/西瓜/冰淇淋</div>
+            <div class="info-item"><strong>胃肠功能：</strong>饮用某些营养制剂或奶类后易出现腹胀、肚子鼓；无严重腹泻报告</div>
+            <div class="info-item"><strong>吞咽与饮水情况：</strong>喝水太猛易呛（由于侵犯喉返神经）；嗓子发干发紧；每天液体总量（含水、奶、稀饭）约1000ml左右（4瓶矿泉水量）</div>
+            <div class="info-item"><strong>ONS/营养制剂经历：</strong>曾饮用能全素（肠内营养粉剂，配合牛奶/蜂蜜），后因腹胀及口感拒绝；曾使用过瑞能、瑞代及京东购买的某种小瓶短肽制剂（4箱）；拒绝甜味或咖啡味，偏好稍带咸味的制剂</div>
         </div>
 
-        <h3 style="margin-top: 25px;">3. 会诊现场复盘（按录音时间顺序）</h3>
-        
-        <div class="dialogue-block">
-            <div class="speaker-patient">### 模块一：膳食结构与摄入量追问 [00:05 - 02:04]</div>
-            <div class="dialogue-text">
-                <strong>讲话人 1（家属/患者）：</strong>“这个蛋黄嗯……待会儿我去拿。剩下还有一个就是这个能全素，喝完过后肚子都胀的……”<br>
-                <strong>讲话人 2（家属）：</strong>“不知道为什么……”<br>
-                <strong>讲话人 1：</strong>“然后下午就是平时的水果，苹果、猕猴桃……固体都不行。体重从三月份开始到现在，五个多月，降了快五公斤。”<br>
-                <strong>讲话人 2：</strong>“我嗓子好干，跟筋抽着一样……”<br>
-                <strong>讲话人 1：</strong>“那是喝水喝猛了！纯流食大概占了两个多月，一半以上。早餐米粥、鸡蛋、包子，也就喝一半，豆腐脑喝一半……”
-            </div>
-        </div>
+        <h3>3. 会诊现场逐字复盘</h3>
 
         <div class="dialogue-block">
-            <div class="speaker-patient">### 模块二：家属制作稠化食物与肉类消化困难 [02:04 - 04:30]</div>
-            <div class="dialogue-text">
-                <strong>讲话人 2（家属）：</strong>“他让我把玉米、红薯、山药、胡萝卜蒸熟了一块吃，经常捣碎给它蒸。肉打成稀的，加了肉觉得没味不爱吃……”<br>
-                <strong>讲话人 1（家属）：</strong>“以前喝营养粉，喝能全素加纯牛奶。每天晚上七点，八勺能全素加三勺牛奶，但是喝完之后肚子就感觉胀。”<br>
-                <strong>讲话人 2：</strong>“以前能喝一大碗（400-500ml），现在喝不了那么多了，到七月二十号左右就喝不完了，只能留底。”
-            </div>
+            <h4>模块一：膳食结构调查与进食量评估</h4>
+            <div class="speaker-doctor">讲话人 1（营养科医生）：</div>
+            <div class="transcript-text">“这个蛋黄嗯。待会我去拿，然后剩下还有还有一个就是这个人权服务，喝完过后肚子都胀的……”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“下午就是平时的水果，苹果、猕猴桃……蒸的山药、蒸的胡萝卜、红薯一块吃，然后打稀的打成糊……”</div>
+            <div class="speaker-doctor">讲话人 1（营养科医生）：</div>
+            <div class="transcript-text">“打糊的那些放肉了吗？吃掉一点点就变成了不爱吃是对的，那样没有味儿，觉得吃惯肉了，但肉打成泥尝起来不太一样……”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“早晨是米粥、鸡蛋、包子，你说那能喝一半，豆腐脑也就喝一半……现在给他泡这一盆，他最多就留个底了。”</div>
         </div>
 
         <div class="dialogue-block">
-            <div class="speaker-patient">### 模块三：饮水量、饮水呛咳与喉返神经受侵诊断 [04:30 - 06:10]</div>
-            <div class="dialogue-text">
-                <strong>讲话人 2：</strong>“全天水加上所有液体喝到四瓶矿泉水左右（约2000ml）……他不吃凉的，冰淇淋雪糕都不吃。”<br>
-                <strong>讲话人 1（医生/助手）：</strong>“他这个情况，大夫有没有说是因为什么原因呢？”<br>
-                <strong>讲话人 2：</strong>“侵犯喉返神经。”<br>
-                <strong>讲话人 1（医生）：</strong>“噢明白了！那如果这样的话他喝水会有呛咳，喝水要慢点。需要训练饮水姿势，叫他‘饮水’而不是猛喝。”
-            </div>
+            <h4>模块二：病因追问（喉返神经受侵）与液体呛咳评估</h4>
+            <div class="speaker-doctor">讲话人 1（营养科医生）：</div>
+            <div class="transcript-text">“他这个情况的话，大夫有没有说是因为什么原因呢？”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“侵犯喉返神经。”</div>
+            <div class="speaker-doctor">讲话人 1（营养科医生）：</div>
+            <div class="transcript-text">“噢明白了，那如果这样的话他喝水还有点呛，呢唉就慢点喝水。只有专科的护士/营养师……不要叫他‘喝水’，叫他‘饮水’（慢咽）。”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“嗓子好干，嗓子就跟筋一样的发紧……喝水喝猛了就会呛。”</div>
         </div>
 
         <div class="dialogue-block">
-            <div class="speaker-doctor">### 模块四：肠内营养配方选择与短肽（预消化）替代 [06:26 - 08:33]</div>
-            <div class="dialogue-text">
-                <strong>讲话人 1（医生）：</strong>“因为他能做的是营养液或者这种浆糊状食物。营养粉的话，既然能全素不行（导致腹胀），我给他写几种适合的短肽类配方。”<br>
-                <strong>讲话人 2：</strong>“咱医院有吗？”<br>
-                <strong>讲话人 1（医生）：</strong>“医院里也有短肽的（如百普力/瑞先等或预消化配方），先开点试试，看看口感。短肽属于好吸收的，有液体也有粉剂，像瑞代/百普素/德瑞泰这种，适合肠道吸收功能差或者易腹胀的患者。一天至少补充500-1000ml。”<br>
-                <strong>讲话人 2：</strong>“我之前京东买过一种小瓶子的，也是肽，喝了四箱，当时觉得还可以！”
-            </div>
+            <h4>模块三：ONS制剂历史与胃肠耐受性（腹胀）复盘</h4>
+            <div class="speaker-doctor">讲话人 1（营养科医生）：</div>
+            <div class="transcript-text">“那那就给他喝那个营养粉了吗？”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“就他喝那个能全素、纯牛奶。每天就一次，晚上七点左右大概是八勺加三勺牛奶，但是喝完之后肚子就感觉胀，鼓起来……”</div>
+            <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
+            <div class="transcript-text">“喝完觉得肚子胀是吗？瑞能没有这个好吸收，瑞代……血糖没有问题是吧？”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“血糖没有问题。以前在京东买过一种小瓶子的肽，喝了四箱，当时觉得还可以，是原研药。”</div>
         </div>
 
         <div class="dialogue-block">
-            <div class="speaker-doctor">### 模块五：活动能力评估与营养补充细节指导 [09:22 - 10:37]</div>
-            <div class="dialogue-text">
-                <strong>讲话人 3（医生/助手）：</strong>“现在每天能走一走吗？能走多少步？”<br>
-                <strong>讲话人 1：</strong>“没劲儿……有时候站不上去，接不上气。”<br>
-                <strong>讲话人 2：</strong>“达不到两千步，可能就一千步左右。之前喝过瑞能。”<br>
-                <strong>讲话人 3：</strong>“瑞能是整蛋白高能量的，没有短肽好吸收。这种小瓶装的短肽更容易接受，口感好一些……”
-            </div>
+            <h4>模块四：活动能力与体能衰退评估</h4>
+            <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
+            <div class="transcript-text">“现在活动吗？每天都能走一走吗？人就是健走多少步呢？”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“走一走，但是他走的时间不长，没有劲儿，接不上气……”</div>
+            <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
+            <div class="transcript-text">“一天能走一两千步吗？”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“两千步达不到，一千步都困难，站都站不上去……”</div>
         </div>
 
-        <p class="system-note">注：录音中背景出现的抽血叫号声、医院广播背景音及其他诊室杂音（如[01:20-01:36]等碎片对话），疑似非本病例核心会诊内容，未纳入整理。</p>
-    </div>
-
-    <!-- 第二部分 医生临床思维拆解 -->
-    <div class="section-card theme-green searchable-item">
-        <div class="section-title">第二部分 🧠 医生临床思维拆解</div>
-
-        <!-- 节点 1 -->
-        <div style="margin-bottom: 20px;">
-            <h4 style="color: var(--green-think); margin-bottom: 5px;">节点一：询问“大夫有没有说是什么原因导致无法吃固体食物？” [06:10]</h4>
-            <p><strong>医生关注问题：</strong>明确摄入障碍与体质下降的病理生理机制。</p>
-            <p><strong>可能目的：</strong>区分是单纯的“食欲不振/消化不良”，还是由于“结构性/神经性障碍”引起的机械性吞咽困难。</p>
-            <div class="chain-box">
-                <strong>临床推理路径：</strong><br>
-                患者只能进食纯流食/糊状物，饮水易呛，嗓子紧绷<br>
-                <div class="chain-arrow">↓</div>
-                家属证实“侵犯喉返神经”<br>
-                <div class="chain-arrow">↓</div>
-                判断存在神经源性吞咽障碍（声带麻痹导致气道关闭不全）<br>
-                <div class="chain-arrow">↓</div>
-                明确饮水（稀液体）比粘稠食物更易误吸呛咳，指导“改饮水为摄入稠化液体/泥糊状物”，避免肺部感染。
-            </div>
-            <p><strong>对治疗决策影响：</strong>停止强行进食稀液体与固体食物，将饮食形态固定为“浓稠流质/泥糊状”，并引入吞咽功能评估与摄食姿势指导。</p>
-        </div>
-
-        <!-- 节点 2 -->
-        <div style="margin-bottom: 20px;">
-            <h4 style="color: var(--green-think); margin-bottom: 5px;">节点二：追问“喝完能全素之后的反应”与“为什么喝不下去” [01:00, 03:08]</h4>
-            <p><strong>医生关注问题：</strong>评估肠内营养制剂（ONS）的胃肠道耐受性。</p>
-            <p><strong>可能目的：</strong>判断腹胀是由于配方渗透压、整蛋白耐受不良，还是冲调浓度/一次性饮用速度过快。</p>
-            <div class="chain-box">
-                <strong>临床推理路径：</strong><br>
-                家属一次性给予8勺能全素+牛奶（高渗、整蛋白、量大）<br>
-                <div class="chain-arrow">↓</div>
-                患者出现明显腹胀、进食量骤减<br>
-                <div class="chain-arrow">↓</div>
-                判断为整蛋白配方消化吸收负担过重，且单次高渗冲调引起胃排空延迟<br>
-                <div class="chain-arrow">↓</div>
-                决策调整营养制剂分子量：由整蛋白（能全素/瑞能）调整为预消化短肽型（百普力/百普素等）。
-            </div>
-            <p><strong>对治疗决策影响：</strong>由普通整蛋白制剂切换为低渗透压、无需胰酶深加工的短肽型肠内营养制剂，降低肠道负担，缓解腹胀。</p>
-        </div>
-
-        <!-- 节点 3 -->
-        <div style="margin-bottom: 20px;">
-            <h4 style="color: var(--green-think); margin-bottom: 5px;">节点三：询问“一天能走多少步？有没有气短？” [09:22]</h4>
-            <p><strong>医生关注问题：</strong>评估患者的体能状况（ECOG评分）与肌少症/恶病质风险。</p>
-            <p><strong>可能目的：</strong>结合5个月体重下降5kg（>8%），判断患者是否处于肿瘤恶病质期及心肺代偿能力。</p>
-            <div class="chain-box">
-                <strong>临床推理路径：</strong><br>
-                日行步数不足1000步，伴站立气促、乏力<br>
-                <div class="chain-arrow">↓</div>
-                提示严重能量摄入不足导致的骨骼肌消耗（肌少症）与体能衰退<br>
-                <div class="chain-arrow">↓</div>
-                纯靠自然膳食无法补足缺口，必须设定明确的ONS目标量（每天至少500-1000kcal）。
-            </div>
-            <p><strong>对治疗决策影响：</strong>明确营养补充的紧迫性，若口服短肽仍无法达到60%目标量，需考虑管饲（如PEG/鼻胃管）干预。</p>
+        <div class="dialogue-block">
+            <h4>模块五：口服营养补充（ONS）方案制定与短肽制剂推荐</h4>
+            <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
+            <div class="transcript-text">“给你写几种可以适合的，短肽类的，比如瑞先、德瑞泰，它们都是属于好吸收的。有液体的，也有粉剂的。如果他什么都喝不了，至少一天要喝500到1000毫升……”</div>
+            <div class="speaker-patient">讲话人 2（家属）：</div>
+            <div class="transcript-text">“吃甜的还是咸的？他不喝甜的，喝那玩意咸的好喝……有点咸的能接受。”</div>
+            <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
+            <div class="transcript-text">“像这种200毫升一瓶的，一天能喝几瓶喝几瓶，喝5瓶都可以。先给你开点试试口感和胃肠耐受。”</div>
         </div>
     </div>
 
-    <!-- 第三部分 患者及家属营养误区提炼 -->
-    <div class="section-card theme-orange searchable-item">
-        <div class="section-title">第三部分 ⚠️ 患者及家属营养误区提炼</div>
+    <!-- 第二部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 🧠 医生临床思维拆解</h2>
 
-        <div style="margin-bottom: 15px;">
-            <h4 style="color: var(--orange-mis);">误区 1：稀液体（纯水/稀汤）比粘稠食物更容易咽下去</h4>
-            <p><strong>患者/家属原话：</strong>“喝水喝猛了……每天喝四瓶矿泉水量的稀液体。” [01:10, 03:52]</p>
-            <p><strong>医生现场纠正：</strong>“他侵犯了喉返神经，喝水会有呛咳，要慢点喝，叫‘饮水’训练，不能猛灌。” [06:10]</p>
-            <p><strong>临床解释：</strong>喉返神经受损患者声带无法完全闭合，稀液体流动速度极快，极易在会厌谷未完全封闭前进入气管，引起剧烈呛咳甚至吸入性肺炎。相反，高粘稠度的泥糊状食物（如豆腐脑、浓稠蛋花羹、凝固剂增稠液体）流动慢，反而更安全。</p>
-            <p><strong>营养宣教表达：</strong>“阿姨/叔叔，咱们喉咙的‘安全门’受了点神经影响，关得不够快。水流得太快，很容易漏进气管引起肺炎；把水做成像豆腐脑、浓芝麻糊那样的稠度，它走得慢，‘安全门’来得及关，吃起来反而更安全。”</p>
+        <div class="mind-card">
+            <h4>关键问诊点 1：追问“肿瘤侵犯喉返神经”这一核心病因与液体呛咳表现</h4>
+            <p><strong>医生问：</strong>“大夫有没有说是因为什么原因？”（家属答：侵犯喉返神经）“喝水呛不呛？”</p>
+            <p><strong>可能目的：</strong>喉返神经支配喉内肌（除环甲肌外）。肿瘤侵犯喉返神经会导致声带麻痹、声门闭合不全，从而引发严重的吞咽障碍与饮水呛咳。医生需要明确呛咳的解剖学根源，区分是单纯衰弱还是神经受损导致，以指导饮水姿势与食物形态调整。</p>
+            <div class="reasoning-path">
+                现象：饮水容易呛咳 + 嗓子发紧 <br>
+                ↓ 原因分析：肿瘤侵犯喉返神经 → 声带麻痹/声门闭合不全 <br>
+                ↓ 风险判断：高误吸风险、吸入性肺炎、隐匿性脱水 <br>
+                ↓ 营养干预：避免快速大口喝稀液体；提倡小口慢饮（“饮水”非“喝水”）；改用增稠或半固态营养制剂
+            </div>
+            <p><strong>对治疗决策影响：</strong>强调饮水安全指导，避免因误吸引发肺部感染而中断抗肿瘤治疗。</p>
         </div>
 
-        <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 15px 0;">
-
-        <div style="margin-bottom: 15px;">
-            <h4 style="color: var(--orange-mis);">误区 2：营养粉越浓、加牛奶越多，营养越好</h4>
-            <p><strong>患者/家属原话：</strong>“每天晚上八勺能全素加三勺牛奶，冲一大碗，喝完肚子胀鼓鼓的。” [03:02, 03:08]</p>
-            <p><strong>医生现场纠正：</strong>改变配方种类，推荐短肽制剂，并建议分次少量饮用。[06:47, 08:15]</p>
-            <p><strong>临床解释：</strong>高浓度的整蛋白营养粉混合牛奶，会形成极高渗透压的混合液，且大分子蛋白质需要大量的胃酸和消化酶深加工。肿瘤患者胃肠动力减弱，高渗液体滞留在胃内极易导致胃排空延迟、腹胀、恶心。</p>
-            <p><strong>营养宣教表达：</strong>“肠道就像一条马路，现在消化功能弱了，咱们一次性塞进去太浓、太硬的‘大货车’（整蛋白+牛奶），马路就彻底堵死了（腹胀）。咱们换成预先打碎的‘小轿车’（短肽），并且少量多次地喝，肠道就好吸收了。”</p>
+        <div class="mind-card">
+            <h4>关键问诊点 2：详细复盘ONS制剂使用史与胃肠道反应（腹胀）</h4>
+            <p><strong>医生问：</strong>“喝完能全素/牛奶之后肚子胀是吗？”“之前喝瑞能、瑞代或者小瓶肽感觉怎么样？”</p>
+            <p><strong>可能目的：</strong>整分子蛋白制剂（如能全素）及高蛋白高脂配方在消化功能衰退或小肠吸收面积/酶活性下降时，容易在肠道发酵产生气体，导致腹胀与胃排空延迟。追问既往耐受史是为了精准切换为“无需复杂消化过程”的短肽型（Pre-digested）制剂。</p>
+            <div class="reasoning-path">
+                现象：饮用整分子蛋白/牛奶后腹胀鼓起 <br>
+                ↓ 原因分析：胃肠动力减弱 + 整分子蛋白/乳糖吸收不良与肠道发酵 <br>
+                ↓ 风险判断：患者因腹胀产生抗拒心理，导致ONS依从性极低，营养缺口扩大 <br>
+                ↓ 营养干预：停用整分子粉剂，换用预消化、易吸收的短肽型（Oligopeptide）肠内营养制剂
+            </div>
+            <p><strong>对治疗决策影响：</strong>由整分子配方调整为短肽配方（如瑞先/德瑞泰等），解决胃肠道不耐受瓶颈。</p>
         </div>
 
-        <hr style="border: 0; border-top: 1px dashed var(--border-color); margin: 15px 0;">
-
-        <div>
-            <h4 style="color: var(--orange-mis);">误区 3：吃榴莲/海参蒸蛋等高热量高端食材就能代替专业营养治疗</h4>
-            <p><strong>患者/家属原话：</strong>“买榴莲吃了一点点，怕吃完第二天又胖了……以前还给蒸海参蒸鸡蛋。” [01:13, 04:19]</p>
-            <p><strong>医生现场纠正：</strong>回归标准化营养评估，强调均衡且易吸收的特医食品。[06:47]</p>
-            <p><strong>临床解释：</strong>海参主要成分为非必需氨基酸（胶原蛋白），营养价值远低于鸡蛋和短肽；榴莲虽然热量高，但缺乏均衡的微量元素与优质蛋白，且粘稠不均、患者心理负担大，无法作为正规营养支撑。</p>
-            <p><strong>营养宣教表达：</strong>“海参和榴莲虽然贵，但它的营养成分比较单一，补充不了全身消耗所需的全面营养。我们需要的是像‘特医食品’这样配比好的均衡营养，才能保住肌肉和体力。”</p>
+        <div class="mind-card">
+            <h4>关键问诊点 3：评估每日实际活动步数与肌肉衰竭（接不上气、无力）</h4>
+            <p><strong>医生问：</strong>“每天能走一走吗？能走多少步？一两千步有吗？”</p>
+            <p><strong>可能目的：</strong>步数与体能是评估肌少症（Sarcopenia）及癌症相关乏力（CRF）的直观临床指标。患者连1000步都困难且“接不上气”，提示机体骨骼肌重度损耗及心肺储备下降，急需高能量密度与高蛋白支持。</p>
+            <div class="reasoning-path">
+                现象：活动量小于1000步/天 + 站立困难、气短 <br>
+                ↓ 原因分析：长期能量/蛋白质摄入不足 → 重度骨骼肌衰退（肌少症） <br>
+                ↓ 风险判断：卧床风险增加、跌倒风险高、全身代谢抵抗 <br>
+                ↓ 营养干预：定量补充高利用率短肽营养液，目标每日达到500-1000ml（补充能量与氨基酸）
+            </div>
+            <p><strong>对治疗决策影响：</strong>明确营养补充的目标剂量（每日至少500-1000ml），并强调体能维持的重要性。</p>
         </div>
     </div>
 
-    <!-- 第四部分 我的学习成长记录 -->
-    <div class="section-card theme-purple searchable-item">
-        <div class="section-title">第四部分 💡 我的学习成长记录</div>
-        <p style="font-size: 13px; color: #7f8c8d;">（视角：正在进修的营养学习者 郭伟）</p>
+    <!-- 第三部分：患者及家属营养误区提炼 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第三部分 ⚠️ 患者及家属营养误区提炼</h2>
 
-        <h4>今天之前我的理解：</h4>
-        <p>以往遇到患者进食量减少、体重下降时，我往往第一反应是建议“增加摄入量”，或者直接推荐高能量密度的整蛋白营养粉（如能全素、瑞能），认为只要多喝就能把能量补回来。对于患者反映的“腹胀”，常简单归咎于“胃肠动力差”，倾向于开具胃肠动力药。</p>
+        <div class="misconception-card">
+            <h4>误区 1：认为将肉类、蔬菜、山药打成稀糊就是“营养全面”，忽视了适口性与实际摄入量</h4>
+            <div class="misconception-quote">患者/家属原话：“我把肉、红薯、胡萝卜打成稀的糊糊，但他吃一点就不爱吃了，觉得没味儿。”</div>
+            <p><strong>医生现场纠正：</strong>“打成糊之后肉没有原本的味道了，吃惯了正常肉食的人会觉得口感不好，所以他只吃一点就留底。”</p>
+            <p><strong>临床解释：</strong>将多种食物混合打糊虽然物理形态变成了流食，但稀释了能量密度，且破坏了食物的风味与口感，容易导致患者味觉厌恶。此外，自制打糊食物的蛋白质密度往往达不到肿瘤患者每日需求，且体积过大易引起早饱。</p>
+            <p><strong>营养宣教表达：</strong>“家属一片好心把蔬菜肉类打成糊，但混合在一起不仅口感变差、影响食欲，而且水加多了能量反而变低了。我们可以用商业化的高能量密度短肽制剂来保证营养，家常饮食尽量做成单独的精致软食（如鸡蛋羹、豆腐脑）。”</p>
+        </div>
 
-        <h4>今天新的认识：</h4>
-        <p>通过这个病例，我认识到肿瘤营养干预必须建立在**“解剖受损机制”与“肠道消化吸收屏障”**双重评估之上：<br>
-        1. 喉返神经受损导致的吞咽困难，最危险的不是“吃不下”，而是“稀液体误吸导致的隐匿性呛咳与肺炎”。<br>
-        2. 患者出现腹胀时，不能强行坚持整蛋白配方，必须敏锐意识到是消化酶缺乏或高渗不耐受，应及时降解为“短肽型”配方。</p>
+        <div class="misconception-card">
+            <h4>误区 2：盲目使用整分子蛋白粉/纯牛奶大剂量冲调，忽视了患者胃肠消化吸收能力下降导致的腹胀</h4>
+            <div class="misconception-quote">患者/家属原话：“每天晚上七点给他冲八勺能全素加上三勺牛奶，但喝完肚子就胀得鼓鼓的。”</div>
+            <p><strong>医生现场纠正：</strong>“喝完肚子胀说明他现在对这种整分子的营养粉消化吸收不了，需要换成好吸收的短肽类制剂。”</p>
+            <p><strong>临床解释：</strong>中晚期肿瘤及长期营养不良患者，胃肠道粘膜萎缩，消化酶分泌减少。整分子蛋白（如酪蛋白、大豆蛋白）及乳糖需要复杂的酶解过程，未经充分消化的物质进入结肠被细菌发酵，极易产生大量气体导致腹胀。此时强行增加整分子粉剂只会加重胃肠负担。</p>
+            <p><strong>营养宣教表达：</strong>“老爷子现在肠胃功能弱了，普通的蛋白粉和牛奶就像是大块的木头，肠道啃不动就会发酵胀气。我们需要换成‘短肽’，也就是已经帮他切成小碎块的蛋白质，肠道可以直接吸收，不会胀气。”</p>
+        </div>
 
-        <h4>最大收获（3条）：</h4>
+        <div class="misconception-card">
+            <h4>误区 3：将“饮水”等同于普通“喝水”，忽视了喉返神经受损患者大口喝水极易引发误吸</h4>
+            <div class="misconception-quote">患者/家属原话：“他嗓子干，喝水喝猛了就呛。”</div>
+            <p><strong>医生现场纠正：</strong>“因为侵犯了喉返神经，喝水容易呛。专科护理上不要叫他‘喝水’，要叫他‘饮水’，慢一点饮。”</p>
+            <p><strong>临床解释：</strong>喉返神经受损导致声带无法紧密闭合，稀液体（水）由于流动速度极快，在吞咽反射未完全启动时即可漏入气管引发呛咳。如果不改变饮水习惯（如大口咕咚咕咚喝），极易导致隐匿性误吸或吸入性肺炎。</p>
+            <p><strong>营养宣教表达：</strong>“因为神经受了影响，气门关不紧，喝水太快水就会溜进气管里。以后喝水千万不能仰头大口灌，要一小口一小口吞，或者在水里加点凝固剂变黏稠一点再喝。”</p>
+        </div>
+    </div>
+
+    <!-- 第四部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第四部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong><br>
+        以往遇到吞咽困难或进食减少的肿瘤患者，我倾向于建议家属“把所有食物打成糊经口吃”或者“加量补充常规蛋白粉/能全素”。对于患者主诉的“腹胀”，常简单归咎于胃肠动力差，开具动力药即可。</p>
+
+        <p><strong>今天新的认识：</strong><br>
+        通过本病例的学习，我认识到：<br>
+        1. <strong>病因学机制的重要性：</strong>肿瘤侵犯喉返神经导致的呛咳属于解剖与神经功能异常，必须进行针对性的“饮水行为干预（小口慢饮/增稠）”，而非简单鼓励多喝水。<br>
+        2. <strong>胃肠耐受性与制剂选择：</strong>腹胀是肠内营养不耐受的核心信号。整分子蛋白需要消化酶解，当患者胃肠功能衰退时，应果断切换为预消化的“短肽型（Oligopeptide）”制剂，降低渗透压与发酵风险。<br>
+        3. <strong>患者偏好与依从性细节：</strong>极少数患者排斥甜味和咖啡味，对咸味或无味制剂接受度更高，临床决策必须结合患者的具体口味偏好与剂型（液体即饮 vs 粉剂）。</p>
+
+        <p><strong>最大收获：</strong></p>
         <ol>
-            <li><strong>问诊先查“神经与结构”：</strong>面对咽喉/胸部肿瘤患者，出现食欲下降第一步先查是否有喉返神经麻痹或食管狭窄，从而决定食物的“物理粘稠度”。</li>
-            <li><strong>配方选择遵循“阶梯消化原则”：</strong>整蛋白不耐受（腹胀/腹泻）时，短肽是极其关键的替代武器，其利用双肽/三肽转运载体，吸收速度更快，不增加肠道渗出。</li>
-            <li><strong>量化患者的“水与液体总摄入”：</strong>家属常把汤、奶、水混为一谈，必须像医生一样精准拆解“纯水量”与“营养液量”，避免无效液体占满胃容量。</li>
+            <li><strong>精准辨析腹胀原因：</strong>从“盲目加量普通营养粉”转变为“评估消化吸收阶梯，及时升级为短肽配方”。</li>
+            <li><strong>神经损伤下的吞咽安全管理：</strong>对喉返神经受侵患者，细化沟通语言（用“饮水”代替“喝水”），预防误吸。</li>
+            <li><strong>量化体能与营养缺口：</strong>将每日步数（<1000步）与能量目标（500-1000ml/天短肽）相结合，制定切实可行的居家ONS方案。</li>
         </ol>
     </div>
 
-    <!-- 第五部分 本病例相关知识整理 -->
-    <div class="section-card theme-purple searchable-item">
-        <div class="section-title">第五部分 📚 本病例相关知识整理</div>
+    <!-- 第五部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第五部分 📚 本病例相关知识整理</h2>
 
-        <h4>1. 喉返神经麻痹（RLNP）与吞咽障碍管理</h4>
-        <p>喉返神经支配除环甲肌以外的所有喉内肌。当肿瘤侵犯或手术损伤喉返神经时，可导致患侧声带固定于旁正中位，造成声门闭合不全。临床表现为声音嘶哑及<strong>稀液体吞咽呛咳</strong>。食物管理需采用粘稠度分级（IDDSI标准），避免纯稀液体，使用食物凝固剂/增稠剂。</p>
+        <div class="knowledge-box">
+            <h4>1. 喉返神经（Recurrent Laryngeal Nerve, RLN）损伤与吞咽障碍</h4>
+            <p>喉返神经支配除环甲肌以外的所有喉内肌。当肿瘤（如胸顶肿瘤、食管癌、肺癌或淋巴结转移）侵犯喉返神经时，可导致声带麻痹（Vocal Cord Paralysis）。表现为声音嘶哑、声门闭合不全。稀液体流速快，极易穿过未闭合的声门进入气管导致呛咳与吸入性肺炎。临床干预包括：小口慢饮、低头吞咽位、液体增稠（Thickeners）或管饲。</p>
+        </div>
 
-        <h4>2. 短肽型肠内营养制剂（Oligomeric Formulas）</h4>
-        <p>短肽制剂是将蛋白质水解为短肽（2-3个氨基酸组成的双肽/三肽）及少量游离氨基酸的配方。其吸收机制通过小肠黏膜上的 PEPT1 转运体进行，具有以下特点：</p>
-        <ul>
-            <li>无需胰蛋白酶和消化性肽酶的进一步消化；</li>
-            <li>吸收速率明显高于游离氨基酸和整蛋白；</li>
-            <li>低蛋白抗原性，适合肠道黏膜受损、胰腺功能不足或整蛋白引起腹胀的患者。</li>
-        </ul>
+        <div class="knowledge-box">
+            <h4>2. 短肽型肠内营养制剂（Oligopeptide-based EN Formula）的优势</h4>
+            <p><strong>原理：</strong>短肽由2-3个氨基酸组成（双肽/三肽），通过小肠粘膜上的PePT1载体进行主动转运，其吸收速率显著快于游离氨基酸和整分子蛋白质。<br>
+            <strong>临床适用：</strong>胃肠道消化吸收功能受损、胰腺外分泌不足、辐射性肠炎、严重营养不良以及整分子蛋白制剂引起明显腹胀/腹泻的患者。</p>
+        </div>
 
-        <h4>3. ONS腹胀的常见原因与临床对策</h4>
-        <ul>
-            <li><strong>渗透压过高：</strong>冲调过浓或加入过量蔗糖/牛奶 ➔ 对策：严格按照说明书比例冲调，或改用等渗制剂。</li>
-            <li><strong>乳糖不耐受：</strong>使用含乳糖配方或混合大量纯牛奶 ➔ 对策：选用无乳糖短肽配方。</li>
-            <li><strong>滴注/饮用速度过快：</strong>一次性饮用>300ml ➔ 对策：分次少量饮用（如100ml/次，每小时一次）。</li>
-        </ul>
+        <div class="knowledge-box">
+            <h4>3. 癌症相关恶病质中的胃肠道不耐受管理</h4>
+            <p>肿瘤患者在低度慢性炎症与能量匮乏状态下，肠道黏膜绒毛易发生萎缩，消化酶（如乳糖酶、胰蛋白酶）活性下降。选用整分子牛奶或高渗粉剂易引发高渗性腹泻或肠道菌群异常发酵产生的腹胀。建议选用无乳糖、预消化短肽、等渗或低渗的液体即饮制剂。</p>
+        </div>
     </div>
 
-    <!-- 第六部分 临床思维训练卡 -->
-    <div class="section-card theme-blue searchable-item">
-        <div class="section-title">第六部分 📝 临床思维训练卡</div>
-        
-        <table class="training-card">
-            <tr>
-                <th>患者情况</th>
-                <td>老年患者，肿瘤侵犯喉返神经，5个月体重下降5kg，体能极差（&lt;1000步/天）</td>
-            </tr>
-            <tr>
-                <th>核心营养问题</th>
-                <td>1. 喉返神经麻痹致稀液体误吸呛咳风险；<br>2. 能全素整蛋白不耐受引发腹胀，导致严重摄入不足与恶病质风险。</td>
-            </tr>
-            <tr>
-                <th>医生首先关注</th>
-                <td>咽喉部解剖与神经受损情况（“大夫说是什么原因导致不能吃固体？”）及饮水呛咳表现。</td>
-            </tr>
-            <tr>
-                <th>为什么</th>
-                <td>安全性高于一切！必须首先排除吞咽误吸导致吸入性肺炎的风险，确定物理进食形态。</td>
-            </tr>
-            <tr>
-                <th>关键风险</th>
-                <td>误吸性肺炎、重度营养不良、肿瘤恶病质、骨骼肌快速流失。</td>
-            </tr>
-            <tr>
-                <th>营养决策</th>
-                <td>1. 改变饮食物理性状：禁稀液体，改为增稠糊状食物；<br>2. 调整ONS配方：停用能全素，换用预消化短肽型肠内营养制剂（500-1000ml/天），少量多次饮用。</td>
-            </tr>
-            <tr>
-                <th>我的临床思维变化</th>
-                <td>从“关注补多少能量”转变到“先排查吞咽安全，再匹配肠道消化阶梯配方”。</td>
-            </tr>
-        </table>
+    <!-- 第六部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第六部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card">
+            <div class="training-grid">
+                <div><strong>患者：</strong>中老年肿瘤患者，伴喉返神经受侵</div>
+                <div><strong>疾病：</strong>肿瘤侵犯喉返神经，继发吞咽障碍与进行性消瘦</div>
+                <div><strong>核心营养问题：</strong>整分子ONS导致腹胀不耐受；饮水呛咳误吸风险；打糊食物适口性差导致摄入不足；体能衰退（步数<1000步）</div>
+                <div><strong>医生首先关注：</strong>腹胀发生的制剂类型（能全素/牛奶）；喉返神经受侵对饮水的影响；每日活动步数</div>
+                <div><strong>为什么：</strong>确定胃肠吸收障碍类型以更换短肽制剂；评估误吸风险以指导饮水行为；量化肌少症严重程度</div>
+                <div><strong>关键风险：</strong>饮水呛咳导致吸入性肺炎；营养摄入不足加速恶病质与卧床风险</div>
+                <div><strong>营养决策：</strong>停用整分子能全素/牛奶；更换为好吸收的短肽型肠内营养液（如瑞先/德瑞泰等，每日500-1000ml）；指导“小口饮水”行为干预</div>
+                <div><strong>我的临床思维变化：</strong>从“关注打糊食物吃多少”转变为“评估神经损伤对吞咽安全的影响，并用预消化短肽制剂解决胃肠腹胀瓶颈”。</div>
+            </div>
+        </div>
     </div>
 
 </div>
 
-<!-- 关键词搜索 JavaScript -->
 <script>
-    function filterContent() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('searchable-item');
+function filterContent() {
+    var input = document.getElementById('searchInput');
+    var filter = input.value.toLowerCase();
+    var sections = document.getElementsByClassName('searchable-section');
 
-        for (let i = 0; i < cards.length; i++) {
-            let card = cards[i];
-            let text = card.textContent || card.innerText;
-            if (text.toLowerCase().indexOf(input) > -1) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
-            }
+    for (var i = 0; i < sections.length; i++) {
+        var section = sections[i];
+        var text = section.textContent || section.innerText;
+        if (text.toLowerCase().indexOf(filter) > -1) {
+            section.style.display = "";
+        } else {
+            section.style.display = "none";
         }
     }
+}
 </script>
 
 </body>
