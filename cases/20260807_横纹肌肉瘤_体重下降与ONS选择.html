@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北肿临床营养科会诊思维录</title>
+    <style>
+        :root {
+            --primary-blue: #1a5f7a;
+            --light-blue: #f0f7f9;
+            --border-blue: #b8d8e3;
+            --text-dark: #2c3e50;
+            --text-muted: #666666;
+            --bg-card: #ffffff;
+            --bg-main: #f8f9fa;
+            
+            --audio-dark: #343a40;
+            --audio-bg: #f1f3f5;
+            
+            --mind-green: #2b7a4b;
+            --mind-bg: #f0f9f4;
+            --mind-border: #a3d9b1;
+            
+            --error-orange: #d97706;
+            --error-bg: #fffbe2;
+            --error-border: #fcd34d;
+            
+            --purple-knowledge: #6d28d9;
+            --purple-bg: #f5f3ff;
+            --purple-border: #ddd6fe;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-main);
+            margin: 0;
+            padding: 12px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* 头部样式 */
+        .header-card {
+            background: linear-gradient(135deg, #1a5f7a 0%, #154c62 100%);
+            color: white;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .header-card h1 {
+            margin: 0 0 8px 0;
+            font-size: 26px;
+            letter-spacing: 1px;
+        }
+
+        .header-card .subtitle {
+            font-size: 15px;
+            opacity: 0.9;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            font-size: 14px;
+        }
+
+        .meta-item {
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        /* 搜索框控制 */
+        .search-box {
+            margin-bottom: 20px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 16px;
+            box-sizing: border-box;
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            outline: none;
+            background: #ffffff;
+        }
+
+        /* 通用卡片样式 */
+        .card {
+            background: var(--bg-card);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+            border: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 0;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        /* 分类边框 */
+        .card-blue { border-left: 5px solid var(--primary-blue); background-color: #ffffff; }
+        .title-blue { color: var(--primary-blue); border-bottom-color: var(--border-blue); }
+
+        .card-audio { border-left: 5px solid var(--audio-dark); background-color: var(--audio-bg); }
+        .title-audio { color: var(--audio-dark); border-bottom-color: #ccc; }
+
+        .card-green { border-left: 5px solid var(--mind-green); background-color: var(--mind-bg); }
+        .title-green { color: var(--mind-green); border-bottom-color: var(--mind-border); }
+
+        .card-orange { border-left: 5px solid var(--error-orange); background-color: var(--error-bg); }
+        .title-orange { color: var(--error-orange); border-bottom-color: var(--error-border); }
+
+        .card-purple { border-left: 5px solid var(--purple-knowledge); background-color: var(--purple-bg); }
+        .title-purple { color: var(--purple-knowledge); border-bottom-color: var(--purple-border); }
+
+        /* 对话体样式 */
+        .dialogue-item {
+            margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .speaker-doctor {
+            font-weight: bold;
+            color: var(--mind-green);
+        }
+
+        .speaker-patient {
+            font-weight: bold;
+            color: #d97706;
+        }
+
+        .timestamp {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-right: 6px;
+        }
+
+        /* 网格信息 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        .info-item {
+            background: var(--light-blue);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .info-item strong {
+            color: var(--primary-blue);
+        }
+
+        /* 流程与推导链条 */
+        .chain-box {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px dashed var(--mind-border);
+            margin-top: 8px;
+        }
+
+        .chain-step {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .chain-arrow {
+            color: var(--mind-green);
+            font-weight: bold;
+            margin: 2px 0 2px 12px;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 6px; }
+            .card { padding: 14px; }
+            .header-card { padding: 16px; }
+            .header-card h1 { font-size: 20px; }
+        }
+
+        @media print {
+            .search-box { display: none; }
+            body { background: #fff; }
+            .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 标题卡片 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item">整理人：郭伟</div>
+            <div class="meta-item">日期：2026年8月8日</div>
+            <div class="meta-item">会诊主题：颅底横纹肌肉瘤质子放化疗后脑转移恢复期患者的近期体重骤降与摄入障碍营养评估及干预</div>
+        </div>
+    </div>
+
+    <!-- 搜索框 -->
+    <div class="search-box">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 搜索关键词（如：奥氮平、酸奶、大分子、甲地孕酮、腹泻...）" onkeyup="filterCards()">
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="card card-blue search-target">
+        <div class="section-title title-blue">第一部分 🎙 原始会诊记录（完整保留）</div>
+        
+        <h3>1. 患者基本信息</h3>
+        <div class="info-grid">
+            <div class="info-item"><strong>性别：</strong>男</div>
+            <div class="info-item"><strong>年龄：</strong>22-23岁</div>
+            <div class="info-item"><strong>疾病诊断：</strong>颅底（鼻与眼睛之间）横纹肌肉瘤质子放化疗后，伴脑转移及癫痫发作史</div>
+            <div class="info-item"><strong>手术/治疗情况：</strong>曾赴日本行质子治疗及化疗6次，国内化疗共14次；近期完成脑转移灶放疗；长期口服环磷酰胺等维持治疗，近4个月于省肿瘤医院住院对症治疗</div>
+            <div class="info-item"><strong>当前主要问题：</strong>近期1个月内体重骤降，食欲极度不振，吞咽/进食困难（扁桃体发炎后严重），饮水微疼、闭眼痛（面瘫引起），大细胞贫血，淋巴细胞持续偏低</div>
+        </div>
+
+        <h3 style="margin-top: 20px;">2. 营养相关现状</h3>
+        <div class="info-grid">
+            <div class="info-item"><strong>当前体重：</strong>95~96斤（约47.5-48kg）</div>
+            <div class="info-item"><strong>近期体重变化：</strong>原60kg（120斤）→ 105斤 → 近日95~96斤（半年内下降＞20%）</div>
+            <div class="info-item"><strong>食欲与进食量：</strong>极差，缺乏食欲，近1个多月进食量显著减少</div>
+            <div class="info-item"><strong>饮食结构与种类：</strong>以往偏好肉丸等肉类，近期极少进食，仅能吃少量流质/半流质（如鸡蛋羹、粥、酸奶）</div>
+            <div class="info-item"><strong>消化道症状：</strong>饮水微疼、无恶心呕吐（既往有喷射性呕吐），近期曾有水样腹泻（用易蒙平后止泻）</div>
+            <div class="info-item"><strong>ONS / 管饲 / 肠外营养：</strong>出院1个月未用肠外营养；自行购买普通大分子蛋白粉（难以吸收/未正规用）；拟指导购买小分子短肽/高能量密度ONS补充</div>
+        </div>
+
+        <h3 style="margin-top: 20px;">3. 会诊现场复盘</h3>
+
+        <h4>模块一：既往病史、神经系统症状与药物排查</h4>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">患者：</span>我喝水的时候就有点疼吗？疼倒是不太疼……闭眼那个眼睛疼……
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>这个是面瘫引起的，高天主任说这个慢慢会好一点。他以前喝水困难的时候我给他停了很多药。他脑转移之后引起的癫痫好了，去痰药每天两次一次四粒，后来吃不进东西就停掉了。这一个月癫痫发作比较稳定。
+        </div>
+
+        <h4>模块二：体重急剧下降与促食欲药物评估</h4>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>那你体重最近半年瘦了吗？
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>瘦了瘦了，去年4月回国查出横纹肌肉瘤时120斤（60公斤）。前段时间从省肿瘤出院时105斤，后来因为扁桃体发炎吃不下东西，这两天只有95、96斤了。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>主要是因为没胃口吗？用过醋酸甲地孕酮吗？
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>甲地孕酮吃过，别的医生说效果很好。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>我可以开一点，但我得确认他有没有血栓才行。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>省肿瘤医院当时开了抗血栓的药，应该是预防性的。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>如果下肢没有血栓，预防性用药可以考虑权衡利弊。
+        </div>
+
+        <h4>模块三：贫血、饮食偏好与睡眠/精神药物调理</h4>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>他有点大细胞贫血，平时吃肉多还是菜多？
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>生病前还可以，挺喜欢吃肉丸子的。这几个月吃得很少。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>睡觉吃的什么安眠药？
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>吃了一颗艾司唑仑。以前在肿瘤医院每天晚上睡前吃四分之一颗奥氮平，感觉效果挺好的。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>我们一般用奥氮平比较多，改善睡眠的同时能改善食欲。如果吃奥氮平，艾司唑仑可以停掉，吃一种就行。
+        </div>
+
+        <h4>模块四：肠道吸收能力评估与营养制剂（大分子 vs 小分子）指导</h4>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>（展示自备蛋白粉/营养粉）买的就是这个。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>这都是大分子的。大分子的他现在吸收不了。我给你推荐小分子的营养制剂，直接在网上买。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-patient">家属：</span>前几天还水样腹泻，我给他吃了易蒙平，用了两次就不拉了。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[00:20]</span><span class="speaker-doctor">医生：</span>如果想喝酸奶，可以喂点酸奶，酸奶好消化，还能帮助调理免疫力和肠道。选无糖的酸奶比如简爱、卡士等。
+        </div>
+
+        <h4>模块五：经口进食细节与口味偏好探索</h4>
+        <div class="dialogue-item">
+            <span class="timestamp">[13:37]-[18:00]</span><span class="speaker-doctor">医生：</span>想喝点蔬菜汁、胡萝卜汁吗？或者是NFC低温压榨果汁，羽衣甘蓝加青芒苹果，味道很好。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[14:08]</span><span class="speaker-patient">患者：</span>喜欢喝橙汁。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[15:00]</span><span class="speaker-doctor">医生：</span>蒸鸡蛋羹、大米做的发面米糕，很软、好消化。食堂的小米粥、南瓜粥、米糊都可以。一定要吃好消化的。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[15:57]</span><span class="speaker-patient">家属：</span>他以前化疗后喝过一次咖啡味的营养液，之后对那个味道非常排斥。
+        </div>
+        <div class="dialogue-item">
+            <span class="timestamp">[16:38]</span><span class="speaker-doctor">医生：</span>那我们避开咖啡味，选择水果味或者清淡口味的小分子肽类制剂和蛋白粉。
+        </div>
+    </div>
+
+    <!-- 第二部分：医生临床思维拆解 -->
+    <div class="card card-green search-target">
+        <div class="section-title title-green">第二部分 🧠 医生临床思维拆解</div>
+
+        <h3>问诊点一：追踪半年内体重动态变化（120斤 → 105斤 → 95斤）</h3>
+        <p><strong>医生关注问题：</strong>“那你体重最近半年瘦了吗？”</p>
+        <p><strong>可能目的：</strong>判断患者是否存在重度肿瘤恶病质（Cancer Cachexia）及营养不良严重程度。半年内非自主体重下降超过10%即属重度营养风险。</p>
+        <div class="chain-box">
+            <div class="chain-step"><strong>现象：</strong>半年体重下降超20%，近1个月因咽痛/食欲差加速下降。</div>
+            <div class="chain-arrow">↓</div>
+            <div class="chain-step"><strong>原因分析：</strong>吞咽障碍 + 肿瘤消耗 + 摄入量极度不足。</div>
+            <div class="chain-arrow">↓</div>
+            <div class="chain-step"><strong>风险判断：</strong>重度营养不良、肌肉衰减，严重影响后续治疗耐受力。</div>
+            <div class="chain-arrow">↓</div>
+            <div class="chain-step"><strong>营养干预：</strong>必须立刻启动高能量密度补充及短肽营养制剂。</div>
+        </div>
+
+        <h3 style="margin-top:20px;">问诊点二：评估醋酸甲地孕酮的使用与血栓风险</h3>
+        <p><strong>医生关注问题：</strong>“看看他有没有用过醋酸甲地孕酮？得看他有没有血栓才行。”</p>
+        <p><strong>可能目的：</strong>甲地孕酮是经典促食欲药物，但有增加深静脉血栓（DVT）的风险。医生需权衡促食欲获益与凝血风险。</p>
+
+        <h3 style="margin-top:20px;">问诊点三：调整睡眠与食欲兼顾的精神类药物（艾司唑仑 vs 奥氮平）</h3>
+        <p><strong>医生关注问题：</strong>“睡觉吃的什么安眠药？”</p>
+        <p><strong>可能目的：</strong>精简用药，利用奥氮平的双重作用（改善睡眠 + 联合促食欲/抗恶心），替代单纯助眠的苯二氮卓类（艾司唑仑）。</p>
+
+        <h3 style="margin-top:20px;">问诊点四：鉴别营养制剂类型（大分子蛋白粉 vs 小分子肽制剂）</h3>
+        <p><strong>医生关注问题：</strong>查看家属自备营养粉后指出“这都是大分子的”。</p>
+        <p><strong>可能目的：</strong>患者近期有腹泻、放化疗及黏膜炎病史，肠道消化吸收功能受损。大分子蛋白增加肠道负担易致腹泻，必须切换为预消化的小分子短肽制剂。</p>
+    </div>
+
+    <!-- 第三部分：患者及家属营养误区提炼 -->
+    <div class="card card-orange search-target">
+        <div class="section-title title-orange">第三部分 ⚠️ 患者及家属营养误区提炼</div>
+
+        <h3>误区1：盲目补充普通大分子蛋白粉，忽视胃肠吸收能力</h3>
+        <p><strong>患者/家属原话：</strong>“买的就是这个蛋白粉……粉的东西流质可以喝一点。”</p>
+        <p><strong>医生现场纠正：</strong>“这都是大分子的，大分子的他现在吸收不了，要用小分子的营养制剂。”</p>
+        <p><strong>临床解释：</strong>放化疗及肿瘤消耗期患者常伴有胃肠黏膜损伤、消化酶分泌不足。普通蛋白粉为整蛋白（大分子），需要复杂的消化过程，不仅利用率低，还容易引起渗透性腹泻。</p>
+        <p><strong>营养宣教表达：</strong>“肠道像受伤的筛子，大颗粒（大分子蛋白）穿不过去还会划伤肠道引起拉肚子；小分子肽是已经‘切碎’好吸收的营养，能直接被肠道拿来用。”</p>
+
+        <h3 style="margin-top:20px;">误区2：因口味不良经验（如咖啡味）而排斥整类营养制剂</h3>
+        <p><strong>患者/家属原话：</strong>“他化疗后喝过一次咖啡味的营养液……再也不喝了。”</p>
+        <p><strong>医生现场纠正：</strong>选择水果味、清淡口味或无味的蛋白质粉及短肽进行替代。</p>
+        <p><strong>临床解释：</strong>肿瘤患者在化疗后极易产生“味觉厌恶条件反射”（Taste Aversion）。强行推翻厌恶口味会导致患者全面拒绝特医食品（FSMP）。</p>
+    </div>
+
+    <!-- 第四部分：我的学习成长记录 -->
+    <div class="card card-blue search-target">
+        <div class="section-title title-blue">第四部分 💡 我的学习成长记录（进修学习者：郭伟）</div>
+
+        <p><strong>今天之前我的理解：</strong>以前认为患者食欲差、体重降，只要多给患者冲服高蛋白粉、多吃鸡蛋肉类就能补上来，忽略了消化道的实际吸收屏障。</p>
+
+        <p><strong>今天新的认识：</strong>临床营养干预必须建立在“消化道功能评估”与“药物副作用协同治疗”的基础上。补充营养不仅是选食物，更是选分子量大小（整蛋白 vs 短肽）和寻找药物双重效益（如奥氮平）。</p>
+
+        <p><strong>最大收获：</strong></p>
+        <ol>
+            <li><strong>精准匹配分子量：</strong>肠道受损/腹泻患者切忌给大分子蛋白粉，短肽型FSMP才是肠道功能受损时的首选。</li>
+            <li><strong>药物跨界利用：</strong>奥氮平既能改善肿瘤患者睡眠，又能显著改善食欲、减轻恶心，实现一药多效。</li>
+            <li><strong>顺应口味偏好：</strong>尊重患者化疗后的味觉厌恶，灵活调整水果味、无味制剂或混合NFC果汁/酸奶以提高依从性。</li>
+        </ol>
+    </div>
+
+    <!-- 第五部分：本病例相关知识整理 -->
+    <div class="card card-purple search-target">
+        <div class="section-title title-purple">第五部分 📚 本病例相关知识整理</div>
+
+        <h3>1. 小分子肽制剂 vs 大分子整蛋白制剂</h3>
+        <ul>
+            <li><strong>大分子整蛋白：</strong>需胃酸及胰蛋白酶充分水解，适合胃肠功能正常的患者。</li>
+            <li><strong>小分子短肽（Peptide-based FSMP）：</strong>以二肽、三肽为主，通过PEPT1载体直接吸收，不依赖胰酶，代谢负担小，适合肠道黏膜受损、放化疗后腹泻患者。</li>
+        </ul>
+
+        <h3>2. 肿瘤相关食欲不振药物选择及禁忌</h3>
+        <ul>
+            <li><strong>醋酸甲地孕酮：</strong>孕激素类促食欲药。禁忌/慎用：高凝状态、深静脉血栓（DVT）病史患者。</li>
+            <li><strong>奥氮平（Olanzapine）：</strong>非典型抗精神病药，低剂量（如2.5mg-5mg）广泛用于肿瘤恶心呕吐控制、改善睡眠及刺激食欲。</li>
+        </ul>
+
+        <h3>3. 巨幼细胞贫血/大细胞贫血（Macrocytic Anemia）</h3>
+        <p>常与维生素B12或叶酸缺乏有关，或由某些抗肿瘤药物（如环磷酰胺、甲氨蝶呤等）引起骨髓抑制相关。</p>
+    </div>
+
+    <!-- 第六部分：临床思维训练卡 -->
+    <div class="card card-green search-target">
+        <div class="section-title title-green">第六部分 📝 临床思维训练卡</div>
+
+        <div class="info-grid">
+            <div class="info-item"><strong>患者：</strong>男性，22-23岁</div>
+            <div class="info-item"><strong>疾病：</strong>颅底横纹肌肉瘤质子放化疗后脑转移恢复期</div>
+            <div class="info-item"><strong>核心营养问题：</strong>近期体重骤降（-20%）、严重食欲不振、消化吸收功能受损</div>
+            <div class="info-item"><strong>医生首先关注：</strong>体重下降速率、吸收功能（大/小分子）及药物安全界限（血栓风险/奥氮平替换）</div>
+            <div class="info-item"><strong>为什么：</strong>盲目补充大分子会加重肠道负担；促食欲药有血栓风险需严格筛查</div>
+            <div class="info-item"><strong>关键风险：</strong>重度恶病质、营养不良导致治疗耐受力衰竭、DVT风险</div>
+            <div class="info-item"><strong>营养决策：</strong>停用大分子蛋白粉 → 改用小分子短肽ONS；用奥氮平替代传统安眠药；结合软食（蒸蛋羹/发面米糕）经口补充</div>
+            <div class="info-item"><strong>我的临床思维变化：</strong>从“关注补什么营养”转向“关注胃肠能否吸收及药物协同机制”</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function filterCards() {
+        var input = document.getElementById('searchInput');
+        var filter = input.value.toLowerCase();
+        var targets = document.getElementsByClassName('search-target');
+
+        for (var i = 0; i < targets.length; i++) {
+            var text = targets[i].innerText || targets[i].textContent;
+            if (text.toLowerCase().indexOf(filter) > -1) {
+                targets[i].style.display = "";
+            } else {
+                targets[i].style.display = "none";
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
