@@ -218,6 +218,19 @@
             body { background: #fff; }
             .card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
         }
+    
+        .search-highlight {
+            background: #ffe36e;
+            color: inherit;
+            padding: 0 0.08em;
+            border-radius: 0.18em;
+            box-shadow: 0 0 0 1px rgba(190, 139, 0, 0.18);
+        }
+        .search-highlight-current {
+            background: #ffb52e;
+            box-shadow: 0 0 0 2px rgba(216, 130, 0, 0.3);
+            scroll-margin-top: 120px;
+        }
     </style>
 </head>
 <body>
@@ -446,20 +459,96 @@
 </div>
 
 <script>
-    function filterCards() {
-        var input = document.getElementById('searchInput');
-        var filter = input.value.toLowerCase();
-        var targets = document.getElementsByClassName('search-target');
+var searchTimer;
 
-        for (var i = 0; i < targets.length; i++) {
-            var text = targets[i].innerText || targets[i].textContent;
-            if (text.toLowerCase().indexOf(filter) > -1) {
-                targets[i].style.display = "";
-            } else {
-                targets[i].style.display = "none";
-            }
-        }
+function clearSearchHighlights() {
+    var marks = document.querySelectorAll('mark.search-highlight');
+    for (var i = 0; i < marks.length; i++) {
+        var mark = marks[i];
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
     }
+}
+
+function highlightAndLocate() {
+    clearSearchHighlights();
+
+    var input = document.getElementById('searchInput');
+    var keyword = input.value.trim();
+    if (!keyword) return;
+
+    var roots = document.querySelectorAll('.searchable-section');
+    if (!roots.length) roots = document.querySelectorAll('.search-target');
+    if (!roots.length) roots = document.querySelectorAll('.container');
+
+    var specialChars = '\\^$.*+?()[]{}|/';
+    var escaped = '';
+    for (var e = 0; e < keyword.length; e++) {
+        var ch = keyword.charAt(e);
+        escaped += specialChars.indexOf(ch) >= 0 ? '\\' + ch : ch;
+    }
+    var regex = new RegExp(escaped, 'gi');
+    var textNodes = [];
+
+    for (var r = 0; r < roots.length; r++) {
+        var walker = document.createTreeWalker(
+            roots[r],
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: function(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    var parent = node.parentElement;
+                    if (!parent || parent.closest('script, style, mark, input, textarea, button, .search-container')) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+        var node;
+        while ((node = walker.nextNode())) textNodes.push(node);
+    }
+
+    for (var n = 0; n < textNodes.length; n++) {
+        var textNode = textNodes[n];
+        var text = textNode.nodeValue;
+        regex.lastIndex = 0;
+        if (!regex.test(text)) continue;
+
+        regex.lastIndex = 0;
+        var fragment = document.createDocumentFragment();
+        var lastIndex = 0;
+        var match;
+
+        while ((match = regex.exec(text)) !== null) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+            var mark = document.createElement('mark');
+            mark.className = 'search-highlight';
+            mark.textContent = match[0];
+            fragment.appendChild(mark);
+            lastIndex = match.index + match[0].length;
+            if (!match[0].length) break;
+        }
+
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        textNode.parentNode.replaceChild(fragment, textNode);
+    }
+
+    var first = document.querySelector('mark.search-highlight');
+    if (first) {
+        first.classList.add('search-highlight-current');
+        first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function scheduleSearch() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(highlightAndLocate, 180);
+}
+
+function filterContent() { scheduleSearch(); }
+function filterCards() { scheduleSearch(); }
 </script>
 
 </body>
