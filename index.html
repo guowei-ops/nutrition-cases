@@ -50,7 +50,7 @@
     function render(){const q=search.value.trim().toLowerCase();const list=cases.filter(c=>(active==='全部'||[c.disease,...c.problems,...c.tags].includes(active))&&(!q||searchable(c).includes(q))).sort((a,b)=>b.date.localeCompare(a.date));grid.innerHTML=list.map(c=>`<a class="card" href="${encodeURI(c.file)}"><div class="meta">${c.date} · ${c.disease}</div><h3>${c.title}</h3><p class="summary">${c.summary}</p><div class="tags">${[...c.problems,...c.tags].slice(0,6).map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="enter">进入病例 →</div></a>`).join('');$('#empty').style.display=list.length?'none':'block';updateStats();$('#resultLabel').textContent=q||active!=='全部'?`找到 ${list.length} 个`:'按日期排列';$('#clear').style.display=q?'block':'none'}
     function renderChips(){const labels=['全部',...new Set(cases.flatMap(c=>[c.disease,...c.problems]))];chips.innerHTML=labels.map(x=>`<button class="chip${x===active?' active':''}" data-value="${x}">${x}</button>`).join('')}
     chips.addEventListener('click',e=>{if(!e.target.matches('.chip'))return;active=e.target.dataset.value;renderChips();render()});search.addEventListener('input',render);$('#clear').onclick=()=>{search.value='';search.focus();render()};
-    fetch('cases.json').then(r=>{if(!r.ok)throw 0;return r.json()}).then(data=>{cases=data;renderChips();render()}).catch(()=>{});renderChips();render();
+    fetch('cases.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(data=>{cases=data;renderChips();render()}).catch(()=>{});renderChips();render();
   </script>
 </body>
 </html>
