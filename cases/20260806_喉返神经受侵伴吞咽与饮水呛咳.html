@@ -262,6 +262,41 @@
             box-shadow: 0 0 0 2px rgba(216, 130, 0, 0.3);
             scroll-margin-top: 120px;
         }
+    
+    .opinion-note {
+        margin: 0 0 16px;
+        padding: 11px 14px;
+        background: #eef7f2;
+        border-left: 4px solid var(--doctor-green);
+        border-radius: 6px;
+        color: #48645a;
+        font-size: 14px;
+    }
+
+    .opinion-diagnosis {
+        margin-bottom: 18px;
+        padding: 14px 16px;
+        background: var(--light-blue);
+        border-radius: 8px;
+        line-height: 1.75;
+    }
+
+    .opinion-list {
+        margin: 0;
+        padding-left: 1.6em;
+    }
+
+    .opinion-list li {
+        margin-bottom: 12px;
+        padding-left: 4px;
+        line-height: 1.8;
+    }
+
+    .clinical-note {
+        margin: 18px 0 0;
+        color: var(--text-muted);
+        font-size: 13px;
+    }
     </style>
 </head>
 <body>
@@ -367,6 +402,30 @@
             <div class="speaker-doctor">讲话人 3（营养科医生）：</div>
             <div class="transcript-text">“像这种200毫升一瓶的，一天能喝几瓶喝几瓶，喝5瓶都可以。先给你开点试试口感和胃肠耐受。”</div>
         </div>
+    </div>
+
+
+    <!-- 原始营养会诊处理意见：去标识化转录 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">📋 原始营养会诊处理意见（去标识化转录）</h2>
+        <p class="opinion-note">仅转录营养相关诊断与处理建议；医院名称、患者ID、病案号等识别信息未录入。</p>
+
+        <div class="opinion-diagnosis">
+            <strong>营养相关诊断：</strong>恶性肿瘤合并营养风险、重度营养不良、低蛋白血症、高脂血症。
+        </div>
+
+        <h3>营养建议</h3>
+        <ol class="opinion-list">
+            <li>ONS补充营养，纠正低蛋白血症，稳定体重；一日目标总热量1100～1300 kcal，蛋白质50～65 g，液体量1400～1600 ml。</li>
+            <li>半流食，如山药米糊、猴菇米稀、馒头蘸汤、疙瘩汤、烂面条、嫩蛋羹、无糖酸奶、嫩豆腐、肉泥丸子、蒸南瓜、水煮嫩叶及去皮瓜果蔬菜、果泥等；适当增加优质蛋白质摄入，详见饮食指导单。</li>
+            <li>短肽型肠内营养剂瑞易西/佳维体500 ml，分次口服；或肠内营养剂安素3～4勺，每日3～4次。</li>
+            <li>水解乳清蛋白粉10 g，每日2～3次，正餐后半小时内温水冲服；自备。</li>
+            <li>复合维生素B＋维生素B1 30 mg、B2、B6、C 1片，tid，随餐口服。</li>
+            <li>纳豆维生素D每日1条；高纯度鱼油佰澳和或GNC铂金（每粒EPA 600～800 mg以上）1 g，每日1～2次；自备。</li>
+            <li>左卡尼汀口服液1 g，每日3次；自备。</li>
+        </ol>
+
+        <p class="clinical-note">以上为本病例会诊当时的个体化处理意见，仅用于临床学习与复盘，不作为其他患者自行用药或调整营养方案的依据。</p>
     </div>
 
     <!-- 第二部分：医生临床思维拆解 -->
