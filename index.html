@@ -44,14 +44,16 @@
       {id:'20260807-rhabdomyosarcoma',date:'2026-08-07',title:'横纹肌肉瘤：体重下降与ONS选择',summary:'围绕放化疗后食欲下降、体重骤降与口服营养补充剂选择的会诊记录。',disease:'其他肿瘤',problems:['体重下降','恶病质','腹泻','ONS'],tags:['短肽','奥氮平','甲地孕酮'],file:'cases/20260807_横纹肌肉瘤_体重下降与ONS选择.html'},
       {id:'20260806-dlbcl',date:'2026-08-06',title:'弥漫大B细胞淋巴瘤ⅣB期：进食减少与饮水呛咳',summary:'围绕食欲不振、半流食、进食量减少、体重下降、饮水呛咳与胃肠耐受性管理的会诊记录。',disease:'淋巴瘤',problems:['进食减少','体重下降','饮水呛咳','胃肠不耐受','ONS'],tags:['弥漫大B细胞淋巴瘤','非霍奇金淋巴瘤','短肽','能全素'],file:'cases/20260806_喉返神经受侵伴吞咽与饮水呛咳.html'}
     ];
-    let cases=fallbackCases, active='全部';
+    let cases=fallbackCases, active='全部', repoUpdatedDate='';
     const $=s=>document.querySelector(s), search=$('#search'), grid=$('#grid'), chips=$('#chips');
     function searchable(c){return [c.title,c.summary,c.disease,...c.problems,...c.tags].join(' ').toLowerCase()}
-    function updateStats(){const problemTotal=new Set(cases.flatMap(c=>c.problems)).size;const modified=new Date(document.lastModified);const updated=Number.isNaN(modified.getTime())?'未知':modified.toLocaleDateString('zh-CN',{year:'numeric',month:'2-digit',day:'2-digit'}).replaceAll('/','-');$('#count').textContent=`共${cases.length}例`;$('#problemCount').textContent=`${problemTotal}种营养问题`;$('#lastUpdated').textContent=`最后更新：${updated}`}
+    function beijingDate(value){const date=new Date(value);if(Number.isNaN(date.getTime()))return '';return new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(date)}
+    function updateStats(){const problemTotal=new Set(cases.flatMap(c=>c.problems)).size;const latestCaseDate=cases.map(c=>c.date).sort().at(-1)||'';const pageDate=beijingDate(document.lastModified);const updated=[latestCaseDate,pageDate,repoUpdatedDate].filter(Boolean).sort().at(-1)||'未知';$('#count').textContent=`共${cases.length}例`;$('#problemCount').textContent=`${problemTotal}种营养问题`;$('#lastUpdated').textContent=`最后更新：${updated}`}
+    function syncRepositoryUpdateTime(){fetch('https://api.github.com/repos/guowei-ops/nutrition-cases/commits/main',{cache:'no-store',headers:{Accept:'application/vnd.github+json'}}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(data=>{repoUpdatedDate=beijingDate(data.commit&&data.commit.committer&&data.commit.committer.date);updateStats()}).catch(()=>{})}
     function render(){const q=search.value.trim().toLowerCase();const list=cases.filter(c=>(active==='全部'||[c.disease,...c.problems,...c.tags].includes(active))&&(!q||searchable(c).includes(q))).sort((a,b)=>b.date.localeCompare(a.date));grid.innerHTML=list.map(c=>`<a class="card" href="${encodeURI(c.file)}"><div class="meta">${c.date} · ${c.disease}</div><h3>${c.title}</h3><p class="summary">${c.summary}</p><div class="tags">${[...c.problems,...c.tags].slice(0,6).map(t=>`<span class="tag">${t}</span>`).join('')}</div><div class="enter">进入病例 →</div></a>`).join('');$('#empty').style.display=list.length?'none':'block';updateStats();$('#resultLabel').textContent=q||active!=='全部'?`找到 ${list.length} 个`:'按日期排列';$('#clear').style.display=q?'block':'none'}
     function renderChips(){const labels=['全部',...new Set(cases.flatMap(c=>[c.disease,...c.problems]))];chips.innerHTML=labels.map(x=>`<button class="chip${x===active?' active':''}" data-value="${x}">${x}</button>`).join('')}
     chips.addEventListener('click',e=>{if(!e.target.matches('.chip'))return;active=e.target.dataset.value;renderChips();render()});search.addEventListener('input',render);$('#clear').onclick=()=>{search.value='';search.focus();render()};
-    fetch('cases.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(data=>{cases=data;renderChips();render()}).catch(()=>{});renderChips();render();
+    fetch('cases.json?v='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return r.json()}).then(data=>{cases=data;renderChips();render()}).catch(()=>{});renderChips();render();syncRepositoryUpdateTime();
   </script>
 </body>
 </html>
