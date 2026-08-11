@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>右肺腺癌Ⅳ期：蛋白质/能量失衡与ONS调整｜北肿临床营养科会诊思维录</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #555555;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.6;
+        color: var(--dark-gray);
+        background-color: #f4f6f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 10px 0;
+        font-size: 28px;
+        letter-spacing: 1px;
+    }
+
+    .header-card .subtitle {
+        font-size: 16px;
+        opacity: 0.9;
+        margin-bottom: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 10px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        font-size: 14px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.15);
+        padding: 6px 14px;
+        border-radius: 20px;
+    }
+
+    /* Search Bar */
+    .search-container {
+        margin-bottom: 25px;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 16px;
+        border: 2px solid var(--border-color);
+        border-radius: 8px;
+        box-sizing: border-box;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-highlight {
+        background: #ffe36e;
+        color: inherit;
+        padding: 0 0.08em;
+        border-radius: 0.18em;
+        box-shadow: 0 0 0 1px rgba(190, 139, 0, 0.18);
+    }
+
+    .search-highlight-current {
+        background: #ffb52e;
+        box-shadow: 0 0 0 2px rgba(216, 130, 0, 0.3);
+        scroll-margin-top: 120px;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px;
+        margin-bottom: 20px;
+        background-color: var(--light-blue);
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 14px;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .dialogue-block {
+        border-left: 4px solid #ccc;
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+    }
+
+    .speaker-team {
+        color: var(--primary-blue);
+        font-weight: bold;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 4px 0 12px 0;
+        background-color: #f9f9f9;
+        padding: 8px 12px;
+        border-radius: 6px;
+    }
+
+    /* Part 2 Specifics */
+    .mind-card {
+        background-color: var(--green-bg);
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        color: var(--doctor-green);
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 12px;
+        border-radius: 6px;
+        font-family: monospace;
+        color: #2e7d32;
+        margin: 10px 0;
+        border-left: 3px solid var(--doctor-green);
+    }
+
+    /* Original consultation opinion */
+    .opinion-note {
+        margin: 0 0 16px;
+        padding: 11px 14px;
+        background: #eef7f2;
+        border-left: 4px solid var(--doctor-green);
+        border-radius: 6px;
+        color: #48645a;
+        font-size: 14px;
+    }
+
+    .opinion-diagnosis {
+        margin-bottom: 18px;
+        padding: 14px 16px;
+        background: var(--light-blue);
+        border-radius: 8px;
+        line-height: 1.75;
+    }
+
+    .opinion-list {
+        margin: 0;
+        padding-left: 1.6em;
+    }
+
+    .opinion-list li {
+        margin-bottom: 12px;
+        padding-left: 4px;
+        line-height: 1.8;
+    }
+
+    .clinical-note {
+        margin: 18px 0 0;
+        color: var(--speech-gray);
+        font-size: 13px;
+    }
+
+    /* Part 3 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 18px;
+        margin-bottom: 18px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.7);
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 8px 0;
+    }
+
+    /* Part 5 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 4px solid var(--purple-knowledge);
+        padding: 15px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 15px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        color: var(--purple-knowledge);
+    }
+
+    /* Part 6 Training Card */
+    .training-card {
+        background: #ffffff;
+        border: 2px solid var(--primary-blue);
+        border-radius: 10px;
+        padding: 20px;
+    }
+
+    .training-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 10px; }
+        .training-grid { grid-template-columns: 1fr; }
+        .header-card { padding: 20px; }
+        .header-card h1 { font-size: 22px; }
+    }
+
+    @media print {
+        .search-container { display: none; }
+        body { background-color: white; padding: 0; }
+        .section-card { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>日期：</strong>2026年8月11日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>右肺腺癌Ⅳ期多发转移患者经口摄入显著不足、蛋白质/能量失衡并伴血尿素升高的ONS精细化调整</div>
+        </div>
+    </div>
+
+    <!-- 关键词搜索框 -->
+    <div class="search-container">
+        <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索会诊记录（如：安素、蛋白粉、尿素、低钠血症、面片汤、少量多餐）..." oninput="filterContent()">
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录（完整保留）</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>性别：</strong>女</div>
+            <div class="info-item"><strong>年龄：</strong>75岁</div>
+            <div class="info-item"><strong>疾病诊断：</strong>右肺腺癌Ⅳ期，多发转移（病史5年余）</div>
+            <div class="info-item"><strong>手术/治疗情况：</strong>既往多线抗肿瘤治疗后疾病进展；2026年6月底、7月中旬完成第1、2周期芦康沙妥珠单抗治疗，本次为继续治疗入院</div>
+            <div class="info-item"><strong>当前主要问题：</strong>食欲差，经口普通食物摄入极少，进食量较前减少约3/4以上；全营养制剂与乳清蛋白粉使用比例失衡，并伴血尿素升高、低蛋白血症；低钠状态、便秘及活动减少</div>
+        </div>
+
+        <h3>2. 营养相关现状</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>当前体重：</strong>52 kg；身高157 cm，BMI约21 kg/m²；双下肢无水肿</div>
+            <div class="info-item"><strong>近期体重变化：</strong>近3个月未见明显变化</div>
+            <div class="info-item"><strong>食欲与进食量：</strong>食欲极差，不想吃；近期仅能进食少量薄面片汤（每顿半小盒至大半盒，实际进食量可忽略不计）、极少许糖三角/油桃；此前1个多月几乎不吃东西</div>
+            <div class="info-item"><strong>饮食结构与质地：</strong>以主食半流食（面片汤、汤羹）及水果为主；不吃鸡蛋、豆腐、豆腐脑及肉类（年轻时仅吃肉味不吃肉，现觉得嚼肉累）</div>
+            <div class="info-item"><strong>胃肠与排便功能：</strong>无恶心呕吐；排便困难，呈小羊粪球状（手指体积大小），每日3-4次；6月底更换治疗方案（停用可致腹泻的靶向药）后出现便秘</div>
+            <div class="info-item"><strong>吞咽与活动情况：</strong>无饮水呛咳报告；活动能力受限，自觉“腿软、肌肉无力”，拒绝主动伸展活动</div>
+            <div class="info-item"><strong>营养治疗现状（ONS/管饲）：</strong>无管饲；长期（4年余）使用安素（全营养配方，每日3次，每次5勺）+ 77%纯度蛋白粉（每次3勺，用安素9g大勺，一日超80g蛋白粉），近期因治疗反应实际每日服用1-2次</div>
+        </div>
+
+        <h3>3. 会诊现场逐字复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：接诊介入与初始营养用量调查（安素与蛋白粉）</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“您好，我是营养科大夫，为您做个营养科会诊。”</div>
+            <div class="speaker-patient">家属A（女儿/陪护人员）：</div>
+            <div class="transcript-text">“她现在的血尿素是10.44 mmol/L。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“刚请的营养会诊。营养液一直都在用着是吧？用了多长时间了？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“都用了快4年了。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“用4年了，一直在用。现在的具体用量是多少？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“一天喝安素，大概10到12勺……”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“12勺，也就是大概两杯的量。自己还另外加蛋白粉吗？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“加蛋白粉，一顿加三勺。不对，我算算：上面那个安素一顿5勺，一日三顿就是15勺；下面那个大勺子（安素的勺子）装蛋白粉，一顿加三勺，一日三顿就是9勺。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“蛋白粉一直都是这么用的吗？我能拿那个蛋白粉和勺子看一眼吗？”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：蛋白质过量摄入计算与肝肾负担评估</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“安素的用量是没有问题的。你们用的是安素自带的9克大勺，一顿给三勺蛋白粉，一勺就是9克，三勺就是27克。这种蛋白粉是77%的纯度，给的量非常大。一天给9勺，算下来等于一天补充了81克纯蛋白粉，这个量明显超标了。”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“蛋白给超了是吧？”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“对，蛋白质超标了。安素是全营养配方，就跟吃正餐一样，多一点少一点没关系，顶多就是增加点体重；但是纯蛋白粉如果摄入过多，肝脏和肾脏的代谢负担会非常重。您最近在顺义医院做检查的化验单有纸质版或电子版吗？我需要看一下她的血尿素、尿蛋白等指标是否正常。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：日常膳食摄入（面片汤、主食及偏好）精准盘问与核实</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“这两天平时能吃些什么？一天三顿饭在家里怎么吃？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“就喝点汤、面片汤。看那个小白盒，能吃一盒到两盒，一顿能喝两盒，这两天片儿汤吃得挺多。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“除了面片汤，还能吃别的吗？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“别的不吃。有时候吃点糖三角，吃半个留一溜。她不按正餐顿数吃，想吃的时候就吃一点。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“面片汤里会放点鸡蛋、青菜吗？豆腐、肉类现在还能吃吗？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“面片煮得很薄，里面切一点点菜叶用来配色，不吃鸡蛋，豆腐、豆腐脑也不吃。肉也不吃，她年轻的时候炒菜喜欢放肉借味，但自己不吃肉。现在让她嚼肉，她说嚼着累。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“也就是说现在完全是以主食（碳水化合物）为主，肉、蛋、豆制品这些优质蛋白质食物几乎完全没有。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：家属汇报矛盾澄清与真实摄入量“去虚存真”</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“如果按照您刚才说的一顿能吃两小碗面片汤，算下来至少有一两半的面粉量……”</div>
+            <div class="speaker-patient">家属A（女儿/陪护人员）：</div>
+            <div class="transcript-text">“哪个小盒？一顿吃两个绝对不可能！最多的时候连一小盒都吃不完，吃一小半就不错了！她前段时间连粥都不喝，根本吃不下什么东西。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“如果是这样的话，那这点面片汤的营养在临床上完全可以忽略不计了。它只是进了极微量的食物，主要的营养支撑其实全靠营养制剂。所以她现在最核心的问题还是食欲差、不想吃。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块五：活动量、恶性循环与改善食欲药物（甲地孕酮）禁忌评估</h4>
+            <div class="speaker-patient">家属A（女儿/陪护人员）：</div>
+            <div class="transcript-text">“她就是不想吃，而且情绪上有点拗，你越劝她吃，她越不吃。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“食欲不好，平时在家里活动吗？是不是活动能力受限？”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“不爱动，老是喊腿软、没力气。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“人越不活动，肌肉萎缩就会越厉害，浑身无力感就会越强；而且肠道蠕动也会变慢，完全没有饥饿感，食欲就会更差。另外，长期卧床不活动非常容易形成下肢深静脉血栓。在临床上，我们原本可以用甲地孕酮这种药物来改善肿瘤患者的食欲，但如果患者长期卧床少动、存在血栓风险，甲地孕酮是绝对不能使用的。所以这种促食欲的药咱们就不考虑了。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块六：生化指标复核（血尿素、低钠、低蛋白）与蛋白质利用理论阐释</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“看指标血糖是正常的，但血钠偏低。另外血清蛋白指标还是偏低，这就是为什么你们一直在给她猛补蛋白粉。但为什么补充了那么多蛋白粉，蛋白指标却一直补不上来呢？主要有两个原因：核心原因在于她的总能量摄入太低了！在能量严重不足的情况下，你补充再多的蛋白质，机体也无法把它用来合成自身的蛋白，而是被迫把它当做柴火（能量）给烧掉了！”</div>
+            <div class="speaker-patient">家属B（老伴/照顾者）：</div>
+            <div class="transcript-text">“那咱们把方案换一下，多喝安素，把蛋白粉减少。”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“对，这正是接下来的调整方向。安素是全营养，现在每天喝3次、每次5勺，接下来要增加频次，增加到每天4次、5次甚至6次。能喝几次就喝几次，把它当正餐吃。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块七：安素（全营养）与蛋白粉加减法精细量化及冲调浓度指导</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“蛋白粉如果继续用，要把量降下来，降到每次一两勺（约12克纯蛋白）；安素的量必须加上去，一天至少要用到24勺（约1000-1200千卡总能量）。一桶400克的安素，大概两天就要吃掉大半桶。”</div>
+            <div class="speaker-patient">家属A（女儿/陪护人员）：</div>
+            <div class="transcript-text">“如果不想增加喝的次数，直接把一顿的安素加到8勺行不行？”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“不行。一次冲太浓或总量太多，老人的胃肠负担太重。安素标准是一平勺兑40毫升温水，6勺冲出来就是250毫升。如果水放少了、冲得太浓，高渗溶液喝下去会引起腹胀、腹痛甚至拉肚子。所以必须保持标准浓度，通过增加频次、少量多餐来补充。”</div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块八：低钠纠正、排便管理（便秘/纤维）与微量营养素（维生素B/C/D/K2）补充建议</h4>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“针对她血钠偏低的情况，平时做菜或喝面片汤时可以稍微放点盐，或者吃点酱豆腐、咸菜来补充钠盐。另外，6月底换药后她出现了便秘，大便像羊粪球一样，这是因为安素里不含膳食纤维。平时可以尝试给她喝一点榨好的果蔬汁。”</div>
+            <div class="speaker-patient">家属A（女儿/陪护人员）：</div>
+            <div class="transcript-text">“平时每天早上给她吃一片善存复合维生素，还需要补充别的吗？”</div>
+            <div class="speaker-doctor">医生（龚老师/营养科团队）：</div>
+            <div class="transcript-text">“善存可以继续吃，有条件可以加一点维生素C；另外针对骨质和低钙问题，在补充维生素D3和钙片的同时，建议选择含有维生素K2的复合钙剂，这样能更好地促进钙沉积到骨骼里。最关键的还是把安素的频次加起来，把总能量和蛋白质比例调整好。”</div>
+        </div>
+    </div>
+
+    <!-- 原始营养会诊处理意见：去标识化转录 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+        <p class="opinion-note">仅转录营养相关评估与处理建议；医院名称、患者姓名、出生日期、ID、病案号和医师签名等识别信息未录入。</p>
+
+        <div class="opinion-diagnosis">
+            <strong>营养相关诊断：</strong>恶性肿瘤合并营养风险（NRS 2002：5分）、中度营养不良、食欲低下、低蛋白血症。
+        </div>
+
+        <h3>营养治疗目标及建议</h3>
+        <ol class="opinion-list">
+            <li>加强营养，维持体重，纠正症状；每日推荐营养供应量：能量1200～1500 kcal，蛋白质60～80 g，液体量1500～2000 ml。</li>
+            <li>整蛋白型肠内营养制剂安素，每次6勺，以约200 ml温水冲调，每日4次。</li>
+            <li>半流食，适量增加优质蛋白质食物，如酸奶、鸡蛋羹、豆腐脑、肉泥、鱼肉。</li>
+            <li>乳清蛋白粉10 g，每日2～3次。</li>
+            <li>自备维生素D3＋K2 5000 IU，每日1次；维生素B复合片1片，每日1次。</li>
+            <li>适量进行肢体活动。</li>
+            <li>监测体重、胃肠道反应、血常规、肝肾功能、电解质及贫血相关指标等。</li>
+        </ol>
+
+        <p class="clinical-note">以上为本病例会诊当时的个体化处理意见，仅用于临床学习与复盘，不作为其他患者自行用药或调整营养方案的依据。</p>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点 1：精确盘问蛋白粉与安素的实际使用勺数、勺子规格及每日频次</h4>
+            <p><strong>医生问：</strong>“像那个安素什么那个白罐的用了多久啦？现在的用量有多少呀他？”“蛋白粉用的是哪个勺子？一次几勺？一天几次？”</p>
+            <p><strong>医生想判断什么：</strong>判断患者的实际营养素摄入结构，特别是蛋白质摄入绝对量是否超出生理代谢负荷，寻找血尿素升高（10.44 mmol/L）的营养学根源。同时区分“全营养配方（安素）”与“单项模组（蛋白粉）”的比例是否失衡。</p>
+            <div class="reasoning-path">
+                现象：血尿素升高（10.44 mmol/L），血清蛋白仍偏低 <br>
+                ↓ 原因分析：家属使用9g大勺，每日误投超80g纯蛋白粉；但总能量（安素）仅摄入750kcal/d（能量严重不足） <br>
+                ↓ 风险判断：蛋白质缺乏碳水化合物/脂肪保护，被强制脱氨供能，产生大量含氮废物，加重肝肾代谢负担并导致尿素氮升高 <br>
+                ↓ 营养干预：砍减蛋白粉剂量（降至每次1-2勺），大幅提高安素（全营养）频次至每日24勺（1000-1200kcal）
+            </div>
+            <p><strong>对决策影响：</strong>纠正了家属“低蛋白就要疯狂补蛋白粉”的错误做法，确立了“先补足总能量，蛋白质才能发挥组织修复作用”的临床决策。</p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点 2：交叉核对家庭饮食汇报，对半流食（面片汤）进行“去虚存真”评估</h4>
+            <p><strong>医生问：</strong>“这两天能吃点什么呀？”（家属B称能吃两小白盒片汤，家属A打断并纠正只能吃半盒）</p>
+            <p><strong>医生想判断什么：</strong>评估经口普通膳食对总能量和蛋白质的真实贡献度，排除家属主观夸大或观察误差带来的干扰，判断患者是否完全依赖肠内营养制剂（ONS）。</p>
+            <div class="reasoning-path">
+                现象：家属B夸大进食量，家属A澄清实际仅能进食微量极薄的面片汤 <br>
+                ↓ 原因分析：患者咀嚼乏力（觉得嚼肉累）、食欲极度低下，真实膳食摄入能量可忽略不计 <br>
+                ↓ 风险判断：经口普通饮食无法满足基本生命需求，若按家属B的乐观估计会严重低估营养风险 <br>
+                ↓ 营养干预：将普通膳食定性为“趣味/心理进食（忽略不计）”，把安素（ONS）作为唯一的全量目标能量与蛋白质来源
+            </div>
+            <p><strong>对决策影响：</strong>放弃将经口普通饮食作为主要营养支撑的幻想，全面转向以全营养ONS为主导的精细化喂养计划。</p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点 3：评估活动能力、血栓风险与改善食欲药物（甲地孕酮）的用药禁忌</h4>
+            <p><strong>医生问：</strong>“平常也不怎么活动，是不是？自己不想动动完之后会喘吗？”</p>
+            <p><strong>医生想判断什么：</strong>评估患者的肌力（腿软/肌肉萎缩）与活动状态，排查制动导致的深静脉血栓（DVT）风险，从而决定是否能安全使用临床常用的促食欲药物——醋酸甲地孕酮。</p>
+            <div class="reasoning-path">
+                现象：患者极度缺乏活动，自述腿软、无力 <br>
+                ↓ 原因分析：长期卧床/少动导致肌肉废用性萎缩，且显著增加高凝状态下的静脉血栓形成风险 <br>
+                ↓ 风险判断：甲地孕酮虽能改善肿瘤恶病质食欲，但有增加血栓栓塞事件的黑框警告；长期制动患者使用风险极大 <br>
+                ↓ 营养干预：禁用甲地孕酮等高风险促食欲药；改用少量多餐、调整食谱口味及鼓励床旁微活动来改善食欲
+            </div>
+            <p><strong>对决策影响：</strong>规避了潜在的致命性血栓栓塞风险，体现了营养干预中的“用药安全第一”原则。</p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区提炼 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区提炼</h2>
+
+        <div class="misconception-card">
+            <h4>误区 1：认为低蛋白就要单兵突进“大剂量狂补蛋白粉”，忽视总能量匹配</h4>
+            <div class="misconception-quote">患者/家属原话：“蛋白质还是有点低，所以蛋白我们补得比较多一点……用安素的大勺子，一顿三勺，一天三顿（超80g纯蛋白粉）。”</div>
+            <p><strong>医生现场纠正：</strong>“安素的三勺是27克，一天9勺算下来81克，您这个量超了！能量摄入不够的情况下，蛋白补再多他也利用不了！”</p>
+            <p><strong>临床解释：</strong>当机体总能量（碳水化合物和脂肪）摄入不足（本例仅约750kcal/d）时，补充的蛋白质无法用于合成自身肌肉或血清白蛋白，而是被迫通过脱氨作用转变成能量消耗掉。这不仅浪费了优质蛋白质，其代谢产物含氮废物还会急剧增加，直接导致血尿素（10.44 mmol/L）升高，增加肝肾负担。</p>
+            <p><strong>营养宣教表达：</strong>“阿姨，蛋白质就像修房子的砖头，但能量（安素）是盖房子的工人。工人不够（能量太低），你运再多的砖头（蛋白粉）来也没人盖，砖头堆在门口还会变成垃圾（高尿素加重肾脏负担）。我们必须先把工人请够（多喝安素），砖头适量（减少蛋白粉）就行！”</p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区 2：冲调营养粉剂时盲目追求“高浓度/少放水”，或一次冲一大杯逼患者喝</h4>
+            <div class="misconception-quote">患者/家属原话：“如果我要是不增加次数，直接把安素变成8勺冲一杯呢？水不能太少了。”</div>
+            <p><strong>医生现场纠正：</strong>“不增加次数，他一下子冲太多的量，喝起来有负担……浓度太高的话，喝下去之后会有腹胀、腹痛的。要按6勺配250毫升，增加频次，少量多餐。”</p>
+            <p><strong>临床解释：</strong>肠内营养制剂（如安素）有严格的渗透压要求。如果冲调浓度过高（水太少），会导致肠腔内形成高渗透压环境，吸引组织水分进入肠腔，引发严重腹胀、腹痛甚至高渗性腹泻；若一次饮用体积过大（如>300ml），对于胃动力不足的老年肿瘤患者极易诱发恶心、呕吐和早饱感。</p>
+            <p><strong>营养宣教表达：</strong>“冲营养奶粉和泡太浓的咸汤是一个道理。太浓了肠子吸收不了，会发胀发痛；太满了一口喝下去胃受不了。咱们宁可‘少吃多餐’，像喝茶一样，隔2-3个小时喝一小杯适宜浓度的，既舒服又能全吸收。”</p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区 3：忽视低钠血症的日常膳食补给，以及误以为无纤维的纯粉剂适合长期排便管理</h4>
+            <div class="misconception-quote">患者/家属原话：“不怎么吃盐……换了治疗方案后，最近出现有一些便秘，大便像羊粪球。”</div>
+            <p><strong>医生现场纠正：</strong>“你那个钠低，平常可以稍微吃点咸菜和酱豆腐……安素里面没有膳食纤维，如果排便老是比较干，这不是特别好的一个方面。”</p>
+            <p><strong>临床解释：</strong>肿瘤患者长期低盐饮食或摄入不足易导致低钠血症，引起疲乏、无力及食欲进一步减退。常规安素配方中缺乏可溶性/不可溶性膳食纤维，若患者完全依赖安素且不摄入蔬菜水果，肠道菌群与肠蠕动缺乏刺激，极易形成干结羊粪状便秘。</p>
+            <p><strong>营养宣教表达：</strong>“老人家稍微吃点咸菜、酱豆腐，不仅能提味，还能把血液里偏低的钠补上来；另外安素里缺少粗纤维，所以大便容易干，除了喝水，平时可以榨点果蔬汁或补充点纤维，便秘就会好很多。”</p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong><br>
+        此前我常常认为，临床上只要看到患者血清蛋白（白蛋白/前白蛋白）偏低，第一反应就是“赶紧加蛋白粉”，且加得越多越好；对于食欲不振的肿瘤患者，只要家属买到了高纯度蛋白粉，就鼓励其大量冲服。同时，我往往只关注患者“吃没吃”，而忽视了冲调液体渗透压对胃肠道耐受性的影响。</p>
+
+        <p><strong>今天新的认识：</strong><br>
+        通过本病例的现场复盘，我深刻认识到“蛋白质节约效应（Protein-Sparing Effect）”在临床中的核心地位。在总能量严重匮乏（只有750kcal/d）的情况下，单兵突进补充大剂量蛋白粉（>80g/d）不仅无法纠正低蛋白血症，反而会在体内发生“脱氨供能”，产生大量含氮代谢废物，直接导致血尿素氮升高（10.44 mmol/L），加重肝肾代谢负担。此外，我还学会了从家属繁杂的汇报中“去虚存真”，并结合患者少动状态精准排查促食欲药物（甲地孕酮）的血栓禁忌。</p>
+
+        <p><strong>最大收获：</strong></p>
+        <ol>
+            <li><strong>建立“能量先行，蛋白跟进”的推理逻辑：</strong>看到低蛋白血症时，先算总能量（碳水+脂肪）是否达标（25-30 kcal/kg/d），能量不达标时，补充蛋白粉完全是“无用功且有害”。</li>
+            <li><strong>精准纠偏ONS冲调与给药细节：</strong>掌握安素6勺配250ml（1勺兑40ml水）的标准配比，深刻理解高渗带来的腹胀风险，坚持“少量多餐（一日4-6次）”的临床教导。</li>
+            <li><strong>提升生化指标与临床细节的联动能力：</strong>将血尿素10.44 mmol/L、低钠血症、干结羊粪便与蛋白粉过量、饮食极度清淡无盐、安素无纤维等细节精准对接。</li>
+        </ol>
+    </div>
+
+    <!-- 第六部分 📚 本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>1. 蛋白质节约效应与氮平衡（Protein-Sparing Effect & Nitrogen Balance）</h4>
+            <p>在营养支持中，碳水化合物和脂肪是首选的能量来源。当非蛋白热量（NPC）摄入不足时，机体会动用外源性或内源性蛋白质进行异生供能（1g氮需120-150kcal非蛋白热量匹配）。若无足够能量支持，盲目补充蛋白质不仅无法改善氮平衡，还会导致含氮废物蓄积，引发高尿素氮血症（BUN升高）。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>2. 醋酸甲地孕酮（MA）促食欲的应用与血栓风险禁忌</h4>
+            <p>醋酸甲地孕酮是孕激素类改善肿瘤恶病质食欲的常用药物，但其显著增加深静脉血栓（DVT）及肺栓塞（PE）风险。对于长期卧床、少动、肌肉萎缩、合并高凝状态的晚期肿瘤患者，应严格禁用或极其慎用。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>3. 肠内营养制剂（安素）的渗透压与胃肠道耐受性</h4>
+            <p>标准整分子安素（1 kcal/ml）在按标准比例（1平勺加40ml水，即6平勺兑250ml水）冲调时渗透压接近等渗（约300-400 mOsm/kg H2O）。若随意增加粉剂比例导致高渗，或一次性灌入过大体积，易诱发胃排空延迟、腹胀、腹痛及高渗性腹泻。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>4. 骨骼矿物质代谢与钙/D3/K2三联补充原理</h4>
+            <p>对于晚期肿瘤少动患者，骨质疏松与骨丢失风险极高。补充钙剂与维生素D3可促进肠道钙吸收，而维生素K2（特别是MK-7形态）能激活骨钙素（Osteocalcin），将血液中的钙离子精确沉积至骨骼中，同时防止血管与软组织钙化，实现“引钙入骨”。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card">
+            <div class="training-grid">
+                <div><strong>患者：</strong>老年女性，75岁，右肺腺癌Ⅳ期多发转移（病史5年余）</div>
+                <div><strong>疾病：</strong>右肺腺癌Ⅳ期多发转移，伴肿瘤相关进食障碍与高尿素氮血症</div>
+                <div><strong>核心营养问题：</strong>经口普通食物极微量；蛋白粉超量补充导致蛋白质/能量严重失衡与血尿素升高；体液低钠及无纤维致便秘</div>
+                <div><strong>医生首先关注：</strong>安素与蛋白粉的具体勺数/勺子规格/频次，以及血尿素（10.44 mmol/L）与低钠指标</div>
+                <div><strong>为什么：</strong>厘清高尿素氮是源于肾功能衰竭还是源于“低能量下蛋白粉过量脱氨供能”，防止错误的补蛋白行为继续加重肝肾负担</div>
+                <div><strong>关键风险：</strong>高蛋白低能量持续导致的含氮代谢产物蓄积/肾负担；少动状态下强行使用促食欲药引发致命血栓；高渗冲调引发腹胀腹泻</div>
+                <div><strong>营养决策：</strong>蛋白粉减量（降至每天2-3勺）；安素全营养大幅增加至每天24勺（1000-1200kcal）；分4-6次少量多餐饮用；适量补充咸菜纠正低钠；补充维C/维B/钙+D3+K2</div>
+                <div><strong>我的临床思维变化：</strong>从“见低蛋白补蛋白”的机械思维，转变为“能量先行、评估蛋白/能量比、关注渗透压与药物血栓禁忌”的综合临床决策思维。</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchTimer;
+
+function clearSearchHighlights() {
+    var marks = document.querySelectorAll('mark.search-highlight');
+    for (var i = 0; i < marks.length; i++) {
+        var mark = marks[i];
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    }
+}
+
+function highlightAndLocate() {
+    clearSearchHighlights();
+
+    var input = document.getElementById('searchInput');
+    var keyword = input.value.trim();
+    if (!keyword) return;
+
+    var roots = document.querySelectorAll('.searchable-section');
+    var specialChars = '\\^$.*+?()[]{}|/';
+    var escaped = '';
+    for (var e = 0; e < keyword.length; e++) {
+        var ch = keyword.charAt(e);
+        escaped += specialChars.indexOf(ch) >= 0 ? '\\' + ch : ch;
+    }
+    var regex = new RegExp(escaped, 'gi');
+    var textNodes = [];
+
+    for (var r = 0; r < roots.length; r++) {
+        var walker = document.createTreeWalker(
+            roots[r],
+            NodeFilter.SHOW_TEXT,
+            {
+                acceptNode: function(node) {
+                    if (!node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                    var parent = node.parentElement;
+                    if (!parent || parent.closest('script, style, mark, input, textarea, button, .search-container')) {
+                        return NodeFilter.FILTER_REJECT;
+                    }
+                    return NodeFilter.FILTER_ACCEPT;
+                }
+            }
+        );
+        var node;
+        while ((node = walker.nextNode())) textNodes.push(node);
+    }
+
+    for (var n = 0; n < textNodes.length; n++) {
+        var textNode = textNodes[n];
+        var text = textNode.nodeValue;
+        regex.lastIndex = 0;
+        if (!regex.test(text)) continue;
+
+        regex.lastIndex = 0;
+        var fragment = document.createDocumentFragment();
+        var lastIndex = 0;
+        var match;
+
+        while ((match = regex.exec(text)) !== null) {
+            fragment.appendChild(document.createTextNode(text.slice(lastIndex, match.index)));
+            var mark = document.createElement('mark');
+            mark.className = 'search-highlight';
+            mark.textContent = match[0];
+            fragment.appendChild(mark);
+            lastIndex = match.index + match[0].length;
+            if (!match[0].length) break;
+        }
+
+        fragment.appendChild(document.createTextNode(text.slice(lastIndex)));
+        textNode.parentNode.replaceChild(fragment, textNode);
+    }
+
+    var first = document.querySelector('mark.search-highlight');
+    if (first) {
+        first.classList.add('search-highlight-current');
+        first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function filterContent() {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(highlightAndLocate, 180);
+}
+</script>
+
+</body>
+</html>
