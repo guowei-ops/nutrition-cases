@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>升结肠癌肝转移术后：重度营养不良与阶梯肠内营养｜北肿临床营养科会诊思维录</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #444444;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --highlight-bg: #ffe082;
+        --current-highlight-bg: #ff9800;
+
+        /* 彩色圆角胶囊标签色彩库 */
+        --tag-fact-bg: #e8f5e9;
+        --tag-fact-color: #2e7d32;
+        --tag-plan-bg: #e3f2fd;
+        --tag-plan-color: #1565c0;
+        --tag-infer-bg: #fff3e0;
+        --tag-infer-color: #e65100;
+        --tag-know-bg: #f3e5f5;
+        --tag-know-color: #6a1b9a;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4; /* 紧凑行距 */
+        color: var(--dark-gray);
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(26, 95, 122, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 6px 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .header-card .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+    }
+
+    /* Search Bar Sticky Container */
+    .search-container {
+        position: sticky;
+        top: 8px;
+        z-index: 1000;
+        background: rgba(238, 242, 245, 0.95);
+        backdrop-filter: blur(6px);
+        padding: 6px 0;
+        margin-bottom: 15px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .search-box-wrapper:focus-within {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .search-btn {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        border: 1px solid var(--secondary-blue);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-blue);
+        color: white;
+    }
+
+    .search-counter {
+        font-size: 12px;
+        color: #666;
+        min-width: 55px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* 彩色圆角胶囊标签风格 */
+    .badge-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 4px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+    .tag-fact { background-color: var(--tag-fact-bg); color: var(--tag-fact-color); }
+    .tag-plan { background-color: var(--tag-plan-bg); color: var(--tag-plan-color); }
+    .tag-infer { background-color: var(--tag-infer-bg); color: var(--tag-infer-color); }
+    .tag-know { background-color: var(--tag-know-bg); color: var(--tag-know-color); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        background-color: var(--light-blue);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 13.5px;
+        line-height: 1.35;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .styled-history-box {
+        background-color: #f4f7f9;
+        border: 1px solid #d0dfe8;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    .styled-history-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--primary-blue);
+        border-left: 3.5px solid var(--primary-blue);
+        padding-left: 8px;
+    }
+
+    .styled-history-box p {
+        margin: 5px 0;
+        font-size: 13.5px;
+        line-height: 1.42;
+    }
+
+    /* 对话模块 */
+    .dialogue-block {
+        background: #ffffff;
+        border: 1px solid #e5e9ec;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+
+    .dialogue-block h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--primary-blue);
+        font-size: 14.5px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 2px 0 6px 0;
+        background-color: #f8fafc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        line-height: 1.4;
+    }
+
+    .info-gain-box {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 6px;
+    }
+
+    /* Part 2 Specifics */
+    .raw-opinion-card {
+        background-color: var(--green-bg);
+        border: 1.5px solid #a5d6a7;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: inherit;
+        line-height: 1.42;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.05);
+    }
+
+    .raw-opinion-card .meta-notice {
+        background: #ffffff;
+        color: var(--doctor-green);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-left: 3.5px solid var(--doctor-green);
+        border: 1px solid #c8e6c9;
+    }
+
+    .raw-text-content {
+        white-space: pre-wrap;
+        font-size: 13.5px;
+        color: #1b5e20;
+    }
+
+    /* Part 3 Specifics */
+    .mind-card {
+        background-color: #f1f8e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--doctor-green);
+        font-size: 14.5px;
+    }
+
+    .mind-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        color: #2e7d32;
+        margin: 8px 0;
+        border-left: 3.5px solid var(--doctor-green);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Part 4 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .misconception-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+    }
+
+    .misconception-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 10px;
+        border-radius: 5px;
+        margin: 6px 0;
+        border-left: 3px solid var(--misconception-orange);
+        font-size: 13px;
+    }
+
+    /* Part 6 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 3.5px solid var(--purple-knowledge);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: var(--purple-knowledge);
+        font-size: 14.5px;
+    }
+
+    .knowledge-box p {
+        margin: 3px 0;
+        font-size: 13.5px;
+    }
+
+    /* Part 7 Specifics */
+    .training-card-fancy {
+        background: #ffffff;
+        border: 1.5px solid var(--secondary-blue);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .training-grid-fancy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+    }
+
+    .mini-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-card strong {
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+    }
+
+    .mini-card.highlight-green {
+        background: #f1f8e9;
+        border-color: #c8e6c9;
+    }
+    .mini-card.highlight-green strong { color: var(--doctor-green); }
+
+    .mini-card.highlight-orange {
+        background: #fbe9e7;
+        border-color: #ffccbc;
+    }
+    .mini-card.highlight-orange strong { color: var(--misconception-orange); }
+
+    /* Highlight Styling for Search */
+    mark.search-highlight {
+        background-color: var(--highlight-bg);
+        color: #000;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    mark.search-highlight.current {
+        background-color: var(--current-highlight-bg);
+        color: #fff;
+        font-weight: bold;
+        outline: 2px solid #e65100;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .training-grid-fancy { grid-template-columns: 1fr; }
+        .header-card { padding: 14px; }
+        .header-card h1 { font-size: 20px; }
+        .search-box-wrapper { flex-wrap: wrap; }
+        .search-input { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题卡 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>会诊日期：</strong>2026年08月10日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>升结肠癌肝转移术后（ypT3N2M1 IV期）肠空肠管/造口患者重度营养不良与阶梯肠内营养及水解蛋白策略</div>
+        </div>
+    </div>
+
+    <!-- 粘性搜索栏 -->
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索全文，如：体重、腹泻、蛋白质、ONS..." onkeydown="handleKeyDown(event)">
+            <div class="search-nav-btns">
+                <span id="searchCounter" class="search-counter">0 / 0</span>
+                <button class="search-btn" onclick="navigateSearch(-1)">▲ 上一个</button>
+                <button class="search-btn" onclick="navigateSearch(1)">▼ 下一个</button>
+                <button class="search-btn" onclick="clearSearch()">清除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>患者概况：</strong>中老年女性 <span class="badge-tag tag-fact">【去标识化事实】</span></div>
+            <div class="info-item"><strong>主要确诊疾病：</strong>升结肠中分化腺癌根治术后ypT3N2M1 IV期，结肠癌肝转移3年余 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>病理类型：</strong>升结肠中分化腺癌 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>疾病分期：</strong>ypT3N2M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>转移情况：</strong>肝脏转移肿瘤，伴肠系膜上静脉癌栓 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>重要合并症：</strong>血小板减少（PLT 91×10⁹/L）、低蛋白血症（PALB 0.16g/L）、血糖升高（Glu 8.48mmol/L）、脱水/容量不足表现 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>手术史：</strong>既往行右半结肠根治切除、空肠插管造口、回肠造口、肝转移瘤切除及肠系膜上静脉相关手术 <span class="badge-tag tag-fact">【去标识化事实】</span></div>
+            <div class="info-item"><strong>抗肿瘤治疗史：</strong>确诊结肠癌肝转移3年余，拟明日行介入治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前治疗阶段：</strong>介入科病房住院，拟明日行介入治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>本次就诊背景：</strong>近半月进口进食后偶有恶心呕吐；目前每日经鼻空肠营养管泵入肠内营养制剂百普力（1.0）1500ml；近3月体重下降3kg，乏力明显 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>营养科会诊原因：</strong>介入科申请会诊，病情提示“患者肠癌肝转移，目前经鼻饲进食营养液，请贵科会诊，指导营养治疗！” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前核心营养问题：</strong>恶性肿瘤并营养风险、重度营养不良、经口与鼻空肠管营养阶梯衔接不妥、高浓缩/入量不足导致的严重缺水、氨基酸输液不耐受顾虑、血糖偏高下的ONS制剂选择 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <div class="info-item"><strong>信息不确定项：</strong>原始资料中的年龄记录存在不一致，公开版不保留精确年龄，不影响本次营养决策复盘。 <span class="badge-tag tag-fact">【去标识化说明】</span></div>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>2. 确诊疾病及治疗病史</h3>
+            <p><strong>主要疾病：</strong>确诊结肠癌肝转移3年余，诊断升结肠中分化腺癌根治术后 ypT3N2M1 IV期。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>手术经过：</strong>既往行右半结肠根治切除、空肠插管造口、回肠造口、肝脏转移瘤切除及肠系膜上静脉相关手术。 <span class="badge-tag tag-fact">【去标识化事实】</span></p>
+            <p><strong>抗肿瘤治疗经过：</strong>拟明日行介入治疗。近期出现乏力加重、食欲极差。既往输注氨基酸时曾出现严重不适（自述“头跟炸了一样”及恶心呕吐），自述为“氨基酸过敏”。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>3. 营养相关现状</h3>
+            <p><strong>体重和变化：</strong>身高157cm，当前体重52kg，BMI 21.1 kg/m²。近3个月非自主性体重下降3kg。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>摄入情况：</strong>经口极差，进食后偶有恶心呕吐。一日进食主食不足一碗粥（仅能喝半碗稀粥）。目前主要依靠经鼻空肠管泵入百普力（1.0）1500ml/d。此外曾口服安素（6勺/次，加水约200ml，每日1次），因甜腻及不想喝，无法坚持。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养影响症状：</strong>食欲丧失（不想吃）、乏力加重、恶心呕吐、极度口干/缺水表现；小便颜色深黄（跟茶色似的）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>咀嚼和吞咽：</strong>咀嚼与吞咽功能无明显解剖学障碍，但因虚弱不想下床、不想咽食。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>既往或当前营养治疗：</strong>每日经鼻空肠营养管泵入百普力（1.0）1500ml；口服安素（6勺/次/日，冲调过于浓稠）；未补充蛋白粉，缺水严重（每日自由饮水甚至不足100-500ml）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>检查和人体成分资料：</strong> <span class="badge-tag tag-fact">【原始事实】</span>
+                <ul style="margin: 2px 0 0 18px; padding: 0;">
+                    <li>营养查体：ht 157cm, wt 52kg, BMI 21.1 kg/m², NRS 2002: 4分。</li>
+                    <li>生化及血常规（8-10）：Glu 8.48 mmol/L（高血糖）, PLT 91×10⁹/L（血小板减少）, PALB 0.16 g/L（低前白蛋白血症）。</li>
+                </ul>
+            </p>
+        </div>
+
+        <h3>4. 会诊现场顺序复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：缺水及血液浓缩风险排查</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“你好，我是医院营养科的……最近乏力的厉害没劲是吧？第一个就因为你这个液体补的不足，所以你化验单这些指标有可能不是很准，你明白吗？就是它浓缩了。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“不想吃……吃饭也嗯嗯……水不怎么喝，一天500毫升可能都没有，小便跟茶似的那么黄。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“如果说你一天水500都没有的话，可能缺水比这个缺营养更严重。一旦大夫给你补液之后，这些指标可能会稀释降下来。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 医生首先指出了患者严重的液体入量不足（严重缺水/脱水），并提醒血液浓缩会导致化验指标假性偏高。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：经口膳食与ONS冲调误区调查</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“现在一般都吃点啥呢？一天能喝一碗粥吗？安素是咋喝的？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“喝不了一碗，半碗。安素一次喝六七勺，加200毫升水，一天喝一回，他不想喝，喝不下去。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“一次6勺加200水太糊了！可以换成3勺搞点水，没事抿点没事抿点。而且血糖7.48/8.48有点高，安素甜容易升血糖，这段时间先不要喝安素了，换成糖尿病专用的麦愈，或者水解乳清蛋白粉。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 发现了患者一口气冲服高浓度安素导致胃肠不耐受和拒食的问题；结合高血糖，调整了 ONS 品种（安素 换 麦愈）与服法（少量多次抿服）。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：解离“氨基酸过敏”心理障碍与水解蛋白选择</h4>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“输氨基酸我过敏！我就是头跟炸了一样，特别恶心吐。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“氨基酸属于小分子，真实过敏可能性很小。但既然您反应这么大不能静脉输，咱就得靠‘吃’。因为您现在蛋白低（PALB 0.16），改用水解乳清蛋白粉，它已经帮你预先消化好了，吸收更好，对胃肠负担小。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 成功安抚了患者对静脉氨基酸的恐惧，顺势引出经肠道补充预消化型“水解乳清蛋白粉”的必要性。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：微量营养素（VB、VD3+K2）与免疫营养（β-葡聚糖）补充</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“因为不上外边溜达，钙低、奶喝的少，建议补充维生素D3加K2（如滴卓思），滴在舌头或面包上，好吞咽；白细胞和抵抗力差，可以用贝塔葡聚糖（易瑞达）帮助升白细胞；加复合维生素B帮助促进食欲和改善胃肠动力。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 建立了涵盖免疫调节、维生素D/钙代谢及胃肠动力改善的微量元素补充方案。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <h3>5. 待确认内容</h3>
+        <ul style="margin: 4px 0 0 18px; padding: 0;">
+            <li>【待确认】原始资料中的年龄记录存在不一致；公开版已删除精确年龄，内部原始资料仍需按正式病历核实。</li>
+            <li>【待确认】管路类型记载：会诊申请单填写为“目前经鼻饲进食营养液”，处理意见中写为“每日经鼻空肠营养管泵入/胃空肠营养管”，手术史中有“空肠插管造口+回肠造口”，需核实目前途经是鼻空肠管还是空肠造口管。</li>
+            <li>【待确认】录音中提及的血糖值为“7.48”，而处理意见生化记录为“Glu 8.48”，系不同时段血糖或转写记录，需以最新生化结果为准。</li>
+        </ul>
+    </div>
+
+    <!-- 第二部分：原始营养会诊处理意见（去标识化转录） -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+
+        <div class="raw-opinion-card">
+            <div class="meta-notice">
+                以下内容依据原始营养会诊处理意见整理。病情摘要已去除精确年龄和精确手术日期；营养诊断、目标、用量、频次、执行方法和监测建议按原有顺序保留。 <span class="badge-tag tag-fact">【去标识化转录】</span>
+            </div>
+            <div class="raw-text-content">【去标识化病情摘要】
+
+中老年女性，确诊结肠癌肝转移3年余，升结肠中分化腺癌根治术后 ypT3N2M1 IV期。既往行右半结肠根治切除、空肠插管造口、回肠造口、肝转移瘤切除及肠系膜上静脉相关手术。患者一般情况可，拟行介入治疗；近半月经口进食后偶有恶心、呕吐。目前每日经鼻空肠营养管泵入短肽型肠内营养制剂百普力（1.0）1500ml，未诉腹胀、腹泻等不适；近3个月体重下降3kg。小便正常，回肠造口协助排便，活动量少，睡眠一般。无糖尿病史及家族史。化验血：Glu 8.48、PLT 91、PALB 0.16。
+
+营养查体：生命体征平稳，现H：157cm，W：52kg，BMI：21.1，NRS2002：4分。
+
+营养诊断：恶性肿瘤并营养风险、重度营养不良、血小板减少、低蛋白血症、血糖升高
+
+营养诊疗计划：
+
+1. 改善症状，肠内营养支持，维持体重。参考目标能量1300kcal-1500kcal，蛋白质60-80g，液体1800-2100ml；
+
+2. 流食-半流食逐渐过渡，如婴儿米粉、藕粉、猴菇米稀、嫩蛋羹、豆腐脑、酸奶、苹果泥、蔬菜汁等摄入。
+
+3. 胃空肠营养管管饲：短肽型肠内营养剂 佳维体/百普力1500ml，65-100ml/h 持续泵入，前后温水冲管；3.
+
+4. 水解乳清蛋白粉 10g 每日2次 或 浦索水解蛋白液 1袋 每日2次；
+
+5. 复合维生素B + 维生素B1 B2 B6 C 1片 每日3次；
+
+6. 蔓越莓纳豆D 1袋 每日三次 或维生素D3滴剂 5000iu+K2 100-200ug，每日1滴；
+
+7. 枣提取口服液 30ml，每日1次，稀释后经肠内营养管推注；自备
+
+8. 每日有氧运动30分钟，隔日抗阻运动 10分钟；
+
+9. 监测血常规，电解质，血生化，PALB, CRP，胃肠道症状、体重，不适随诊。</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点一：敏锐识别缺水（液体入量不足）并剖析化验假性偏高</h4>
+            <p><strong>医生怎么问：</strong>“最近乏力没劲是吧？你一天矿泉水能喝多少？小便黄不黄？” <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>水基本不喝，一天连500ml都不到，小便跟浓茶一样黄。 <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】判断患者乏力与血液浓缩的因果关系，识别严重的隐匿性脱水。</p>
+            <div class="reasoning-path">
+                现象：饮水极少+尿黄如茶+全身乏力 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：进食困难导致自由水摄入不足+管饲高渗营养液未足量冲管 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 风险判断：血液浓缩（高凝状态）、肾前性少尿、化验指标假性升高 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 方案选择：明确目标液体量1800-2100ml，管饲前后温水冲管及经口补水 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>处理意见第1条明确提出液体目标为“1800-2100ml”，第3条强调“前后温水冲管”。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点二：针对“氨基酸过敏”主诉的解离与水解蛋白替代决策</h4>
+            <p><strong>医生怎么问：</strong>“之前输氨基酸有不舒服是吗？怎么个不舒服？” <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>自述对氨基酸过敏，输注时“头跟炸了一样”极度恶心。 <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】区分是真实免疫过敏还是输液滴速过快/高渗反应，并寻找安全的肠内补氮途径。</p>
+            <div class="reasoning-path">
+                现象：患者极度抗拒静脉输注氨基酸 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 矛盾点：低蛋白血症（PALB 0.16g/L）急需补氮，但患者抗拒静脉途径 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 决策：绕过静脉，改用经肠道补充预消化型水解乳清蛋白粉/水解蛋白液 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>处理意见第4条明确开具“水解乳清蛋白粉 10g 每日2次 或 浦索水解蛋白液 1袋 每日2次”。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>从问诊到处理意见的整体推理链</h4>
+            <p>会诊获得的信息：升结肠癌术后、肠空肠管/造口，近3月降重3kg，经口摄入极差，饮水&lt;500ml/d，PALB 0.16, Glu 8.48, PLT 91。 <span class="badge-tag tag-fact">【原始事实】</span><br>
+            ↓ 医生识别的问题：重度营养不良、低蛋白血症、脱水/容量不足、高血糖、排斥静脉氨基酸。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 主要营养风险：恶性肿瘤营养风险（NRS 2002=4分）、肌肉进一步消耗、介入治疗耐受性差。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 原始处理意见中的目标：能量1300-1500kcal/d，蛋白质60-80g/d，液体1800-2100ml/d。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 原始处理意见中的具体方案：百普力/佳维体1500ml持续泵入 + 水解乳清蛋白粉20g/d + 复合VB + VD3/K2 + 枣提取口服液。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 方案选择理由：百普力（短肽）适应空肠造口/管饲吸收；水解蛋白克服氨基酸输液恐惧并高效纠正低蛋白血症；充足冲管解决缺水。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 监测和耐受：监测血常规、电解质、血生化、PALB、CRP、胃肠道症状、体重。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 调整条件：若介入术后胃肠道耐受改善，逐步增加经口半流质并下调管饲泵速。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区</h2>
+
+        <div class="misconception-card">
+            <h4>误区一：把静脉氨基酸输液反应误认为“氨基酸过敏”，拒绝所有蛋白补充 <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“氨基酸我过敏！我就是头跟炸了一样，特别恶心吐。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“氨基酸它是属于小分子的，其实过敏的可能性很小……既然你反应大不能输，咱就靠‘吃’，用预消化好的水解乳清蛋白粉，自己吸收更好。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】静脉氨基酸输注过快可因高渗透压及神经体液刺激引起头痛、恶心。氨基酸为人体必需营养素，非大分子变应原，极少发生真正免疫性过敏。通过肠道补充水解蛋白安全可控。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“静脉输氨基酸太快可能会让人头晕恶心，但这并不是对营养过敏。咱们身体每天都离不开蛋白，现在改用肠道喝预先水解好的蛋白粉，就像帮你提前做好了消化，既安全又补营养。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区二：营养粉“冲得越浓、一次喝得越多越补” <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“安素一次喝六七勺，加200毫升水，一口气喝完，喝完胃不舒服不想喝了。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“6勺加200水太糊了！这样胃肠受不了。应该减少到3勺，搞多点水，没事抿一口，少食多餐。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】高浓度的营养粉冲调会导致高渗透压，引起胃排空延迟、恶心甚至渗透性腹泻。口服营养补充（ONS）应遵循少量多次、等渗饮用的原则。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“营养粉不能像喝中药一样一口气闷掉，太浓了胃肠吸收不了还会难受。咱们把它稀释一点，像喝水一样放在手边，一会抿两口，胃舒服，吸收也更好。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        复盘前，我会认为患者已有管饲百普力1500ml/d，能量已基本满足（~1500kcal），营养方案无需大改；对于患者口述的“氨基酸过敏”，可能会顾虑而不敢开具蛋白补充剂。</p>
+
+        <p><strong>今天新的认识：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        以下为复盘建议，供我确认和修改：<br>
+        1. 必须重视管饲患者的“水”问题！管饲高渗营养液若缺乏足够温水冲管和自由水摄入，极易引发严重脱水和假性高浓缩指标。<br>
+        2. 巧妙解离患者的心理恐惧：将静脉不耐受转化为肠道水解蛋白（水解乳清蛋白粉）的强指征，既尊重了患者主诉，又精准纠正了低蛋白血症（PALB 0.16g/L）。<br>
+        3. 管饲与经口半流质的动态过渡：即便有空肠造口/管饲，仍需鼓励经口进食（米粉、豆腐脑），以维持肠道黏膜屏障及咀嚼消化功能。</p>
+
+        <p><strong>最大收获：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ol style="margin: 4px 0; padding-left: 18px;">
+            <li>发现问题（饮水&lt;500ml/d+茶色尿+低蛋白血症） → 分析原因（管饲冲管不足+不敢补蛋白） → 补充证据（PALB 0.16g/L, Glu 8.48mmol/L）。</li>
+            <li>判断风险（脱水浓缩风险、介入治疗耐受力差） → 选择干预（补足1800-2100ml液体 + 额外水解乳清蛋白粉20g/d）。</li>
+            <li>明确执行（泵速65-100ml/h持续泵入+前后冲管） → 监测与复评（PALB、CRP、电解质、血糖及体重）。</li>
+        </ol>
+
+        <p><strong>下次我会怎么问：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ul style="margin: 4px 0; padding-left: 18px;">
+            <li>“您今天除了管子泵进去的液体，自己嘴里喝了多少温开水？小便颜色像清水还是茶水？”（排查缺水）</li>
+            <li>“营养粉冲好后是像水一样顺畅，还是像糊糊一样粘稠？喝完肚子涨不涨？”（排查渗透压）</li>
+            <li>“之前输氨基酸难受是滴得特别快的时候出现的吗？平时吃鸡蛋或瘦肉会过敏吗？”（解离误区）</li>
+        </ul>
+
+        <p><strong>我仍然不会或不确定的地方：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        1. 空肠造口/管饲泵入短肽制剂（百普力）时，水解乳清蛋白粉的最佳给药途径是经口分次冲服，还是稀释后经管慢速推注？需请教带教老师。<br>
+        2. 介入术前高血糖（Glu 8.48mmol/L）患者，管饲百普力期间是否需要联合皮下胰岛素控制？</p>
+    </div>
+
+    <!-- 第六部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>知识点一：肠内营养（EN）患者液体需要量与管饲冲管规范 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者饮水极少，小便深黄，医生明确提出目标液体量 1800-2100 ml，强调前后温水冲管。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>标准肠内营养制剂含水量约为80%-85%。管饲患者除营养液自带水分外，须每日定时用温开水冲管（每4-6小时冲管30ml，泵入前后冲管30-50ml），以防止管路堵塞并满足机体30-35 ml/kg/d 的基础水需求。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《中华医学会临床肠内肠外营养学分会（CSPEN）肠内营养途径建立与维护指南》。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点二：预消化型水解蛋白（短肽/氨基酸）在严重低蛋白血症中的应用 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者 PALB 0.16 g/L，且抗拒静脉氨基酸输注，医生开具水解乳清蛋白粉。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>水解乳清蛋白富含二肽和三肽，利用肠道 PepT1 转运体主动吸收，吸收速率高于游离氨基酸和整蛋白，且不易引起高渗透压性腹泻，适合小肠吸收功能受损或重度低蛋白血症患者。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《临床营养学（第4版）》及 ESPEN 肿瘤营养指南。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card-fancy">
+            <div class="training-grid-fancy">
+                <div class="mini-card">
+                    <strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>主要确诊疾病：</strong>升结肠中分化腺癌根治术后ypT3N2M1 IV期（肝转移） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>病理及分期：</strong>升结肠中分化腺癌 ypT3N2M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>转移情况：</strong>肝转移术后，伴肠系膜上静脉癌栓 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>手术及治疗阶段：</strong>结肠/肝切除及空肠造口术后，拟行介入治疗 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>重要合并症：</strong>血小板减少、低蛋白血症、高血糖、脱水浓缩风险 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>营养会诊触发点：</strong>经鼻空肠管泵入百普力期间仍觉严重乏力，近3月降重3kg，经口摄入极差 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>核心营养问题：</strong>重度营养不良、隐匿性严重脱水、高血糖下的蛋白补充决策 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>医生首先关注：</strong>每日饮水与小便颜色、化验浓缩可能性、对氨基酸过敏主诉的真实原因 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>为什么：</strong>脱水比短期营养缺乏更具急性风险；解离输液恐惧才能打通补氮途径 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>关键证据：</strong>Wt 52kg, BMI 21.1, PALB 0.16g/L, Glu 8.48mmol/L, PLT 91×10⁹/L, 饮水&lt;500ml/d <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>仍缺少的信息：</strong>24小时出入量精准记录、尿比重及肾功能（BUN/Cr）定量数据 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>主要营养风险：</strong>恶性肿瘤营养风险（NRS 2002=4分）、低蛋白血症水肿、介入术后恢复延迟 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>医生的营养判断：</strong>重度营养不良伴严重液体不足，需强化管饲冲管并经肠道补充水解蛋白 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的营养目标：</strong>能量 1300~1500 kcal/d，蛋白质 60~80 g/d，液体量 1800~2100 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的具体方案：</strong>百普力/佳维体1500ml持续泵入+水解乳清蛋白粉20g/d+复合VB+VD3/K2+枣提取液+冲管补水 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>方案提供的能量和蛋白质：</strong>百普力1500ml（1500kcal, 60g蛋白）+ 水解蛋白粉20g（~16g蛋白），合计 1500kcal，76g蛋白质 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>方案选择依据：</strong>短肽适应空肠管饲；水解蛋白高效纠正低蛋白血症且避免静脉过敏顾虑 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>执行中的主要困难：</strong>患者极度缺乏主动饮水意愿，需依靠护士/家属定时温水冲管 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>需要监测什么：</strong>血常规、电解质、血生化、PALB、CRP、胃肠道症状、体重 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>何时需要复评：</strong>介入治疗后3-5天或下次随访时复评 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                    <strong>什么情况下需要调整方案：</strong>若介入术后出现发热腹泻，需调整泵速；若PALB升至正常，可维持常规补充 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>录音问诊与原始处理意见之间的联系：</strong>问诊中发现缺水与氨基酸恐惧，直接决定了处理意见中2100ml液体目标、温水冲管及水解乳清蛋白粉的开具 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>我下次首先会问的三个问题：</strong>1. 今天管子冲了多少水？尿色变浅了吗？ 2. 水解蛋白粉喝了胃舒不舒服？ 3. 口服半流质能吃下几匙？ <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>我的临床思维变化：</strong>从“仅关注管饲热量是否达标”升级为“重视管饲背后的水平衡与预消化蛋白精准补充”。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>一句话病例记忆点：</strong>肠癌造口管饲莫忘补水，输液怕过敏肠道水解蛋白来护航。 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchMatches = [];
+var currentMatchIndex = -1;
+
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+
+    if (!input) {
+        updateCounter(0, 0);
+        return;
+    }
+
+    var safeInput = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(safeInput, 'gi');
+
+    var searchableSections = document.querySelectorAll('.searchable-section');
+    searchableSections.forEach(function(section) {
+        highlightNode(section, regex);
+    });
+
+    searchMatches = Array.from(document.querySelectorAll('mark.search-highlight'));
+
+    if (searchMatches.length > 0) {
+        currentMatchIndex = 0;
+        focusMatch(currentMatchIndex);
+        updateCounter(1, searchMatches.length);
+    } else {
+        updateCounter(0, 0);
+    }
+}
+
+function highlightNode(node, regex) {
+    if (node.nodeType === 3) {
+        var match = node.data.match(regex);
+        if (match) {
+            var span = document.createElement('span');
+            var lastIdx = 0;
+            node.data.replace(regex, function(m, offset) {
+                var before = node.data.substring(lastIdx, offset);
+                span.appendChild(document.createTextNode(before));
+                var mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.appendChild(document.createTextNode(m));
+                span.appendChild(mark);
+                lastIdx = offset + m.length;
+            });
+            var after = node.data.substring(lastIdx);
+            span.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(span, node);
+        }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'INPUT', 'BUTTON'].includes(node.tagName)) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+            highlightNode(node.childNodes[i], regex);
+        }
+    }
+}
+
+function clearHighlights() {
+    var highlights = document.querySelectorAll('mark.search-highlight');
+    highlights.forEach(function(mark) {
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    });
+}
+
+function focusMatch(index) {
+    searchMatches.forEach(function(m, idx) {
+        if (idx === index) {
+            m.classList.add('current');
+            m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            m.classList.remove('current');
+        }
+    });
+}
+
+function navigateSearch(direction) {
+    if (searchMatches.length === 0) return;
+    currentMatchIndex += direction;
+    if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+    if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+
+    focusMatch(currentMatchIndex);
+    updateCounter(currentMatchIndex + 1, searchMatches.length);
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        if (event.shiftKey) {
+            navigateSearch(-1);
+        } else {
+            if (searchMatches.length === 0) {
+                performSearch();
+            } else {
+                navigateSearch(1);
+            }
+        }
+    } else if (event.key === 'Escape') {
+        clearSearch();
+    } else {
+        setTimeout(performSearch, 300);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+    updateCounter(0, 0);
+}
+
+function updateCounter(current, total) {
+    var counter = document.getElementById('searchCounter');
+    if (total === 0 && document.getElementById('searchInput').value.trim() !== '') {
+        counter.textContent = '未找到';
+    } else {
+        counter.textContent = current + ' / ' + total;
+    }
+}
+</script>
+
+</body>
+</html>
