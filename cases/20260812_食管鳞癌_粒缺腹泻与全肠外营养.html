@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #444444;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --highlight-bg: #ffe082;
+        --current-highlight-bg: #ff9800;
+
+        /* 彩色圆角胶囊标签色彩库 */
+        --tag-fact-bg: #e8f5e9;
+        --tag-fact-color: #2e7d32;
+        --tag-plan-bg: #e3f2fd;
+        --tag-plan-color: #1565c0;
+        --tag-infer-bg: #fff3e0;
+        --tag-infer-color: #e65100;
+        --tag-know-bg: #f3e5f5;
+        --tag-know-color: #6a1b9a;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4;
+        color: var(--dark-gray);
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(26, 95, 122, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 6px 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .header-card .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+    }
+
+    /* Search Bar Sticky Container */
+    .search-container {
+        position: sticky;
+        top: 8px;
+        z-index: 1000;
+        background: rgba(238, 242, 245, 0.95);
+        backdrop-filter: blur(6px);
+        padding: 6px 0;
+        margin-bottom: 15px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .search-box-wrapper:focus-within {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .search-btn {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        border: 1px solid var(--secondary-blue);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-blue);
+        color: white;
+    }
+
+    .search-counter {
+        font-size: 12px;
+        color: #666;
+        min-width: 55px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* 彩色圆角胶囊标签风格 */
+    .badge-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 4px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+    .tag-fact { background-color: var(--tag-fact-bg); color: var(--tag-fact-color); }
+    .tag-plan { background-color: var(--tag-plan-bg); color: var(--tag-plan-color); }
+    .tag-infer { background-color: var(--tag-infer-bg); color: var(--tag-infer-color); }
+    .tag-know { background-color: var(--tag-know-bg); color: var(--tag-know-color); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        background-color: var(--light-blue);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 13.5px;
+        line-height: 1.35;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .styled-history-box {
+        background-color: #f4f7f9;
+        border: 1px solid #d0dfe8;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    .styled-history-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--primary-blue);
+        border-left: 3.5px solid var(--primary-blue);
+        padding-left: 8px;
+    }
+
+    .styled-history-box p {
+        margin: 5px 0;
+        font-size: 13.5px;
+        line-height: 1.42;
+    }
+
+    /* 对话模块 */
+    .dialogue-block {
+        background: #ffffff;
+        border: 1px solid #e5e9ec;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+
+    .dialogue-block h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--primary-blue);
+        font-size: 14.5px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 2px 0 6px 0;
+        background-color: #f8fafc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        line-height: 1.4;
+    }
+
+    .info-gain-box {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 6px;
+    }
+
+    /* 第二部分原始处理意见大卡片 */
+    .raw-opinion-card {
+        background-color: var(--green-bg);
+        border: 1.5px solid #a5d6a7;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: inherit;
+        line-height: 1.42;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.05);
+    }
+
+    .raw-opinion-card .meta-notice {
+        background: #ffffff;
+        color: var(--doctor-green);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-left: 3.5px solid var(--doctor-green);
+        border: 1px solid #c8e6c9;
+    }
+
+    .raw-text-content {
+        white-space: pre-wrap;
+        font-size: 13.5px;
+        color: #1b5e20;
+    }
+
+    /* Part 3 Specifics */
+    .mind-card {
+        background-color: #f1f8e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--doctor-green);
+        font-size: 14.5px;
+    }
+
+    .mind-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        color: #2e7d32;
+        margin: 8px 0;
+        border-left: 3.5px solid var(--doctor-green);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Part 4 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .misconception-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+    }
+
+    .misconception-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 10px;
+        border-radius: 5px;
+        margin: 6px 0;
+        border-left: 3px solid var(--misconception-orange);
+        font-size: 13px;
+    }
+
+    /* Part 6 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 3.5px solid var(--purple-knowledge);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: var(--purple-knowledge);
+        font-size: 14.5px;
+    }
+
+    .knowledge-box p {
+        margin: 3px 0;
+        font-size: 13.5px;
+    }
+
+    /* Part 7 美化版训练卡 */
+    .training-card-fancy {
+        background: #ffffff;
+        border: 1.5px solid var(--secondary-blue);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .training-grid-fancy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+    }
+
+    .mini-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-card strong {
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+    }
+
+    .mini-card.highlight-green {
+        background: #f1f8e9;
+        border-color: #c8e6c9;
+    }
+    .mini-card.highlight-green strong { color: var(--doctor-green); }
+
+    .mini-card.highlight-orange {
+        background: #fbe9e7;
+        border-color: #ffccbc;
+    }
+    .mini-card.highlight-orange strong { color: var(--misconception-orange); }
+
+    /* Highlight Styling for Search */
+    mark.search-highlight {
+        background-color: var(--highlight-bg);
+        color: #000;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    mark.search-highlight.current {
+        background-color: var(--current-highlight-bg);
+        color: #fff;
+        font-weight: bold;
+        outline: 2px solid #e65100;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .training-grid-fancy { grid-template-columns: 1fr; }
+        .header-card { padding: 14px; }
+        .header-card h1 { font-size: 20px; }
+        .search-box-wrapper { flex-wrap: wrap; }
+        .search-input { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Header Card -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>会诊日期：</strong>2026年08月12日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>食管鳞癌二线化疗后重度粒缺发热、严重腹泻并全肠外营养（PN）调理</div>
+        </div>
+    </div>
+
+    <!-- Search Container -->
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索全文，如：体重、腹泻、蛋白质、ONS..." onkeydown="handleKeyDown(event)">
+            <div class="search-nav-btns">
+                <span id="searchCounter" class="search-counter">0 / 0</span>
+                <button class="search-btn" onclick="navigateSearch(-1)">▲ 上一个</button>
+                <button class="search-btn" onclick="navigateSearch(1)">▼ 下一个</button>
+                <button class="search-btn" onclick="clearSearch()">清除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>性别：</strong>男 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>年龄：</strong>70岁 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>主要确诊疾病：</strong>食管鳞癌 cT3N0M1 IV期（气管转移） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>病理类型：</strong>鳞状细胞癌（PD-L1 CPS&lt;1, pMMR, HER2(0), Claudin18.2(-)） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>疾病分期：</strong>cT3N0M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>转移情况：</strong>气管转移 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>重要合并症：</strong>IV度粒缺伴发热、腹泻IV度、血小板降低、阵发性房颤、冠心病（2年）、高血压病3级（极高危，26年）、糖耐量异常/糖尿病前期（数年） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>手术史：</strong>现有资料未提及 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>抗肿瘤治疗史：</strong>二线入组临床研究，2026-07-30、2026-08-06行C1D1、C1D8伊立替康治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前治疗阶段：</strong>二线临床研究化疗后不良反应期（重度骨髓抑制及消化道毒性） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>本次就诊背景：</strong>2026-08-07出现腹泻，后逐渐加重≥7次/分（或7-8次/d），伴IV度粒缺+发热（发热4-5d），禁食水，予海思静脉输液，今日（08-12）收入消化肿瘤病房 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>营养科会诊原因：</strong>患者营养状态差，目前禁食水，请贵科会诊指导营养治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前核心营养问题：</strong>禁食状态下的全肠外营养（PN）补充；化疗所致严重腹泻（伊立替康消化道毒性）与电解质紊乱；骨髓抑制及炎症反应（CRP 213）下的代谢支持 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <div class="info-item"><strong>信息不确定项：</strong>体重下降具体公斤数不详（会诊单记载“体重下降具体不详”）；住院前具体摄入量未明确记载 <span class="badge-tag tag-fact">【原始事实】</span></div>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>2. 确诊疾病及治疗病史</h3>
+            <p><strong>主要疾病：</strong>诊断食管鳞癌5月余，cT3N0M1 IV期，气管转移，PD-L1 CPS&lt;1, pMMR, HER2(0), Claudin18.2(-)。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>合并症：</strong>冠心病2年（规律口服氯吡格雷、瑞舒伐他汀，氯吡格雷已停药4月）；高血压病26年（最高达180/90mmHg，目前口服硝苯地平控释片1片qd，血压控制可）；糖尿病前期数年（规律口服阿卡波糖、利格列汀，血糖控制满意）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>抗肿瘤治疗及不良反应：</strong>目前二线入组临床研究，2026-07-30、2026-08-06行C1D1、C1D8伊立替康治疗。08-07出现腹泻，后逐渐加重（7-8次/d，量少，绿色水样便），伴IV度粒缺+发热（已发热4-5d，今日入院36.5度）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>3. 营养相关现状</h3>
+            <p><strong>体重和变化：</strong>身高1.70m，当前体重63.5kg，BMI 20.2 kg/m²。近期体重下降（具体不详）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>摄入情况：</strong>目前禁食水，完全依靠静脉输液。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养影响症状：</strong>严重腹泻（7-8次/d，绿色水样便）、发热（4-5d）、阵发性房颤。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>咀嚼和吞咽：</strong>现有资料未提及具体咽下困难细节，目前处于禁食水状态。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>既往或当前营养治疗：</strong>今日入院予PPI护胃、升白、整肠生及蒙脱石散止泻、奥曲肽、海思1440+水乐1支+维他利匹特10ml+安达美10ml+胰岛素8iu等对症支持。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>检查和人体成分资料：</strong> <span class="badge-tag tag-fact">【原始事实】</span>
+                <ul style="margin: 2px 0 0 18px; padding: 0;">
+                    <li>查体：ht 1.70m, wt 63.5kg, BMI 20.2 kg/m²。 <span class="badge-tag tag-fact">【原始事实】</span></li>
+                    <li>实验室检查：ALB 25.5 g/L（重度低白蛋白血症）, UREA 19.56 mmol/L, GLU 6.43 mmol/L, Na 138 mmol/L, K 3.53 mmol/L, Ca 1.97 mmol/L, P 1.5 mmol/L, Mg 0.95 mmol/L, CRP 213 mg/L（重度炎症）。 <span class="badge-tag tag-fact">【原始事实】</span></li>
+                    <li>血常规：白细胞总数 0.34×10⁹/L（重度低下）, 中性粒细胞绝对值 0.15×10⁹/L（IV度粒缺）, 血红蛋白 99 g/L, 血小板总数 32×10⁹/L。 <span class="badge-tag tag-fact">【原始事实】</span></li>
+                </ul>
+            </p>
+        </div>
+
+        <h3>4. 会诊现场顺序复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：术后/床旁血糖控制与营养泵流速沟通</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“你好，我营养科的，我过来看看你的血糖……可能是跟做手术/治疗之后有关系……您之前家里人有高血糖吗？没有是吧……今天不是第8天了，下地溜达了吗？变了吗？睡眠怎么样？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“睡觉睡不着，糟，就是焦虑……在医院来回走更睡不好……中午吃疙瘩汤，晚上吃鸡蛋羹喝点汤。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“睡不好也会影响血糖。用胰岛素泵的话控制可能会更精准一点……出院回家后，去附近大三甲内分泌科再调一下……输着营养液/粉，回家得慢慢过渡起来。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 确认床旁连续输液/泵入对血糖的影响，强调住院期间维持血糖稳定及出院后内分泌科随访的重要性。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：糖尿病专用肠内制剂（瑞代 / 伊利加SR）与蛋白粉选型指导</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“医院能开出来的是瑞代（500ml/袋），分次喝；如果不爱喝可以去京东淘宝买糖尿病专用的粉剂伊利加SR（雅培），3-4勺/次，一天3-4回。另外蛋白粉要选纯乳清蛋白的，含量80%以上，10g/次，每天2-3回，饭后半小时吃。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“要是跟他掺了就可以吃饭到那一起吃就行了是吧？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“对，能喝了掺一块也行。注意回去之后油大的少吃，容易拉肚子，鸡蛋黄可以先不吃，吃鸡蛋白羹。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 明确了针对血糖异常及高腹泻风险患者的制剂选择（糖尿病专用低GI制剂+纯乳清蛋白）及饮食控油避黄避泻细节。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：肠内营养输注泵（卡伦/海思等）规格与配置差异讨论（医师内部交流）</h4>
+            <div class="speaker-doctor">讲话人1 / 讲话人2：</div>
+            <div class="transcript-text">“刘老师，他这个泵和咱们前两天经常看到那小泵都有啥区别呀？……这种加的是5毫升，量不一样，最多加50毫升……厂内配置中心配出来的是死的，一晚配的……卡伦卡泉和海思……” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 讨论了不同肠内/静脉输注泵（含静脉营养配置液体如海思工业制剂与静脉配制中心成品）的容量与卡扣连接差异。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <h3>5. 待确认内容</h3>
+        <ul style="margin: 4px 0 0 18px; padding: 0;">
+            <li>【待确认】录音对话中讨论了“手术第8天、经口吃疙瘩汤/鸡蛋羹以及瑞代/伊利加SR口服方案”，而书面处理意见针对该患者明确记录为“食管鳞癌C1D8伊立替康化疗后IV度粒缺严重腹泻，目前禁食水，给予全肠外营养PN（海思1920ml全合一）”。录音内容疑似包含病房同组其他血糖调理患者的现场指导交流，整理时已作严格区分，书面正式方案以去标识化转录处理意见为准。 <span class="badge-tag tag-infer">【复盘推断】</span></li>
+        </ul>
+    </div>
+
+    <!-- 第二部分：原始营养会诊处理意见（去标识化转录） -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+
+        <div class="raw-opinion-card">
+            <div class="meta-notice">
+                以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。 <span class="badge-tag tag-fact">【原始事实】</span>
+            </div>
+            <div class="raw-text-content">处理意见：患者老年男性，主诉：诊断食管鳞癌5月余，食管鳞癌 cT3N0M1 IV期 气管转移 PD-L1CPS&lt;1, pMMR, HER2(0), Claudin18.2(-) 粒缺伴发热 腹泻IV度 血小板降低 阵发性房颤 冠心病 高血压病3级（极高危） 糖耐量异常。目前二线入组临床研究，2026-07-30、2026-08-06行C1D1、C1D8伊立替康治疗。患者08-07出现腹泻，后逐步加重≥7次/分，伴IV度粒缺+发热，电解质紊乱、房颤。目前一般可，现禁食水，已发热4-5d，今日入院36.5度，予PPI护胃、升白、整肠生及蒙脱石散止泻、奥曲肽、海思1440+水乐1支+维他利匹特10ml+安达美10ml+胰岛素8iu等对症支持。现仍在腹泻，7-8次/d，量少，绿色水样便。体重下降具体不详。既往“冠心病”2年，规律口服氯吡格雷、瑞舒伐他汀，氯吡格雷已停药4月。患高血压26年，最高达180/90mmHg，目前服用降压药硝苯地平控释片1片qd，血压控制可。患“糖尿病前期”数年，规律口服阿卡波糖、利格列汀，血糖控制满意。化验血：ALB 25.5, UREA 19.56, GLU 6.43, Na 138, K 3.53, Ca 1.97, P 1.5, Mg 0.95, CRP213, 白细胞总数 0.34, 中性粒细胞绝对值 0.15, 血红蛋白 99, 血小板总数 32。
+
+患者查体：患者精神状可，自主体位，四肢无水肿，现ht 1.70m, wt 63.5kg, BMI 20.2kg/m2。
+
+营养诊断：恶性肿瘤合并营养风险（NRS2002：4分），营养不良（GLIM），白细胞低，离子紊乱，炎症。
+
+营养治疗目标：1. 改善症状，加强营养，增加或稳定体重。每日推荐营养供给量：能量1300-1900kcal，蛋白60-95g，液体量2000ml左右。
+
+2. PN（输液港）：海思1920ml+丙氨酰谷氨酰胺注射液300ml+鱼油脂肪乳100ml+水乐2支+维他利匹特10ml+安达美10ml+10%氯化钠 30ml+15%氯化钾20ml+胰岛素10iu。
+
+3 维生素B1 100mg, im, qd
+
+4. 适量活动；
+
+5. 监测体重、离子，PALB, CRP等。</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点一：化疗所致重度腹泻（伊立替康）与消化道禁食决策</h4>
+            <p><strong>医生怎么问：</strong>“腹泻几天了？一天几次？什么性状？目前吃东西吗？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>08-07起出现腹泻，7-8次/d，量少，绿色水样便，目前严格禁食水。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】伊立替康迟发性腹泻易致肠黏膜屏障受损，全肠道处于高动力与高渗状态，此时经口/EN会加重腹泻，必须实施全肠外营养（TPN）。</p>
+            <div class="reasoning-path">
+                现象：伊立替康化疗后重度腹泻（7-8次/d水样便）+ 禁食水 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：化疗药迟发性肠道毒性、肠黏膜炎 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充证据：大便培养、电解质、ALB及炎症指标（CRP 213） <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 风险判断：严重脱水、电解质紊乱、肠源性感染爆发 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：完全禁食水 + 输液港全肠外营养（TPN）支持 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：海思1920ml全合一营养液静脉输注 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>决定放弃肠内营养，直接采用输液港（输液港/PORT）实施 TPN。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点二：高炎症状态（CRP 213 mg/L）、重度低白蛋白血症与免疫/抗炎PN配方设计</h4>
+            <p><strong>医生怎么问：</strong>“血生化和血常规结果如何？有无水肿？发热控制情况？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>ALB 25.5 g/L，CRP 213 mg/L，WBC 0.34×10⁹/L，发热4-5天。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】患者处于高代谢、强炎症分解及免疫耗竭状态，需在营养液中添加谷氨酰胺保护黏膜及鱼油抗炎。</p>
+            <div class="reasoning-path">
+                现象：ALB 25.5 g/L + CRP 213 mg/L + WBC 0.34×10⁹/L <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：重度感染发热+化疗骨髓抑制+肠道黏膜屏障破坏 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 风险判断：负氮平衡加重、败血症、组织修复受阻 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 方案选择：海思工业全合一 + 丙氨酰谷氨酰胺 300ml + 鱼油脂肪乳 100ml <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>在工业全合一（海思1920ml）基础上强化谷氨酰胺及鱼油脂肪乳，以调控炎症与修复肠黏膜。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>从问诊到处理意见的整体推理链</h4>
+            <p>会诊获得的信息：食管鳞癌IV期，伊立替康化疗后IV度粒缺发热，重度腹泻，ALB 25.5, CRP 213, NRS2002=4分。 <span class="badge-tag tag-fact">【原始事实】</span><br>
+            ↓ 医生识别的问题：消化道重度损伤（需要消化道休息）、重度营养不良、高消耗高炎症状态。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 主要营养风险：肠内不可用导致的急性能量/蛋白质衰竭及再喂养风险。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 原始处理意见中的目标：能量1300-1900kcal，蛋白60-95g，液体量2000ml左右。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 原始处理意见中的具体方案：输液港给予海思1920ml + 丙氨酰谷氨酰胺300ml + 鱼油100ml + 水乐2支 + 维他利匹特10ml + 安达美10ml + 氯化钠30ml + 氯化钾20ml + 胰岛素10iu；维生素B1 100mg im qd。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 方案选择理由：消化道无法经口/经肠使用，采用输液港进行全肠外营养；加入谷氨酰胺维持肠黏膜完整性，鱼油减轻 systemic 炎症反应，水溶性/脂溶性维生素与微量元素全覆盖，胰岛素控制应激性血糖。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 监测和耐受：监测体重、离子（电解质）、PALB（前白蛋白）、CRP等。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 调整条件：腹泻缓解、粒缺改善及发热控制后，逐步减量PN并过渡至经口/肠内营养。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区</h2>
+
+        <div class="misconception-card">
+            <h4>误区：腹泻发热时“硬吃肉汤食补”或“完全不吃不输注” <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">原始录音/资料背景：患者及家属在严重腹泻初期常疑惑是否应强行经口吃稀饭/汤水，或担心“输液营养不如吃饭好”。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <p><strong>医生现场纠正：</strong>原始录音中未见医生明确纠正（本病例书面意见明确要求“现禁食水”，通过静脉输液港完全替代）。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】当化疗引发严重肠黏膜炎和IV度腹泻时，强行经口进食会加重肠道渗透压负担及蠕动，恶化腹泻与电解质丢失；此时“肠道休息（Gut Rest）”并依靠全肠外营养（TPN）是维持机体生命的唯一安全途径。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“现在您的肠道因为化疗药的作用就像发炎破皮了一样，吃东西进去反而刺激它拉得更厉害。我们现在通过输液港把营养直接打进血管里，既能保证全身细胞有饭吃，又能让肠道好好休息恢复。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>复盘前，我会如何判断这个问题？</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        复盘前，面对化疗后严重腹泻的患者，我可能只会考虑给予抑胆碱或止泻药，并试图给予低渣流质肠内营养；对于PN配方，可能仅简单开具三升袋，忽视了谷氨酰胺和鱼油在强炎症/黏膜受损状态下的特殊治疗价值。</p>
+
+        <p><strong>今天新的认识：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        以下为复盘建议，供我确认和修改：<br>
+        1. 重度化疗肠毒性（如伊立替康所致≥7次/日水样便）需坚决实施“肠道休息”，全肠外营养（PN）是首选而非备选。<br>
+        2. TPN配方设计需个体化：在海思工业全合一基础上，针对高 CRP（213 mg/L）和重度低白蛋白（25.5 g/L），加入丙氨酰谷氨酰胺（保护肠屏障）和鱼油脂肪乳（抗炎）是关键抗应激策略。<br>
+        3. 肌肉注射维生素B1（100mg im qd）能有效预防重度营养不良及全静脉营养过程中的韦尼克脑病（Wernicke Encephalopathy）及再喂养风险。</p>
+
+        <p><strong>最大收获：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ol style="margin: 4px 0; padding-left: 18px;">
+            <li>发现问题（IV度粒缺发热 + IV度腹泻 + CRP 213） → 分析原因（伊立替康重度毒性 + 肠道屏障破坏） → 补充证据（ALB 25.5, WBC 0.34）。</li>
+            <li>判断风险（肠源性感染、高度分解代谢、肠内营养不可用） → 选择干预（输液港 TPN：海思1920ml + 丙氨酰谷氨酰胺300ml + 鱼油100ml）。</li>
+            <li>明确执行（全合一静脉滴注 + 维生素B1肌注） → 监测与复评（电解质、PALB、CRP、大便次数）。</li>
+        </ol>
+
+        <p><strong>下次我会怎么问：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ul style="margin: 4px 0; padding-left: 18px;">
+            <li>“大便一天几次？是水样便还是稀便？里面有没有黏液或血丝？”（筛查腹泻严重程度）</li>
+            <li>“化疗后发热几天了？最高体温多少？有没有伴随肚脐周围阵发性绞痛？”（定位肠道毒性与感染）</li>
+            <li>“现在喝水或者喝一口稀饭肚子里会不会立马咕噜响想拉？”（判断肠道耐受性及禁食指征）</li>
+            <li>“以前有心血管或高血压病史吗？输液多了胸口闷不闷？”（确认PN液体耐受量）</li>
+        </ul>
+
+        <p><strong>我仍然不会或不确定的地方：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        1. 丙氨酰谷氨酰胺在极低中性粒细胞（0.15×10⁹/L）伴严重感染患者中的使用时机与剂量上限需进一步确认。<br>
+        2. 腹泻缓解后，从 TPN 向肠内营养（EN）过渡时的第一步食物质地及渗透压选择标准。</p>
+    </div>
+
+    <!-- 第六部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>知识点一：伊立替康（CPT-11）迟发性腹泻的机制与营养应对原则 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者应用伊立替康二线化疗后出现IV度严重腹泻（≥7次/日）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>伊立替康活性代谢产物 SN-38 在肠道积聚刺激肠黏膜，引起严重的迟发性腹泻。严重者可伴发肠道屏障受损及菌群易位。轻度腹泻可采用低渣饮食；重度（3-4度）腹泻伴发热粒缺时必须禁食水，实施完全肠外营养（TPN），并补充谷氨酰胺以修复肠黏膜。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《CSCO 肿瘤化疗所致恶心呕吐/肠道毒性防治指南》。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点二：特殊药理学营养素（谷氨酰胺与鱼油脂肪乳）在 PN 中的应用 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>处理意见中开具丙氨酰谷氨酰胺 300ml 及鱼油脂肪乳 100ml。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>谷氨酰胺是肠黏膜细胞和免疫细胞的主要能量来源，能维持肠屏障功能、减少菌群易位；ω-3鱼油脂肪乳含有高浓度 EPA/DHA，可竞争性抑制花生四烯酸代谢，减轻重度全身炎症反应（CRP 213 mg/L）。两者联合应用能改善高代谢应激患者的临床结局。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《ESPEN 临床营养指南：肿瘤患者营养支持》（2021/2023）。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card-fancy">
+            <div class="training-grid-fancy">
+                <div class="mini-card">
+                    <strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>主要确诊疾病：</strong>食管鳞癌 cT3N0M1 IV期（气管转移） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>病理及分期：</strong>食管鳞癌 cT3N0M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>转移情况：</strong>气管转移 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>手术及治疗阶段：</strong>二线伊立替康化疗后（C1D8） <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>重要合并症：</strong>IV度粒缺发热、IV度腹泻、阵发性房颤、冠心病、高血压病3级、糖耐量异常 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>营养会诊触发点：</strong>化疗后严重腹泻7-8次/日，禁食水，低白蛋白血症（25.5g/L）及全身高炎症 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>核心营养问题：</strong>禁食状态下的PN维持、化疗肠毒性引起的体液丢失与电解质紊乱 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>医生首先关注：</strong>腹泻频次性状、禁食状态、输液港通路及炎症/电解质指标 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>为什么：</strong>评估肠道功能是否完全丧失，确定 TPN 灌注安全与配方组成 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>关键证据：</strong>WBC 0.34, NEUT# 0.15, ALB 25.5, CRP 213, K 3.53 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>仍缺少的信息：</strong>大便隐血及培养结果、近期确切体重丢失量 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>主要营养风险：</strong>恶性肿瘤营养风险（NRS 2002=4分）、重度营养不良（GLIM）、再喂养风险 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>医生的营养判断：</strong>肠道重度受损需完全休息，高分解代谢下必须给予强化谷氨酰胺与鱼油的 TPN 方案 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的营养目标：</strong>能量 1300-1900 kcal/d，蛋白质 60-95 g/d，液体量 2000 ml左右 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的具体方案：</strong>海思1920ml + 丙氨酰谷氨酰胺300ml + 鱼油100ml + 水乐2支 + 维他利匹特10ml + 安达美10ml + 10%NaCl 30ml + 15%KCl 20ml + 胰岛素10iu，输液港滴注；维生素B1 100mg im qd <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>方案提供的能量和蛋白质：</strong>海思工业全合一及氨基酸强化共计提供能量约 1500-1700 kcal，蛋白质/氨基酸约 75-85 g <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>方案选择依据：</strong>全肠外营养保障禁食期摄入；谷氨酰胺保护肠屏障；鱼油抑炎；微量元素及维生素全补充 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>执行中的主要困难：</strong>心脏合并症（阵发性房颤/冠心病）对PN输注流速及液体总量的严苛限制 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>需要监测什么：</strong>体重、离子（电解质）、PALB（前白蛋白）、CRP、大便次数及体温 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>何时需要复评：</strong>3-5天后复查生化/血常规，或大便减至&lt;3次/日后复评 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>什么情况下需要调整方案：</strong>腹泻停止且粒缺纠正后尝试过渡至经口流质；若血糖波动加大则调整胰岛素用量 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>录音问诊与原始处理意见的联系：</strong>现场对化疗后血糖/输液泵调控的讨论，直接延伸至处理意见中全肠外营养液（海思+胰岛素+电解质）的精准配比 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>我下次首先会问的三个问题：</strong>1. 今天腹泻水样便次数有没有比昨天减少？ 2. 静脉输液港注射部位有无红肿疼痛？ 3. 输液过程中有没有胸闷或心慌？ <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>我的临床思维变化：</strong>深刻认识到化疗重度肠毒性期“肠道休息”的重要性，学会了以输液港为通路的抗炎/免疫强化全肠外营养（TPN）配方设计。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>一句话病例记忆点：</strong>食管癌化疗重度腹泻禁食水，输液港TPN加谷氨酰胺与鱼油抗炎保屏障。 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchMatches = [];
+var currentMatchIndex = -1;
+
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+
+    if (!input) {
+        updateCounter(0, 0);
+        return;
+    }
+
+    var safeInput = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(safeInput, 'gi');
+
+    var searchableSections = document.querySelectorAll('.searchable-section');
+    searchableSections.forEach(function(section) {
+        highlightNode(section, regex);
+    });
+
+    searchMatches = Array.from(document.querySelectorAll('mark.search-highlight'));
+
+    if (searchMatches.length > 0) {
+        currentMatchIndex = 0;
+        focusMatch(currentMatchIndex);
+        updateCounter(1, searchMatches.length);
+    } else {
+        updateCounter(0, 0);
+    }
+}
+
+function highlightNode(node, regex) {
+    if (node.nodeType === 3) {
+        var match = node.data.match(regex);
+        if (match) {
+            var span = document.createElement('span');
+            var lastIdx = 0;
+            node.data.replace(regex, function(m, offset) {
+                var before = node.data.substring(lastIdx, offset);
+                span.appendChild(document.createTextNode(before));
+                var mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.appendChild(document.createTextNode(m));
+                span.appendChild(mark);
+                lastIdx = offset + m.length;
+            });
+            var after = node.data.substring(lastIdx);
+            span.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(span, node);
+        }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'INPUT', 'BUTTON'].includes(node.tagName)) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+            highlightNode(node.childNodes[i], regex);
+        }
+    }
+}
+
+function clearHighlights() {
+    var highlights = document.querySelectorAll('mark.search-highlight');
+    highlights.forEach(function(mark) {
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    });
+}
+
+function focusMatch(index) {
+    searchMatches.forEach(function(m, idx) {
+        if (idx === index) {
+            m.classList.add('current');
+            m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            m.classList.remove('current');
+        }
+    });
+}
+
+function navigateSearch(direction) {
+    if (searchMatches.length === 0) return;
+    currentMatchIndex += direction;
+    if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+    if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+
+    focusMatch(currentMatchIndex);
+    updateCounter(currentMatchIndex + 1, searchMatches.length);
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        if (event.shiftKey) {
+            navigateSearch(-1);
+        } else {
+            if (searchMatches.length === 0) {
+                performSearch();
+            } else {
+                navigateSearch(1);
+            }
+        }
+    } else if (event.key === 'Escape') {
+        clearSearch();
+    } else {
+        setTimeout(performSearch, 300);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+    updateCounter(0, 0);
+}
+
+function updateCounter(current, total) {
+    var counter = document.getElementById('searchCounter');
+    if (total === 0 && document.getElementById('searchInput').value.trim() !== '') {
+        counter.textContent = '未找到';
+    } else {
+        counter.textContent = current + ' / ' + total;
+    }
+}
+</script>
+
+</body>
+</html>
