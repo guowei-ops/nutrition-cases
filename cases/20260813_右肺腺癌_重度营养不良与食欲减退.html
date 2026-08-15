@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #444444;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --highlight-bg: #ffe082;
+        --current-highlight-bg: #ff9800;
+
+        /* 彩色圆角胶囊标签色彩库 */
+        --tag-fact-bg: #e8f5e9;
+        --tag-fact-color: #2e7d32;
+        --tag-plan-bg: #e3f2fd;
+        --tag-plan-color: #1565c0;
+        --tag-infer-bg: #fff3e0;
+        --tag-infer-color: #e65100;
+        --tag-know-bg: #f3e5f5;
+        --tag-know-color: #6a1b9a;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4;
+        color: var(--dark-gray);
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(26, 95, 122, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 6px 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .header-card .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+    }
+
+    /* Search Bar Sticky Container */
+    .search-container {
+        position: sticky;
+        top: 8px;
+        z-index: 1000;
+        background: rgba(238, 242, 245, 0.95);
+        backdrop-filter: blur(6px);
+        padding: 6px 0;
+        margin-bottom: 15px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .search-box-wrapper:focus-within {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .search-btn {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        border: 1px solid var(--secondary-blue);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-blue);
+        color: white;
+    }
+
+    .search-counter {
+        font-size: 12px;
+        color: #666;
+        min-width: 55px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* 彩色圆角胶囊标签风格 */
+    .badge-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 4px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+    .tag-fact { background-color: var(--tag-fact-bg); color: var(--tag-fact-color); }
+    .tag-plan { background-color: var(--tag-plan-bg); color: var(--tag-plan-color); }
+    .tag-infer { background-color: var(--tag-infer-bg); color: var(--tag-infer-color); }
+    .tag-know { background-color: var(--tag-know-bg); color: var(--tag-know-color); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        background-color: var(--light-blue);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 13.5px;
+        line-height: 1.35;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .styled-history-box {
+        background-color: #f4f7f9;
+        border: 1px solid #d0dfe8;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    .styled-history-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--primary-blue);
+        border-left: 3.5px solid var(--primary-blue);
+        padding-left: 8px;
+    }
+
+    .styled-history-box p {
+        margin: 5px 0;
+        font-size: 13.5px;
+        line-height: 1.42;
+    }
+
+    /* 对话模块 */
+    .dialogue-block {
+        background: #ffffff;
+        border: 1px solid #e5e9ec;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+
+    .dialogue-block h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--primary-blue);
+        font-size: 14.5px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 2px 0 6px 0;
+        background-color: #f8fafc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        line-height: 1.4;
+    }
+
+    .info-gain-box {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 6px;
+    }
+
+    /* Part 2 Specifics */
+    .raw-opinion-card {
+        background-color: var(--green-bg);
+        border: 1.5px solid #a5d6a7;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: inherit;
+        line-height: 1.42;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.05);
+    }
+
+    .raw-opinion-card .meta-notice {
+        background: #ffffff;
+        color: var(--doctor-green);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-left: 3.5px solid var(--doctor-green);
+        border: 1px solid #c8e6c9;
+    }
+
+    .raw-text-content {
+        white-space: pre-wrap;
+        font-size: 13.5px;
+        color: #1b5e20;
+    }
+
+    /* Part 3 Specifics */
+    .mind-card {
+        background-color: #f1f8e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--doctor-green);
+        font-size: 14.5px;
+    }
+
+    .mind-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        color: #2e7d32;
+        margin: 8px 0;
+        border-left: 3.5px solid var(--doctor-green);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Part 4 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .misconception-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+    }
+
+    .misconception-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 10px;
+        border-radius: 5px;
+        margin: 6px 0;
+        border-left: 3px solid var(--misconception-orange);
+        font-size: 13px;
+    }
+
+    /* Part 6 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 3.5px solid var(--purple-knowledge);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: var(--purple-knowledge);
+        font-size: 14.5px;
+    }
+
+    .knowledge-box p {
+        margin: 3px 0;
+        font-size: 13.5px;
+    }
+
+    /* Part 7 美化版训练卡 */
+    .training-card-fancy {
+        background: #ffffff;
+        border: 1.5px solid var(--secondary-blue);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .training-grid-fancy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+    }
+
+    .mini-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-card strong {
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+    }
+
+    .mini-card.highlight-green {
+        background: #f1f8e9;
+        border-color: #c8e6c9;
+    }
+    .mini-card.highlight-green strong { color: var(--doctor-green); }
+
+    .mini-card.highlight-orange {
+        background: #fbe9e7;
+        border-color: #ffccbc;
+    }
+    .mini-card.highlight-orange strong { color: var(--misconception-orange); }
+
+    /* Highlight Styling for Search */
+    mark.search-highlight {
+        background-color: var(--highlight-bg);
+        color: #000;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    mark.search-highlight.current {
+        background-color: var(--current-highlight-bg);
+        color: #fff;
+        font-weight: bold;
+        outline: 2px solid #e65100;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .training-grid-fancy { grid-template-columns: 1fr; }
+        .header-card { padding: 14px; }
+        .header-card h1 { font-size: 20px; }
+        .search-box-wrapper { flex-wrap: wrap; }
+        .search-input { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>会诊日期：</strong>2026年8月13日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>右肺腺癌IV期化疗联合靶向治疗伴重度营养不良、低氯血症及食欲减退患者的营养会诊思维复盘</div>
+        </div>
+    </div>
+
+    <!-- 关键词搜索框 -->
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索全文，如：体重、腹泻、蛋白质、ONS……" onkeydown="handleKeyDown(event)">
+            <div class="search-nav-btns">
+                <span id="searchCounter" class="search-counter">0 / 0</span>
+                <button class="search-btn" onclick="navigateSearch(-1)">▲ 上一个</button>
+                <button class="search-btn" onclick="navigateSearch(1)">▼ 下一个</button>
+                <button class="search-btn" onclick="clearSearch()">清除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>性别：</strong>女 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>年龄：</strong>62岁 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>主要确诊疾病：</strong>右肺腺癌（主诉确诊肺腺癌1年余） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>病理类型：</strong>肺腺癌，伴EGFR基因19外显子缺失突变 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>疾病分期：</strong>cT2N1M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>转移情况：</strong>多发淋巴结转移，多发骨转移 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>重要合并症：</strong>低氯血症（Cl↓）、便秘（口服靶向药后出现）、白细胞减低2度（既往已缓解）、中性粒细胞减低2度（既往已缓解）、消化道反应2度（既往已缓解）、疼痛 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>手术史：</strong>现有资料未提及 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>抗肿瘤治疗史：</strong>目前培美曲塞+顺铂方案化疗4周期（已行二线3周期化疗），同时联合奥希替尼口服靶向治疗，治疗有效 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前治疗阶段：</strong>为继续抗肿瘤治疗入院 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>本次就诊背景：</strong>治疗期间食欲减退，消化道反应明显，乏力，申请营养会诊指导营养膳食 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>营养科会诊原因：</strong>指导营养膳食，协助诊治化疗及靶向治疗期间食欲减退、消化道反应及体重下降 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前核心营养问题：</strong>重度营养不良、恶性肿瘤合并营养风险（NRS 2002: 4分）、低蛋白血症、低氯血症、化疗后7~10天严重食欲减退与摄入不足（较平常减少1/2）、便秘与液体摄入不足 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <div class="info-item"><strong>信息不确定项：</strong>生化及血常规具体数值未全部载明（仅记录Cl↓，余血常规、生化及化验整体大致正常） <span class="badge-tag tag-fact">【原始事实】</span></div>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>2. 确诊疾病及治疗病史</h3>
+            <p><strong>主要疾病：</strong>右肺腺癌 cT2N1M1 IV期，伴EGFR基因19外显子缺失突变，多发淋巴结转移，多发骨转移。主诉确诊肺腺癌1年余。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>手术经过：</strong>现有资料未提及。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>抗肿瘤治疗经过：</strong>目前接受培美曲塞+顺铂方案化疗4周期（已行二线3周期化疗），同时联合奥希替尼口服靶向治疗，治疗评估有效。在第2、3周期治疗后曾出现消化道反应2度、白细胞减低2度、中性粒细胞减低2度，经对症治疗后缓解。现为继续治疗入院。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养相关不良反应：</strong>化疗后7~10天食欲严重减退、偶尔呕吐、恶心明显；口服靶向药物后出现排便困难、易便秘；全身乏力；曾口服甲地孕酮混悬液5ml后出现明显头晕。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>3. 营养相关现状</h3>
+            <p><strong>体重和变化：</strong>身高165cm，当前体重65kg，BMI 23.9 kg/m²。既往体重在140斤（70kg）以上，初次化疗时体重下降十多斤，中间曾降至63kg，经督促多吃后回升至65kg。半年内非自主性体重下降5kg（依据处理意见记录）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>摄入情况：</strong>食欲差，整体摄入较平常减少约1/2。化疗后前7~10天基本不怎么吃，10天后食欲略有恢复但仍不如病前。正餐米饭仅能吃半小碗（约半两/小半两），肉类仅能吃一块小排骨；早餐以粥为主，能吃一个鸡蛋（水煮蛋加糖），海参因吃腻已停用。平时不爱喝水，液体摄入量偏少。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养影响症状：</strong>食欲严重减退（不想吃东西）、恶心多见、偶尔呕吐（非一吃就吐）、乏力、易便秘、活动量少。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>咀嚼和吞咽：</strong>咀嚼与吞咽固体及液体无呛咳与梗阻，未接受专业器械吞咽评估。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>既往或当前营养治疗：</strong>自行间断口服整蛋白型肠内营养剂（安素粉剂），实际完成量仅为每次3勺、每日1次或偶尔补充（半杯），未达到标准剂量；外院曾配蛋白粉但因口感差未坚持；正在口服复合多维元素片（含叶酸）及钙片（含微量维生素D3）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>检查和人体成分：</strong> <span class="badge-tag tag-fact">【原始事实】</span>
+                <ul style="margin: 2px 0 0 18px; padding: 0;">
+                    <li>营养查体：患者精神状态一般，四肢无水肿，现ht 165cm，wt 65kg，BMI 23.9 kg/m²。</li>
+                    <li>实验室检查：化验见 Cl↓（低氯血症），血常规及生化其余指标大致正常。</li>
+                    <li>量表评分：NRS 2002 评分为 4 分（存在恶性肿瘤合并营养风险）。</li>
+                </ul>
+            </p>
+        </div>
+
+        <h3>4. 会诊现场顺序复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：既往口服营养补充（安素）用量与化疗周期进食规律核实</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“之前是用过安素开安素了是吗？之前一直在用吗？吃了不是很多安素，偶尔补一补。现在常规能吃多少的饭？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“就是化疗的那一个星期不咋吃基本上。十天……十天过后，能慢慢的恢复一点，但是胃口没以前好……恢复的差不多就又来了。十天之后能稍微吃一点但是时好时坏……最近体重降的倒不多但是第一次化疗直接降了十多斤，后面我就督促着他多吃了点安素稍微好一点。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“安素前十天都会吃的吗？……别想着他是奶粉，他是个饭。他跟您吃饭呀，比如说你的六勺吧，六勺加200毫升的水。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得的信息：</strong> 患者进食减少呈化疗周期性波动（化疗后7~10天为食欲低谷期），既往安素服用频次及剂量严重不足（仅单次3勺偶尔喝），家属将其误认为普通“奶粉”而非全营养代餐。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：日常膳食结构与消化道反应（恶心、呕吐）评估</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“你的饭能吃个什么程度？半碗是稀饭还是米饭？……早上以粥为主鸡蛋会吃吗？……能坚持每天吃一个蛋是吧？……那他有恶心有吐吗？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“米饭能吃半碗，家里的那种小白碗能吃一半，顶多是小半两。肉吃一块儿排骨……早上喝点粥，吃一个水煮蛋加糖，海参吃腻了不想再吃……恶心的多，偶尔吐，没有说一吃就吐，更多时候就是胃口差不想吃。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得的信息：</strong> 患者每日经口普通膳食的碳水化合物及优质蛋白质摄入极低（米饭小半两+蛋1个+肉1块），消化道反应以食欲丧失和恶心为主，非机械性呕吐，具备肠内营养耐受基础。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：促食欲药物（甲地孕酮）不良反应复盘与剂型调整建议</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“使用过甲地孕酮等的这种改善食欲的吗？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“喝过一次口服混悬液，喝了一口（5毫升）然后他说一下子头很晕很晕，他就不愿意再喝。但喝了那一次那两天效果还可以的，但他不愿意再喝了。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“那你小口小口的，别人一口5毫升你一次1毫升2毫升一点一点喝，喝的慢一点再试试……因为他是一种激素类的能改善食欲的……如果混悬液他不太敢的话那我们就给他开片剂的，片剂的一粒是160毫克你就一天让他吃一片。刚好把你这个难受的时间给过去，过去了之后饭量能稍微好一点甲地孕酮就可以停了。但是甲地孕酮提前排除他有血栓的问题，没有使用抗凝的药物。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得的信息：</strong> 患者使用甲地孕酮混悬液短期促食欲有效，但因单次饮用过快产生头晕顾虑；医生指导减慢滴速分次饮用或更换为片剂短程（7~10天）对症过渡，并强调排查血栓禁忌症。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：靶向药物相关便秘、饮水不足与果蔬纤维补充宣教</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“大便也不好？很容易便秘？便秘之前有过这个问题吗？……多喝水，一天所有的这个液体加在一起……平常榨点水果蔬菜出果汁补点纤维素。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“生病之后吃了靶向药之后才这样子的，以前大便很好的……他也不爱喝水，平时喝水少。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“你如果肠道水分它都被重吸收了，那你大便就很干不好。保证液体量，蔬菜过水焯一下打汁，主要是给它补一些纤维素、植物化合物，因为营养制剂里面没有纤维素。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得的信息：</strong> 明确便秘诱因为靶向药物不良反应叠加液体摄入严重不足与膳食纤维匮乏，指导通过蔬菜焯水打汁及强制足量饮水（目标2000~2500ml）改善肠道动力。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块五：全营养ONS剂量规范、乳清蛋白组件及微量营养素（VD3、VB、多维）强化</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“安素一天保证他有两杯的量（12勺），少吃半顿饭就加6勺……在全营养的基础上再加一个乳清蛋白粉，每天至少补进去20克的量（一次一勺10g，一天两次）……复合维生素B几块钱一瓶的一次两片一天至少两次……维生素D3要求补到5000国际单位（滴剂一天一滴）。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“维生素D3要5000？这么多，我一直以为是500到1000……我还怕会不会补的太多了。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“对于活动少、见太阳少，在有特殊疾病的情况下，他的剂量是要高的。买5000IU滴剂一天一滴就够了。另外适量下床活动活动，胃肠蠕动会更好，肌肉也需要锻炼。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得的信息：</strong> 纠正了微量营养素补充不足的误区，构建了“安素全营养（2杯/日）+ 乳清蛋白粉（20g/日）+ 维生素D3（5000IU/日）+ 复合维生素B + 多维元素片 + 下床轻度抗阻/散步”的综合干预组合。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <h3>5. 待确认内容</h3>
+        <ul style="margin: 4px 0 0 18px; padding: 0;">
+            <li>【待确认】录音中提及“潜伏液/口悬服液”，结合上下文可靠修正为“〔疑似转写为：口服混悬液〕”。</li>
+            <li>【待确认】录音中提及“假病酮/假定运动”，结合上下文可靠修正为“〔疑似转写为：甲地孕酮〕”。</li>
+            <li>【待确认】录音中提及“氨素/能悬素”，结合上下文可靠修正为“〔疑似转写为：安素〕”。</li>
+            <li>【待确认】录音中提及维生素D3滴剂商品名“滴卓斯”，属于家属询问与医生口头列举，实际执行以正式处理意见中维生素D3 5000IU为准。</li>
+            <li>【待确认】录音尾部对话提到“我姓冯……他们科的会诊我会过来”，属于会诊现场人员身份介绍，已按规则去标识化。</li>
+        </ul>
+    </div>
+
+    <!-- 第二部分：原始营养会诊处理意见 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">
+            第二部分 📋 原始营养会诊处理意见（去标识化转录）
+        </h2>
+
+        <div class="raw-opinion-card">
+            <div class="meta-notice">
+                以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+            </div>
+
+            <div class="raw-text-content">处理意见：
+敬阅病史，患者女性，62岁，确诊肺腺癌1年余，已行二线3周期化疗。第2、3周期治疗后患者消化道反应2度，白细胞减低2度，中性粒细胞减低2度，对症治疗后缓解。患者现为继续治疗入院。病程中患者精神可，食欲减退，曾口服甲地孕酮混悬液出现头晕。近期较平常减少1/2，安素半杯，半年内体重下降5kg，二便如常，睡眠可，活动量少。
+化验：Cl↓
+患者查体：患者精神状态一般，四肢无水肿，现ht 165cm，wt 65kg，BMI：23.9kg/m2。
+营养诊断：恶性肿瘤合并营养风险（NRS2002：4分），重度营养不良，低蛋白血症，疼痛
+营养治疗目标：
+1. 改善症状，维持体重。每日推荐营养供给量：能量1600-1800kcal，蛋白80-100g，液体量2000-2500ml。
+2. 低脂少渣半流食，适量增加优质蛋白质食物，如鸡蛋羹、豆制品、禽瘦肉泥等；
+3. 整蛋白型肠内营养制剂安素，6勺+温水200ml，BID，小口慢饮；
+4. 多维元素片，1片，QD；
+5. 乳清蛋白粉：10g，Bid；
+6. 维生素D3+5000iu，QD；
+7. 适量肢体活动；
+8. 监测体重、胃肠道反应、血常规、肝肾功能、离子，贫血七项 等。</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点一：化疗周期中进食受限规律与ONS实际摄入量核实</h4>
+            <p><strong>医生怎么问：</strong>“之前是用过安素开安素了是吗？之前一直在用吗？……吃了不是很多安素，偶尔补一补。现在常规能吃多少的饭？……安素前十天都会吃的吗？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>化疗后7~10天为严重进食低谷，十天后稍有恢复；安素每次仅吃3勺、每天1次甚至更少；正餐米饭仅小半两，肉类仅一块排骨。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】判断患者摄入不足是持续性机械障碍还是周期性化疗药物毒性反应；核实既往ONS方案执行不力的症结（剂量不足与依从性差）。</p>
+            <div class="reasoning-path">
+                现象：化疗后前10天极少进食，日常正餐仅小半碗饭+1块肉，安素单次仅吃3勺 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：化疗药物胃肠道黏膜损伤及中枢性厌食反应；误将安素视作普通奶粉而随意减量 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充的证据：既往恶心呕吐发生频率，安素耐受性及胃肠胀气情况 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 风险判断：化疗周期性极低摄入导致肌肉快速分解、低蛋白血症及恶病质进展 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：明确规范安素全量方案（6勺+200ml温水，BID）+ 乳清蛋白组件强化 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：整蛋白型肠内营养制剂安素，6勺+温水200ml，BID，小口慢饮；乳清蛋白粉10g Bid。 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>明确将ONS方案固化为每日2杯标准安素（提供约500kcal与17.6g蛋白质），并在正餐摄入不足时动态追加。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点二：食欲刺激剂（甲地孕酮）不良反应归因与替代策略</h4>
+            <p><strong>医生怎么问：</strong>“使用过甲地孕酮等的这种改善食欲的吗？……那你小口小口的，别人一口5毫升你一次1毫升2毫升一点一点喝，喝的慢一点再试试……” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>曾服用甲地孕酮口服混悬液5ml后突发严重头晕，但服药后2天食欲明显改善，因恐惧头晕不敢再用。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】区分药物特异性不良反应与给药速度过快导致的一过性不耐受；评估能否通过微量慢服或片剂（160mg/片）短程过渡度过化疗进食低谷期。</p>
+            <div class="reasoning-path">
+                现象：服甲地孕酮混悬液5ml后头晕，但食欲显著提升 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：高浓度混悬液一次性吞服引起的一过性血管迷走神经反应或前庭敏感 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充的证据：既往有无血栓病史、有无使用抗凝药物 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 风险判断：化疗急性期因严重厌食导致营养衰竭中断治疗；盲目大剂量使用存在血栓风险 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：微量分次慢服混悬液 或 改用甲地孕酮片剂（160mg/日）短程使用7~10天 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：会诊现场指导小剂量慢服或备选片剂，待食欲恢复后及时停药；书面意见重点通过少渣饮食与ONS阶梯支撑。 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>为患者提供了解决化疗急性期厌食的可行备选路径，避免因单次不良体验完全放弃有效促食欲药物。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点三：靶向药相关便秘、饮水不足与微量营养素缺乏</h4>
+            <p><strong>医生怎么问：</strong>“大便也不好？很容易便秘？便秘之前有过这个问题吗？……多喝水，一天所有的这个液体加在一起……平常榨点水果蔬菜出果汁补点纤维素……维生素D3要补到5000国际单位……” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>服用靶向药物（奥希替尼）后开始便秘；平时严重不爱喝水；认为维生素D3只需补500~1000IU，担心补5000IU超标。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】排查便秘是器质性肠梗阻还是药源性/摄入不足导致；纠正高龄肿瘤患者微量营养素补充不足。</p>
+            <div class="reasoning-path">
+                现象：服靶向药后排便困难，饮水少，维生素D3摄入不足 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：靶向药胃肠动力抑制 + 液体及膳食纤维严重匮乏 + 室内活动少日照不足 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充的证据：有无腹痛腹胀、排气情况、生化离子水平（Cl↓） <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 风险判断：粪石嵌塞加重肠道反应，低血氯及骨代谢异常（骨转移背景下骨量流失） <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：强制液体量2000~2500ml/d + 蔬菜焯水打汁补纤维 + 高剂量VD3（5000IU/d）强化 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：每日液体量2000-2500ml；维生素D3 5000iu QD；多维元素片1片 QD；适量肢体活动。 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>处理意见中设定了严格的每日液体总量（2000-2500ml），并开具多维元素片及大剂量维生素D3滴剂。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>从问诊到处理意见的整体临床推理链</h4>
+            <p>会诊获得的信息：肺腺癌IV期骨转移，化疗后7~10天严重进食减少（仅平常1/2），伴恶心、便秘、低氯、半年降重5kg，安素日服仅半杯。 <span class="badge-tag tag-fact">【原始事实】</span><br>
+            ↓ 医生识别的问题：恶性肿瘤合并营养风险（NRS 2002: 4分）、重度营养不良、低蛋白血症、消化道反应伴便秘、微量营养素缺乏。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 主要营养风险：化疗期摄入急剧下滑诱发恶病质进展、低蛋白血症加重化疗毒性、骨转移患者骨质快速丢失。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 原始处理意见中的目标：能量1600-1800kcal/d（约25-28kcal/kg/d），蛋白80-100g/d（约1.2-1.5g/kg/d），液体量2000-2500ml/d。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 原始处理意见中的具体方案：低脂少渣半流食 + 安素（6勺+温水200ml BID） + 乳清蛋白粉（10g Bid） + 多维元素片（1片 QD） + 维生素D3（5000iu QD） + 适量肢体活动。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 方案选择理由：经口半流食易消化；安素提供均衡能量与宏量营养；乳清蛋白弥补肉类摄入不足；高剂量VD3与多维协同改善免疫与骨代谢。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 监测和耐受：监测体重、胃肠道反应（恶心/呕吐/便秘）、血常规、肝肾功能、离子（氯、钾、钠）、贫血七项。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 调整条件：若化疗期经口进食低于目标量60%持续超3~5天，需启动短程甲地孕酮或考虑鼻胃管肠内营养/补充性肠外营养（SPN）。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>如果由我独立会诊，还缺少什么</h4>
+            <p>1. 【复盘推断】需进一步追问靶向药与化疗给药的具体时间节点，以便更精准地规划化疗前后的“营养储备期”与“反应期”饮食方案。<br>
+            2. 【复盘推断】需追问骨转移引起的具体部位疼痛评分及止痛药（如阿片类药物）使用情况，因阿片类药物是诱发剧烈便秘与恶心的重要混杂因素。<br>
+            3. 【复盘推断】需复查握力测试及人体成分分析（BIA），客观评估患者骨骼肌指数（SMI）及相位角变化，明确肌少症程度。</p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区</h2>
+
+        <div class="misconception-card">
+            <h4>误区一：把医学全营养配方制剂（安素）当作普通“奶粉”随意减量 <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“吃的不是很多安素，他偶尔补一补……他中间降到六十三了然后就又督促他多吃一点让他奶粉多喝一点……他一次吃三勺，一天一次……” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“【医生判断】别想着他是奶粉，他是个饭。他跟您吃饭呀，比如说你的六勺吧，六勺加200毫升的水……安素一天保证他有两杯的量。少吃半顿饭就加6勺，少吃半顿饭就加6勺。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>误区背后的顾虑：</strong>【复盘推断】家属误以为安素只是普通的滋补奶粉，认为“喝多了上火”或“可有可无”，仅在体重明显下降时才当零食偶尔喝几口。</p>
+            <p><strong>临床解释：</strong>【知识补充】特殊医学用途配方食品（FSMP）整蛋白制剂是包含碳水化合物、优质蛋白、脂肪、维生素和矿物质的全面营养代餐。单次3勺（约125kcal）无法达到治疗剂量，必须达到每日2杯（12勺，约500kcal/17.6g蛋白）才能有效阻断化疗期间的负氮平衡。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“阿姨/叔叔，安素不是普通的零食奶粉，它在医学上叫做‘全营养液体饭’。冲一杯200毫升就相当于您吃了一小碗米饭加一个鸡蛋和青菜的全部营养。在化疗吃不下饭的那几天，您只要把这‘两杯液体饭’小口喝完，身体的底子就能保住！” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区二：迷信昂贵补品（海参）而忽视基础蛋白质与碳水化合物摄入 <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“鸡蛋还买海参，买了海参但是他说吃腻了不想再吃了……” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“【医生判断】常规能吃一个鸡蛋，吃鸡蛋就可以，不用非得海参。能坚持每天吃一个蛋是吧？只要他能吃下去，比你不吃的好。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>误区背后的顾虑：</strong>【复盘推断】家属认为肿瘤患者必须吃海参、冬虫夏草等高级滋补品才能提高免疫力，患者强行耐受后出现味觉厌恶和心理抵触。</p>
+            <p><strong>临床解释：</strong>【知识补充】海参主要成分为胶原蛋白，其必需氨基酸评分（AAS）和生物价远低于鸡蛋、牛奶和乳清蛋白。强行逼迫患者进食单一口感的补品反而加重厌食；鸡蛋与乳清蛋白才是消化吸收率最高的优质蛋白质来源。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“海参的蛋白吸收率其实还不如普通的鸡蛋羹和乳清蛋白。咱们不用花大价钱去逼着患者吃海参，只要每天能保证吃下一个鸡蛋（哪怕加点糖蒸成蛋羹），再喝上乳清蛋白粉，身体吸收得更好，患者吃着也没心理负担。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区三：认为肿瘤患者维生素D3补充剂量仅需500~1000IU，惧怕高剂量强化 <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“维生素D3要5000？这么多，我一直以为是500到1000……我还怕会不会补的太多了。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“【医生判断】5000国际单位。对于活动少、见太阳少，在有特殊疾病的情况下，他的剂量是要高的。买滴剂一天一滴就够了，不用担心超标。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>误区背后的顾虑：</strong>【复盘推断】家属依据健康人群常规推荐摄入量（RNI 400~800IU）来衡量肿瘤晚期伴骨转移患者，担心发生维生素蓄积中毒。</p>
+            <p><strong>临床解释：</strong>【知识补充】恶性肿瘤患者普遍存在重度维生素D缺乏，合并骨转移、卧床及接受化疗时，机体处于高骨吸收与免疫抑制状态。指南推荐肿瘤及骨转移患者可短期采用3000~5000IU/d的治疗剂量快速纠正低水平，安全上限（UL）可达10000IU/d。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“健康人天天晒太阳需要几百单位，但咱们患者平时下床少、晒太阳少，加上肿瘤骨转移和化疗消耗，体内的维生素D就像枯竭的水库。每天补5000单位是国际医学上纠正缺乏的标准治疗量，每天只要一滴，非常安全，能帮着骨骼固钙和增强免疫。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        复盘前，我会如何判断这个问题？<br>
+        1. 看到患者当前BMI 23.9 kg/m²处于正常范围，可能会忽视其重度营养不良的实质，容易仅建议其“清淡饮食、多吃有营养的”。<br>
+        2. 听到患者自述服用甲地孕酮混悬液头晕，可能会直接遵从患者意愿将该药列为禁忌停用，而没有想到通过微量慢饮（1~2ml分服）或替换为口服片剂来克服不良反应。<br>
+        3. 对微量营养素的补充停留在普通多维片层面，缺乏针对骨转移及室内肿瘤患者强化使用5000IU高活性VD3滴剂的决策意识。</p>
+
+        <p><strong>今天新的认识：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        以下为复盘建议，供我确认和修改：<br>
+        1. <strong>化疗周期性摄入低谷的应对策略：</strong> 肿瘤患者化疗后7~10天是胃肠黏膜与食欲受损的高峰期，不能指望其恢复常规普食，必须提前布局“小体积、高能量密度”的肠内营养制剂（安素+乳清蛋白），建立“少吃半碗饭就补6勺安素”的量化代偿机制。<br>
+        2. <strong>症状学归因与用药技巧：</strong> 促食欲药物甲地孕酮在临床上常因单次大剂量口服引起一过性眩晕或胃部不适，指导患者“慢咽、滴服、减量起步”或“混悬液改片剂”是提高药物依从性的关键临床沟通细节；同时必须牢记血栓排除原则。<br>
+        3. <strong>便秘干预的系统性思维：</strong> 靶向药物相关便秘绝非单用泻药即可解决，需同时锁定“液体量不足（目标2000-2500ml）+ 粗纤维缺乏（蔬菜焯水打汁）+ 肠道动力差（适量下床活动）”三联干预。</p>
+
+        <p><strong>最大收获：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ol style="margin: 4px 0; padding-left: 18px;">
+            <li><strong>发现问题：</strong> 识别化疗后周期性厌食、安素服用剂量严重不足（仅单次3勺）、服促食欲药头晕及靶向药相关便秘。</li>
+            <li><strong>分析原因：</strong> 明确化疗毒性导致食欲低谷，家属存在“安素是奶粉、海参能治病、维生素D不敢多吃”的认知偏差。</li>
+            <li><strong>补充证据：</strong> 结合病程记录中消化道反应2度、半年体重下降5kg、低氯血症（Cl↓）及NRS 2002 4分确认重度营养不良。</li>
+            <li><strong>判断风险：</strong> 评估恶性肿瘤营养风险加剧、低蛋白血症引起化疗耐受性下降、便秘加重胃肠道反应的临床风险。</li>
+            <li><strong>选择干预：</strong> 制定“安素BID（12勺/日）+ 乳清蛋白20g/日 + VD3 5000IU + 多维片 + 果蔬汁/足量水 + 备选甲地孕酮片剂”阶梯方案。</li>
+            <li><strong>明确执行与复评：</strong> 详细指导冲调手法（200ml温水）、分餐小口慢饮、监测离子及体重。</li>
+        </ol>
+
+        <p><strong>下次我会怎么问：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ul style="margin: 4px 0; padding-left: 18px;">
+            <li>“化疗打完之后，一般从第几天开始最不想吃东西？这种吃不下的情况每次持续几天？”（筛查化疗进食低谷节律）</li>
+            <li>“平时冲安素一次放几勺？加多少水？一天喝几次？是用温开水还是用汤冲的？”（定位ONS执行偏差）</li>
+            <li>“上次喝甲地孕酮混悬液是咕咚一大口喝下去的，还是慢慢咽的？喝完大概几分钟开始觉得晕？”（排查药物不良反应诱因）</li>
+            <li>“一天所有喝的水、喝的汤加起来大概有几大杯？大便几天一次、干不硬？”（判断液体与便秘风险）</li>
+            <li>“平时下床走动多吗？每天能不能在屋里溜达上15到20分钟？”（确认运动执行条件）</li>
+        </ul>
+
+        <p><strong>我仍然不会或不确定的地方：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        1. 针对化疗第2~3周期出现2度白细胞及中性粒细胞减低的患者，在ONS中是否需常规提前添加免疫营养素（如精氨酸、核苷酸、ω-3鱼油或β-葡聚糖），其介入时机需请教带教老师。<br>
+        2. 患者生化检查提示低氯血症（Cl↓），在缺乏详细血气分析及钠钾离子绝对数值的情况下，如何通过口服膳食（如生理盐水、淡盐汤或口服补液盐）进行精准电解质平衡调整，仍需进一步学习相关内科知识。</p>
+    </div>
+
+    <!-- 第六部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>知识点一：化疗相关性食欲减退与口服营养补充（ONS）强化策略 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者在培美曲塞+顺铂化疗后7~10天食欲极差，日常摄入量下降50%，既往安素摄入严重不足。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>化疗引起的恶心与厌食常呈周期性发作。当患者经口摄入量低于推荐目标量的60%持续超过1周时，应首选ONS进行阶梯强化。ONS提供能量密度为1.0~1.5 kcal/ml的全面均衡营养，推荐每日补充400~600 kcal（如安素6勺 BID），分次于两餐之间或餐后小口慢饮，以改善化疗耐受性与生活质量。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>中国抗癌协会肿瘤营养专业委员会（CSCO）《恶性肿瘤患者口服营养补充专家共识》（2021年）。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点二：孕激素类药物（甲地孕酮）在肿瘤恶病质厌食中的临床应用与不良反应管理 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者曾口服甲地孕酮混悬液5ml改善食欲有效但伴突发头晕，医生建议慢服或改用片剂（160mg QD）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>醋酸甲地孕酮通过下丘脑神经肽Y（NPY）刺激食欲中枢并抑制促炎细胞因子（TNF-α、IL-6），能显著改善肿瘤患者食欲并增加体重。临床常用剂量为160~480 mg/d。初次使用混悬液快速吞服可引起一过性神经血管反射，改为片剂或小剂量滴服可减轻反应。使用前必须排查深静脉血栓（DVT）及高凝状态禁忌。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《中国肿瘤恶病质临床诊疗指南》（2024版）、ESMO肿瘤恶病质临床实践指南。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点三：肺癌骨转移伴活动受限患者的维生素D3与蛋白质协同干预 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者右肺腺癌伴多发骨转移，活动量少，低蛋白血症，医生给予维生素D3 5000IU/d及乳清蛋白粉20g/d。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>肺癌骨转移患者因成骨/破骨失衡及活动减少，极易并发骨质疏松与肌肉萎缩（肌少-骨质疏松症）。维生素D3不仅促进钙磷吸收与骨矿化，还可通过肌细胞VDR受体促进肌纤维蛋白合成。给予治疗剂量VD3（3000~5000 IU/d）联合足量优质蛋白质（1.2~1.5 g/kg/d），是维持晚期骨转移患者骨骼肌功能和预防跌倒骨折的重要支撑。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《维生素D及其类似物临床应用共识》（2021年）、ESPEN肿瘤患者营养指南。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card-fancy">
+            <div class="training-grid-fancy">
+                <div class="mini-card">
+                    <strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>主要确诊疾病：</strong>右肺腺癌 cT2N1M1 IV期（EGFR突变，多发淋巴结及骨转移） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>病理及分期：</strong>右肺腺癌伴19外显子缺失突变，cT2N1M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>转移情况：</strong>多发淋巴结转移，多发骨转移 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>手术及治疗阶段：</strong>无手术史记录；培美曲塞+顺铂化疗4周期联合奥希替尼靶向二线治疗中 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>重要合并症：</strong>低氯血症、靶向药相关便秘、既往化疗消化道反应及骨髓抑制（2度） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>营养会诊触发点：</strong>化疗与靶向治疗期间食欲严重减退、消化道反应明显、乏力、进食较平常减半 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>核心营养问题：</strong>重度营养不良、恶性肿瘤合并营养风险、低蛋白血症、低氯血症、化疗期周期性严重进食不足 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>医生首先关注：</strong>化疗后进食减少的周期规律、既往安素真实服用量、甲地孕酮头晕反应性质及每日饮水量 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>为什么：</strong>必须厘清摄入低谷是周期性药物反应还是持续恶化，纠正ONS使用不足，排查便秘与药物不耐受原因 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>关键证据：</strong>Wt 65kg, ht 165cm, BMI 23.9, NRS 2002 4分, 半年降重5kg, 进食减半, Cl↓ <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>仍缺少的信息：</strong>骨骼肌定量BIA分析、电解质全部离子定量、血清白蛋白/前白蛋白数值 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>主要营养风险：</strong>化疗期深度负氮平衡加剧恶病质进展，低蛋白血症增加抗肿瘤药物不良反应风险 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>医生的营养判断：</strong>恶性肿瘤合并营养风险（NRS 2002: 4分），重度营养不良，低蛋白血症，疼痛 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的营养目标：</strong>能量 1600~1800 kcal/d，蛋白质 80~100 g/d，液体量 2000~2500 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的具体方案：</strong>低脂少渣半流食 + 安素（6勺+温水200ml BID 小口慢饮） + 乳清蛋白粉（10g Bid） + 多维元素片（1片 QD） + 维生素D3（5000iu QD） + 适量肢体活动 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>方案提供的能量和蛋白质：</strong>安素2杯（约500kcal, 17.6g蛋白）+ 乳清蛋白粉20g（约16~18g蛋白）+ 经口半流食（约900~1100kcal, 35~45g蛋白），合计供能约 1400~1600 kcal，蛋白约 70~80 g（复盘计算） <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>方案选择依据：</strong>少渣半流食减轻胃肠负担；安素全营养打底；乳清蛋白快速弥补肉类摄入不足；高剂量VD3强化骨骼肌 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>执行中的主要困难：</strong>化疗后前7~10天严重厌食可能导致安素无法喝足2杯；需宣教克服对甲地孕酮及高剂量VD3的心理顾虑 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>需要监测什么：</strong>体重、胃肠道反应、血常规、肝肾功能、离子、贫血七项 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>何时需要复评：</strong>化疗间歇期或1~2周后返院治疗时复评 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                    <strong>什么情况下需要调整方案：</strong>若化疗期连续3天经口摄入（含ONS）低于推荐量50%，需启动短程甲地孕酮片剂或补充性肠外营养（SPN） <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>录音问诊与原始处理意见的联系：</strong>录音中对安素喝太少、不爱吃肉、甲地孕酮头晕、便秘不喝水、怕VD3超标的详细问诊与纠正，一一对应处理意见中安素BID、乳清蛋白Bid、液体2000-2500ml及VD3 5000iu的精确设定 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>我下次首先会问的三个问题：</strong>1. 化疗打完第几天最吃不下东西？ 2. 安素每天能不能雷打不动喝满两整杯？ 3. 每天小便颜色深不深、大便几天一次？ <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>我的临床思维变化：</strong>从“只看化验指标和体型”转变为“深入患者化疗周期节律与服药细节，以全营养ONS和组件强化攻克周期性摄入低谷”。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>一句话病例记忆点：</strong>肺癌化疗进食减半周期性厌食，安素两杯乳清加量当饭吃，5000单位VD3强化，甲地孕酮慢服度难关。 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchMatches = [];
+var currentMatchIndex = -1;
+
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+
+    if (!input) {
+        updateCounter(0, 0);
+        return;
+    }
+
+    var safeInput = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(safeInput, 'gi');
+
+    var searchableSections = document.querySelectorAll('.searchable-section');
+    searchableSections.forEach(function(section) {
+        highlightNode(section, regex);
+    });
+
+    searchMatches = Array.from(document.querySelectorAll('mark.search-highlight'));
+
+    if (searchMatches.length > 0) {
+        currentMatchIndex = 0;
+        focusMatch(currentMatchIndex);
+        updateCounter(1, searchMatches.length);
+    } else {
+        updateCounter(0, 0);
+    }
+}
+
+function highlightNode(node, regex) {
+    if (node.nodeType === 3) {
+        var match = node.data.match(regex);
+        if (match) {
+            var span = document.createElement('span');
+            var lastIdx = 0;
+            node.data.replace(regex, function(m, offset) {
+                var before = node.data.substring(lastIdx, offset);
+                span.appendChild(document.createTextNode(before));
+                var mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.appendChild(document.createTextNode(m));
+                span.appendChild(mark);
+                lastIdx = offset + m.length;
+            });
+            var after = node.data.substring(lastIdx);
+            span.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(span, node);
+        }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'INPUT', 'BUTTON'].includes(node.tagName)) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+            highlightNode(node.childNodes[i], regex);
+        }
+    }
+}
+
+function clearHighlights() {
+    var highlights = document.querySelectorAll('mark.search-highlight');
+    highlights.forEach(function(mark) {
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    });
+}
+
+function focusMatch(index) {
+    searchMatches.forEach(function(m, idx) {
+        if (idx === index) {
+            m.classList.add('current');
+            m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            m.classList.remove('current');
+        }
+    });
+}
+
+function navigateSearch(direction) {
+    if (searchMatches.length === 0) return;
+    currentMatchIndex += direction;
+    if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+    if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+
+    focusMatch(currentMatchIndex);
+    updateCounter(currentMatchIndex + 1, searchMatches.length);
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        if (event.shiftKey) {
+            navigateSearch(-1);
+        } else {
+            if (searchMatches.length === 0) {
+                performSearch();
+            } else {
+                navigateSearch(1);
+            }
+        }
+    } else if (event.key === 'Escape') {
+        clearSearch();
+    } else {
+        setTimeout(performSearch, 300);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+    updateCounter(0, 0);
+}
+
+function updateCounter(current, total) {
+    var counter = document.getElementById('searchCounter');
+    if (total === 0 && document.getElementById('searchInput').value.trim() !== '') {
+        counter.textContent = '未找到';
+    } else {
+        counter.textContent = current + ' / ' + total;
+    }
+}
+</script>
+
+</body>
+</html>
