@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <meta name="description" content="北肿临床营养科会诊思维录——食管鳞癌术后全管饲与电解质紊乱管理病例复盘">
+  <title>北肿临床营养科会诊思维录｜食管鳞癌术后全管饲与电解质紊乱管理</title>
+  <style>
+    :root {
+      --ink: #172a3a;
+      --text: #263746;
+      --muted: #6f7c86;
+      --line: #e3e6e7;
+      --paper: #ffffff;
+      --bg: #f4f3ef;
+      --soft: #f7f8f8;
+      --green: #287a5b;
+      --green-bg: #eaf5ef;
+      --blue: #296b9b;
+      --blue-bg: #eaf3f9;
+      --orange: #a66019;
+      --orange-bg: #fff1df;
+      --purple: #714b91;
+      --purple-bg: #f2ebf7;
+      --shadow: 0 14px 40px rgba(23,42,58,.07);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px 80px;
+    }
+    
+    /* 顶部导航与搜索 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .search {
+      position: relative;
+      flex: 1;
+    }
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 11px 42px 11px 16px;
+      color: var(--ink);
+      outline: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search input:focus {
+      border-color: #a8b4bd;
+      box-shadow: 0 0 0 3px rgba(23,42,58,.06);
+    }
+    .search kbd {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    
+    /* Hero Header */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 18px;
+      padding: 42px 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "V2";
+      position: absolute;
+      right: 24px;
+      bottom: -42px;
+      font-size: 160px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.035);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .14em;
+      opacity: .65;
+      margin-bottom: 4px;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 3.5vw, 36px);
+      line-height: 1.25;
+      margin: 8px 0 12px;
+      letter-spacing: -.03em;
+    }
+    .hero p {
+      max-width: 760px;
+      color: #c8d1d7;
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
+      margin-top: 28px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .meta div {
+      padding: 12px 15px;
+      background: rgba(255,255,255,.035);
+    }
+    .meta small {
+      display: block;
+      color: #9eacb6;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+    .meta b {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    
+    /* 页面两栏布局 */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .side {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+    }
+    .side ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-left: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    .side a:hover, .side a.active {
+      border-color: var(--ink);
+      color: var(--ink);
+      font-weight: 700;
+      background: rgba(23,42,58,0.03);
+    }
+    .side .legend {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+    .side .legend .label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side .legend .tag {
+      margin: 0 4px 6px 0;
+    }
+    
+    /* 核心内容区 */
+    .content { min-width: 0; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23,42,58,.025);
+      scroll-margin-top: 20px;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .num {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .section h2 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      font-size: 13.5px;
+    }
+    
+    /* 标签体系 */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .fact { color: var(--green); background: var(--green-bg); border: 1px solid #c8e6c9; }
+    .plan { color: var(--blue); background: var(--blue-bg); border: 1px solid #bbdefb; }
+    .infer { color: var(--orange); background: var(--orange-bg); border: 1px solid #ffe0b2; }
+    .knowledge { color: var(--purple); background: var(--purple-bg); border: 1px solid #e1bee7; }
+    
+    /* 卡片与网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .card.soft { background: var(--soft); }
+    
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .value {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    
+    /* 优先级问题列表 */
+    .issues {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .issues li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 14px;
+    }
+    .rank {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    
+    /* 结构化内容框 */
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .content-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .content-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .content-box p:last-child { margin-bottom: 0; }
+    
+    /* 对话与引用块 */
+    .dialogue-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      border: 1px solid var(--line);
+    }
+    .dialogue-item h4 {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .speaker-doc {
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .speaker-pat {
+      color: #455a64;
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .quote {
+      margin: 8px 0;
+      border-left: 3px solid #cbd3d8;
+      padding: 8px 14px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+      color: #37474f;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .info-gain {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: var(--blue-bg);
+      border-radius: 6px;
+      font-size: 13px;
+      color: #184a6e;
+      line-height: 1.6;
+    }
+    
+    /* 原始处理意见专用 */
+    .raw-opinion-container {
+      background: #fdfdfd;
+      border: 1px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .meta-notice {
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12.5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--green);
+      line-height: 1.6;
+    }
+    .raw-text-block {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: #263746;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      word-break: break-word;
+    }
+    
+    /* 医生思维拆解专属卡片 */
+    .mind-card {
+      background: #ffffff;
+      border: 1px solid #dbe0e3;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .mind-card-head {
+      background: var(--soft);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mind-card-head h4 {
+      margin: 0;
+      color: var(--green);
+      font-size: 15.5px;
+    }
+    .mind-card-body {
+      padding: 16px 18px;
+    }
+    .mind-card-body p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 14px;
+      margin: 12px 0;
+      background: #f9fbf9;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+    }
+    .step {
+      position: relative;
+      padding: 0 10px;
+    }
+    .step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -8px;
+      top: 14px;
+      color: #aab3ba;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .step b {
+      display: block;
+      color: var(--ink);
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .step p {
+      margin: 0;
+      color: #53616c;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .decision {
+      background: #f4f7f8;
+      border-left: 3px solid var(--ink);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      margin: 12px 0 6px;
+      line-height: 1.65;
+    }
+    
+    /* 误区卡片 */
+    .misconception-card {
+      background: var(--orange-bg);
+      border: 1px solid #ffccbc;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .misconception-card h4 {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .misconception-card p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .misconception-quote {
+      font-style: italic;
+      color: #5d4037;
+      background: rgba(255,255,255,0.75);
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 13px;
+      border-left: 3px solid var(--orange);
+    }
+    
+    /* 知识点卡片 */
+    .knowledge-box {
+      background: var(--purple-bg);
+      border: 1px solid #e1bee7;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .knowledge-box h4 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 15px;
+    }
+    .knowledge-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    
+    /* 学习成长记录卡片 */
+    .learning-box {
+      background: #fcfdfe;
+      border-left: 3px solid var(--blue);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .learning-box h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: var(--blue);
+    }
+    .learning-box p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .learning-box p:last-child { margin-bottom: 0; }
+    
+    /* 临床思维决策树专有样式 */
+    .tree-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tree-stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      background: #fafbfc;
+    }
+    .tree-stage-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tree-node-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .tree-node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tree-node b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+    .tree-arrow {
+      text-align: center;
+      color: #a0acb5;
+      font-size: 18px;
+      font-weight: bold;
+      margin: -6px 0;
+    }
+    .tree-branch-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tree-branch {
+      background: #fff;
+      border-left: 3px solid var(--green);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 15px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .tree-branch.warning {
+      border-left-color: var(--orange);
+    }
+    .tree-branch b {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .takeaway {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 15px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      color: var(--muted);
+    }
+    mark {
+      background: #fff0a8;
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 30px;
+    }
+    
+    /* 响应式与打印 */
+    @media(max-width: 880px) {
+      .shell { padding: 16px 12px 50px; }
+      .topbar { align-items: stretch; flex-direction: column; gap: 8px; }
+      .hero { padding: 28px 20px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .layout { display: block; }
+      .side { position: static; overflow: auto; margin: 0 0 16px; }
+      .side ol { display: flex; }
+      .side a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; }
+      .side .legend { display: none; }
+      .section { padding: 20px 15px; }
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 6px; }
+      .step { padding: 8px 0; }
+      .step:not(:last-child):after { content: "↓"; left: 0; right: auto; top: auto; bottom: -10px; }
+      .issues li { grid-template-columns: 28px 1fr; }
+      .issues .tag { display: none; }
+      .tree-node-grid, .tree-branch-container { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .topbar, .side { display: none; }
+      .hero { box-shadow: none; }
+      .layout { display: block; }
+      .section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">BEIZHONG · NUTRITION</div>
+    <div class="search">
+      <input id="search" type="search" placeholder="搜索症状、化验、方案、对话原话或知识点…" aria-label="全文搜索">
+      <kbd>⌘ K</kbd>
+    </div>
+  </div>
+  
+  <header class="hero">
+    <div class="eyebrow">临床学习档案 · 会诊病例复盘</div>
+    <h1>北肿临床营养科会诊思维录</h1>
+    <p>疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘。从病例事实出发，沿着医生的判断路径，沉淀为下一次可以调用的临床行动。</p>
+    <div class="meta">
+      <div><small>会诊日期</small><b>2026.08.14</b></div>
+      <div><small>患者标签</small><b>食管鳞癌 · 术后全管饲 · 电解质紊乱</b></div>
+      <div><small>整理人</small><b>郭伟</b></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="页面目录">
+      <ol>
+        <li><a href="#overview">01 病例速览</a></li>
+        <li><a href="#evidence">02 原始会诊记录</a></li>
+        <li><a href="#opinion">03 原始会诊意见</a></li>
+        <li><a href="#reasoning">04 医生思维拆解</a></li>
+        <li><a href="#misconceptions">05 患者家属误区</a></li>
+        <li><a href="#review">06 学习成长记录</a></li>
+        <li><a href="#knowledge">07 本病例知识点</a></li>
+        <li><a href="#tree">08 临床思维路径图</a></li>
+      </ol>
+      <div class="legend">
+        <div class="label">内容来源与证据分层</div>
+        <span class="tag fact">【原始事实】</span>
+        <span class="tag plan">【临床方案计划】</span>
+        <span class="tag infer">【复盘推断】</span>
+        <span class="tag knowledge">【知识补充】</span>
+      </div>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- 01 病例速览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <span class="num">01</span>
+          <div>
+            <h2>病例速览</h2>
+            <p>55 岁男性，晚期食管鳞癌伴肝胃间隙巨大肿块；大手术后全管饲依赖，发热腹胀合并多重电解质紊乱与高血糖。</p>
+          </div>
+        </div>
+        
+        <div class="grid three">
+          <div class="card">
+            <div class="label"><span>患者与疾病</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">男，55 岁<br>确诊食管鳞癌 6 月余，病理鳞癌，伴肝胃间隙巨大肿块及多发淋巴结转移</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>手术与治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">2026-06-18 胸腹腔镜联合全胃切除+胰体尾切除+脾切除+食管癌切除+食管颈部造瘘术<br>多线化疗（白蛋白紫杉醇+卡铂+帕博利珠单抗4周期）及免疫后支持治疗阶段</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养通路与摄入</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">无经口进食<br>食管颈部造瘘管饲泵入佳维体 500ml qid（共 2000ml/d），泵速约 90ml/h 持续输注</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>人体测量与诊断</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">166cm · 59.5kg · BMI 21.3<br>术后 2 个月体重下降 3kg（约 4.8%）；NRS 2002 评分 3 分，GLIM 中度营养不良</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>核心化验（08.14）</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">CRP 54.5↑ · P 0.67↓ · Ca 2.09↓ · Na 132↓<br>Glu 9.30↑ · HGB 87↓ · Alb 34.5↓ · TP 59.5↓ · D-Dimer 3.30↑ · ALT 73↑</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养治疗目标</span> <span class="tag plan">【临床方案计划】</span></div>
+            <div class="value">能量 1700–1900 kcal/d · 蛋白质 75–95 g/d · 液体 2100–2400 ml/d<br>EN 补充，纠正电解质紊乱及低蛋白、贫血，稳定或增加体重</div>
+          </div>
+        </div>
+
+        <ul class="issues">
+          <li>
+            <span class="rank">P1</span>
+            <b>重度低磷（0.67 mmol/L）、低钙、低钠：优先静脉纠治，防范神经肌肉无力、呼吸肌衰竭及再喂养代谢风险</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P2</span>
+            <b>发热高炎症期肠动力受抑：近 1 周发热（37–38℃）时腹胀加剧、大便偏稀，整蛋白耐受承压，需精准控速并强化预消化水解乳清蛋白</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P3</span>
+            <b>全胃＋胰体尾切除后长期全管饲：严密监控胰腺术后新发高血糖（Glu 9.30）、潜在外分泌消化酶不足、防反流体位与肌肉衰减</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 02 原始会诊记录 -->
+      <section class="section" id="evidence">
+        <div class="section-head">
+          <span class="num">02</span>
+          <div>
+            <h2>第一部分 🎙 原始会诊记录</h2>
+            <p>完整保留患者基本信息、确诊疾病及治疗病史、营养相关现状与客观数据、现场录音逐字稿及待确认内容。</p>
+          </div>
+        </div>
+
+        <!-- 1. 患者基本信息 -->
+        <div class="content-box">
+          <h4>1. 患者基本信息</h4>
+          <div class="grid">
+            <div class="card soft">
+              <div class="label"><span>患者</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">已去除姓名</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>性别与年龄</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">男，55岁</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>主要疾病</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">食管鳞癌（确诊6月余）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>病理类型与分期</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">鳞癌；现有资料未提及明确分期代码</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>转移情况</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">肝胃间隙巨大肿块，多发淋巴结转移</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>重要合并症</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">低钙、低磷、低钠血症，贫血，血糖升高，低白蛋白血症，炎症，血液高凝状态</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>手术史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">2026-06-18急诊胸腹腔镜联合开腹全胃切除+胰体尾切除+脾切除+食管癌切除+食管颈部造瘘术</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>抗肿瘤治疗史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">化疗及免疫多线治疗后（曾行白蛋白紫杉醇+卡铂+帕博利珠单抗4周期）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>当前治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">术后2月余，抗肿瘤综合治疗与支持治疗阶段</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>营养科会诊原因</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">术后全管饲依赖、发热腹胀、体重下降合并多重电解质紊乱（低磷、低钙、低钠）与高血糖，申请指导营养支持治疗</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>核心营养问题</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">全管饲耐受受限（发热期腹胀、稀便）、重度低磷与电解质紊乱、能量蛋白质达标障碍、高血糖与代谢失衡</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>信息不确定项</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">身高（录音口述1.67m，会诊单记录166cm）；录音中产品商品名发音口误；暂缺BIA人体成分分析</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 疾病及治疗背景 -->
+        <div class="content-box">
+          <h4>2. 疾病及治疗背景</h4>
+          <p>患者男，55岁，因“确诊食管鳞癌6月余，术后2月余”入院 <span class="tag fact">【原始事实】</span>。病理为鳞癌，伴肝胃间隙巨大肿块及多发淋巴结转移 <span class="tag fact">【原始事实】</span>。患者于2026-02-14起行白蛋白紫杉醇+卡铂+帕博利珠单抗治疗4周期，C4后复查淋巴结转移增大 <span class="tag fact">【原始事实】</span>。2026-06-17患者无诱因出现面色苍白、腹胀，伴有黑便，查血示Hb 75g/L，出血原因未明，考虑肿瘤出血可能 <span class="tag fact">【原始事实】</span>；遂于2026-06-18行急诊手术：全麻下行电视胸腔镜、开腹全胃切除，胰体尾+脾切除，食管癌切除，食管颈部造瘘术 <span class="tag fact">【原始事实】</span>。2026-07月中旬患者出现阵发性咳嗽、咳白痰，间断低热 <span class="tag fact">【原始事实】</span>。本次因转氨酶升高入院对症支持、抗肿瘤治疗，患者反复中低热，电解质紊乱，贫血，遂申请营养科会诊指导支持治疗 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 3. 营养相关现状 -->
+        <div class="content-box">
+          <h4>3. 营养相关现状与客观数据</h4>
+          <p><strong>体重变化：</strong>身高166cm（录音口述1.67m），体重59.5kg（穿衣称约60kg），BMI 21.3 kg/m² <span class="tag fact">【原始事实】</span>。术后2个月体重下降3kg（患者家属口述手术前后相差5~6斤/3000克） <span class="tag fact">【原始事实】</span>。经计算，术后2个月非自主性体重下降约4.8% <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>摄入情况与通路：</strong>无经口进食 <span class="tag fact">【原始事实】</span>。完全依赖经食管颈部营养管泵入肠内营养制剂（佳维体500ml qid，每日共2000ml），泵速设定约90ml/h，基本24小时持续输注 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>消化道及全身症状：</strong>发热（近1周体温波动在37~38℃之间） <span class="tag fact">【原始事实】</span>。发热时腹胀加重、入睡困难，尝试调快泵速时腹胀明显 <span class="tag fact">【原始事实】</span>。大便偏稀，曾单日腹泻4次，口服蒙脱石散后改善，目前每日排稀便1次；小便正常 <span class="tag fact">【原始事实】</span>。咳嗽咳白痰，无明显反流（家属配合使用抬高15°~30°专用床与枕头） <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>实验室化验（2026-08-14）：</strong>CRP 54.5 mg/L（明显升高，提示重度炎症反应），HGB 87.00 g/L（中度贫血），ALT 73 IU/L（轻度肝损伤），Ca 2.09 mmol/L（低钙），P 0.67 mmol/L（低磷），Na 132 mmol/L（轻度低钠），Glu 9.30 mmol/L（空腹/随机血糖升高），Alb 34.5 g/L（低白蛋白血症），TP 59.5 g/L（低总蛋白），D-Dimer 3.30 μg/mL D（血液高凝状态） <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养诊断状态：</strong>NRS 2002评分3分（存在营养风险），GLIM标准评定为中度营养不良 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养治疗完成情况对比：</strong><br>
+            • 医生建议量：能量1700~1900 kcal/d，蛋白质75~95 g/d，液体2100~2400 ml/d；佳维体/瑞代2000ml/d（80~100ml/h持续泵）+水解乳清蛋白粉5g qid+甘油磷酸钠1支+VD3+K2+β-葡聚糖5条/d <span class="tag plan">【临床方案计划】</span>。<br>
+            • 计划完成量：佳维体2000ml/d按90ml/h匀速泵入，外加蛋白粉与微量元素规范推注 <span class="tag plan">【临床方案计划】</span>。<br>
+            • 实际完成量：会诊前实际泵入佳维体约2000ml/d（90ml/h），但发热时腹胀提速受阻，尚未强化水解蛋白与补磷 <span class="tag fact">【原始事实】</span>。
+          </p>
+        </div>
+
+        <!-- 4. 会诊现场复盘 -->
+        <div class="content-box">
+          <h4>4. 会诊现场复盘（严格按照录音顺序）</h4>
+          
+          <div class="dialogue-item">
+            <h4>模块一：炎症反应与免疫抗感染切入</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“这一周都在烧着我看那个……这C反应蛋白高，看来还是有感染，有点炎症，有点炎症，嗯，然后反正炎症他们可能会用一些抗生素，然后咱们营养来说提高免疫力，一个人要增加蛋白，还有要增加葡聚糖帮他抗感染的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生首先从化验单上的高炎症指标（CRP 50多）切入，确立了控制炎症、改善免疫并追加高质量蛋白质及免疫营养素的决策方向。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块二：化验核对、发热与近期体重丢失核实</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“磷是低的，然后血糖是稍高的。然后这个钙也是低的，其他的这个这个蛋白、白蛋白都是低的。C反应蛋白50多。有将近38度吧就是38度。然后术后是降低了将近两个月，你现在还有发热吗？现在体重多少有量吗这两天？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者/家属：</div>
+            <div class="quote">“六十公斤……穿衣服是吧。减了59.5就差不多……这一周都是37度以上，三十七到三十八之间……手术前手术后相差不多，相差5、6斤（3000克）。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确患者处于低磷（0.67 mmol/L）、低钙、低蛋白合并低热状态；确认术后2个月净丢失3kg，坐实GLIM营养不良表型证据。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块三：排便、管饲速度与腹胀耐受追问</h4>
+            <div class="speaker-doc">医生追问：</div>
+            <div class="quote">“舌苔厚吗？那还行啊，他肠蠕动也还行哈。大小便行吗？现在没有经口吃东西是吧？佳维体一天四瓶？速度是90，能快点吗？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者/家属：</div>
+            <div class="quote">“大小便的稀，今天下午拉了一次。原来吃的这几天吃了一包蒙脱石散就不拉了。那天拉了四次……他原来的时候说快点是胀，前天还降了一点到90。发烧的时候睡不着、胀。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确完全管饲依赖；证实泵速超过90ml/h或体温升高时患者胃肠动力显著不足，出现腹胀和稀便，无法耐受快速大剂量灌注。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块四：反流防范与配方耐受分析</h4>
+            <div class="speaker-doc">医生追问与解释：</div>
+            <div class="quote">“平时打营养液有反流吗？那就怕误吸，就是说他打的时候最好稍微高一点15到30度……发烧的时候它肠动力是不够的，消化也会弱。所以佳维体理论上是挺好的，又有膳食纤维，还有中链脂肪比较适合它。但是如果这个胀的话可能就得用短肽了。短肽没有膳食纤维不如这个，那就慢一点，加点蛋白粉水解蛋白提高免疫力的肌肉的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者/家属：</div>
+            <div class="quote">“反流倒是没有反流……一天24个小时都在打。孩子专门给他买的床还有枕头抬高15度怕他反流。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>确认家属体位护理得当无反流；医生剖析了发热导致消化力下降的机制，确立了“维持整蛋白基底匀速泵入+额外补充低消化负荷水解蛋白”的折中精细方案。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块五：蛋白质强化方案、制剂指导与宣教</h4>
+            <div class="speaker-doc">医生解释与指导：</div>
+            <div class="quote">“1米67，需要80到85克甚至95克蛋白长肉……如果他反应大的时候得要水解蛋白，告诉你买那个，那个好消化。因为他发烧的时候可能消化起来有点弱。你拍张照买一罐就行了……还要给他加一个β-葡聚糖激活免疫细胞。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者/家属：</div>
+            <div class="quote">“不是咱们平常那小胖子蛋白粉，是水解蛋白……直接溶解之后推是吧？我拍张照怎么买。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>澄清了普通市售整蛋白粉与水解乳清蛋白的区别，指导了冲配、管饲推注及冲管的具体执行路径。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 待确认内容 -->
+        <div class="content-box">
+          <h4>5. 待确认内容与信息不确定项</h4>
+          <p>1. <strong>身高数值差异：</strong>录音口述为1.67m，会诊单客观记录为166cm，本记录以客观病历166cm计算BMI（21.3 kg/m²）。 <span class="tag fact">【原始事实】</span></p>
+          <p>2. <strong>录音中产品发音识别修正：</strong>录音中“乳体意味达/意瑞达”结合会诊医嘱确认为“1-3/1-6 β-葡聚糖”；“水晶枣/新疆来的”为环境音或语音识别偏差，实际医嘱为“水解乳清蛋白粉（纽栎禧或瑞胺肽）”。 <span class="tag infer">【复盘推断】</span></p>
+          <p>3. <strong>暂缺检查项：</strong>暂缺胰腺外分泌功能实验室定量指标（如粪便弹性蛋白酶-1）及BIA人体成分骨骼肌分析，需后续复查补充。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 03 原始会诊处理意见 -->
+      <section class="section" id="opinion">
+        <div class="section-head">
+          <span class="num">03</span>
+          <div>
+            <h2>第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+            <p>依据原始营养会诊处理意见完整转录，诊断、目标、用量、频次、执行方法及监测建议按原有顺序全量保留。</p>
+          </div>
+        </div>
+
+        <div class="raw-opinion-container">
+          <div class="meta-notice">
+            以下内容依据原始营养会诊处理意见进行去标识化转录，已删除患者姓名、病案号、医院名称、医生签名等隐私信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序完整保留。
+          </div>
+          <div class="raw-text-block">处理意见：敬阅病史同前，患者男，55岁，主诉“确诊食管鳞癌6月余，术后2月”。肝胃间隙巨大肿块，多发淋巴结转移。化疗及免疫多线治疗后。2026-06-17患者无诱因出现面色苍白，腹胀，伴有黑便，查血示Hb 75g/L，出血原因未明，考虑肿瘤出血可能；遂2026年06月18日行急诊手术：全麻下行电视胸腔镜、开腹全胃切除，胰体尾+脾切除，食管癌切除，食管颈部造瘘术。2026-07月中旬患者出现阵发性咳嗽、咳白痰，间断低热。拟行进一步治疗入院。目前每日经食管颈部营养管泵入佳维体500ml，qid）；小便正常，大便偏稀，蒙脱石散改善。体重术后2个月下降3kg。化验血：2026-08-14 CRP 54.5 mg/L；HGB 87.00 g/L，ALT 73 IU/L，Ca 2.09 mmol/L，P 0.67 mmol/L，Na 132 mmol/L，Glu 9.30 mmol/L，Alb 34.5 g/L，TP 59.5 g/L；D-Dimer 3.30 μg/mL D；余无特殊。
+营养查体：一般状态可，发热。身高166cm，体重59.5kg，BMI 21.3。
+营养诊断：癌症合并营养风险（NRS2002 3分），中度营养不良（GLIM），低钙、磷、钠血症，贫血，血糖升高（胰体尾术后新发？），低白蛋白血症，炎症，血液高凝状态。
+
+1. 营养治疗目标：EN补充营养，纠正电解质紊乱及低蛋白、贫血，稳定或增加体重。目标能量1700kcal-1900kcal，蛋白质75-95g，液体2100-2400ml；
+2. 肠内营养支持：佳维体/瑞代2000ml/日，肠内营养管持续泵入，速度80-100ml/h；
+3. 水解乳清蛋白粉（蛋白含量≥80%，纽栎禧或瑞胺肽）5g/次，每日2-4次，50ml温水溶解后，经肠内营养管缓慢推入；
+4. 甘油磷酸钠注射液 1支，加入5%葡萄糖氯化钠注射液500ml，续静滴，4小时以上输完。
+5. 维生素 D3滴剂（如滴卓思）5000 IU+ K2/次，每日1滴，口服；自备
+6. 1-3/1-6 β葡聚糖 5条/次，一次/天，温水溶解后肠内营养管缓慢推注，前后30ml温水冲管；自备
+7. 适量活动，隔日抗阻运动（如抬腿勾脚、垫脚尖、靠墙蹲、上肢弹力带等）10分钟。
+8. 监测体重，电解质、CRP PALB，血糖，血常规、贫血6项、血生化等，不适随诊。</div>
+        </div>
+      </section>
+
+      <!-- 04 医生思维拆解 -->
+      <section class="section" id="reasoning">
+        <div class="section-head">
+          <span class="num">04</span>
+          <div>
+            <h2>第三部分 🧠 医生临床思维拆解</h2>
+            <p>深入剖析三大关键问诊点、医生想判断什么、完整临床推理链及从问诊到医嘱的全局决策映射。</p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 1 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 1：管饲泵速与胃肠道机械耐受边界评估</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“佳维体一天四瓶？速度是90，能快点吗？平时打营养液有反流吗？” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>全胃切除且食管造瘘，24小时持续泵注2000ml；泵速加快即感腹胀，前天调低至90ml/h；床头抬高15°~30°无反流。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估消化道大范围切除术后肠道的容受性与液体排空速率，寻找维持每日2000ml目标而不诱发腹胀或反流误吸的临界泵速。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>全胃切除失去胃容受研磨功能，提速则胀，90ml/h基本耐受，体位抬高无反流。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>小肠直接接纳营养液，快速灌注易引起肠腔高渗或过度膨胀。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>核实每日总泵入时间与完成量；盲目提速诱发严重腹胀、腹泻或呕吐误吸。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>间歇滴注 vs 持续泵入；最终维持肠内营养管持续泵入，速度锁定 80~100ml/h。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：全胃切除失去胃容受研磨功能，提速则胀，90ml/h基本耐受，体位抬高无反流。<br>
+              ↓ 可能原因：小肠直接接纳营养液，快速灌注易引起肠腔高渗或过度膨胀。<br>
+              ↓ 需要补充的证据：每日总泵入时间与实际完成量。<br>
+              ↓ 风险判断：盲目提速将诱发严重腹胀、腹泻或呕吐误吸。<br>
+              ↓ 可选干预：间歇重力滴注 vs 持续泵入。<br>
+              ↓ 医生实际处理意见：维持肠内营养管持续泵入，速度锁定在80~100ml/h安全窗口 <span class="tag plan">【临床方案计划】</span>。<br>
+              ↓ 对方案影响：确立医嘱第2条微泵持续输注方案，坚决避免大剂量间歇灌注引起反流与腹胀。
+            </div>
+            
+            <p><strong>如果由我独立会诊，还缺少什么：</strong>需进一步核实夜间家属看护情况、管路固定牢固度及冲管频率。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 2 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 2：发热低动力状态下的配方选型与水解蛋白强化</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“发烧就胀啊？大小便行吗？咳嗽不咳嗽？”并向家属解释“发烧时肠动力不够，消化也会弱。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>近一周持续低热（37~38℃），发热时腹胀加剧伴失眠，大便偏稀（曾单日4次，蒙脱石散后改善）。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】区分腹胀是单纯管饲速度问题还是全身炎症引发的肠动力受抑与消化酶相对不足；判断是否需要全面更换为短肽制剂。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>发热、CRP 54.5 mg/L、低蛋白血症、大便稀、发热期腹胀加重，胰体尾已切除。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>高炎症与胰腺部分切除导致消化酶分泌与肠蠕动减弱，整蛋白及脂肪消化承压。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>核实大便未消化脂肪滴；全换短肽失去膳食纤维且高渗易加重腹泻。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>全换短肽 vs 整蛋白基底+水解蛋白；最终保留整蛋白并叠加水解乳清蛋白粉。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：发热、CRP 54.5 mg/L、低蛋白血症、大便稀、发热期腹胀加重，胰体尾已切除。<br>
+              ↓ 可能原因：高炎症与胰腺部分切除导致消化酶分泌与肠蠕动减弱，整蛋白及脂肪消化承压。<br>
+              ↓ 需要补充的证据：大便性状、是否含有未消化脂肪滴。<br>
+              ↓ 风险判断：全量换成短肽将失去佳维体膳食纤维维持肠黏膜的作用，且渗透压增高可能加重腹泻。<br>
+              ↓ 可选干预：直接全换短肽 vs 维持整蛋白基础+添加水解乳清蛋白粉。<br>
+              ↓ 医生实际处理意见：保留含纤维整蛋白基底（佳维体/备选瑞代），叠加水解乳清蛋白粉5g分2~4次推注 <span class="tag plan">【临床方案计划】</span>。<br>
+              ↓ 对方案影响：产生医嘱第3条，利用预消化水解乳清蛋白直接吸收特性，绕过发热期酶解障碍，安全达成75~95g蛋白质目标。
+            </div>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 3 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 3：重度低磷（0.67 mmol/L）识别与静脉纠治通路决策</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“磷是低的，钙也是低的……血糖稍高。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>血化验P 0.67 mmol/L，Ca 2.09 mmol/L，Na 132 mmol/L，Glu 9.30 mmol/L。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估肿瘤代谢应激与全量营养支持下细胞内磷转移（再喂养倾向）风险，排查呼吸肌无力与心律失常隐患。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>血磷 0.67 mmol/L 显著低于正常下限，伴有低钙 2.09、低钠 132、血糖 9.30。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>大手术消耗后全量管饲，外源性糖负荷刺激胰岛素分泌导致磷转入细胞内。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>排查肌无力心慌；低磷致 2,3-DPG 减少致组织缺氧，严重时诱发呼吸衰竭。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>经管口服 vs 静脉有机磷；最终开具甘油磷酸钠 1 支加入 5% GNS 静滴 >4 小时。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：血磷0.67 mmol/L显著低于正常下限，伴有低钙、低钠。<br>
+              ↓ 可能原因：重大手术、肿瘤消耗、肠道吸收受限及肠内糖负荷刺激胰岛素分泌导致磷向细胞内快速转移。<br>
+              ↓ 需要补充的证据：患者是否有肌无力、四肢发麻、胸闷气短等症状。<br>
+              ↓ 风险判断：低磷血症可导致红细胞2,3-DPG减少致组织缺氧，严重时诱发呼吸衰竭。<br>
+              ↓ 可选干预：经管口服补磷制剂 vs 经静脉匀速滴注有机磷。<br>
+              ↓ 医生实际处理意见：甘油磷酸钠注射液1支加入5% GNS 500ml缓慢静滴（>4小时） <span class="tag plan">【临床方案计划】</span>。<br>
+              ↓ 对方案影响：形成第4条独立静脉补磷方案及第5条活性维生素D3补充，确保代谢与生命体征安全。
+            </div>
+          </div>
+        </div>
+
+        <!-- 全局决策映射 -->
+        <div class="content-box">
+          <h4>从问诊到处理意见全局推导</h4>
+          <p><strong>会诊获得的信息：</strong>全胃胰体尾切除、全管饲佳维体2000ml/d（90ml/h）、发热腹胀伴稀便、P 0.67 mmol/L、CRP 54.5 mg/L、Glu 9.30 mmol/L <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>医生识别的问题：</strong>【医生判断】消化动力减弱与全营养需求的矛盾；代谢性电解质紊乱；高凝状态与炎症反应。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>主要营养风险：</strong>【复盘推断】重度低磷并发症、营养液不耐受致腹胀腹泻恶化、肌肉持续消耗与再喂养综合征风险。</p>
+          <p><strong>原始处理意见方案逻辑：</strong>
+            能量1700~1900 kcal（约28~32 kcal/kg/d）、蛋白质75~95g（约1.3~1.6 g/kg/d） <span class="tag plan">【临床方案计划】</span>；
+            以佳维体2000ml提供2000 kcal能量与80g蛋白质基底，若血糖高可换低GI瑞代 <span class="tag plan">【临床方案计划】</span>；
+            加用水解乳清蛋白粉（每次5g，每日2~4次）额外补充10~20g易吸收蛋白 <span class="tag plan">【临床方案计划】</span>；
+            静脉甘油磷酸钠纠正低磷 <span class="tag plan">【临床方案计划】</span>；
+            β-葡聚糖激活巨噬细胞抗炎支持 <span class="tag plan">【临床方案计划】</span>；
+            隔日10分钟低强度抗阻运动促进骨骼肌蛋白同化合成 <span class="tag plan">【临床方案计划】</span>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 患者及家属营养误区 -->
+      <section class="section" id="misconceptions">
+        <div class="section-head">
+          <span class="num">05</span>
+          <div>
+            <h2>第四部分 ⚠️ 患者及家属营养误区</h2>
+            <p>提炼患者及家属原话顾虑、医生现场纠正、临床机制解释与可复用宣教沟通话术。</p>
+          </div>
+        </div>
+
+        <!-- 误区 1 -->
+        <div class="misconception-card">
+          <h4>误区 1：将发热时的消化道低动力单纯视为营养液“不耐受”而随意减速停泵</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“他原来的时候说快点是胀，前天还降了点到90……发烧那一阵就睡不着、胀。” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“发烧的时候它肠动力是不够的，消化也会弱。佳维体理论上是挺好的……如果胀可以慢一点，加点水解蛋白粉好消化。” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>家属担心营养液成分患者“吸收不了”或“伤胃”，在发热腹胀时倾向于停用或大幅削减营养，导致营养严重欠账。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】全身感染与发热可激活交感神经，抑制胃肠蠕动并降低消化腺分泌；此时核心对策是维持匀速慢速泵入、减轻消化负荷（引入预消化水解蛋白），而非盲目停用肠内营养造成肠黏膜屏障萎缩。依据《中国肿瘤营养治疗指南》2023版。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “家属您看，发热的时候人没劲，肠胃也跟着‘没力气’干重活。这时候不是营养液不好，而是肠道暂时转慢了。咱们千万别一会儿快一会儿停，就用泵保持匀速慢慢输，再配合特别好吸收的水解蛋白，肠道既不累，身体又能源源不断得到长肉和抗感染的弹药。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 2 -->
+        <div class="misconception-card">
+          <h4>误区 2：混淆常规市售整蛋白粉与临床水解乳清蛋白粉</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“蛋白粉……不是咱们平常那小胖子（市售大罐）蛋白粉吧？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“如果他反应大的时候得要水解蛋白……那个好消化……直接温水溶解之后推。” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>家属习惯性认为市售普通大豆/浓缩乳清蛋白粉效果相同，不理解全胃及胰腺切除后大分子蛋白直接进入肠道会加重腹胀与渗透性腹泻。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】全胃切除及胰体尾切除后，胃蛋白酶与胰蛋白酶分泌受损；普通整蛋白需要复杂酶解过程，易导致未消化氮源进入结肠发酵产气；水解乳清蛋白（低聚肽/二三肽）可由小肠黏膜PepT1转运体直接吸收，极少依赖内源性酶。依据ASPEN肠内营养实践指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “普通的蛋白粉是一整块大分子，需要胃磨碎、胰腺消化酶切断才能吸收；患者现在胃和部分胰腺切除了，普通蛋白粉吃下去容易胀气拉肚子。水解蛋白粉相当于在出厂前就已经替肠胃‘切细切碎’了，冲好打进去直接就能被小肠抓进去长肌肉。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 我的学习成长记录 -->
+      <section class="section" id="review">
+        <div class="section-head">
+          <span class="num">06</span>
+          <div>
+            <h2>第五部分 💡 我的学习成长记录</h2>
+            <p>从“算够热量”转向“判断通路、耐受、代谢和电解质的完整闭环”，记录第一人称认知转变与思考沉淀。</p>
+          </div>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天之前我的理解</h4>
+          <p>未提供复盘前个人理解。（以下为复盘模拟理解，供个人结合临床体验确认与修改） <span class="tag infer">【复盘推断】</span>：<br>
+          “如果仅看到患者已能全管饲泵入佳维体2000ml/d（能量达2000kcal），我可能会认为营养支持量已基本达标，容易忽略高炎症与发热对消化吸收率的损耗；面对腹胀可能简单建议减量，同时对血磷0.67 mmol/L的警惕度不足，缺少将其作为独立代谢危机优先静脉纠正的意识。”</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天新的认识（以下为复盘建议，供我确认和修改）</h4>
+          <p>1. <strong>全消化道大手术后的全管饲管理核心在于“速度-耐受-配方”的动态平衡：</strong>不能只盯总热量，需结合发热、排便与腹胀动态微调，充分利用整蛋白纤维制剂与水解蛋白组件的互补优势。 <span class="tag infer">【复盘推断】</span></p>
+          <p>2. <strong>电解质安全是营养支持的底线：</strong>在重大手术后足量肠内喂养期，血磷骤降往往提示高代谢下的细胞摄取增加（再喂养倾向），必须建立“静脉有机磷快速脱险+肠内维持”的组合处置路径。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>最大收获（临床思维闭环提炼）</h4>
+          <p><strong>① 发现问题：</strong>识别全管饲患者发热期腹胀伴大便稀、血磷0.67 mmol/L、CRP 54.5 mg/L、Glu 9.30 mmol/L <span class="tag fact">【原始事实】</span>。<br>
+          <strong>② 分析原因：</strong>发热与胰腺术后致肠蠕动及消化酶分泌不足；全量管饲引发细胞内糖/磷代谢转移 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>③ 补充证据：</strong>核实泵速（90ml/h）、体位（抬高15°）、排便次数及体重变化（-3kg） <span class="tag fact">【原始事实】</span>。<br>
+          <strong>④ 判断风险：</strong>低磷血症神经肌无力风险、腹胀加重致误吸及脱水风险 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>⑤ 选择干预：</strong>维持整蛋白匀速泵入+水解蛋白组件+静脉补甘油磷酸钠+β-葡聚糖抗炎+低强度抗阻 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑥ 明确执行：</strong>80~100ml/h持续泵、蛋白粉温水推注、甘油磷酸钠>4小时静滴、前后30ml温水冲管 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑦ 监测与复评：</strong>3~5天动态复查电解质、血糖、CRP及耐受表现 <span class="tag plan">【临床方案计划】</span>。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>下次我会怎么问（可复用的问诊结构链）</h4>
+          <p>1. <strong>筛查：</strong>“目前每天管饲总量是多少？分几次打还是24小时微泵持续输注？” <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>定位原因：</strong>“腹胀是在泵打到第几个小时出现，还是发热体温升高时特别明显？大便一天几次、是水样便还是稀糊状？” <span class="tag infer">【复盘推断】</span><br>
+          3. <strong>判断风险：</strong>“打营养液时床头抬高多少度？有没有反酸、反流或呛咳？身上有没有无力、手脚发麻或心慌？” <span class="tag infer">【复盘推断】</span><br>
+          4. <strong>确认执行条件：</strong>“每次推注蛋白粉或药物前后有没有用温开水冲管？家里有没有定时监测血糖？” <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>我仍然不会或不确定的地方</h4>
+          <p>1. 胰体尾切除术后胰腺外分泌功能不全（PEI）的临床评估金标准与胰酶替代疗法（PERT）的最佳启动指征。 <span class="tag infer">【复盘推断】</span><br>
+          2. 患者合并血液高凝状态（D-Dimer 3.30 μg/mL）且全管饲液体量在2100~2400ml时，如何更加精准地评估有效循环血容量与水化平衡，需向临床带教老师进一步请教。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 07 本病例相关知识整理 -->
+      <section class="section" id="knowledge">
+        <div class="section-head">
+          <span class="num">07</span>
+          <div>
+            <h2>第六部分 📚 本病例相关知识整理</h2>
+            <p>总结消化道重建管饲、再喂养低磷血症、水解蛋白与免疫调节剂的循证指南依据与应用边界。</p>
+          </div>
+        </div>
+
+        <!-- 知识点 1 -->
+        <div class="knowledge-box">
+          <h4>知识点 1：消化道重大重建术后全肠内营养管饲耐受与防反流管理规范</h4>
+          <p><strong>与本病例的关系：</strong>全胃切除+食管癌切除+食管颈部造瘘，完全依赖空肠/胃管持续管饲2000ml/d。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>全胃切除后肠道失去胃酸杀菌、容积缓冲及幽门括约肌控速机制。肠内营养应坚持“容量从少到多、速度由慢到快、浓度由低到高、温度适宜恒定”原则。推荐采用恒温微泵持续输注（80~100 ml/h），输注全程床头抬高30°~45°（至少15°以上），输注结束后保持半卧位30分钟；每次给药及间隔4~6小时常规用20~30ml温水正压冲管，防范管路堵塞与逆流误吸。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（家属已抬高15°~30°，泵速维持80~100ml/h完全吻合规范）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>中华医学会肠外肠内营养学分会（CSPEN）《中国肿瘤营养治疗指南》（2020/2023版）；欧洲临床营养与代谢学会（ESPEN）外科学临床营养指南（2021）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 2 -->
+        <div class="knowledge-box">
+          <h4>知识点 2：肿瘤慢性消耗背景下的再喂养综合征风险与低磷血症处置</h4>
+          <p><strong>与本病例的关系：</strong>大手术后2个月体重下降3kg，全量EN支持下血磷0.67 mmol/L、低钙低钠。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>长期能量消耗或摄入不足的患者，在重新接受足量碳水化合物/肠内营养时，外源性糖刺激胰岛素快速分泌，促使细胞外磷、钾、镁离子向细胞内转移以合成ATP及糖酵解中间体。血磷&lt;0.65~0.70 mmol/L（轻中度低磷）可导致心肌收缩力减弱、红细胞携氧障碍、呼吸衰竭及神经肌肉无力。补磷应首选有机磷（甘油磷酸钠），与无机磷相比具有输注速度较宽容、静脉刺激小、不易导致低钙沉淀的优势，推荐加入5%葡萄糖或生理盐水中静滴&gt;4小时，并密切监测电解质与尿量。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（已严格按规范开具甘油磷酸钠1支加入500ml液体静滴&gt;4小时）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>美国肠外肠内营养学会（ASPEN）《再喂养综合征预防与治疗临床实践指南》（2020）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 3 -->
+        <div class="knowledge-box">
+          <h4>知识点 3：水解乳清蛋白与 1-3/1-6 β-葡聚糖在肿瘤高炎症状态中的应用边界</h4>
+          <p><strong>与本病例的关系：</strong>CRP 54.5 mg/L重度炎症、间断发热、白蛋白偏低且全胃胰腺部分切除。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>水解乳清蛋白主要为二肽、三肽形式，小肠黏膜刷状缘PepT1载体转运能力远高于游离氨基酸，且耗能低、对内源性胰蛋白酶依赖极小，能快速提升机体氮平衡而不增加发热期肠道消化代谢负荷。1-3/1-6 β-葡聚糖作为生物反应调节剂，可与巨噬细胞、中性粒细胞表面的Dectin-1受体特异性结合，诱导免疫细胞活性抗炎抗感染。两者作为组件配方，不得替代全营养基底，也不替代抗生素抗感染治疗。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（作为免疫与蛋白质功能组件补充）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《恶性肿瘤患者免疫营养治疗中国专家共识》（2021）；ESPEN癌症患者临床营养指南（2021）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+      </section>
+
+      <!-- 08 临床思维路径图 (Decision Tree) -->
+      <section class="section" id="tree">
+        <div class="section-head">
+          <span class="num">08</span>
+          <div>
+            <h2>第七部分 🌲 临床思维路径图 (Decision Tree) <span class="tag knowledge" style="margin-left:8px;">逻辑推演型 · 建立直觉</span></h2>
+            <p>将医生的临床推理链拆解为直观的“现象 → 机制分析 → 干预动作 → 后续转折”路径。</p>
+          </div>
+        </div>
+
+        <div class="tree-flow">
+          <!-- 第 1 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 1 步：临床线索捕捉与机制归因</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>线索 A：全胃造瘘 + 2000ml/d</b>
+                <span>失去胃研磨缓冲与幽门控速 ➔ 快速灌注必致肠膨胀</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 B：发热 37~38℃ + 腹胀</b>
+                <span>高炎症导致交感兴奋 ➔ 肠动力减弱与内源酶分泌受抑</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 C：血磷 0.67 + 血糖 9.30</b>
+                <span>全量糖负荷驱动胰岛素分泌 ➔ 细胞内摄磷（再喂养风险）</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 2 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 2 步：多维度精准干预匹配</span>
+            </div>
+            <div class="tree-branch-container">
+              <div class="tree-branch">
+                <b>针对肠容受性与反流：</b>
+                <span>锁定微泵速度 80~100 ml/h 匀速输注；床头抬高 15°~30° 防返流误吸。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对消化酶受抑与高蛋白需求：</b>
+                <span>维持佳维体整蛋白膳食纤维基底 + 叠加水解乳清蛋白粉 5g qid 绕过酶解。</span>
+              </div>
+              <div class="tree-branch warning">
+                <b>针对再喂养低磷与电解质紊乱：</b>
+                <span>甘油磷酸钠 1 支加入 5% GNS 500ml 缓慢静滴（>4h）+ 活性 D3+K2。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对肿瘤高炎症与骨骼肌丢失：</b>
+                <span>1-3/1-6 β-葡聚糖 5条/d 激活巨噬细胞 + 隔日 10 分钟低强度抗阻运动。</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 3 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 3 步：动态监测与分支转向</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>分支 1：腹胀稀便仍加重？</b>
+                <span style="color:var(--orange); font-weight:600;">➔ 决策：全面换为短肽型制剂（如百普力）</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 2：胰腺术后血糖波动？</b>
+                <span style="color:var(--blue); font-weight:600;">➔ 决策：佳维体切换为低 GI 缓释制剂（如瑞代）</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 3：血磷 > 0.85 mmol/L？</b>
+                <span style="color:var(--green); font-weight:600;">➔ 决策：停用静脉补磷，转入肠内维持</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <p><strong>本病例医生真正解决的三个核心问题：</strong></p>
+          <ol style="margin: 8px 0; padding-left: 20px;">
+            <li><strong>动力与负荷平衡：</strong>在全胃切除及发热低肠动力状态下，化解“全量营养需求”与“肠道消化耐受受限”的矛盾，通过精准控速（80~100ml/h）与预消化水解蛋白组件达成目标。</li>
+            <li><strong>代谢危机拦截：</strong>在全管饲背景下敏锐捕捉重度低磷（0.67 mmol/L）的再喂养风险，果断开具静脉甘油磷酸钠长程滴注，阻断呼吸肌肌无力与心血管危象。</li>
+            <li><strong>抗炎促合成分工：</strong>针对 CRP 54.5 mg/L 高炎症消耗与肌肉衰减，采用 β-葡聚糖调节免疫并配合隔日抗阻微运动，实现氮平衡维持与骨骼肌合成代谢闭环。</li>
+          </ol>
+          <p style="margin-top: 12px;"><strong>一句话病例记忆点：</strong>这是一个食管鳞癌全胃及胰体尾切除术后全管饲依赖患者，核心不是盲目堆砌热量或因发热腹胀轻易停泵，而是通过发热动力学与电解质代谢监测判断消化耐受与再喂养风险，最终实现全管饲平稳耐受、代谢纠正与蛋白质精准强化的闭环管理。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <div class="empty" id="empty">没有找到匹配内容，请换个关键词。</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    《北肿临床营养科会诊思维录》V2 病例复盘 · 原始事实、临床方案、复盘推断与知识补充分层记录 · 仅供临床进修学习参考
+  </footer>
+</div>
+
+<script>
+  const input = document.querySelector('#search');
+  const sections = [...document.querySelectorAll('.section')];
+  const empty = document.querySelector('#empty');
+
+  function clearMarks(root) {
+    root.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    root.normalize();
+  }
+
+  function highlight(root, q) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement.closest('script,style') || !n.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      let s = n.nodeValue, low = s.toLowerCase(), i;
+      while ((i = low.indexOf(q)) > -1) {
+        frag.append(s.slice(0, i));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(i, i + q.length);
+        frag.append(m);
+        s = s.slice(i + q.length);
+        low = s.toLowerCase();
+      }
+      frag.append(s);
+      n.replaceWith(frag);
+    });
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    sections.forEach(s => {
+      clearMarks(s);
+      const hit = !q || s.innerText.toLowerCase().includes(q);
+      s.style.display = hit ? '' : 'none';
+      if (hit) {
+        shown++;
+        if (q) {
+          highlight(s, q);
+          s.querySelectorAll('details').forEach(d => {
+            if (d.innerText.toLowerCase().includes(q)) d.open = true;
+          });
+        }
+      }
+    });
+    empty.style.display = shown ? 'none' : 'block';
+    if (q && shown) {
+      requestAnimationFrame(() => document.querySelector('.section mark')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
+
+  input.addEventListener('input', search);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  const links = [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70%' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
