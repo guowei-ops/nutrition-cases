@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #444444;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --highlight-bg: #ffe082;
+        --current-highlight-bg: #ff9800;
+
+        /* 彩色圆角胶囊标签色彩库 */
+        --tag-fact-bg: #e8f5e9;
+        --tag-fact-color: #2e7d32;
+        --tag-plan-bg: #e3f2fd;
+        --tag-plan-color: #1565c0;
+        --tag-infer-bg: #fff3e0;
+        --tag-infer-color: #e65100;
+        --tag-know-bg: #f3e5f5;
+        --tag-know-color: #6a1b9a;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4;
+        color: var(--dark-gray);
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(26, 95, 122, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 6px 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .header-card .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+    }
+
+    /* Search Bar Sticky Container */
+    .search-container {
+        position: sticky;
+        top: 8px;
+        z-index: 1000;
+        background: rgba(238, 242, 245, 0.95);
+        backdrop-filter: blur(6px);
+        padding: 6px 0;
+        margin-bottom: 15px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .search-box-wrapper:focus-within {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .search-btn {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        border: 1px solid var(--secondary-blue);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-blue);
+        color: white;
+    }
+
+    .search-counter {
+        font-size: 12px;
+        color: #666;
+        min-width: 55px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* 彩色圆角胶囊标签风格 */
+    .badge-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 4px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+    .tag-fact { background-color: var(--tag-fact-bg); color: var(--tag-fact-color); }
+    .tag-plan { background-color: var(--tag-plan-bg); color: var(--tag-plan-color); }
+    .tag-infer { background-color: var(--tag-infer-bg); color: var(--tag-infer-color); }
+    .tag-know { background-color: var(--tag-know-bg); color: var(--tag-know-color); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        background-color: var(--light-blue);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 13.5px;
+        line-height: 1.35;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .styled-history-box {
+        background-color: #f4f7f9;
+        border: 1px solid #d0dfe8;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    .styled-history-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--primary-blue);
+        border-left: 3.5px solid var(--primary-blue);
+        padding-left: 8px;
+    }
+
+    .styled-history-box p {
+        margin: 5px 0;
+        font-size: 13.5px;
+        line-height: 1.42;
+    }
+
+    .dialogue-block {
+        background: #ffffff;
+        border: 1px solid #e5e9ec;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+
+    .dialogue-block h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--primary-blue);
+        font-size: 14.5px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 2px 0 6px 0;
+        background-color: #f8fafc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        line-height: 1.4;
+    }
+
+    .info-gain-box {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 6px;
+    }
+
+    /* Part 2 Specifics */
+    .raw-opinion-card {
+        background-color: var(--green-bg);
+        border: 1.5px solid #a5d6a7;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: inherit;
+        line-height: 1.42;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.05);
+    }
+
+    .raw-opinion-card .meta-notice {
+        background: #ffffff;
+        color: var(--doctor-green);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-left: 3.5px solid var(--doctor-green);
+        border: 1px solid #c8e6c9;
+    }
+
+    .raw-text-content {
+        white-space: pre-wrap;
+        font-size: 13.5px;
+        color: #1b5e20;
+    }
+
+    /* Part 3 Specifics */
+    .mind-card {
+        background-color: #f1f8e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--doctor-green);
+        font-size: 14.5px;
+    }
+
+    .mind-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        color: #2e7d32;
+        margin: 8px 0;
+        border-left: 3.5px solid var(--doctor-green);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Part 4 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .misconception-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+    }
+
+    .misconception-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 10px;
+        border-radius: 5px;
+        margin: 6px 0;
+        border-left: 3px solid var(--misconception-orange);
+        font-size: 13px;
+    }
+
+    /* Part 6 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 3.5px solid var(--purple-knowledge);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: var(--purple-knowledge);
+        font-size: 14.5px;
+    }
+
+    .knowledge-box p {
+        margin: 3px 0;
+        font-size: 13.5px;
+    }
+
+    /* Part 7 Specifics */
+    .training-card-fancy {
+        background: #ffffff;
+        border: 1.5px solid var(--secondary-blue);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .training-grid-fancy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+    }
+
+    .mini-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-card strong {
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+    }
+
+    .mini-card.highlight-green {
+        background: #f1f8e9;
+        border-color: #c8e6c9;
+    }
+    .mini-card.highlight-green strong { color: var(--doctor-green); }
+
+    .mini-card.highlight-orange {
+        background: #fbe9e7;
+        border-color: #ffccbc;
+    }
+    .mini-card.highlight-orange strong { color: var(--misconception-orange); }
+
+    /* Highlight Styling for Search */
+    mark.search-highlight {
+        background-color: var(--highlight-bg);
+        color: #000;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    mark.search-highlight.current {
+        background-color: var(--current-highlight-bg);
+        color: #fff;
+        font-weight: bold;
+        outline: 2px solid #e65100;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .training-grid-fancy { grid-template-columns: 1fr; }
+        .header-card { padding: 14px; }
+        .header-card h1 { font-size: 20px; }
+        .search-box-wrapper { flex-wrap: wrap; }
+        .search-input { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>会诊日期：</strong>2026年08月12日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>胃低分化腺癌伴腹膜转移入组临床研究患者伴重度营养不良、低钾血症、贫血的营养评估与阶梯干预决策</div>
+        </div>
+    </div>
+
+    <!-- 关键词搜索框 -->
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索全文，如：体重、腹泻、蛋白质、ONS……" onkeydown="handleKeyDown(event)">
+            <div class="search-nav-btns">
+                <span id="searchCounter" class="search-counter">0 / 0</span>
+                <button class="search-btn" onclick="navigateSearch(-1)">▲ 上一个</button>
+                <button class="search-btn" onclick="navigateSearch(1)">▼ 下一个</button>
+                <button class="search-btn" onclick="clearSearch()">清除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>性别：</strong>男 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>年龄：</strong>68岁 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>主要确诊疾病：</strong>胃体癌1余月、胃低分化腺癌（cT4aN3aM1 IV期） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>病理类型：</strong>胃低分化腺癌，Lauren: 肠型 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>疾病分期：</strong>cT4aN3aM1 IV期 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>转移情况：</strong>腹膜转移 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>重要合并症：</strong>重度营养不良、高血压病2级（中危组）、免疫性心肌炎、免疫性肌炎、重症肌无力、贫血、低钙血症、低钠血症、低钾血症、便秘 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>手术史：</strong>现有资料未提及外科手术史 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>抗肿瘤治疗史：</strong>入组“HLX22 联合曲妥珠单抗和化疗 (XELOX) 对比曲妥珠单抗和化疗 (XELOX) 联合或不联合帕博利珠单抗”III期临床研究，2026-04-13行一线C1治疗方案 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前治疗阶段：</strong>临床研究入组治疗随访中，拟行介入或后续综合治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>本次就诊背景：</strong>近期食欲下降，剑突下疼痛，因卧床无法监测体重；近2周食欲下降1/2，乏力，便秘 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>营养科会诊原因：</strong>评估患者营养状况，指导营养支持方案 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前核心营养问题：</strong>恶性肿瘤合并营养风险（NRS 2002: 3分）、GLIM定义下营养不良、低钾/低钠/低钙电解质紊乱、贫血、消化道症状及抗肿瘤治疗相关进食受限 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <div class="info-item"><strong>信息不确定项：</strong>确诊至今体重自述下降约25斤（近2个月掉10斤，会诊单写“卧床无法监测体重/下降具体不详”），需动态核实卧床/称重数据 <span class="badge-tag tag-fact">【原始事实】</span></div>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>2. 确诊疾病及治疗病史</h3>
+            <p><strong>主要疾病：</strong>胃体癌1余月，诊断为胃低分化腺癌 cT4aN3aM1 IV期 腹膜转移，Lauren型：肠型，pMMR，EGFR(1+)，Cmet(1+)，HER2(3+)，PD-L1(22C3)(CPS=0)，Claudin18.2(-)，EBER(-)，合并高血压病2级（中危组）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>手术经过：</strong>现有资料未记录手术治疗。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>抗肿瘤治疗经过：</strong>入组 HLX22 联合曲妥珠单抗+XELOX/帕博利珠单抗 III期临床研究，2026-04-13 给予一线 C1 方案（HLX22/安慰剂、曲妥珠单抗、帕博利珠单抗、奥沙利铂、卡培他滨）。C1后出现免疫性心肌炎、免疫性肌炎、重症肌无力。录音提到6月11日接受过介入治疗。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>3. 营养相关现状</h3>
+            <p><strong>体重和变化：</strong>身高162cm，当前体重55kg（处理意见记录），BMI 20.9 kg/m²；录音中患者家属自述确诊前体重接近200斤，至今累计下降25斤，近2个月下降约10斤；会诊申请单记载“因卧床无法监测体重，体重下降具体不详”。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>摄入情况：</strong>近2周食欲下降1/2，打药或治疗后1周内胃肠道不适、不想吃饭，以喝粥为主；恢复期饭量可恢复（大米饭吃2碗/包子2个）。目前口服雅培安素粉剂（6勺/次，200ml温水冲服，1-2次/日），曾口服电解质蛋白散因腥味呕吐停用。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养影响症状：</strong>剑突下疼痛、打药后胃肠道不适、食欲减退、乏力、便秘（使用开塞露及乳果糖缓解）、偶有大便带血（排便不畅时带鲜血）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>咀嚼和吞咽：</strong>咀嚼吞咽功能基本正常，能进食米饭、面条、肉类，无明显呛咳；未行 formal 吞咽评估。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>既往或当前营养治疗：</strong>自行口服雅培安素粉剂（6勺+200ml温水），既往尝试水解蛋白散不耐受；医嘱建议少渣半流食及补充乳清蛋白粉、复合维生素、钙剂、生血宁及氯化钾颗粒。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>检查和人体成分资料：</strong> <span class="badge-tag tag-fact">【原始事实】</span>
+                <ul style="margin: 2px 0 0 18px; padding: 0;">
+                    <li>营养查体：ht 162cm, wt 55kg, BMI 20.9kg/m², NRS 2002: 3分。</li>
+                    <li>生化及血常规：WBC 5.26×10⁹/L, Hb 88.00 g/L（贫血）, PLT 250.00×10⁹/L（录音记载曾测得432×10⁹/L）, ALB 32.4 g/L, GLU 3.98 mmol/L, Ca 2.11 mmol/L（低钙）, Cr 41 μmol/L, K 3.42 mmol/L（低钾）, ALP 34 U/L, Na 134 mmol/L（低钠）。</li>
+                </ul>
+            </p>
+        </div>
+
+        <h3>4. 会诊现场顺序复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：体重丢失与近期进食下降情况调查</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“搁家怎么两个月掉秤了？掉了多少？……那之前你这体重也可以啊……化疗不想吃饭吧？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“从去年10月确诊到现在掉了有25斤吧……之前体重接近200……这两个月也在掉，掉了有10斤……打完药之后那个人吃不好，肠子也不舒服……打完药那一礼拜少点，喝点粥。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“你看你现在这个标准体重是73（kg）啊，你现在都85（自述或既往基数）……咱就保持这个体重，不要再长了，维持住。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 明确患者体重急剧丢失与抗肿瘤周期性治疗反应严重相关，打药后1周内出现明显摄入减少与胃肠不适。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：膳食结构、汤类摄入与高尿酸血症归因</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“肉每天都有吗？……是不是最近汤喝有点多我看你这尿酸有点高……汤少喝，营养都在肉里。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“每天有牛奶羊奶、鸡蛋羹、鸽子汤、牛肉炖山药……好的时候尿酸也高，五六百。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“不管是现在喝还是以后汤都少喝，把炖烂的鸽子肉吃了，靠瘦肉、动物肝脏和血补蛋白和血红蛋白，不要指望红枣汤水。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 纠正患者“喝高汤补营养”的误区，指出高汤增加嘌呤加重高尿酸血症且蛋白质含量极低，要求转向吃瘦肉及动物血蛋白。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：排便带血与消化道安全排查</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“红肉吃的不够多？平时大便带血吗？是黑的还是红色的？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“偶尔会有，红色的，直接带血。排便不舒服、想上上不出来的时候就会有点血，正常排便就没血。吃着云南白药。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“把这个也跟介入大夫和主治大夫说说……吃的要少纤维、不粗糙，软烂好消化，避免肠梗阻和加重出血。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 发现便鲜血可能与便秘用力及肠道病变相关，指导选择少渣软烂膳食以降低消化道机械损伤及梗阻风险。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：ONS使用与纯乳清蛋白粉补充指导</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“安素喝完有不舒服吗？……前白蛋白偏低，得买点纯乳清蛋白粉。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“安素喝着挺好，一次6勺，200ml水。当地开的水解蛋白散特别腥，喝两袋就想吐再不喝了。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“买纯乳清蛋白粉，蛋白含量在80%以上的，10g/次，一天2-3次，饭后半小时喝。打完药不舒服不想吃饭时把安素喝上。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 在安素耐受良好的基础上，因前白蛋白低及水解蛋白散不耐受，精准推荐高纯度纯乳清蛋白粉进行强化。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <h3>5. 待确认内容</h3>
+        <ul style="margin: 4px 0 0 18px; padding: 0;">
+            <li>【待确认】体重数据冲突：会诊申请单记录“卧床无法监测体重，体重下降具体不详”；处理意见写“wt 55kg, BMI 20.9”；录音中患者自述“从接近200斤降了25斤/近期掉10斤”。需复核实际称重条件与准确数值。</li>
+            <li>【待确认】血小板数值：处理意见显示 PLT 250.00×10⁹/L，录音中医生提及“血小板稍微高一点432”，系不同时间点化验差异，需动态观察。</li>
+        </ul>
+    </div>
+
+    <!-- 第二部分：原始营养会诊处理意见 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+
+        <div class="raw-opinion-card">
+            <div class="meta-notice">
+                以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+            </div>
+            <div class="raw-text-content">处理意见：患者男性，主诉：诊断胃体癌1余月。胃低分化腺癌cT4aN3aM1 IV期 腹膜转移 Lauren: 肠型 pMMR，EGFR(1+)，Cmet(1+)，HER2(3+)，PD-L1(22C3)(CPS=0)，Claudin18.2(-)，EBER(-) 高血压病2级中危组。现入组“一项HLX22 (重组人源化抗HER2单克隆抗体注射液) 联合曲妥珠单抗和化疗 (XELOX) 对比曲妥珠单抗和化疗 (XELOX) 联合或不联合帕博利珠单抗一线治疗局部晚期或转移性胃食管交界部和胃癌的随机、双盲、多中心、III期临床研究 ” 于2026-4-13行一线C1治疗方案。具体：HLX22/安慰剂15mg/kg 825mg d1，曲妥珠单抗 (8mg/kg, 后续6mg/kg) 441mg d1，帕博利珠单抗200mg d1，奥沙利铂 (130mg/m2) 205.4mg d1，卡培他滨 (1000mg/m2) 1600mg d1-14, q21d。C1后，患者免疫性心肌炎，免疫性肌炎，重症肌无力。目前一般可，近2周食欲下降1/2，今日开始口服安素6勺/d无不适，乏力，便秘，用开塞露缓解。活动少。体重下降具体不详。化验血：白细胞总数5.26( 10^9/L)，血红蛋白 88.00(g/L)，血小板总数 250.00(10^9/L)，ALB 32.4，GLU 3.98，Ca: 2.11，Cr:41 K:3.42 ALP:34 Na:134
+
+患者查体:患者精神状可，自主体位，四肢无水肿，现ht 162cm，wt 55kg，BMI 20.9kg/m2。
+
+营养诊断：恶性肿瘤合并营养风险（NRS2002：3分），营养不良（GLIM），贫血，低钙,低钠,低钾。
+
+营养治疗目标：1. 改善症状，加强营养，增加或稳定体重。每日推荐营养供给量：能量1375-1650 kcal，蛋白70-85g，液体量2000-2200ml。
+
+2 少渣半流食
+
+3. 肠内营养制剂 (安素) 6勺+200ml温水餐间冲服，日2-3次口服。
+
+4. 维生素B1 3片+B2 3片 +VC 3片，tid;
+
+5 乳果糖2条，每日早空腹温水200ml冲服
+
+6 氯化钾颗粒 1g，bid
+
+7 钙片 300-600mg/d，日2-3次口服。
+
+8 多种维生素和微量元素片(含铁) 50+ 1片/d
+
+9 生血宁 2粒，tid
+
+10.适量活动;
+
+11. 监测体重、离子，PALB, CRP，贫血七项 等。</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点一：评估抗肿瘤治疗周期性胃肠反应与体重波动</h4>
+            <p><strong>医生怎么问：</strong>“搁家怎么这两个月掉秤了？打了药之后吃不好能持续多久？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>打药后约1周内食欲下降1/2、胃肠不适只能喝粥；1周后饭量可恢复；近期体重明显丢失。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【复盘推断】评估摄入不足是持续性肿瘤消耗还是周期性化疗/免疫毒性所致，以确定 ONS 介入时机。</p>
+            <div class="reasoning-path">
+                现象：打药后1周食欲减半+体重下降 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：化疗及免疫联合治疗所致急性消化道毒性 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 证据：打药后周期性厌食、便秘及腹痛 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 风险判断：负氮平衡、蛋白质-能量消耗（PEW）及GLIM营养不良加重 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：间歇期阶梯补充 ONS (安素) + 纯乳清蛋白粉强化 <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>制定安素 6勺/次 (日2-3次) 餐间冲服，并要求打药反应期重点强化补充。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点二：排查“高汤补身体”误区与高尿酸/便鲜血病理归因</h4>
+            <p><strong>医生怎么问：</strong>“平时喝汤多吗？大便带血是黑的还是红色的？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>经常喝鸽子汤、骨头汤，尿酸长期高（五六百）；大便干燥时带鲜血。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【复盘推断】归因高尿酸血症为高嘌呤汤类摄入过多；排查便血系消化道大出血还是下消化道/痔疮机械损伤。</p>
+            <div class="reasoning-path">
+                现象：尿酸偏高 + 喝汤多 + 便鲜血 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 原因分析：肉汤嘌呤高而蛋白低；便秘导致黏膜划伤出血 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 风险判断：痛风发作风险、肠梗阻风险、贫血加重 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：停高汤改为吃软烂瘦肉/血豆腐 + 少渣半流食 + 通便（乳果糖/开塞露） <span class="badge-tag tag-plan">【临床方案计划】</span>
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>处理意见中明确列出“少渣半流食”、“乳果糖2条/日”及“生血宁/铁剂”。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>从问诊到处理意见的整体逻辑链</h4>
+            <p>会诊获得的信息：胃癌IV期腹膜转移，近期打药后食欲减半、便秘、低钾（3.42）、低钠（134）、低钙（2.11）、贫血（Hb 88）。 <span class="badge-tag tag-fact">【原始事实】</span><br>
+            ↓ 医生识别的问题：GLIM营养不良、多发电解质紊乱（低钾/钠/钙）、中度贫血、消化道动力不足。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 主要营养风险：NRS 2002=3分，体成分加速丢失及治疗耐受性下降风险。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 原始处理意见中的目标：能量 1375~1650 kcal/d，蛋白质 70~85 g/d，液体量 2000~2200 ml/d。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 原始处理意见中的具体方案：安素6勺日2-3次 + 少渣半流食 + 氯化钾1g bid + 乳果糖 + 生血宁/钙片/多维。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 方案选择理由：安素均衡全营养，少渣半流食预防梗阻与出血，氯化钾及钙片纠正电解质，乳果糖改善便秘。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区</h2>
+
+        <div class="misconception-card">
+            <h4>误区一：“喝肉汤/鸽子汤能大补”——只喝汤不吃肉</h4>
+            <div class="misconception-quote">患者/家属原话：“经常煲鸽子汤、牛肉炖山药汤喝，觉得特别补。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“汤里的营养非常少，主要是油脂和嘌呤，喝多了尿酸高。营养都在肉里，要把鸽子肉炖烂了吃肉。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】肉汤中溶解的蛋白质不足肉块本身的10%，而嘌呤和脂肪含量极高，易诱发高尿酸血症及胃肠负担。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“汤水看着浓，其实里面全是水、油和嘌呤，真正建肌肉、造血的蛋白质都在肉块里。咱们少喝汤、多吃炖烂的瘦肉。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区二：水解蛋白散腥味重强忍或直接放弃所有蛋白质补充</h4>
+            <div class="misconception-quote">患者/家属原话：“当地开的水解蛋白散太腥了，喝完就想吐，就不敢再补蛋白了。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“喝不了那个就不要强喝。我们可以选纯乳清蛋白粉，口感好，蛋白含量在80%以上，餐后半小时喝。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】短肽/氨基酸水解制剂风味较差易致恶心，肠道吸收功能正常时首选风味良好的纯乳清蛋白粉（WPI/WPC）。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“蛋白粉种类很多，难喝的咱们不强求。换成纯乳清蛋白粉，就像淡奶味，加在温水里更好接受。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>复盘前，我会如何判断这个问题？</strong><br>
+        复盘前，针对胃癌腹膜转移且出现便秘带血的患者，我可能会过度限制经口进食，或盲目开具高渗高蛋白制剂而忽视胃肠道耐受性及风味依从性。</p>
+
+        <p><strong>今天新的认识：</strong><br>
+        以下为复盘建议，供我确认和修改：<br>
+        1. 必须纠正患者“喝汤补体能”的传统观念，特别是合并高尿酸血症时需严格限制浓肉汤。<br>
+        2. 针对化疗周期性厌食，应采取“打药期 ONS 重点强化、间歇期正常膳食+蛋白粉补足”的动态调整策略。<br>
+        3. 消化道肿瘤患者需密切关注少渣半流食细节，兼顾电解质（低钾/低钠/低钙）与贫血的综合口服药物纠正。</p>
+
+        <p><strong>最大收获：</strong><br>
+        提炼3条关键决策路径：<br>
+        * 识别化疗周期性厌食 → 制定安素餐间 ONS 补充方案。<br>
+        * 识别高汤致高尿酸误区 → 明确“吃肉弃汤、补充纯乳清蛋白粉”。<br>
+        * 识别多发电解质紊乱与便秘 → 少渣半流食 + 氯化钾 + 乳果糖联合干预。</p>
+
+        <p><strong>下次我会怎么问：</strong><br>
+        1. “每次打完化疗后，不想吃饭的情况通常持续几天？第几天开始能恢复正常吃饭？”<br>
+        2. “平时喝的鸽子汤或肉汤，里面的肉能吃掉多少？”<br>
+        3. “大便干燥带血是拉出来的时候肛门割着疼，还是里面混着黑便？”</p>
+
+        <p><strong>我仍然不会或不确定的地方：</strong><br>
+        对于胃癌腹膜转移合并轻度低钠血症（134 mmol/L）及低钙血症（2.11 mmol/L）的患者，口服补钙/补钠与膳食钠盐摄入的最佳平衡点需进一步请教带教老师。</p>
+    </div>
+
+    <!-- 第六部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>知识点一：胃癌腹膜转移患者的少渣半流食与梗阻预防 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者诊断胃低分化腺癌 cT4aN3aM1 IV期 腹膜转移，出现便秘及胃肠不适。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>腹膜转移易导致肠粘连或不全性肠梗阻。推荐少渣半流食（限制高粗纤维芹菜、韭菜等），食物需切碎煮烂，细嚼慢咽，避免机械性梗阻。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《中国胃癌营养治疗指南》。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点二：肿瘤相关高尿酸血症与嘌呤膳食管理 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者长期高尿酸血症（500-600 μmol/L），且有大量饮用浓肉汤/鸽子汤习惯。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>肿瘤细胞高转化及化疗细胞破坏可致高尿酸，大量摄入浓肉汤进一步加重外源性嘌呤负荷。应严格限制浓肉汤、海鲜汁，蛋白质补充宜选择瘦肉块、蛋、奶及乳清蛋白粉。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《高尿酸血症与痛风患者膳食指导》（WS/T 560-2017）。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card-fancy">
+            <div class="training-grid-fancy">
+                <div class="mini-card">
+                    <strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>主要确诊疾病：</strong>胃体癌1余月（胃低分化腺癌 cT4aN3aM1 IV期 腹膜转移） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>病理及分期：</strong>胃低分化腺癌，Lauren肠型，cT4aN3aM1 IV期 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>转移情况：</strong>腹膜转移 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>手术及治疗阶段：</strong>HLX22 联合 XELOX/帕博利珠单抗 III期临床研究入组治疗中 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>重要合并症：</strong>高血压2级、免疫性心肌炎/肌炎、重症肌无力、贫血、低钾/钠/钙 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>营养会诊触发点：</strong>近期食欲下降1/2，剑突下疼痛，卧床体重下降，便秘 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>核心营养问题：</strong>GLIM营养不良、周期性摄入受限、高汤致高尿酸、多发电解质紊乱 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>医生首先关注：</strong>体重丢损轨迹、打药后食欲变化周期、肉汤摄入量及大便出血性质 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>为什么：</strong>评估消化道毒性规律，厘清高尿酸原因，排查消化道出血安全 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>关键证据：</strong>wt 55kg, BMI 20.9, Hb 88g/L, K 3.42mmol/L, ALB 32.4g/L <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>仍缺少的信息：</strong>连续准确称重记录、前白蛋白（PALB）定量数值 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>主要营养风险：</strong>恶性肿瘤营养风险（NRS 2002=3分）、肌肉衰减及贫血加重 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>医生的营养判断：</strong>重度营养不良（GLIM），受抗肿瘤治疗毒性及膳食误区影响，给予阶梯支持 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的营养目标：</strong>能量 1375~1650 kcal/d，蛋白质 70~85g/d，液体量 2000~2200 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的具体方案：</strong>安素6勺餐间冲服(bid-tid) + 少渣半流食 + 氯化钾1g bid + 乳果糖 + 生血宁/钙片/多维 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>执行中的主要困难：</strong>打药后一周内恶心厌食影响安素口服；需防范便秘致腹胀 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>需要监测什么：</strong>体重、电解质（K/Na/Ca）、PALB、CRP、贫血七项、排便情况 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>我的临床思维变化：</strong>从单纯关注卡路里转向识别“高汤误区”、兼顾消化道少渣安全与电解质精准补充。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>一句话病例记忆点：</strong>胃癌腹膜转移化疗反应大，吃肉弃汤补蛋白，安素餐间加氯化钾。 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchMatches = [];
+var currentMatchIndex = -1;
+
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+
+    if (!input) {
+        updateCounter(0, 0);
+        return;
+    }
+
+    var safeInput = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(safeInput, 'gi');
+
+    var searchableSections = document.querySelectorAll('.searchable-section');
+    searchableSections.forEach(function(section) {
+        highlightNode(section, regex);
+    });
+
+    searchMatches = Array.from(document.querySelectorAll('mark.search-highlight'));
+
+    if (searchMatches.length > 0) {
+        currentMatchIndex = 0;
+        focusMatch(currentMatchIndex);
+        updateCounter(1, searchMatches.length);
+    } else {
+        updateCounter(0, 0);
+    }
+}
+
+function highlightNode(node, regex) {
+    if (node.nodeType === 3) {
+        var match = node.data.match(regex);
+        if (match) {
+            var span = document.createElement('span');
+            var lastIdx = 0;
+            node.data.replace(regex, function(m, offset) {
+                var before = node.data.substring(lastIdx, offset);
+                span.appendChild(document.createTextNode(before));
+                var mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.appendChild(document.createTextNode(m));
+                span.appendChild(mark);
+                lastIdx = offset + m.length;
+            });
+            var after = node.data.substring(lastIdx);
+            span.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(span, node);
+        }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'INPUT', 'BUTTON'].includes(node.tagName)) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+            highlightNode(node.childNodes[i], regex);
+        }
+    }
+}
+
+function clearHighlights() {
+    var highlights = document.querySelectorAll('mark.search-highlight');
+    highlights.forEach(function(mark) {
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    });
+}
+
+function focusMatch(index) {
+    searchMatches.forEach(function(m, idx) {
+        if (idx === index) {
+            m.classList.add('current');
+            m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            m.classList.remove('current');
+        }
+    });
+}
+
+function navigateSearch(direction) {
+    if (searchMatches.length === 0) return;
+    currentMatchIndex += direction;
+    if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+    if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+
+    focusMatch(currentMatchIndex);
+    updateCounter(currentMatchIndex + 1, searchMatches.length);
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        if (event.shiftKey) {
+            navigateSearch(-1);
+        } else {
+            if (searchMatches.length === 0) {
+                performSearch();
+            } else {
+                navigateSearch(1);
+            }
+        }
+    } else if (event.key === 'Escape') {
+        clearSearch();
+    } else {
+        setTimeout(performSearch, 300);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+    updateCounter(0, 0);
+}
+
+function updateCounter(current, total) {
+    var counter = document.getElementById('searchCounter');
+    if (total === 0 && document.getElementById('searchInput').value.trim() !== '') {
+        counter.textContent = '未找到';
+    } else {
+        counter.textContent = current + ' / ' + total;
+    }
+}
+</script>
+
+</body>
+</html>
