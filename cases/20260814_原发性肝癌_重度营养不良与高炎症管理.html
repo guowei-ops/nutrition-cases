@@ -1,0 +1,1514 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <meta name="description" content="北肿临床营养科会诊思维录——原发性肝癌介入术前重度营养不良与多维营养支持病例复盘">
+  <title>北肿临床营养科会诊思维录｜原发性肝癌介入术前重度营养不良与高炎症管理</title>
+  <style>
+    :root {
+      --ink: #172a3a;
+      --text: #263746;
+      --muted: #6f7c86;
+      --line: #e3e6e7;
+      --paper: #ffffff;
+      --bg: #f4f3ef;
+      --soft: #f7f8f8;
+      --green: #287a5b;
+      --green-bg: #eaf5ef;
+      --blue: #296b9b;
+      --blue-bg: #eaf3f9;
+      --orange: #a66019;
+      --orange-bg: #fff1df;
+      --purple: #714b91;
+      --purple-bg: #f2ebf7;
+      --shadow: 0 14px 40px rgba(23,42,58,.07);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px 80px;
+    }
+    
+    /* 顶部导航与搜索 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .search {
+      position: relative;
+      flex: 1;
+    }
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 11px 42px 11px 16px;
+      color: var(--ink);
+      outline: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search input:focus {
+      border-color: #a8b4bd;
+      box-shadow: 0 0 0 3px rgba(23,42,58,.06);
+    }
+    .search kbd {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    
+    /* Hero Header */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 18px;
+      padding: 42px 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "THINK";
+      position: absolute;
+      right: 20px;
+      bottom: -35px;
+      font-size: 140px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.03);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .14em;
+      opacity: .65;
+      margin-bottom: 4px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 3.8vw, 38px);
+      line-height: 1.25;
+      margin: 8px 0 12px;
+      letter-spacing: -.03em;
+    }
+    .hero p {
+      max-width: 820px;
+      color: #c8d1d7;
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
+      margin-top: 28px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .meta div {
+      padding: 12px 15px;
+      background: rgba(255,255,255,.035);
+    }
+    .meta small {
+      display: block;
+      color: #9eacb6;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+    .meta b {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    
+    /* 页面两栏布局 */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .side {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+    }
+    .side ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-left: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    .side a:hover, .side a.active {
+      border-color: var(--ink);
+      color: var(--ink);
+      font-weight: 700;
+      background: rgba(23,42,58,0.03);
+    }
+    .side .legend {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+    .side .legend .label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side .legend .tag {
+      margin: 0 4px 6px 0;
+    }
+    
+    /* 核心内容区 */
+    .content { min-width: 0; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23,42,58,.025);
+      scroll-margin-top: 20px;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .num {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .section h2 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      font-size: 13.5px;
+    }
+    
+    /* 标签体系 */
+    .tag, .badge-tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .fact, .tag-fact { color: var(--green); background: var(--green-bg); border: 1px solid #c8e6c9; }
+    .plan, .tag-plan { color: var(--blue); background: var(--blue-bg); border: 1px solid #bbdefb; }
+    .infer, .tag-infer { color: var(--orange); background: var(--orange-bg); border: 1px solid #ffe0b2; }
+    .knowledge, .tag-know { color: var(--purple); background: var(--purple-bg); border: 1px solid #e1bee7; }
+    
+    /* 卡片与网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .card.soft { background: var(--soft); }
+    
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .value {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    
+    /* 优先级问题列表 */
+    .issues {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .issues li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 14px;
+    }
+    .rank {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    
+    /* 结构化内容框 */
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .content-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .content-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .content-box p:last-child { margin-bottom: 0; }
+    
+    /* 对话与引用块 */
+    .dialogue-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      border: 1px solid var(--line);
+    }
+    .dialogue-item h4 {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .speaker-doc {
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .speaker-pat {
+      color: #455a64;
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .quote {
+      margin: 8px 0;
+      border-left: 3px solid #cbd3d8;
+      padding: 8px 14px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+      color: #37474f;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .info-gain {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: var(--blue-bg);
+      border-radius: 6px;
+      font-size: 13px;
+      color: #184a6e;
+      line-height: 1.6;
+    }
+    
+    /* 原始处理意见专用 */
+    .raw-opinion-container {
+      background: #fdfdfd;
+      border: 1px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .meta-notice {
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12.5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--green);
+      line-height: 1.6;
+    }
+    .raw-text-block {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: #263746;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      word-break: break-word;
+    }
+    
+    /* 医生思维拆解专属卡片 */
+    .mind-card {
+      background: #ffffff;
+      border: 1px solid #dbe0e3;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .mind-card-head {
+      background: var(--soft);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mind-card-head h4 {
+      margin: 0;
+      color: var(--green);
+      font-size: 15.5px;
+    }
+    .mind-card-body {
+      padding: 16px 18px;
+    }
+    .mind-card-body p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 14px;
+      margin: 12px 0;
+      background: #f9fbf9;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+    }
+    .step {
+      position: relative;
+      padding: 0 8px;
+    }
+    .step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -6px;
+      top: 14px;
+      color: #aab3ba;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .step b {
+      display: block;
+      color: var(--ink);
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .step p {
+      margin: 0;
+      color: #53616c;
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+    .decision {
+      background: #f4f7f8;
+      border-left: 3px solid var(--ink);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      margin: 12px 0 6px;
+      line-height: 1.65;
+    }
+    
+    /* 误区卡片 */
+    .misconception-card {
+      background: var(--orange-bg);
+      border: 1px solid #ffccbc;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .misconception-card h4 {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .misconception-card p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .misconception-quote {
+      font-style: italic;
+      color: #5d4037;
+      background: rgba(255,255,255,0.75);
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 13px;
+      border-left: 3px solid var(--orange);
+    }
+    
+    /* 知识点卡片 */
+    .knowledge-box {
+      background: var(--purple-bg);
+      border: 1px solid #e1bee7;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .knowledge-box h4 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 15px;
+    }
+    .knowledge-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    
+    /* 学习成长记录卡片 */
+    .learning-box {
+      background: #fcfdfe;
+      border-left: 3px solid var(--blue);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .learning-box h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: var(--blue);
+    }
+    .learning-box p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .learning-box p:last-child { margin-bottom: 0; }
+    
+    /* 临床思维决策树专有样式 */
+    .tree-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tree-stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      background: #fafbfc;
+    }
+    .tree-stage-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tree-node-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .tree-node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tree-node b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+    .tree-arrow {
+      text-align: center;
+      color: #a0acb5;
+      font-size: 18px;
+      font-weight: bold;
+      margin: -6px 0;
+    }
+    .tree-branch-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tree-branch {
+      background: #fff;
+      border-left: 3px solid var(--green);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 15px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .tree-branch.warning {
+      border-left-color: var(--orange);
+    }
+    .tree-branch b {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .takeaway {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 15px;
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      color: var(--muted);
+    }
+    mark {
+      background: #fff0a8;
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 30px;
+    }
+    
+    /* 响应式与打印 */
+    @media(max-width: 880px) {
+      .shell { padding: 16px 12px 50px; }
+      .topbar { align-items: stretch; flex-direction: column; gap: 8px; }
+      .hero { padding: 28px 20px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .layout { display: block; }
+      .side { position: static; overflow: auto; margin: 0 0 16px; }
+      .side ol { display: flex; }
+      .side a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; }
+      .side .legend { display: none; }
+      .section { padding: 20px 15px; }
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 6px; }
+      .step { padding: 8px 0; }
+      .step:not(:last-child):after { content: "↓"; left: 0; right: auto; top: auto; bottom: -10px; }
+      .issues li { grid-template-columns: 28px 1fr; }
+      .issues .tag, .issues .badge-tag { display: none; }
+      .tree-node-grid, .tree-branch-container { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .topbar, .side { display: none; }
+      .hero { box-shadow: none; }
+      .layout { display: block; }
+      .section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">BEIZHONG · NUTRITION</div>
+    <div class="search">
+      <input id="search" type="search" placeholder="搜索症状、化验、方案、对话原话或知识点…" aria-label="全文搜索">
+      <kbd>⌘ K</kbd>
+    </div>
+  </div>
+  
+  <header class="hero">
+    <div class="eyebrow">临床学习档案 · 会诊病例复盘</div>
+    <h1>北肿临床营养科会诊思维录</h1>
+    <p>疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘。从病例事实出发，沿着医生的判断路径，沉淀为下一次可以调用的临床行动。</p>
+    <div class="meta">
+      <div><small>会诊日期</small><b>2026.08.14</b></div>
+      <div><small>患者标签</small><b>原发性肝癌 · 介入围术期 · 重度营养不良</b></div>
+      <div><small>整理人</small><b>郭伟</b></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="页面目录">
+      <ol>
+        <li><a href="#overview">01 病例速览</a></li>
+        <li><a href="#evidence">02 原始会诊记录</a></li>
+        <li><a href="#opinion">03 原始会诊意见</a></li>
+        <li><a href="#reasoning">04 医生思维拆解</a></li>
+        <li><a href="#misconceptions">05 患者家属误区</a></li>
+        <li><a href="#review">06 学习成长记录</a></li>
+        <li><a href="#knowledge">07 本病例知识点</a></li>
+        <li><a href="#tree">08 临床思维路径图</a></li>
+      </ol>
+      <div class="legend">
+        <div class="label">内容来源与证据分层</div>
+        <span class="badge-tag tag-fact">【原始事实】</span>
+        <span class="badge-tag tag-plan">【临床方案计划】</span>
+        <span class="badge-tag tag-infer">【复盘推断】</span>
+        <span class="badge-tag tag-know">【知识补充】</span>
+      </div>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- 01 病例速览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <span class="num">01</span>
+          <div>
+            <h2>病例速览</h2>
+            <p>64 岁男性，原发性肝癌（CNLC IIB期）合并肝炎肝硬化；拟行第1次介入治疗，近3个月体重剧降20kg伴进食即吐、极度厌油与高炎症。</p>
+          </div>
+        </div>
+        
+        <div class="grid three">
+          <div class="card">
+            <div class="label"><span>患者与疾病</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="value">男，64 岁<br>主因确诊原发性肝癌约2月入院；诊断：肝恶性肿瘤 CNLC IIB期、肝炎肝硬化</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>治疗阶段与通路</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="value">拟行第1次介入治疗（TACE）入院准备阶段<br>外周静脉留置针（套管针），经口摄入严重受限</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>摄入与胃肠症状</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="value">进食量较前减少 2/3，进食后恶心呕吐<br>严重厌油（闻油烟恶心）、味觉改变（吃东西变味）、极度乏力</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>人体测量与诊断</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="value">172cm · 59kg · BMI 19.9 kg/m²<br>近3个月体重下降 20kg（降幅25%）；NRS 2002 评分 4 分，GLIM 重度营养不良</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>核心实验室化验</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="value">CRP 105.4↑ · PAlb 0.11↓ · AST 130↑ · Urea 11.53↑<br>TBil 40.1↑ · DBil 21.9↑ · IBil 18.2↑ · WBC 10.8↑ · LYMPH% 8.6↓ · NEUT% 84.2↑</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养治疗方案目标</span> <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="value">能量 1500–1700 kcal/d · 蛋白质 70–85 g/d · 液体 2000–2300 ml/d<br>PPN（海思+3AA+鱼油）短期托底供能供氮，联合低脂短肽/大豆肽ONS及低脂半流食</div>
+          </div>
+        </div>
+
+        <ul class="issues">
+          <li>
+            <span class="rank">P1</span>
+            <b>急剧消瘦与进食崩溃：3个月体重暴跌20kg（-25%）、前白蛋白仅0.11g/L，经口进食即吐无法达标，需紧急启动部分肠外营养（PPN）托底供能供氮</b>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P2</span>
+            <b>重度高炎症与肝损伤代谢紊乱：CRP 105.4 mg/L、AST 130 U/L、高胆红素血症伴极度厌油，需靶向应用支链氨基酸（3AA）保肝抗昏迷、鱼油抗炎及大豆肽，并严格限制脂肪</b>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P3</span>
+            <b>外周留置针输注安全性与经口双轨过渡：仅有外周套管针，全合一袋稀释+控速（100-120ml/h）防范静脉炎；同时利用未衰竭肠道推行低脂短肽3+3分餐试饮，平稳渡过介入期</b>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 02 原始会诊记录 -->
+      <section class="section" id="evidence">
+        <div class="section-head">
+          <span class="num">02</span>
+          <div>
+            <h2>第一部分 🎙 原始会诊记录</h2>
+            <p>完整保留患者基本信息、确诊疾病及治疗病史、营养相关现状与客观数据、现场录音逐字稿及待确认内容。</p>
+          </div>
+        </div>
+
+        <!-- 1. 患者基本信息 -->
+        <div class="content-box">
+          <h4>1. 患者基本信息</h4>
+          <div class="grid">
+            <div class="card soft">
+              <div class="label"><span>患者</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">已去除姓名</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>性别与年龄</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">男，64岁</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>主要确诊疾病</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">原发性肝癌（CNLC IIB期）、肝炎肝硬化</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>病理类型与分期</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">临床诊断原发性肝癌（病理未详）；CNLC IIB期</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>转移情况</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">现有资料未见远处转移记录</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>重要合并症</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">乙型肝炎肝硬化、重度营养不良、低蛋白血症、重度全身炎症反应、肝功能异常、高胆红素血症</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>手术史</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">既往无重大腹部手术史；本次拟行第1次介入治疗（TACE）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>抗肿瘤治疗史</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">确诊约2月，本次拟行第1次介入治疗入院</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>当前治疗阶段</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">介入治疗围手术期（术前评估与支持治疗阶段）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>本次就诊背景</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">2026年5月起无诱因恶心呕吐，食欲剧减，近3月体重降20kg，拟行介入入院</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>营养科会诊原因</span> <span class="badge-tag tag-infer">【复盘推断】</span></div>
+              <div class="value">介入术前重度消瘦脱相、进食即吐、重度炎症高代谢与低蛋白血症，申请指导营养干预</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>核心营养问题</span> <span class="badge-tag tag-infer">【复盘推断】</span></div>
+              <div class="value">恶病质消耗（3月-20kg）、经口摄入崩溃、重度低蛋白血症（PAlb 0.11）、外周静脉通路承载受限</div>
+            </div>
+            <div class="card soft" style="grid-column: 1 / -1;">
+              <div class="label"><span>信息不确定项</span> <span class="badge-tag tag-fact">【原始事实】</span></div>
+              <div class="value">患者家属既往自购的驼奶配套蛋白粉具体营养成分不详；外院肝炎长期抗病毒用药史现有资料未提及</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 确诊疾病及治疗病史 -->
+        <div class="content-box">
+          <h4>2. 确诊疾病及治疗病史</h4>
+          <p>患者男，64岁，确诊原发性肝癌约2月，合并乙型肝炎肝硬化 <span class="badge-tag tag-fact">【原始事实】</span>。临床分期评估为CNLC IIB期，拟行第1次介入治疗（TACE）入院 <span class="badge-tag tag-fact">【原始事实】</span>。患者于2026年5月无明显诱因出现恶心、呕吐，近3个月来食欲显著下降，极度厌油，味觉改变，伴全身乏力 <span class="badge-tag tag-fact">【原始事实】</span>。仅能进食少量稀半流食（如小米粥汤、疙瘩汤），进食后即感恶心呕吐，进食量较发病前减少2/3以上 <span class="badge-tag tag-fact">【原始事实】</span>。偶有口服家属购买的蛋白粉（具体成分不详） <span class="badge-tag tag-fact">【原始事实】</span>。近3个月体重急剧下降20kg（原体重约80kg/160斤，现59kg，降幅达25%） <span class="badge-tag tag-fact">【原始事实】</span>。介入科主治医师以“指导营养干预”为由申请营养科会诊 <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 3. 营养相关现状与客观数据 -->
+        <div class="content-box">
+          <h4>3. 营养相关现状与客观数据</h4>
+          <p><strong>体重和变化：</strong>身高172cm，体重59kg，BMI 19.9 kg/m²（查体记录） <span class="badge-tag tag-fact">【原始事实】</span>。患者自述发病前体重约160斤（80kg），近3个月体重下降20kg（自述“掉了30多斤都不止”），体重丢失比例达25%，呈现明显“脱相”与重度恶病质体征 <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>摄入情况与通路：</strong>经口摄入极差，进食量较正常减少2/3以上 <span class="badge-tag tag-fact">【原始事实】</span>。主要进食少量稀半流食（小米粥、疙瘩汤，吃完就吐，面条不敢吃），喝水多也诱发呕吐 <span class="badge-tag tag-fact">【原始事实】</span>。目前建立外周静脉套管针（留置针），尚无深静脉置管 <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>营养影响症状：</strong>进食后恶心、呕吐（入院前及昨日入院后均有呕吐） <span class="badge-tag tag-fact">【原始事实】</span>。严重厌油（闻到油烟味或轻微异味即强烈恶心）、味觉失真（吃东西嘴里没味、味道变异），全身重度乏力（下床无力），睡眠尚可，活动量极少 <span class="badge-tag tag-fact">【原始事实】</span>。小便正常，大便量特少但每日尚能自行排出少许，无需开塞露辅助 <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>实验室化验（2026-08-13）：</strong>CRP 105.4 mg/L（重度升高，提示强烈全身炎症反应），WBC 10.8 × 10^9/L（轻度升高），LYMPH% 8.6%（显著降低，细胞免疫受抑），NEUT% 84.2%（升高），PAlb 0.11 g/L（前白蛋白重度低下，内脏蛋白严重匮乏），TBil 40.1 μmol/L、DBil 21.9 μmol/L、IBil 18.2 μmol/L（总胆红素及直接胆红素升高），Urea 11.53 mmol/L（升高，提示高分解代谢或容量不足），AST 130 U/L（显著升高，肝细胞活动性损伤） <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>营养诊断与评估：</strong>NRS 2002评分4分（存在营养风险）；GLIM标准判定为重度营养不良（表型指标：3个月体重下降25% > 10%；病因指标：恶性肿瘤重度炎症反应 CRP 105.4 mg/L + 摄入减少>50%持续3个月） <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>营养治疗完成度演变：</strong>
+            <br>• 【医生建议量】（既往未行系统正规干预） → 【计划完成量】（家属自行买驼奶蛋白粉） → 【实际完成量】（因异味难耐，仅中午偶服极少许，每日有效供能预计不足400~500 kcal，处于极度负氮平衡） <span class="badge-tag tag-infer">【复盘推断】</span>。
+            <br>• 本次会诊制定目标：能量 1500~1700 kcal/d，蛋白质 70~85 g/d，液体 2000~2300 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>。
+            <br>• 医嘱执行计划：部分肠外营养（PPN留置针）提供1075 kcal能量与55g蛋白质（占总目标约65~70%）作为基础托底；经口配合低脂短肽/大豆肽及低脂半流食提供其余400~600 kcal能量与15~30g蛋白质 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+          </p>
+        </div>
+
+        <!-- 4. 会诊现场顺序复盘 -->
+        <div class="content-box">
+          <h4>4. 会诊现场顺序复盘（五个关键模块）</h4>
+          
+          <div class="dialogue-item">
+            <h4>模块一：消瘦幅度核实与恶心呕吐时序问诊</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“你躺着吧不用坐起来……吃什么吐了呢？说这三个月掉了有30斤？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“30斤都不止……就喝点粥水，喝水都吐啊……没办法，所以我就到医院去看看能不能打点营养液……比那个稍微好点，昨天来的，又吐了两次。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>核实患者3个月内体重剧降超30斤（实际达20kg，降幅25%），坐实重度恶病质；明确恶心呕吐持续且喝水即吐，单靠经口进食无法满足机体代谢，确立了必须使用静脉营养支持（PPN）短期托底的紧迫性。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块二：厌油、味觉改变与进食受限特征探查</h4>
+            <div class="speaker-doc">医生追问：</div>
+            <div class="quote">“不吃的时候想吐吗还是吃完了之后想吐？油也不能闻了？口味吃东西变了吗？吃到嘴里感觉味道变了吗？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“吃完了之后想吐。都变了，什么都没味，什么都不想吃了，没有食欲……哪怕油烟都有一点坏味都不行，特灵敏都邪性……什么都不爱吃，我就只有强忍着喝点小米粥、疙瘩汤、糊糊。面条都不敢吃。昨天吃了点疙瘩汤，吃完就吐。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>捕捉到肝病特有的神经感觉异常：顽固性厌油与味觉重度变异；患者目前仅能勉强进食微量碳水化物流食且餐后易吐，提示胃排空延迟与消化酶分泌受抑，经口饮食必须严格“低脂、无异味、预消化短肽/大豆肽”。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块三：既往盲目补充排查与外周静脉通路（留置针）耐受评估</h4>
+            <div class="speaker-doc">医生追问与解释：</div>
+            <div class="quote">“这仨月吃的少，没有喝什么粉补充一下呢？……我看你还是个套管针（留置针）是吧？有打算要埋个管吗？如果输营养液的话，套管针对血管不好，因为它渗透压比较高，如果鼓包的话血管都伤了，下次都不能用了。如果给您开这个营养液，活动得注意点不能跑针鼓包，滴的比较慢，一袋1000多毫升滴十来个小时……今天给您放到一个大袋子里输。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“喝了点叫什么白蛋白……家里买的，反正吃的也不对劲也不敢天天吃，中午吃一点也不敢吃……回了家估计没有营养液打……昨天打了两瓶像奶一样的。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>发现患者曾盲目自购口服蛋白粉但因不耐受不敢坚持；发现患者目前仅有外周留置针，医生评估了高渗静脉营养液对外周浅静脉的损伤风险，决定采用“全合一袋（海思三腔袋）稀释+严格控制滴速（100-120ml/h）”的PPN安全方案。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块四：肠道排便功能与早期床旁活动能力评估</h4>
+            <div class="speaker-doc">医生追问：</div>
+            <div class="quote">“像现在肯定是没劲儿走路是吧？没事可以在床上坐坐，坐坐床边，或者抬抬腿抬抬手，不能完全老躺着……大便需要开塞露吗？几天一次？” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“特没劲儿……大便不用开塞露，每天都能出来点，特少。每天都有点。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生解释：</div>
+            <div class="quote">“每天都有一点特少，说明肠道这个功能还在，所以咱还得坚持，能多吃点就多吃点，不行就少来点。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>证实患者虽重度衰弱但胃肠道排便动力未完全丧失，肠黏膜屏障功能仍存；确立了“绝不轻易放弃肠内/经口”的原则，同时指导床旁低强度活动防范骨骼肌废用性萎缩。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块五：肝病营养饮食原则、制剂选型与3+3分餐指导</h4>
+            <div class="speaker-doc">医生指导与宣教：</div>
+            <div class="quote">“油稍微少一点，做完介入反应好点想吃了油也得少一点。蛋白粉最好选大豆肽，以植物蛋白为主，少量动物蛋白，比如豆腐、豆浆会稍微好一点……采用3+3模式，三顿饭加三顿营养粉。选脂肪低一点、大豆来源的，因为肝脏跟人家还不太一样。唯源佳或者麦愈口味比较淡，大豆肽粉更好吸收……维持体重的全营养制剂选一个，蛋白粉选大豆肽。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“大豆肽……之前买的是跟骆驼奶配套的……我明白了，选大豆的，出院我让孩子拍。” <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>纠正了家属乱买驼奶蛋白粉的误区，系统宣教了肝病“低脂、植物蛋白/大豆肽为主、3+3少量多餐”的核心法则，明确区分了全营养配方与蛋白质补充组件的定位。 <span class="badge-tag tag-infer">【复盘推断】</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 待确认内容 -->
+        <div class="content-box">
+          <h4>5. 待确认内容</h4>
+          <p>1. 患者介入术后发热、腹痛、恶心等栓塞后综合征（PES）的出现概率及持续时间，需在术后严密监测。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p>2. 患者既往长期乙肝病史，外院口服抗病毒药物（如恩替卡韦/替诺福韦）的具体方案及HBV-DNA定量需进一步复核。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p>3. 暂缺BIA人体成分骨骼肌分析仪量化数据，后续复查时建议完善以评估肌少症改善程度。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 03 原始会诊处理意见 -->
+      <section class="section" id="opinion">
+        <div class="section-head">
+          <span class="num">03</span>
+          <div>
+            <h2>第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+            <p>依据原始营养会诊处理意见完整转录，诊断、目标、用量、频次、执行方法及监测建议按原有顺序全量保留。</p>
+          </div>
+        </div>
+
+        <div class="raw-opinion-container">
+          <div class="meta-notice">
+            以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病案号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+          </div>
+          <div class="raw-text-block">处理意见：敬阅病史同前，患者男，64岁，主因确诊原发性肝癌约2月，拟行第1次介入治疗入院，诊断肝恶性肿瘤CNLCIIB期、肝炎肝硬化。患者一般情况可，拟行介入治疗。患者近3月出现食欲下降，厌油，味觉改变、乏力，进食少量半流食，进食后恶心呕吐。进食量较前减少2/3，偶有口服蛋白粉（具体不详）。近3个月体重下降20kg。平素饮食习惯可。小便正常，大便量少，睡眠可，活动量少。化验血：8-13 CRP 105.4、WBC 10.8、LYMPH% 8.6、NEUT% 84.2、PAlb 0.11、TBil 40.1、DBil 21.9、IBil 18.2、Urea 11.53，AST 130。
+营养查体：患者精神状况可，现ht 172cm，wt 59kg，BMI: 19.9kg/m2，NRS2002: 4分；
+营养诊断：恶性肿瘤合并营养风险，重度营养不良，低蛋白血症、炎症、肝功能异常
+营养诊疗计划：
+1. 改善症状，ONS补充营养，纠正低蛋白血症，保护肝脏、控制炎症，稳定体重，一日目标能量1500~1700kcal，蛋白质：70-85g，液体量2000-2300ml。
+2. 部分肠外营养支持（留置针）：脂肪乳氨基酸葡萄糖注射液 海思1440ml+支链或复方氨基酸注射液 3AA 250ml+鱼油脂肪乳 10g+水溶性维生素2支+脂溶性维生素2支+ 15%KCL 30ml+10%NaCl 50ml+多种微量元素（安达美）10ml +维生素C 0.5g + 胰岛素18-20iu，提供能量1075kcal，蛋白质55g，脂肪40g，液体1356ml，以100-120ml/h速度静脉滴注；
+3. 低脂半流食，如肉菜粥、龙须面、馒头蘸汤、面包、鸡蛋羹、豆腐脑、无糖酸奶、清蒸鱼、汆里脊肉丸子、嫩叶瓜果菜，蔬果汁等；蛋白质以植物蛋白为主，少量动物蛋白。详见饮食指导单。
+4. 肠内营养制剂 低脂短肽型全营养制剂 唯源佳或麦愈 40g 每日2-3次；大豆肽粉 1袋 每日2-3次；
+5. 多种维生素咀嚼片 每日1片 + 维生素B1 30mg B2 B6 C 1粒，每日三次，随餐口服；
+6. 营养复合膳食纤维 优能康1袋 每日1次，200ml温水冲服；
+7. 维生素D3滴剂 1000-5000iu+K2 100-200ug，每日1次；自备
+8. 适量有氧及抗阻运动，每日30分钟，循序渐进，根据耐受情况逐渐加量；
+9. 密切监测血常规、电解质、贫血六项、CRP、PALB、胃肠症状、体重等，不适随诊。
+(临床营养科)会诊医师：已去除姓名
+日期：2026-08-14 15:16</div>
+        </div>
+      </section>
+
+      <!-- 04 医生思维拆解 -->
+      <section class="section" id="reasoning">
+        <div class="section-head">
+          <span class="num">04</span>
+          <div>
+            <h2>第三部分 🧠 医生临床思维拆解</h2>
+            <p>深入剖析四大关键问诊点、医生想判断什么、完整临床推理链及从问诊到医嘱的全局决策映射。</p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 1 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 1：体重暴跌（20kg/25%）与顽固恶心呕吐的时序追溯与供能通路决策</h4>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“吃什么吐了呢？说这三个月掉了有30斤？……不吃的时候想吐吗还是吃完了之后想吐？” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>3个月掉了30多斤都不止（实际20kg），喝粥水都吐，喝水多也吐，昨日入院又吐了两次，进食量减少2/3以上，极度乏力脱相。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估消瘦的进行性严重程度，区分消化道局部梗阻与肝病胃肠淤血/反射性恶心；判断单靠经口进食能否在介入术前纠正严重负氮平衡。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>3个月减重20kg（-25%），进食进水即吐，前白蛋白仅0.11g/L。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>肝恶病质高消耗 + 门脉高压胃肠淤血致胃排空延迟与化学感受器反射兴奋。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>经口实际摄入不足400kcal/d；若强求单靠经口进食，术前营养衰竭将致肝衰竭风险。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>单纯强推经口 vs 立即启动部分肠外营养（PPN）；决策：PPN托底提供1075kcal+55g蛋白。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：3个月急剧减重20kg（降幅25%），重度低蛋白血症（PAlb 0.11 g/L），进食甚至饮水后频繁呕吐。<br>
+              ↓ 可能原因：原发性肝癌高分解代谢合并肝硬化门脉高压性胃病，胃肠动力受抑、消化酶减少。<br>
+              ↓ 需要补充的证据：呕吐是否与进食量直接相关、有无咖啡样物或腹水体征。<br>
+              ↓ 风险判断：围介入期面临栓塞反应二次创伤，若不能迅速补充能量蛋白质，术后极易发生急性肝功能失代偿、腹水及严重感染。<br>
+              ↓ 可选干预：强推高营养经口饮食 vs 肠内管饲置管 vs 部分肠外营养（PPN）静脉短期支持。<br>
+              ↓ 医生实际处理意见：建立PPN（海思三腔袋1440ml等）直接供能1075kcal、蛋白质55g，快速填补代谢缺口 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>决定医嘱第1、2条确立1500~1700kcal日目标，并将PPN作为围术期核心供能手段，占总热量65%以上。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 2 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 2：严重厌油、味觉失真与肝病配方（低脂、大豆肽、3AA支链氨基酸）靶向干预</h4>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“油也不能闻了？吃到嘴里感觉味道变了吗？”并向患者指导“油稍微少一点……蛋白粉最好选大豆肽，以植物蛋白为主。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>闻到油烟或一点坏味都恶心，味觉特灵敏变异，吃什么都没味，家里买的动物蛋白粉觉得味别扭喝不下。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】识别肝炎肝硬化高胆红素（TBil 40.1）与高炎症（CRP 105.4）背景下的代谢异常与味觉敏感；评估普通高脂、整蛋白及芳香族氨基酸的耐受风险。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>严重厌油、恶心，AST 130，CRP 105.4，自购普通蛋白粉难耐受。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>胆汁酸分泌受阻致脂肪消化障碍；血浆支/芳氨基酸比值（BCAA/AAA）下降致中枢感觉异常。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>高脂与普通动物肉类加重胃排空延迟并增加假性神经递质积聚（肝性脑病隐患）。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>静脉加用3AA支链氨基酸250ml+鱼油；经口选低脂半流食+大豆肽粉+唯源佳/麦愈短肽。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：极度厌油、味觉变异、AST 130 U/L、总胆红素40.1 μmol/L、CRP 105.4 mg/L。<br>
+              ↓ 可能原因：肝细胞损伤导致胆汁酸合成排泄受阻，脂肪分解吸收障碍；骨骼肌蛋白质大量分解，血浆支链氨基酸（BCAA）重度消耗。<br>
+              ↓ 需要补充的证据：有无扑翼样震颤、性格改变或夜间睡眠节律颠倒（排查亚临床肝性脑病）。<br>
+              ↓ 风险判断：若给予高脂饮食或大量普通动物整蛋白，将加剧恶心腹胀，并可能诱发高血氨与肝昏迷。<br>
+              ↓ 可选干预：普通全合一肠内营养 vs 肝病专用配方（高BCAA、低脂、大豆肽、鱼油抗炎）。<br>
+              ↓ 医生实际处理意见：静脉加入支链氨基酸3AA 250ml与鱼油脂肪乳10g；经口指导低脂半流食，口服大豆肽粉及低脂短肽唯源佳/麦愈 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>形成了医嘱第2条中的3AA与鱼油配伍，以及第3、4条中的“植物蛋白为主、大豆肽粉每日2-3次、低脂短肽型全营养”定制组合。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 3 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 3：外周静脉留置针（套管针）耐受性评估与高渗营养液输注安全管理</h4>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“我看你还是个套管针是吧？有打算要埋个管吗？套管针对血管不好，因为它渗透压比较高……活动得注意点不能跑针鼓包。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>目前仅使用外周套管针，未行深静脉置管（PICC/CVC），担心出院后静脉维护困难；昨日曾单独输注两瓶像牛奶一样的液体。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估外周浅静脉承受高渗液体与全肠外营养的能力，防止静脉炎、化学性血管闭塞及药液外渗坏死，兼顾围术期住院周期的可行性。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>患者仅有外周留置针，住院时间短（数日内行介入后出院），血管条件一般。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>高渗葡萄糖与氨基酸单独快速输注会导致浅静脉内皮脱水与化学性炎症损伤。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>套管针跑针鼓包导致局部组织坏死、浅静脉血栓形成，破坏后续介入及治疗静脉通路。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>立即行PICC置管 vs 全合一（All-in-One）袋装稀释+严格控速（100-120ml/h）PPN。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：外周留置针输液，昨日单瓶串联输注，渗透压波动大。<br>
+              ↓ 可能原因：外周浅静脉对高渗透压（>800~900 mOsm/L）耐受极差。<br>
+              ↓ 需要补充的证据：留置针穿刺部位皮肤有无红肿触痛、回血是否通畅。<br>
+              ↓ 风险判断：单瓶高浓度输注极易引发外周静脉炎，导致血管硬化报废，增加患者痛苦并延误治疗。<br>
+              ↓ 可选干预：强行要求PICC置管（耗时增加且有感染风险） vs 优化PPN配伍降低渗透压并规范宣教。<br>
+              ↓ 医生实际处理意见：采用海思卡尔三腔袋（1440ml）将糖、脂、氨基酸、电解质、微量元素充分混合为全合一体系，由外周留置针以100~120ml/h均速滴注十余小时，并强化防跑针宣教 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>确立医嘱第2条中“留置针全合一配比”及“以100-120ml/h速度静脉滴注”的严格参数限定。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 4 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 4：肠道屏障保护与“PPN托底 + 3+3低脂短肽/半流食”双轨阶梯推进</h4>
+            <span class="badge-tag tag-infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“大便几天一次？需要开塞露吗？”并在得知“每天都有点特少”后解释“说明肠道功能还在，咱还得坚持能多吃点就多吃点……3+3模式。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>大便虽然量特少，但每天都能自行解出少许，不需要开塞露；精神尚可但肢体无力。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】核实胃肠道蠕动与远端排泄功能是否存活；确认无需完全肠道禁食，必须保留经口微量喂养以维护肠黏膜屏障、刺激胆汁排泄并防范细菌移位。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>大便量极少但每日能解，说明肠道机械与吸收屏障未衰竭。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>极低进食量下肠道微生态失衡、肠黏膜绒毛萎缩，但神经反射仍完好。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>完全禁食依赖静脉将诱发肠黏膜萎缩、肠道菌群易位及内毒素血症（加重肝损伤）。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>单纯全肠外营养（TPN） vs “PPN托底+少量多次经口ONS/半流食”双轨推进。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：进食极少但每日能排少许大便，无肠梗阻体征。<br>
+              ↓ 可能原因：肠道自主蠕动与黏膜血流尚存。<br>
+              ↓ 需要补充的证据：肠鸣音活跃度、腹部触诊有无压痛反跳痛。<br>
+              ↓ 风险判断：若完全放弃经口进食，会导致肠上皮细胞饥饿萎缩、分泌型IgA减少，极易诱发肠源性感染与肝功能恶化。<br>
+              ↓ 可选干预：完全TPN禁食 vs “PPN满足基本代谢 + 经口微量滋养性喂养”。<br>
+              ↓ 医生实际处理意见：建立“3餐低脂半流食 + 3餐低脂短肽全营养（唯源佳/麦愈）/大豆肽”的3+3分餐试服模式，加用复合膳食纤维（优能康）改善肠道微生态 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>形成了医嘱第3、4、6条关于低脂半流食、短肽ONS、大豆肽粉及膳食纤维优能康的协同经口方案。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 全局决策映射 -->
+        <div class="content-box">
+          <h4>从问诊到处理意见全局推导</h4>
+          <p><strong>会诊获得的信息：</strong>原发性肝癌介入术前、3个月体重暴降20kg（-25%）、进食进水即吐、重度厌油味觉异样、外周留置针、CRP 105.4 mg/L、AST 130 U/L、PAlb 0.11 g/L、大便每日少许 <span class="badge-tag tag-fact">【原始事实】</span>。</p>
+          <p><strong>医生识别的问题：</strong>【医生判断】急剧消耗性恶病质与经口摄入崩溃矛盾；严重高炎症与肝损伤代谢紊乱；外周静脉高渗输注风险与肠屏障保护需求。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>主要营养风险：</strong>【复盘推断】围介入期急性肝功能衰竭、难治性腹水、严重感染、外周静脉炎坏死及进行性肌少症恶化。</p>
+          <p><strong>原始处理意见方案逻辑：</strong>
+            目标能量1500~1700 kcal/d（约25~29 kcal/kg/d）、蛋白质70~85 g/d（约1.2~1.4 g/kg/d）、液体2000~2300 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>；
+            以海思卡尔三腔袋（1440ml）+ 3AA支链氨基酸（250ml）+ 鱼油脂肪乳（10g）+ 复合维生素/微量元素/胰岛素全合一体系，经外周留置针供能1075 kcal、蛋白质55g快速托底 <span class="badge-tag tag-plan">【临床方案计划】</span>；
+            经口采用“3+3模式”：低脂半流食（肉菜粥、清蒸鱼、豆腐脑等）配合低脂短肽全营养（唯源佳/麦愈）及大豆肽粉，避开厌油反射并维持肠黏膜屏障 <span class="badge-tag tag-plan">【临床方案计划】</span>；
+            口服复合B族、维生素C、维生素D3+K2强化微量营养素抗氧化与骨代谢支持 <span class="badge-tag tag-plan">【临床方案计划】</span>；
+            膳食纤维（优能康）滋养肠道益生菌，配合每日30分钟低强度床旁抗阻微运动促进蛋白同化 <span class="badge-tag tag-plan">【临床方案计划】</span>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 患者及家属营养误区 -->
+      <section class="section" id="misconceptions">
+        <div class="section-head">
+          <span class="num">05</span>
+          <div>
+            <h2>第四部分 ⚠️ 患者及家属营养误区</h2>
+            <p>提炼患者及家属原话顾虑、医生现场纠正、临床机制解释与可复用宣教沟通话术。</p>
+          </div>
+        </div>
+
+        <!-- 误区 1 -->
+        <div class="misconception-card">
+          <h4>误区 1：恶心吃不下就“只喝稀粥水清汤”，认为越清淡越养胃，完全不碰蛋白质和营养制剂</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“啥也不想吃……就喝点粥水，强忍着喝点小米粥、疙瘩汤、糊糊，面条都不敢吃。昨天吃了点疙瘩汤，吃完就吐。” <span class="badge-tag tag-fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“喝粥其实不管事，体重还得掉。得选脂肪低一点的营养粉，直接冲泡喝，比喝粥管事多了。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者和家属传统观念认为生病恶心就只能喝白粥“清火养胃”，害怕摄入蛋白质加重胃肠负担，导致能量密度极低，加剧了3个月减重20kg的肌肉剧烈消耗。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】白米粥主要是水分与快速消化的单调淀粉，能量密度仅约0.2~0.3 kcal/ml，几乎不含优质蛋白质、必需脂肪酸及微量元素；在肿瘤与肝硬化高代谢状态下，单喝粥水会导致内源性骨骼肌与内脏蛋白剧烈自噬分解（本例前白蛋白跌至0.11 g/L），恶性循环加重恶心与衰弱。依据《原发性肝癌患者营养治疗中国专家共识》（2021）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “大叔，白粥看着清淡好咽，但其实一大碗里90%都是水，几乎没有能帮身体抗肿瘤和长肉的蛋白质。您现在3个月掉了快40斤肉，只喝粥身体就只能‘吃自己的肌肉’。咱们把粥换成配好的低脂营养粉，一口就能顶好几碗粥的营养，肚子不撑，力气和免疫力才能长上来。” <span class="badge-tag tag-infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 2 -->
+        <div class="misconception-card">
+          <h4>误区 2：盲目迷信昂贵市售非正规保健品（如驼奶配套蛋白粉），因口感差和成分不明反而不敢吃</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“家里买的跟骆驼奶配套的蛋白粉，反正吃的也不对劲也不敢天天吃，搁糖不搁糖那味都不行，怎么都是别扭……我自己都吓一跳，这都脱相了。” <span class="badge-tag tag-fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“那个也不一定适合你。得选那种水解的大豆肽粉，植物来源的更适合肝脏；普通动物大分子蛋白味重不好消化。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>家属救亲心切，听信市面夸大宣传购买昂贵驼奶或杂牌蛋白粉，既未经过临床医学配方验证，异味又重，患者极度抗拒，造成经济浪费与摄入停滞。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】市售非特医食品类蛋白粉多为未经酶解的大分子浓缩蛋白，气味较重且渗透压不均；肝病患者常伴有芳香族氨基酸代谢障碍及胆汁分泌不足，对异味极度敏感；临床医用水解大豆肽粉抗原性低、分子量小、无腥膻味，经PepT1转运体直接快速吸收，富含支链氨基酸，能改善肝性脑病风险。依据《终末期肝病临床营养指南》（2019/2024）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “家属的心意特别好，但市面上那些驼奶蛋白粉是大分子，味道浓，患者现在肝脏不好、味觉又特别敏感，闻着就想吐。咱们临床要用‘水解大豆肽’，它是从大豆里提炼并提前切成细小分子的植物蛋白，几乎没怪味，冲水一喝肠道直接吸收，既省钱又真正对肝脏起保护作用。” <span class="badge-tag tag-infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 3 -->
+        <div class="misconception-card">
+          <h4>误区 3：以为“静脉打了营养液就完全不用嘴吃”，忽略经口饮食对保护肠黏膜和肝功能的关键作用</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“就到医院去看看能不能打点营养液……反正先打着营养液呗，出院的时候再考虑吃的事。” <span class="badge-tag tag-fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“大便每天都有点，说明肠道功能还在。咱还得坚持，能多吃点就多吃点……出院回家没地儿输液了还得靠自己吃。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者认为输液省事且不恶心，产生依赖心理，打算住院期间完全靠静脉“大输液”，出院再说。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】胃肠道黏膜上皮细胞70%以上的能量直接依赖肠腔内营养物质供给；长期完全禁食会导致肠绒毛萎缩、黏膜通透性增加，使肠道内毒素进入门静脉循环加重肝细胞损伤；即使进食量少，维持微量经口肠内营养（Trophic Feeding）亦能有效维护肠屏障与门脉血流。依据ESPEN慢性肝病临床营养指南（2020）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “大叔，输营养液就像‘外援空投’，帮您把这几天术前的体力先托住；但您肚子里的肠道就像‘自家部队’，如果一口都不吃，肠道黏膜饿蔫了，细菌和毒素就会顺着血管往肝脏跑。咱们哪怕每次就喝两口清淡的短肽营养粉，也是在‘给肠道发粮饷’，这样介入做完您能好得更快。” <span class="badge-tag tag-infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 4 -->
+        <div class="misconception-card">
+          <h4>误区 4：极度乏力时认为“必须绝对卧床静养”，不敢活动，加速骨骼肌萎缩与胰岛素抵抗</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“特没劲儿，走路都没劲儿，就老躺在床上。” <span class="badge-tag tag-fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“没事可以在床上坐坐，坐坐床边，或者抬抬腿、抬抬手，不能完全老躺着，不然床子（肠道）也不动了。” <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者和家属担心下床活动消耗体力或跌倒，认为生了大病就应该24小时静卧保元气。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】绝对卧床每持续3天，抗重力骨骼肌力量即衰退5~10%，且加重胃肠道动力迟缓与胰岛素抵抗，使静脉输注的氨基酸无法有效转化为肌蛋白合成；床上坐立与肢体抗阻微运动能刺激机械敏感性mTOR通路，促进蛋白质同化。依据《恶性肿瘤患者运动康复中国专家共识》（2023）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “大叔，咱身上没劲儿是因为这几个月肌肉掉了太多。老躺着不动，肌肉会‘以为自己没用了’继续缩水，肠子也会跟着发懒不蠕动。咱们不用去走廊瞎跑，就在床边坐一会儿，或者躺着勾勾脚尖、抬抬胳膊，给肌肉一点‘开工信号’，打进去的营养才能真正变成您身上的力气。” <span class="badge-tag tag-infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 我的学习成长记录 -->
+      <section class="section" id="review">
+        <div class="section-head">
+          <span class="num">06</span>
+          <div>
+            <h2>第五部分 💡 我的学习成长记录</h2>
+            <p>从“机械看化验与算热量”转向“结合肿瘤分期、器官代谢、通路受限与依从性进行多维决策”，记录第一人称认知转变。</p>
+          </div>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天之前我的理解</h4>
+          <p>复盘前，我会如何判断这个问题？（供个人结合临床体验确认与修改） <span class="badge-tag tag-infer">【复盘推断】</span>：<br>
+          “在看到患者3个月瘦了20kg、前白蛋白0.11g/L且吃什么吐什么时，我可能会慌乱于快速纠正重度营养不良，容易机械地想要立即插鼻胃管打全营养液，或者要求家属必须强行经口吃够1500kcal；而在静脉补液上，如果患者只有外周留置针，我可能会不敢使用足量肠外营养，或者忽视了3AA支链氨基酸、鱼油抗炎及水解大豆肽在肝脏恶病质中的特殊代谢价值。”</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天新的认识（以下为复盘建议，供我确认和修改）</h4>
+          <p>1. <strong>急剧消瘦伴经口崩溃期，“PPN托底+经口微量滋养”是围术期最佳过渡桥梁：</strong>不强求一次性全口服达标，利用海思全合一三腔袋经外周留置针安全控速供能（1075kcal，55g蛋白），既保证了术前基本氮平衡，又避免了高渗静脉炎与强推经口加重呕吐。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p>2. <strong>肝病恶性肿瘤患者的配方必须高度定制化（低脂、高BCAA、大豆肽）：</strong>针对严重厌油与高炎症（CRP 105.4），静脉加用3AA支链氨基酸与鱼油，口服选用低脂短肽及大豆肽粉，避开代谢障碍，精准促进蛋白同化。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>最大收获（临床思维闭环提炼）</h4>
+          <p><strong>① 发现问题：</strong>识别肝癌介入术前患者3个月减重20kg（-25%）、恶心进食即吐、严重厌油、CRP 105.4 mg/L、AST 130 U/L、PAlb 0.11 g/L、仅有外周留置针 <span class="badge-tag tag-fact">【原始事实】</span>。<br>
+          <strong>② 分析原因：</strong>肿瘤高分解代谢 + 肝功能受损胆汁减少 + 门脉胃病致胃排空迟缓与中枢厌油敏感 <span class="badge-tag tag-infer">【复盘推断】</span>。<br>
+          <strong>③ 补充证据：</strong>核实呕吐时序、外周留置针状况、大便性状（每日少许有便）及既往自购蛋白粉不耐受细节 <span class="badge-tag tag-fact">【原始事实】</span>。<br>
+          <strong>④ 判断风险：</strong>围介入期急性肝衰竭、低蛋白性腹水、外周静脉炎血管报废及进行性恶病质加剧 <span class="badge-tag tag-infer">【复盘推断】</span>。<br>
+          <strong>⑤ 选择干预：</strong>部分肠外营养PPN（海思+3AA+鱼油+微量元素）静脉托底 + 低脂半流食/低脂短肽/大豆肽3+3经口试服 + 床旁微运动 <span class="badge-tag tag-plan">【临床方案计划】</span>。<br>
+          <strong>⑥ 明确执行：</strong>PPN全合一均速100~120ml/h静滴、大豆肽温水溶解分次随餐服、多种维生素咀嚼片口服 <span class="badge-tag tag-plan">【临床方案计划】</span>。<br>
+          <strong>⑦ 监测与复评：</strong>严密监测留置针局部皮肤、呕吐缓解程度、血生化、肝肾功能、CRP、PALB及体重变化 <span class="badge-tag tag-plan">【临床方案计划】</span>。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>下次我会怎么问（可复用的问诊结构链）</h4>
+          <p>1. <strong>快速筛查消瘦与摄入：</strong>“近3个月体重总共掉了多少斤？平时穿的裤腰松了多少？最近每天能吃进以往饭量的几成？” <span class="badge-tag tag-infer">【复盘推断】</span><br>
+          2. <strong>定位消化道与感觉症状：</strong>“恶心是闻到油烟味就犯，还是刚咽下饭去就往上反？嘴巴里有没有发苦、变味或者觉得所有东西都没味道？” <span class="badge-tag tag-infer">【复盘推断】</span><br>
+          3. <strong>排查既往补充与误区：</strong>“生病这几个月家里有没有买过蛋白粉、人参或者其他补品？吃完之后肚子胀不胀、恶心不恶心？” <span class="badge-tag tag-infer">【复盘推断】</span><br>
+          4. <strong>评估通路与排便功能：</strong>“现在输液扎的是手上的普通留置针还是胳膊上的深静脉管？大便几天一次、量多不多、需不需要用开塞露？” <span class="badge-tag tag-infer">【复盘推断】</span><br>
+          5. <strong>确认体能与活动意愿：</strong>“白天大部分时间是躺着还是能在床边坐坐？下床走路两腿发不发飘、有没有心慌？” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>我仍然不会或不确定的地方</h4>
+          <p>1. <strong>TACE介入术后栓塞综合征的代谢急性期应对：</strong>介入栓塞后肿瘤缺血坏死常引起剧烈发热、腹痛及恶心加重，在此急性反应期（术后1-3天），PPN与经口短肽的配比与滴速应如何动态微调？ <span class="badge-tag tag-infer">【复盘推断】</span><br>
+          2. <strong>Child-Pugh B级肝硬化患者的支链氨基酸（3AA）长期剂量滴定：</strong>出院后如果无法继续输注静脉3AA，口服支链氨基酸颗粒（BCAA）与大豆肽粉的最佳搭配比例如何确定，需进一步请教带教老师。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 07 本病例相关知识整理 -->
+      <section class="section" id="knowledge">
+        <div class="section-head">
+          <span class="num">07</span>
+          <div>
+            <h2>第六部分 📚 本病例相关知识整理</h2>
+            <p>总结原发性肝癌代谢紊乱、部分肠外营养（PPN）外周安全输注、支链氨基酸与大豆肽的循证指南依据与应用边界。</p>
+          </div>
+        </div>
+
+        <!-- 知识点 1 -->
+        <div class="knowledge-box">
+          <h4>知识点 1：原发性肝癌合并肝硬化患者的代谢特征与营养不良评定标准</h4>
+          <p><strong>与本病例的关系：</strong>原发性肝癌CNLC IIB期合并肝硬化，3个月体重急剧下降20kg（降幅25%），PAlb仅0.11g/L。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>慢性肝病及肝癌患者存在典型的“加速饥饿状态（Accelerated Starvation）”，机体糖原储备显著低下，禁食仅数小时即可出现类似健康人禁食数天的脂肪与骨骼肌过度分解；同时由于骨骼肌大量摄取支链氨基酸（BCAA）供能，导致血浆支/芳氨基酸比值显著下降。根据GLIM共识标准，非自主性体重下降>10%（6个月内）或>5%（3个月内）合并恶性肿瘤慢性高炎症即确诊为重度营养不良。前白蛋白（PAlb，半衰期仅1.9天）是反映肝脏合成能力与近期内脏蛋白急剧消耗的高灵敏指标。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（NRS 2002评定4分，GLIM重度营养不良诊断明确）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>依据：</strong>《原发性肝癌患者营养治疗中国专家共识》（中国抗癌协会肿瘤营养专业委员会，2021）；ESPEN慢性肝病临床营养实践指南（2020）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 2 -->
+        <div class="knowledge-box">
+          <h4>知识点 2：围介入治疗期（TACE）部分肠外营养（PPN）外周输注规范与全合一安全界限</h4>
+          <p><strong>与本病例的关系：</strong>患者仅建立外周留置针，需输注海思三腔袋1440ml等高能量密度液体，存在静脉炎风险。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>当患者胃肠道功能部分受损、经口摄入无法达到目标能量60%且预计持续时间>5-7天时，推荐启动部分肠外营养（PPN）。经外周浅静脉输注时，混合液总渗透压原则上应控制在<900 mOsm/L以内；必须采用“全合一（All-in-One）”袋装技术，将高渗葡萄糖与氨基酸经脂肪乳及电解质充分稀释缓冲，避免单瓶高浓度滴注对血管内皮的渗透性剥夺；输注速度严格控制在100~120 ml/h以内，严密观察穿刺点红肿、硬结，防止药液外渗。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（严格执行海思三腔袋全合一配比与100-120ml/h控速滴注）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>依据：</strong>《肿瘤患者肠外营养治疗专家共识》（CSPEN，2022）；美国肠外肠内营养学会（ASPEN）安全实践指南（2021）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 3 -->
+        <div class="knowledge-box">
+          <h4>知识点 3：支链氨基酸（3AA/BCAA）与ω-3鱼油脂肪乳在肝病高炎症中的代谢调控</h4>
+          <p><strong>与本病例的关系：</strong>CRP 105.4 mg/L重度炎症、AST 130 U/L肝细胞损伤，医嘱加入3AA 250ml与鱼油脂肪乳10g。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>支链氨基酸（亮氨酸、异亮氨酸、缬氨酸）主要在肝外骨骼肌中代谢，不加重肝脏代谢负荷，能竞争性抑制芳香族氨基酸（AAA）通过血脑屏障，有效预防肝性脑病，并直接激活mTORC1通路刺激肝细胞与骨骼肌蛋白合成。ω-3鱼油脂肪乳（富含EPA/DHA）可通过置换细胞膜花生四烯酸，抑制促炎介质（TNF-α、IL-6）释放，调节核因子NF-κB信号通路，对于下调肿瘤高炎症（CRP>100 mg/L）与改善肝细胞淤胆具有重要免疫保护作用。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（作为静脉营养配方的核心保肝与抗炎功能组件）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>依据：</strong>《终末期肝病临床营养指南》（中华医学会肝病学分会，2019/2024）；《恶性肿瘤患者免疫营养治疗中国专家共识》（2021）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 4 -->
+        <div class="knowledge-box">
+          <h4>知识点 4：水解大豆肽与低脂短肽型全营养（ONS）在肝病厌油患者中的应用优势</h4>
+          <p><strong>与本病例的关系：</strong>患者严重厌油、进食即吐、胃排空迟缓，处方选用低脂短肽唯源佳/麦愈及大豆肽粉。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>低脂短肽型制剂通过酶水解将大分子整蛋白分解为二肽、三肽，不依赖胃酸和胰蛋白酶的初步消化，直接经小肠黏膜PepT1高效载体转运，吸收速度显著快于整蛋白及游离氨基酸；制剂中严格限制长链脂肪（LCT）含量，极大降低对胆汁酸的乳化依赖，能有效规避肝病患者厌油、恶心及餐后饱胀反应。大豆肽为纯植物来源水解多肽，具有低抗原性、清淡无腥膻味及高支芳比特性，是肝病患者经口补充优质氮源的首选组件。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（指导患者3+3少量多餐随餐或餐间分次冲服）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+          <p><strong>依据：</strong>《中国肿瘤营养治疗指南》（CSPEN，2020/2023版）；ESPEN肿瘤患者临床营养指南（2021）。 <span class="badge-tag tag-know">【知识补充】</span></p>
+        </div>
+      </section>
+
+      <!-- 08 临床思维路径图 (Decision Tree) -->
+      <section class="section" id="tree">
+        <div class="section-head">
+          <span class="num">08</span>
+          <div>
+            <h2>第七部分 🌲 临床思维路径图 (Decision Tree) <span class="badge-tag tag-know" style="margin-left:8px;">逻辑推演型 · 建立直觉</span></h2>
+            <p>将医生的临床推理链拆解为直观的“现象 → 机制分析 → 干预动作 → 动态监测与分支调整”决策树。</p>
+          </div>
+        </div>
+
+        <div class="tree-flow">
+          <!-- 第 1 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 1 步：临床核心矛盾识别与机制归因 (Problem & Cause)</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>矛盾 A：3月暴瘦20kg + 进食即吐</b>
+                <span>恶病质高消耗 + 门脉胃病致排空迟缓 ➔ 单靠经口摄入崩溃（PAlb 0.11）</span>
+              </div>
+              <div class="tree-node">
+                <b>矛盾 B：CRP 105.4 + AST 130 + 厌油</b>
+                <span>高炎症高分解 + 胆汁受抑与支芳比失衡 ➔ 普通高脂与动物整蛋白不耐受</span>
+              </div>
+              <div class="tree-node">
+                <b>矛盾 C：外周留置针 + 肠道每日有便</b>
+                <span>外周浅静脉高渗输注风险 ➔ 需全合一控速稀释；肠功能尚存需微量喂养</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 2 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 2 步：多维度协同营养干预决策 (Intervention)</span>
+            </div>
+            <div class="tree-branch-container">
+              <div class="tree-branch">
+                <b>静脉通路（PPN短期托底供能）：</b>
+                <span>海思1440ml + 3AA支链氨基酸250ml + 鱼油10g全合一体系，控速100~120ml/h静滴，提供1075kcal+55g蛋白。</span>
+              </div>
+              <div class="tree-branch">
+                <b>经口通路（低脂短肽与植物肽滋养）：</b>
+                <span>低脂短肽型全营养（唯源佳/麦愈40g）+ 大豆肽粉1袋，3+3分餐随餐冲服；指导低脂半流食（豆腐脑、清蒸鱼等）。</span>
+              </div>
+              <div class="tree-branch warning">
+                <b>微量营养素与肠微生态强化：</b>
+                <span>复合维生素咀嚼片+维生素B1/B2/B6/C随餐服；维生素D3+K2；优能康膳食纤维1袋冲服滋养益生菌。</span>
+              </div>
+              <div class="tree-branch">
+                <b>运动同化与防范静脉炎：</b>
+                <span>每日30分钟床旁坐立与肢体低强度抗阻微运动；严密交待留置针防跑针与输液通畅度观察。</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 3 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 3 步：动态监测与临床转折调整 (Evaluation & Escalation)</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>分支 1：介入术后恶心发热加剧？</b>
+                <span style="color:var(--orange); font-weight:600;">➔ 决策：强化止吐保肝，维持PPN支持，暂缓经口提速</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 2：经口短肽耐受良好、进食恢复>60%？</b>
+                <span style="color:var(--green); font-weight:600;">➔ 决策：逐步下调并撤除PPN，转为全口服ONS+饮食巩固</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 3：外周留置针穿刺处发红/外渗？</b>
+                <span style="color:var(--purple); font-weight:600;">➔ 决策：立即停输拔针、局部硫酸镁湿敷，更换对侧或评估深静脉</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <p><strong>本病例医生真正解决的三个核心问题：</strong></p>
+          <p>1. <strong>打破恶病质负氮平衡死结：</strong>面对进食即吐的消耗危机，果断采用外周留置针PPN全合一输注，安全输入1075kcal与55g优质蛋白，守住围术期生命线。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p>2. <strong>化解肝病高炎症与厌油代谢屏障：</strong>精准配伍3AA支链氨基酸保肝抗昏迷、鱼油抗炎，经口切换为无异味、直接吸收的水解大豆肽与低脂短肽，绕过消化酶受抑障碍。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p>3. <strong>构建“静脉托底+口服唤醒+微运动促同化”的闭环体系：</strong>纠正家属盲目买杂牌驼奶蛋白粉与绝对卧床的误区，确立3+3分餐与床旁抗阻活动，实现功能全面恢复。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+          <p><strong>一句话病例记忆点：</strong><br>
+          这是一个<strong>原发性肝癌合并重度营养不良（3月暴瘦20kg）与重度高炎症（CRP 105.4）</strong>的64岁男性介入围术期患者，核心不是<strong>强求患者单靠经口硬吃或盲目自购杂牌补品</strong>，而是通过<strong>外周留置针部分肠外营养（PPN含3AA+鱼油）短期托底供能与低脂大豆肽/短肽3+3分餐试服双轨协同</strong>判断<strong>胃肠耐受与肝脏代谢边界</strong>，最终实现<strong>平稳度过介入治疗期、控制炎症并重建经口自主营养支持能力</strong>。 <span class="badge-tag tag-infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <div class="empty" id="empty">没有找到匹配内容，请换个关键词。</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    《北肿临床营养科会诊思维录》病例复盘 · 原始事实、临床方案、复盘推断与知识补充分层记录 · 仅供临床进修学习参考
+  </footer>
+</div>
+
+<script>
+  const input = document.querySelector('#search');
+  const sections = [...document.querySelectorAll('.section')];
+  const empty = document.querySelector('#empty');
+
+  function clearMarks(root) {
+    root.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    root.normalize();
+  }
+
+  function highlight(root, q) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement.closest('script,style') || !n.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      let s = n.nodeValue, low = s.toLowerCase(), i;
+      while ((i = low.indexOf(q)) > -1) {
+        frag.append(s.slice(0, i));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(i, i + q.length);
+        frag.append(m);
+        s = s.slice(i + q.length);
+        low = s.toLowerCase();
+      }
+      frag.append(s);
+      n.replaceWith(frag);
+    });
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    sections.forEach(s => {
+      clearMarks(s);
+      const hit = !q || s.innerText.toLowerCase().includes(q);
+      s.style.display = hit ? '' : 'none';
+      if (hit) {
+        shown++;
+        if (q) {
+          highlight(s, q);
+          s.querySelectorAll('details').forEach(d => {
+            if (d.innerText.toLowerCase().includes(q)) d.open = true;
+          });
+        }
+      }
+    });
+    empty.style.display = shown ? 'none' : 'block';
+    if (q && shown) {
+      requestAnimationFrame(() => document.querySelector('.section mark')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
+
+  input.addEventListener('input', search);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  const links = [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70%' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
