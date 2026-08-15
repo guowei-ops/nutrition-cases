@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+<title>《北肿临床营养科会诊思维录》</title>
+<style>
+    :root {
+        --primary-blue: #1a5f7a;
+        --secondary-blue: #2d82b7;
+        --light-blue: #f0f7fa;
+        --dark-gray: #333333;
+        --speech-gray: #444444;
+        --doctor-green: #2e7d32;
+        --green-bg: #f1f8e9;
+        --misconception-orange: #d84315;
+        --orange-bg: #fbe9e7;
+        --purple-knowledge: #6a1b9a;
+        --purple-bg: #f3e5f5;
+        --card-bg: #ffffff;
+        --border-color: #e0e0e0;
+        --highlight-bg: #ffe082;
+        --current-highlight-bg: #ff9800;
+
+        /* 彩色圆角胶囊标签色彩库 */
+        --tag-fact-bg: #e8f5e9;
+        --tag-fact-color: #2e7d32;
+        --tag-plan-bg: #e3f2fd;
+        --tag-plan-color: #1565c0;
+        --tag-infer-bg: #fff3e0;
+        --tag-infer-color: #e65100;
+        --tag-know-bg: #f3e5f5;
+        --tag-know-color: #6a1b9a;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4;
+        color: var(--dark-gray);
+        background-color: #eef2f5;
+        margin: 0;
+        padding: 12px;
+    }
+
+    .container {
+        max-width: 980px;
+        margin: 0 auto;
+    }
+
+    /* Header Styling */
+    .header-card {
+        background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+        color: white;
+        padding: 18px 22px;
+        border-radius: 10px;
+        box-shadow: 0 3px 10px rgba(26, 95, 122, 0.15);
+        margin-bottom: 15px;
+    }
+
+    .header-card h1 {
+        margin: 0 0 6px 0;
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+
+    .header-card .subtitle {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 12px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding-bottom: 8px;
+    }
+
+    .meta-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .meta-item {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 12px;
+        border-radius: 16px;
+    }
+
+    /* Search Bar Sticky Container */
+    .search-container {
+        position: sticky;
+        top: 8px;
+        z-index: 1000;
+        background: rgba(238, 242, 245, 0.95);
+        backdrop-filter: blur(6px);
+        padding: 6px 0;
+        margin-bottom: 15px;
+    }
+
+    .search-box-wrapper {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        background: white;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        border: 1.5px solid var(--border-color);
+    }
+
+    .search-box-wrapper:focus-within {
+        border-color: var(--secondary-blue);
+    }
+
+    .search-input {
+        flex: 1;
+        padding: 4px 8px;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        background: transparent;
+    }
+
+    .search-nav-btns {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .search-btn {
+        background: var(--light-blue);
+        color: var(--primary-blue);
+        border: 1px solid var(--secondary-blue);
+        border-radius: 4px;
+        padding: 4px 10px;
+        font-size: 12px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.2s;
+    }
+
+    .search-btn:hover {
+        background: var(--secondary-blue);
+        color: white;
+    }
+
+    .search-counter {
+        font-size: 12px;
+        color: #666;
+        min-width: 55px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    /* Section Cards */
+    .section-card {
+        background: var(--card-bg);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+        border: 1px solid var(--border-color);
+    }
+
+    .section-title {
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    /* Section Color Themes */
+    .theme-blue .section-title { color: var(--primary-blue); border-color: var(--primary-blue); }
+    .theme-green .section-title { color: var(--doctor-green); border-color: var(--doctor-green); }
+    .theme-orange .section-title { color: var(--misconception-orange); border-color: var(--misconception-orange); }
+    .theme-purple .section-title { color: var(--purple-knowledge); border-color: var(--purple-knowledge); }
+
+    /* 彩色圆角胶囊标签风格 */
+    .badge-tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        margin: 0 4px;
+        vertical-align: middle;
+        letter-spacing: 0.3px;
+    }
+    .tag-fact { background-color: var(--tag-fact-bg); color: var(--tag-fact-color); }
+    .tag-plan { background-color: var(--tag-plan-bg); color: var(--tag-plan-color); }
+    .tag-infer { background-color: var(--tag-infer-bg); color: var(--tag-infer-color); }
+    .tag-know { background-color: var(--tag-know-bg); color: var(--tag-know-color); }
+
+    /* Part 1 Specifics */
+    .patient-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+        background-color: var(--light-blue);
+        padding: 12px;
+        border-radius: 8px;
+    }
+
+    .info-item {
+        font-size: 13.5px;
+        line-height: 1.35;
+    }
+
+    .info-item strong {
+        color: var(--primary-blue);
+    }
+
+    .styled-history-box {
+        background-color: #f4f7f9;
+        border: 1px solid #d0dfe8;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 12px;
+    }
+
+    .styled-history-box h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 15px;
+        color: var(--primary-blue);
+        border-left: 3.5px solid var(--primary-blue);
+        padding-left: 8px;
+    }
+
+    .styled-history-box p {
+        margin: 5px 0;
+        font-size: 13.5px;
+        line-height: 1.42;
+    }
+
+    /* 对话模块 */
+    .dialogue-block {
+        background: #ffffff;
+        border: 1px solid #e5e9ec;
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 10px;
+    }
+
+    .dialogue-block h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--primary-blue);
+        font-size: 14.5px;
+    }
+
+    .speaker-doctor {
+        color: var(--doctor-green);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .speaker-patient {
+        color: var(--dark-gray);
+        font-weight: bold;
+        margin-top: 4px;
+        font-size: 13.5px;
+    }
+
+    .transcript-text {
+        color: var(--speech-gray);
+        margin: 2px 0 6px 0;
+        background-color: #f8fafc;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13.5px;
+        line-height: 1.4;
+    }
+
+    .info-gain-box {
+        background-color: #e0f2fe;
+        color: #0369a1;
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 6px;
+    }
+
+    /* 第二部分原始处理意见大卡片 */
+    .raw-opinion-card {
+        background-color: var(--green-bg);
+        border: 1.5px solid #a5d6a7;
+        border-radius: 10px;
+        padding: 16px;
+        font-family: inherit;
+        line-height: 1.42;
+        box-shadow: 0 2px 8px rgba(46, 125, 50, 0.05);
+    }
+
+    .raw-opinion-card .meta-notice {
+        background: #ffffff;
+        color: var(--doctor-green);
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-size: 12.5px;
+        margin-bottom: 12px;
+        font-weight: bold;
+        border-left: 3.5px solid var(--doctor-green);
+        border: 1px solid #c8e6c9;
+    }
+
+    .raw-text-content {
+        white-space: pre-wrap;
+        font-size: 13.5px;
+        color: #1b5e20;
+    }
+
+    /* Part 3 Specifics */
+    .mind-card {
+        background-color: #f1f8e9;
+        border: 1px solid #c8e6c9;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .mind-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        color: var(--doctor-green);
+        font-size: 14.5px;
+    }
+
+    .mind-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .reasoning-path {
+        background: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-family: inherit;
+        color: #2e7d32;
+        margin: 8px 0;
+        border-left: 3.5px solid var(--doctor-green);
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Part 4 Specifics */
+    .misconception-card {
+        background-color: var(--orange-bg);
+        border: 1px solid #ffccbc;
+        border-radius: 8px;
+        padding: 12px 14px;
+        margin-bottom: 10px;
+    }
+
+    .misconception-card h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 14.5px;
+    }
+
+    .misconception-card p {
+        margin: 4px 0;
+        font-size: 13.5px;
+    }
+
+    .misconception-quote {
+        font-style: italic;
+        color: #b71c1c;
+        background: rgba(255,255,255,0.85);
+        padding: 6px 10px;
+        border-radius: 5px;
+        margin: 6px 0;
+        border-left: 3px solid var(--misconception-orange);
+        font-size: 13px;
+    }
+
+    /* Part 6 Specifics */
+    .knowledge-box {
+        background-color: var(--purple-bg);
+        border-left: 3.5px solid var(--purple-knowledge);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 10px;
+    }
+
+    .knowledge-box h4 {
+        margin-top: 0;
+        margin-bottom: 4px;
+        color: var(--purple-knowledge);
+        font-size: 14.5px;
+    }
+
+    .knowledge-box p {
+        margin: 3px 0;
+        font-size: 13.5px;
+    }
+
+    /* Part 7 美化版训练卡 */
+    .training-card-fancy {
+        background: #ffffff;
+        border: 1.5px solid var(--secondary-blue);
+        border-radius: 10px;
+        padding: 14px;
+    }
+
+    .training-grid-fancy {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 10px;
+    }
+
+    .mini-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 6px;
+        padding: 8px 12px;
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    .mini-card strong {
+        color: var(--primary-blue);
+        display: block;
+        margin-bottom: 3px;
+        font-size: 13.5px;
+    }
+
+    .mini-card.highlight-green {
+        background: #f1f8e9;
+        border-color: #c8e6c9;
+    }
+    .mini-card.highlight-green strong { color: var(--doctor-green); }
+
+    .mini-card.highlight-orange {
+        background: #fbe9e7;
+        border-color: #ffccbc;
+    }
+    .mini-card.highlight-orange strong { color: var(--misconception-orange); }
+
+    /* Highlight Styling for Search */
+    mark.search-highlight {
+        background-color: var(--highlight-bg);
+        color: #000;
+        padding: 1px 3px;
+        border-radius: 3px;
+    }
+
+    mark.search-highlight.current {
+        background-color: var(--current-highlight-bg);
+        color: #fff;
+        font-weight: bold;
+        outline: 2px solid #e65100;
+    }
+
+    @media (max-width: 768px) {
+        body { padding: 8px; }
+        .training-grid-fancy { grid-template-columns: 1fr; }
+        .header-card { padding: 14px; }
+        .header-card h1 { font-size: 20px; }
+        .search-box-wrapper { flex-wrap: wrap; }
+        .search-input { width: 100%; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- 输出标题 -->
+    <div class="header-card">
+        <h1>《北肿临床营养科会诊思维录》</h1>
+        <div class="subtitle">疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘</div>
+        <div class="meta-info">
+            <div class="meta-item"><strong>整理人：</strong>郭伟</div>
+            <div class="meta-item"><strong>会诊日期：</strong>2026年08月12日</div>
+            <div class="meta-item"><strong>会诊主题：</strong>右半结肠癌术后靶向治疗伴恶性肿瘤营养风险、血糖升高、低蛋白血症及胰岛素泵/ONS应用沟通</div>
+        </div>
+    </div>
+
+    <!-- 关键词搜索框 -->
+    <div class="search-container">
+        <div class="search-box-wrapper">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 输入关键词搜索全文，如：体重、腹泻、蛋白质、ONS……" onkeydown="handleKeyDown(event)">
+            <div class="search-nav-btns">
+                <span id="searchCounter" class="search-counter">0 / 0</span>
+                <button class="search-btn" onclick="navigateSearch(-1)">▲ 上一个</button>
+                <button class="search-btn" onclick="navigateSearch(1)">▼ 下一个</button>
+                <button class="search-btn" onclick="clearSearch()">清除</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一部分：原始会诊记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第一部分 🎙 原始会诊记录</h2>
+
+        <h3>1. 患者基本信息</h3>
+        <div class="patient-grid">
+            <div class="info-item"><strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>性别：</strong>女 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>年龄：</strong>66岁 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>主要确诊疾病：</strong>右半结肠癌（回盲部癌，cTxN+M1 IV期，肝转移、腹膜转移），恶性肿瘤靶向治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>病理类型：</strong>pMMR, HER2(0), BRAF V600E突变型回盲部腺癌〔原始资料记载为回盲部癌〕 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>疾病分期：</strong>cTxN+M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>转移情况：</strong>肝转移、腹膜转移 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>重要合并症：</strong>肾前性急性肾功能不全（已纠正）、化疗后骨髓抑制、低钾血症、低钙血症、低磷血症、低镁血症、低蛋白血症、腹腔积液、血糖升高/高血糖 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>手术史：</strong>2026-07-09 行造瘘术；动过十二指肠/肠道手术（会诊现场提到） <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>抗肿瘤治疗史：</strong>已行3周期 FOLFOX+CET+恩考芬尼 一线治疗；C3后出现原发灶部位梗阻行造瘘术；C4前出现急性肾损伤及Hb、PLT下降，暂停化疗，于2026-07-29行CET+恩考芬尼 C4治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前治疗阶段：</strong>靶向维持/调整治疗阶段，拟于周五出院 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>本次就诊背景：</strong>确诊右半结肠癌2月余入院，拟行治疗 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>营养科会诊原因：</strong>请贵科给予营养指导，请协助诊治 <span class="badge-tag tag-fact">【原始事实】</span></div>
+            <div class="info-item"><strong>当前核心营养问题：</strong>恶性肿瘤合并营养风险、GLIM诊断营养不良、高血糖/术后血糖波动、低蛋白血症及经口摄入单一（以粥及蛋羹为主） <span class="badge-tag tag-infer">【复盘推断】</span></div>
+            <div class="info-item"><strong>信息不确定项：</strong>身高 152 cm，体重 49 kg，BMI 21.2 kg/m²；既往具体最高体重及近期精确下降比例现有资料未明确 <span class="badge-tag tag-fact">【原始事实】</span></div>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>2. 确诊疾病及治疗病史</h3>
+            <p><strong>主要疾病：</strong>确诊右半结肠癌2月余，回盲部癌 cTxN+M1 IV期，伴肝转移、腹膜转移。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>手术经过：</strong>于 2026-07-09 因原发灶部位梗阻行造瘘术，术后恢复良好；录音显示患者手术后第8天（做过十二指肠相关手术）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>抗肿瘤治疗经过：</strong>已行3周期 FOLFOX + CET + 恩考芬尼 一线治疗。C4前查血发现急性肾损伤（Scr 201 μmol/L，考虑肾前性因素），予补液后肾功能恢复正常；完善辅助检查见 Hb、PLT 下降，ALB 27.5 g/L，合并低钾、低镁、低钙、低磷。入院后予纠正电解质紊乱、补充白蛋白等对症治疗。考虑患者一般状态较差，本次暂停化疗，仅予 CET + 恩考芬尼治疗（西妥昔单抗 500 mg/m² 750 mg d1 + 恩考芬尼 300 mg qd, q14d）。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+        </div>
+
+        <div class="styled-history-box">
+            <h3>3. 营养相关现状</h3>
+            <p><strong>体重和变化：</strong>身高 152 cm，当前体重 49 kg，BMI 21.2 kg/m²。平时体重在 130 斤（65 kg）左右，近期有明显体重丢失。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>摄入情况：</strong>目前为流食，进食量较10天前恢复2/3。早餐吃大米粥、喝粥、鸡蛋羹；中午吃疙瘩汤；晚上吃鸡蛋羹、喝汤。未喝其他营养补充剂。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>营养影响症状：</strong>睡眠不好、焦虑、睡不着觉（睡眠轻）；无腹胀腹泻等明显其他不部。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>咀嚼和吞咽：</strong>目前可进流食，能吞咽粥、汤及鸡蛋羹，无明确饮水呛咳记录。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>既往或当前营养治疗：</strong>此前口服安素 2勺~4勺 + 乳清蛋白粉 10 g/d，无不适。会诊现场推荐使用糖尿病专用肠内营养制剂（瑞代 或 益力佳SR）及纯乳清蛋白粉进行 ONS 过渡。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>检查和人体成分资料：</strong> <span class="badge-tag tag-fact">【原始事实】</span>
+                <ul style="margin: 2px 0 0 18px; padding: 0;">
+                    <li>入院及近期检验：ALB 27.5 g/L（早期，低蛋白血症），复查血白蛋白 44.9 g/L（补充后），葡萄糖 5.11 mmol/L（空腹或随访值，此前有血糖升高），K 4.99 mmol/L，WBC 9.56×10⁹/L，HGB 128.00 g/L，PLT 241.00×10⁹/L，GGT 89 U/L，CK 67 U/L，Ur 8.95 mmol/L，Tco2 14 mmol/L。</li>
+                    <li>查体：ht 152 cm, wt 49 kg, BMI 21.2 kg/m²，精神状况可，自主体位，四肢无水肿。</li>
+                </ul>
+            </p>
+        </div>
+
+        <h3>4. 会诊现场顺序复盘</h3>
+
+        <div class="dialogue-block">
+            <h4>模块一：问候与术后血糖异常归因探讨</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“你好，我营养科的，我过来看看你的血糖下不起了个会诊……可能是还是跟这个做这个手术之后这个有关系……您之前比如您的兄弟姊妹或者您的家里人共同有高血糖的？都没有是吧？您之前也没有查出来过？都没有是吧？可能还是跟这个手术关系更大一点。今天不是手术第8天了是吧？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“都没有。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 确认患者既往及家族无明确糖尿病史，本次血糖升高主要归因于手术应部及消化道手术（涉及十二指肠/造瘘等）后的应激性高血糖。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块二：活动、排便与睡眠焦虑追问</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“你现在下地溜达了吗？大便还通吗？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“已经随便溜达了……有便……我就是睡不了睡不着觉，就是焦虑睡不了觉……在家睡眠本来就轻，在医院就来回走更不行。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“睡不好也会影响你的血糖，对对对。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 患者已能下地活动且排便通畅，但存在严重睡眠轻及住院焦虑，医生指出睡眠差会加重血糖波动。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块三：当前饮食结构调查与 ONS 需求评估</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“我看现在是流食了是吧？你都吃点啥呀现在？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“早上吃大米粥，喝的粥，鸡蛋羹；中午吃疙瘩汤；晚上吃鸡蛋羹，喝点汤……除了吃这些没有喝其他补充，也没有不舒服。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“天天喝粥，第一个对血糖不好；第二个喝粥肯定不管饱。在这个情况下，我们就推荐你用一下糖尿病专用的制剂……因为你这做了也有八天了，肯定得慢慢过渡起来。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 患者目前纯靠稀粥、疙瘩汤及蛋羹，摄入极易升高血糖且营养密度不足，必须引入糖尿病专用 ONS 制剂补充能量与蛋白质。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块四：胰岛素泵使用交流与出院后转诊内分泌科建议</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“胰岛素不都打这里头吗？用泵的话血糖控制可能会更精准一点更好一点……我们医院主要不是看这个（内分泌）的，出院回家之后去你家附近或者北京找一个大的三甲医院内分泌科，让大夫再给你调一下……出院回家之后一定要去三甲医院把血糖这个事重视起来。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“行，现在就用这个泵吧，这个方便。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 患者目前接受胰岛素泵持续输注控制血糖，医生明确告诫出院后需至专科三甲医院内分泌科继续精细化调糖。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块五：糖尿病专用营养制剂（瑞代/益力佳SR）与蛋白粉选购指导</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“医院能开出来的是瑞代（500ml/袋液体）；如果你觉得那个味不爱喝，可以外边买益力佳SR（雅培的，糖尿病专用粉剂，奶香）。两个选一个或者搭着喝。蛋白粉要选纯乳清蛋白、含量80%以上的，10克/次，每天2-3次，餐后半小时吃，或者跟营养粉/粥掺在一起吃。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“平时好的时候体重130斤左右……周五出院……要是跟他掺了就可以吃饭到时候一起吃。” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 详细交代了瑞代与益力佳SR的用法，以及高纯度乳清蛋白粉的选购标准（纯乳清、纯度>80%）与冲服方式。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <div class="dialogue-block">
+            <h4>模块六：家庭饮食细节（少油、去蛋黄、少食多餐、防低血糖备糖）宣教</h4>
+            <div class="speaker-doctor">医生：</div>
+            <div class="transcript-text">“平时吃里脊肉、清蒸鱼等瘦红肉；油大了容易拉肚子，油要少。主食分到三顿少食多餐。鸡蛋黄可以先不吃（有人吃蛋黄容易拉肚子），先试试鸡蛋白羹。因为容易低血糖，出门随身备着糖块。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="speaker-patient">患者/家属：</div>
+            <div class="transcript-text">“鸡蛋白羹就是蛋清对吧？等吃干了疙瘩汤血糖上来了也有影响是吧？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <div class="speaker-doctor">医生解释或纠正：</div>
+            <div class="transcript-text">“对，糊糊样的东西对血糖影响大。动了肠子（十二指肠）至少这三个月以内都得吃少渣半流食，不能吃太干太硬的。” <span class="badge-tag tag-plan">【临床方案计划】</span></div>
+            <div class="info-gain-box">
+                <strong>现场获得信息：</strong> 针对术后胃肠耐受度与血糖控制，制定了少油、去蛋黄/纯蛋清、少食多餐、限制干硬食物及防低血糖随身备糖的家庭饮食细则。 <span class="badge-tag tag-infer">【复盘推断】</span>
+            </div>
+        </div>
+
+        <h3>5. 待确认内容</h3>
+        <ul style="margin: 4px 0 0 18px; padding: 0;">
+            <li>【待确认】录音末尾讲话人1与讲话人2讨论关于卡伦卡泉、海思及配置中心的小泵与大泵区别，系现场医生间对不同病房胰岛素泵/输液泵型号的探讨，与患者核心诊疗无直接干预关联。</li>
+            <li>【待确认】会诊记录单申请理由记载“确诊右半结肠癌2月余”，而书面处理意见记载为“确诊乙状结肠癌2月余/回盲部癌”，结合病理及造瘘记录，原发部位确认为回盲部/右半结肠，资料文字存在微小笔误记载。</li>
+        </ul>
+    </div>
+
+    <!-- 第二部分：原始营养会诊处理意见 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+
+        <div class="raw-opinion-card">
+            <div class="meta-notice">
+                以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。 <span class="badge-tag tag-fact">【原始事实】</span>
+            </div>
+            <div class="raw-text-content">处理意见：患者女性，主诉：确诊右半结肠癌2月余，恶性肿瘤靶向治疗 回盲部癌 cTxN+M1 IV期 肝转移 腹膜转移 pMMR HER2(0) BRAF V600E突变 化疗后骨髓抑制 肾前性急性肾功能不全（已纠正） 低钾血症 低钙血症 低磷血症 低镁血症 低蛋白血症 腹腔积液 营养不良诊断明确，已行3周期FOLFOX+CET+恩考芬尼一线治疗。患者C3后出现原发灶部位梗阻，于2026-07-09行造瘘术，术后恢复良好；C4前查血发现急性肾损伤，Scr 201umol/L，外院考虑肾前性因素所致，予补液治疗后肾功能恢复正常；完善辅助检查见Hb、PLT下降，ALB 27.5g/L，合并低钾、低镁、低钙、低磷。入院后予纠正电解质紊乱、补充白蛋白等对症治疗；考虑该患者一般状态较差，此次暂停化疗，仅予CET+恩考芬尼治疗。除外禁部后，于2026-07-29行C4治疗，具体为：西妥昔单抗500mg/m2 750mg d1 + 恩考芬尼 300mg qd，q14d。目前一般可，进食量较10天前恢复2/3，口服安素2勺-4勺+乳清蛋白粉10g/d无不适，睡眠可，活动可。化验血：白蛋白44.9(g/L)，葡萄糖 5.11(mmol/L)，K 4.99，白细胞总数 9.56(10^9/L)，血红蛋白 128.00(g/L)，血小板总数 241.00(10^9/L) GGT:89 CK:67 Ur:8.95 Tco2:14
+
+患者查体:患者精神状况可，自主体位，四肢无水肿，现ht 152cm，wt49kg，BMI21.2kg/m2。
+
+营养诊断：恶性肿瘤合并营养风险（NRS2002：3分），营养不良（GLIM）
+
+营养治疗目标：1. 改善症状，加强营养，增加或稳定体重。每日推荐营养供给量：能量1250-1500 kcal，蛋白60-75g，液体量1800ml-2000ml。
+
+2. 少渣半流食，
+
+3. 整蛋白型肠内营养制剂（安素）4勺+120ml/次，3次/d。
+
+4. 维生素B1 3片+B2 3片++ VC 3片，tid；
+
+5. 乳清蛋白粉10克/次 bid
+
+6. 复合维生素(50+) 1片/d
+
+7. 适量活动,增加力所能及的抗阻运动
+
+8. 监测体重、PALB，CRP 等。</div>
+        </div>
+    </div>
+
+    <!-- 第三部分：医生临床思维拆解 -->
+    <div class="section-card theme-green searchable-section">
+        <h2 class="section-title">第三部分 🧠 医生临床思维拆解</h2>
+
+        <div class="mind-card">
+            <h4>关键问诊点一：术后高血糖归因与既往糖尿病史排查</h4>
+            <p><strong>医生怎么问：</strong>“血糖下不起……您之前家里人有高血糖吗？之前查出来过吗？” <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>家族及个人既往均无高血糖史。 <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】区分是原发性糖尿病还是手术应激/十二指肠肠道手术引起的应激性高血糖。</p>
+            <div class="reasoning-path">
+                现象：术后第8天血糖居高不下 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：无家族史，主要为手术创伤与应激反应 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充的证据：出院后监测及内分泌专科评估 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 风险判断：高血糖影响术后创面愈合及增加感染风险 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：胰岛素泵精细控糖 + 换用糖尿病专用营养制剂（低GI） <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：推荐瑞代/益力佳SR更换常规安素
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>促使饮食指导从单纯稀粥转向少渣低GI半流质及专科控糖制剂。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>关键问诊点二：纯粥类饮食结构风险识别与 ONS 针对性替换</h4>
+            <p><strong>医生怎么问：</strong>“流食都吃点啥呀现在？除了这些有喝其他补充没有？” <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>三餐基本仅为大米粥、疙瘩汤及鸡蛋羹，无额外补充。 <span class="badge-tag tag-fact">【录音原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【复盘推断】评估患者碳水化合物比重过高、优质蛋白与微量元素匮乏的风险。</p>
+            <div class="reasoning-path">
+                现象：三餐大量稀粥/疙瘩汤 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                ↓ 可能原因：误以为“糊糊好消化”适合术后恢复 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 需要补充的证据：餐后血糖波动趋势 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 风险判断：高糖冲顶、蛋白吸收不足、低蛋白血症复发 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                ↓ 可选干预：限制纯糊糊，添加纯乳清蛋白粉（10g bid/tid）及控糖 ONS <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+                ↓ 医生实际处理意见：少渣半流食 + 乳清蛋白粉 + 整蛋白营养制剂
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>确立了少渣半流食结合蛋白粉强化 supplementation 的治疗路径。 <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+        </div>
+
+        <div class="mind-card">
+            <h4>从问诊到处理意见的整体推理链</h4>
+            <p>会诊获得的信息：晚期结肠癌造瘘及肠道术后第8天，高血糖，既往低蛋白血症（ALB 27.5g/L），现饮食极单一（粥/蛋羹）。 <span class="badge-tag tag-fact">【原始事实】</span><br>
+            ↓ 医生识别的问题：恶性肿瘤合并营养风险、GLIM营养不良、应激性高血糖、膳食蛋白质与微量营养素不足。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 主要营养风险：体重继续丢失、肌肉衰减、血糖剧烈波动、再发低蛋白血症及创面愈合延迟。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 原始处理意见中的目标：能量 1250-1500 kcal/d，蛋白 60-75 g/d，液体 1800-2000 ml/d。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 原始处理意见中的具体方案：少渣半流食 + 安素/控糖制剂 + 乳清蛋白粉 10g bid + 复合VB/VC/复合维矿。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 方案选择理由：少渣减少肠道负担，整蛋白+乳清蛋白快速补充氮源，控糖配方平稳血糖。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+            ↓ 监测和耐受：监测体重、PALB、CRP、血糖及胃肠道耐受性。 <span class="badge-tag tag-plan">【临床方案计划】</span><br>
+            ↓ 调整条件：若经口不能满足50%目标量超3-5天，或出院后血糖持续高构，需调整内分泌用药或管饲干预。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第四部分：患者及家属营养误区 -->
+    <div class="section-card theme-orange searchable-section">
+        <h2 class="section-title">第四部分 ⚠️ 患者及家属营养误区</h2>
+
+        <div class="misconception-card">
+            <h4>误区一：术后养肠胃必须顿顿喝“大米粥与糊糊” <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“早上吃大米粥，喝的粥……中午吃疙瘩汤……要是等吃干了疙瘩汤血糖上来了也有影响是吧？” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“天天喝粥，第一个对血糖不好，第二个喝粥肯定不管饱……糊糊样的东西都会对血糖有影响。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>误区背后的顾虑：</strong>认为刚做完肠道手术只能吃烂稀饭，坚信稀糊最养人且容易吸收。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】精制糊化淀粉（如大米粥、烂糊糊）升糖指数（GI）极高，进入胃肠后快速吸收导致血糖剧烈波动；同时其营养密度极低，缺乏蛋白质，无法满足术后组织修复需求。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“粥虽然顺口，但它本质上就是水加淀粉，升血糖特别快，还不扛饿。咱们动完手术需要长肉和修复肠道，光靠喝粥蛋白远远不够，得把蛋清、豆腐、优质蛋白粉和专用营养液加进来。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="misconception-card">
+            <h4>误区二：担忧出院后血糖控制不佳而盲目忌口或不敢增加营养 <span class="badge-tag tag-infer">【复盘推断】</span></h4>
+            <div class="misconception-quote">患者/家属原话：“这出院回家之后，血糖这个事……” <span class="badge-tag tag-fact">【录音原始事实】</span></div>
+            <p><strong>医生现场纠正：</strong>“出院回家之后，去你家附近或者北京找一个大的三甲医院内分泌科得让他给你再调一下……一定要重视起来。” <span class="badge-tag tag-plan">【临床方案计划】</span></p>
+            <p><strong>误区背后的顾虑：</strong>害怕补充营养制剂会导致血糖失控，进退两难。 <span class="badge-tag tag-infer">【复盘推断】</span></p>
+            <p><strong>临床解释：</strong>【知识补充】肿瘤患者切忌因怕血糖高而过度节食。应采用“控糖专用的低GI肠内营养配方（如含有缓释碳水化合物和高单不饱和脂肪酸的制剂）”搭配专科降糖/胰岛素方案，实现营养达标与血糖平稳的双重目标。</p>
+            <p><strong>可复用的营养宣教表达：</strong>“咱们不能因为害怕血糖高就不敢吃营养，那样身体会越来越弱。专业的事情交给专科医生，出院后去内分泌科把降糖方案调好，同时选用糖尿病专用的营养粉，既补了营养又不会让血糖忽高忽低。” <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        </div>
+    </div>
+
+    <!-- 第五部分：我的学习成长记录 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第五部分 💡 我的学习成长记录</h2>
+
+        <p><strong>今天之前我的理解：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        复盘前，我会如何判断这个问题？<br>
+        （在此保留供我填写的位置：既往可能倾向于先关注化疗及造瘘恢复，对术后应激性高血糖患者可能仅建议减少主食量，而未深刻意识到精制粥类对血糖的剧烈冲击及专科控糖营养制剂的早期引入必要性。）</p>
+
+        <p><strong>今天新的认识：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        以下为复盘建议，供我确认和修改：<br>
+        1. 肿瘤术后（尤其是涉及十二指肠/造瘘）应激性高血糖极为常见，问诊时必须严格厘清既往及家族糖尿病史，做到精准归因。<br>
+        2. 纯流质（稀粥、疙瘩汤）是血糖剧烈波动的“隐形推手”，营养指导必须打破患者“喝粥养肠胃”的执念，提倡少渣半流食+低GI专用ONS+蛋白粉的组合。<br>
+        3. 跨学科协作意识：肿瘤科及营养科并非降糖专科，面对复杂血糖波动，应明确告诫患者出院后对接三甲医院内分泌科。</p>
+
+        <p><strong>最大收获：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ol style="margin: 4px 0; padding-left: 18px;">
+            <li>发现问题（术后血糖高居不下、三餐纯靠糊糊粥） → 分析原因（应激反应+高GI膳食结构） → 补充证据（结合既往史排查）。</li>
+            <li>判断风险（低蛋白血症复发、血糖波动影响创面） → 选择干预（胰岛素泵+控糖专剂瑞代/益力佳SR+纯乳清蛋白粉）。</li>
+            <li>明确执行（餐后/随餐冲服、去蛋黄、少油少渣） → 监测与复评（体重、PALB、CRP、血糖趋势）。</li>
+        </ol>
+
+        <p><strong>下次我会怎么问：</strong> <span class="badge-tag tag-infer">【复盘推断】</span></p>
+        <ul style="margin: 4px 0; padding-left: 18px;">
+            <li>“您以前在没做这次手术、没生病前，体检测过空腹血糖或者糖化血红蛋白高吗？”（筛查既往史）</li>
+            <li>“平时喝完一大碗大米粥或疙瘩汤后，有没有觉得特别容易饿或者犯困？”（评估升糖冲击）</li>
+            <li>“现在每天除了粥和蛋羹，能吃到多少量的瘦肉或豆腐？”（定位蛋白缺口）</li>
+            <li>“出院以后家里准备好测血糖的血糖仪和试纸了吗？”（确认执行条件）</li>
+        </ul>
+
+        <p><strong>我仍然不会或不确定的地方：</strong> <span class="badge-tag tag-infer">【复盘推断】</span><br>
+        1. 肿瘤患者在合并肾前性急性肾损伤（Scr曾达201μmol/L）恢复期，蛋白质补充量（如本案60-75g/d）的递进节奏如何更安全地阶梯化调整？<br>
+        2. 胰岛素泵转换为口服降糖药或皮下胰岛素注射时，糖尿病专用 ONS 的碳水化合物系数如何与降糖剂量进行精确匹配？需继续查阅指南。</p>
+    </div>
+
+    <!-- 第六部分：本病例相关知识整理 -->
+    <div class="section-card theme-purple searchable-section">
+        <h2 class="section-title">第六部分 📚 本病例相关知识整理</h2>
+
+        <div class="knowledge-box">
+            <h4>知识点一：肿瘤患者应激性高血糖与肠内营养制剂选择 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者术后出现血糖居高不下，且既往无糖尿病史，需进行血糖管理与营养支持。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>手术与肿瘤创伤可引发胰岛素抵抗及应激性高血糖。对合并高血糖或应激性高血糖的患者，推荐使用“糖尿病专用肠内营养制剂（TPF-DM）”。此类制剂通常含有缓释碳水化合物（如果糖、异麦芽酮糖）和高单不饱和脂肪酸（MUFA），可显著平抑餐后血糖峰值。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>《中国肿瘤营养治疗指南》、《ESPEN 临床营养与代谢指南：肿瘤学》。</p>
+        </div>
+
+        <div class="knowledge-box">
+            <h4>知识点二：GLIM 框架下恶性肿瘤并发低蛋白血症的蛋白补充策略 <span class="badge-tag tag-know">【知识补充】</span></h4>
+            <p><strong>与本病例的关系：</strong>患者明确诊断 GLIM 营养不良，先前 ALB 27.5 g/L，经补充后恢复。 <span class="badge-tag tag-fact">【原始事实】</span></p>
+            <p><strong>核心内容：</strong>肿瘤严重消耗合并化疗/手术损伤时，蛋白质推荐量通常需达到 1.2–1.5 g/(kg·d)。纯乳清蛋白富含亮氨酸及必需氨基酸，消化吸收快，能有效刺激肌肉蛋白质合成，改善低蛋白血症。</p>
+            <p><strong>本病例能否直接应用：</strong>可以直接应用。</p>
+            <p><strong>依据：</strong>中华医学会肠外肠内营养学分会（CSPEN）《肿瘤患者营养支持指南》。</p>
+        </div>
+    </div>
+
+    <!-- 第七部分：临床思维训练卡 -->
+    <div class="section-card theme-blue searchable-section">
+        <h2 class="section-title">第七部分 📝 临床思维训练卡</h2>
+
+        <div class="training-card-fancy">
+            <div class="training-grid-fancy">
+                <div class="mini-card">
+                    <strong>患者：</strong>已去除姓名 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>主要确诊疾病：</strong>右半结肠癌（回盲部癌 cTxN+M1 IV期，肝腹膜转移） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>病理及分期：</strong>回盲部腺癌 pMMR HER2(0) BRAF V600E突变，cTxN+M1 IV期 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>转移情况：</strong>肝转移、腹膜转移 <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>手术及治疗阶段：</strong>造瘘术后，CET+恩考芬尼靶向维持治疗中，拟周五出院 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>重要合并症：</strong>应激性高血糖、低蛋白血症、肾前性急性肾损伤（已纠正）、电解质紊乱（已纠正） <span class="badge-tag tag-fact">【原始事实】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>营养会诊触发点：</strong>术后血糖居高不下请会诊，伴GLIM营养不良及进食单一 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>核心营养问题：</strong>应激性高血糖管理、少渣半流质下蛋白质及能量弥补、防低血糖及胃肠耐受性指导 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>医生首先关注：</strong>既往糖尿病史排查、胰岛素泵使用情况及每日实际膳食构成 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>为什么：</strong>确定高血糖病因，阻断高GI稀粥造成的血糖冲击，确保 ONS 安全性 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>关键证据：</strong>ALB 27.5→44.9 g/L, Glu 5.11 mmol/L, BMI 21.2 kg/m², NRS 2002=3分 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>仍缺少的信息：</strong>糖化血红蛋白（HbA1c）定量、精确骨骼肌质量肌肉率测定 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-orange">
+                    <strong>主要营养风险：</strong>恶性肿瘤合并营养风险（NRS 2002：3分）、GLIM营养不良、血糖剧烈波动风险 <span class="badge-tag tag-fact">【原始事实】</span><br>
+                    <strong>医生的营养判断：</strong>GLIM诊断营养不良明确，需少渣半流食配合控糖ONS与蛋白粉强化摄入 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的营养目标：</strong>能量 1250-1500 kcal/d，蛋白 60-75 g/d，液体量 1800-2000 ml/d <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>原始处理意见中的具体方案：</strong>少渣半流食 + 安素/控糖制剂 4勺(120ml) tid + 乳清蛋白粉 10g bid + 复合VB/VC/50+维矿 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>方案提供的能量和蛋白质：</strong>安素/专剂（~450kcal, 18g蛋白）+ 乳清蛋白粉20g（~16g蛋白）+ 膳食（~800kcal, 25g蛋白），合计约 1250-1450 kcal, 59-65g蛋白 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>方案选择依据：</strong>少渣避免刺激造瘘及肠道，控糖配方平抑血糖，乳清蛋白提升血白蛋白 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>执行中的主要困难：</strong>患者出院后需自行转换内分泌科调糖；粥类饮食习惯的纠正 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>需要监测什么：</strong>体重、血糖趋势、血白蛋白（PALB/ALB）、CRP及胃肠道耐受性 <span class="badge-tag tag-plan">【临床方案计划】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>何时需要复评：</strong>出院后1-2周至内分泌及营养门诊随访复评 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>什么情况下需要调整方案：</strong>若经口摄入量下降>50%或出现严重腹泻，需调整 ONS 浓度或增加肠外营养 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card">
+                    <strong>录音问诊与原始处理意见的联系：</strong>录音中对稀粥升糖的告诫及胰岛素泵的沟通，直接支撑了书面意见中少渣半流食及精细化 ONS 与维生素补充指令 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>我下次首先会问的三个问题：</strong>1. 家里测空腹和餐后血糖通常是多少？ 2. 喝完营养粉肚子有没有胀或拉肚子？ 3. 每天能吃几个鸡蛋白？ <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+                <div class="mini-card highlight-green">
+                    <strong>我的临床思维变化：</strong>从“关注单一病种营养”升级为“兼顾术后应激高血糖与造瘘少渣要求的综合决策思维”。 <span class="badge-tag tag-infer">【复盘推断】</span><br>
+                    <strong>一句话病例记忆点：</strong>右半结肠癌造瘘术后高血糖，少渣半流防剧烈波动，安素/控糖剂搭乳清蛋白稳营养。 <span class="badge-tag tag-infer">【复盘推断】</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+var searchMatches = [];
+var currentMatchIndex = -1;
+
+function performSearch() {
+    var input = document.getElementById('searchInput').value.trim();
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+
+    if (!input) {
+        updateCounter(0, 0);
+        return;
+    }
+
+    var safeInput = input.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    var regex = new RegExp(safeInput, 'gi');
+
+    var searchableSections = document.querySelectorAll('.searchable-section');
+    searchableSections.forEach(function(section) {
+        highlightNode(section, regex);
+    });
+
+    searchMatches = Array.from(document.querySelectorAll('mark.search-highlight'));
+
+    if (searchMatches.length > 0) {
+        currentMatchIndex = 0;
+        focusMatch(currentMatchIndex);
+        updateCounter(1, searchMatches.length);
+    } else {
+        updateCounter(0, 0);
+    }
+}
+
+function highlightNode(node, regex) {
+    if (node.nodeType === 3) {
+        var match = node.data.match(regex);
+        if (match) {
+            var span = document.createElement('span');
+            var lastIdx = 0;
+            node.data.replace(regex, function(m, offset) {
+                var before = node.data.substring(lastIdx, offset);
+                span.appendChild(document.createTextNode(before));
+                var mark = document.createElement('mark');
+                mark.className = 'search-highlight';
+                mark.appendChild(document.createTextNode(m));
+                span.appendChild(mark);
+                lastIdx = offset + m.length;
+            });
+            var after = node.data.substring(lastIdx);
+            span.appendChild(document.createTextNode(after));
+            node.parentNode.replaceChild(span, node);
+        }
+    } else if (node.nodeType === 1 && node.childNodes && !['SCRIPT', 'STYLE', 'INPUT', 'BUTTON'].includes(node.tagName)) {
+        for (var i = 0; i < node.childNodes.length; i++) {
+            highlightNode(node.childNodes[i], regex);
+        }
+    }
+}
+
+function clearHighlights() {
+    var highlights = document.querySelectorAll('mark.search-highlight');
+    highlights.forEach(function(mark) {
+        var parent = mark.parentNode;
+        parent.replaceChild(document.createTextNode(mark.textContent), mark);
+        parent.normalize();
+    });
+}
+
+function focusMatch(index) {
+    searchMatches.forEach(function(m, idx) {
+        if (idx === index) {
+            m.classList.add('current');
+            m.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+            m.classList.remove('current');
+        }
+    });
+}
+
+function navigateSearch(direction) {
+    if (searchMatches.length === 0) return;
+    currentMatchIndex += direction;
+    if (currentMatchIndex < 0) currentMatchIndex = searchMatches.length - 1;
+    if (currentMatchIndex >= searchMatches.length) currentMatchIndex = 0;
+
+    focusMatch(currentMatchIndex);
+    updateCounter(currentMatchIndex + 1, searchMatches.length);
+}
+
+function handleKeyDown(event) {
+    if (event.key === 'Enter') {
+        if (event.shiftKey) {
+            navigateSearch(-1);
+        } else {
+            if (searchMatches.length === 0) {
+                performSearch();
+            } else {
+                navigateSearch(1);
+            }
+        }
+    } else if (event.key === 'Escape') {
+        clearSearch();
+    } else {
+        setTimeout(performSearch, 300);
+    }
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    clearHighlights();
+    searchMatches = [];
+    currentMatchIndex = -1;
+    updateCounter(0, 0);
+}
+
+function updateCounter(current, total) {
+    var counter = document.getElementById('searchCounter');
+    if (total === 0 && document.getElementById('searchInput').value.trim() !== '') {
+        counter.textContent = '未找到';
+    } else {
+        counter.textContent = current + ' / ' + total;
+    }
+}
+</script>
+
+</body>
+</html>
