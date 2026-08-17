@@ -1,0 +1,1493 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#172a3a">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <meta name="description" content="北肿临床营养科会诊思维录 V2——食管鳞癌化疗后重度腹泻并发高钠脱水与多器官受损的个体化全肠外营养决策">
+  <title>北肿临床营养科会诊思维录 V2｜食管鳞癌化疗后重度腹泻并发高钠脱水与多器官受损的个体化全肠外营养决策</title>
+  <style>
+    :root {
+      --ink: #172a3a;
+      --text: #263746;
+      --muted: #6f7c86;
+      --line: #e3e6e7;
+      --paper: #ffffff;
+      --bg: #f4f3ef;
+      --soft: #f7f8f8;
+      --green: #287a5b;
+      --green-bg: #eaf5ef;
+      --blue: #296b9b;
+      --blue-bg: #eaf3f9;
+      --orange: #a66019;
+      --orange-bg: #fff1df;
+      --purple: #714b91;
+      --purple-bg: #f2ebf7;
+      --shadow: 0 14px 40px rgba(23,42,58,.07);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px 80px;
+    }
+    
+    /* 顶部导航与搜索 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .search {
+      position: relative;
+      flex: 1;
+    }
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 11px 42px 11px 16px;
+      color: var(--ink);
+      outline: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search input:focus {
+      border-color: #a8b4bd;
+      box-shadow: 0 0 0 3px rgba(23,42,58,.06);
+    }
+    .search kbd {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    
+    /* Hero Header */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 18px;
+      padding: 42px 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "V2";
+      position: absolute;
+      right: 24px;
+      bottom: -42px;
+      font-size: 160px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.035);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .14em;
+      opacity: .65;
+      margin-bottom: 4px;
+    }
+    .hero h1 {
+      font-size: clamp(24px, 3.5vw, 36px);
+      line-height: 1.25;
+      margin: 8px 0 12px;
+      letter-spacing: -.03em;
+    }
+    .hero p {
+      max-width: 780px;
+      color: #c8d1d7;
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
+      margin-top: 28px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .meta div {
+      padding: 12px 15px;
+      background: rgba(255,255,255,.035);
+    }
+    .meta small {
+      display: block;
+      color: #9eacb6;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+    .meta b {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    
+    /* 页面两栏布局 */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .side {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+    }
+    .side ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-left: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    .side a:hover, .side a.active {
+      border-color: var(--ink);
+      color: var(--ink);
+      font-weight: 700;
+      background: rgba(23,42,58,0.03);
+    }
+    .side .legend {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+    .side .legend .label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side .legend .tag {
+      margin: 0 4px 6px 0;
+    }
+    
+    /* 核心内容区 */
+    .content { min-width: 0; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23,42,58,.025);
+      scroll-margin-top: 20px;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .num {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .section h2 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      font-size: 13.5px;
+    }
+    
+    /* 标签体系 */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+    .fact { color: var(--green); background: var(--green-bg); border: 1px solid #c8e6c9; }
+    .plan { color: var(--blue); background: var(--blue-bg); border: 1px solid #bbdefb; }
+    .infer { color: var(--orange); background: var(--orange-bg); border: 1px solid #ffe0b2; }
+    .knowledge { color: var(--purple); background: var(--purple-bg); border: 1px solid #e1bee7; }
+    
+    /* 卡片与网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .card.soft { background: var(--soft); }
+    
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .value {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    
+    /* 优先级问题列表 */
+    .issues {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .issues li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 14px;
+    }
+    .rank {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    
+    /* 结构化内容框 */
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .content-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .content-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .content-box p:last-child { margin-bottom: 0; }
+    
+    /* 对话与引用块 */
+    .dialogue-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      border: 1px solid var(--line);
+    }
+    .dialogue-item h4 {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .speaker-doc {
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .speaker-pat {
+      color: #455a64;
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .quote {
+      margin: 8px 0;
+      border-left: 3px solid #cbd3d8;
+      padding: 8px 14px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+      color: #37474f;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .info-gain {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: var(--blue-bg);
+      border-radius: 6px;
+      font-size: 13px;
+      color: #184a6e;
+      line-height: 1.6;
+    }
+    
+    /* 原始处理意见专用 */
+    .raw-opinion-container {
+      background: #fdfdfd;
+      border: 1px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .meta-notice {
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12.5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--green);
+      line-height: 1.6;
+    }
+    .raw-text-block {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: #263746;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      word-break: break-word;
+    }
+    
+    /* 医生思维拆解专属卡片 */
+    .mind-card {
+      background: #ffffff;
+      border: 1px solid #dbe0e3;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .mind-card-head {
+      background: var(--soft);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mind-card-head h4 {
+      margin: 0;
+      color: var(--green);
+      font-size: 15.5px;
+    }
+    .mind-card-body {
+      padding: 16px 18px;
+    }
+    .mind-card-body p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 14px;
+      margin: 12px 0;
+      background: #f9fbf9;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+    }
+    .step {
+      position: relative;
+      padding: 0 10px;
+    }
+    .step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -8px;
+      top: 14px;
+      color: #aab3ba;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .step b {
+      display: block;
+      color: var(--ink);
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .step p {
+      margin: 0;
+      color: #53616c;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .decision {
+      background: #f4f7f8;
+      border-left: 3px solid var(--ink);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      margin: 12px 0 6px;
+      line-height: 1.65;
+    }
+    
+    /* 误区卡片 */
+    .misconception-card {
+      background: var(--orange-bg);
+      border: 1px solid #ffccbc;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .misconception-card h4 {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .misconception-card p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .misconception-quote {
+      font-style: italic;
+      color: #5d4037;
+      background: rgba(255,255,255,0.75);
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 13px;
+      border-left: 3px solid var(--orange);
+    }
+    
+    /* 知识点卡片 */
+    .knowledge-box {
+      background: var(--purple-bg);
+      border: 1px solid #e1bee7;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .knowledge-box h4 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 15px;
+    }
+    .knowledge-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    
+    /* 学习成长记录卡片 */
+    .learning-box {
+      background: #fcfdfe;
+      border-left: 3px solid var(--blue);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .learning-box h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: var(--blue);
+    }
+    .learning-box p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .learning-box p:last-child { margin-bottom: 0; }
+    
+    /* 临床思维决策树专有样式 */
+    .tree-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tree-stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      background: #fafbfc;
+    }
+    .tree-stage-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tree-node-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .tree-node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tree-node b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+    .tree-arrow {
+      text-align: center;
+      color: #a0acb5;
+      font-size: 18px;
+      font-weight: bold;
+      margin: -6px 0;
+    }
+    .tree-branch-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tree-branch {
+      background: #fff;
+      border-left: 3px solid var(--green);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 15px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .tree-branch.warning {
+      border-left-color: var(--orange);
+    }
+    .tree-branch b {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .takeaway {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 15px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      color: var(--muted);
+    }
+    mark {
+      background: #fff0a8;
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 30px;
+    }
+    
+    /* 响应式与打印 */
+    @media(max-width: 880px) {
+      .shell { padding: 16px 12px 50px; }
+      .topbar { align-items: stretch; flex-direction: column; gap: 8px; }
+      .hero { padding: 28px 20px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .layout { display: block; }
+      .side { position: static; overflow: auto; margin: 0 0 16px; }
+      .side ol { display: flex; }
+      .side a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; }
+      .side .legend { display: none; }
+      .section { padding: 20px 15px; }
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 6px; }
+      .step { padding: 8px 0; }
+      .step:not(:last-child):after { content: "↓"; left: 0; right: auto; top: auto; bottom: -10px; }
+      .issues li { grid-template-columns: 28px 1fr; }
+      .issues .tag { display: none; }
+      .tree-node-grid, .tree-branch-container { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .topbar, .side { display: none; }
+      .hero { box-shadow: none; }
+      .layout { display: block; }
+      .section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">BEIZHONG · NUTRITION</div>
+    <div class="search">
+      <input id="search" type="search" placeholder="搜索症状、化验、方案、对话原话或知识点…" aria-label="全文搜索">
+      <kbd>⌘ K</kbd>
+    </div>
+  </div>
+  
+  <header class="hero">
+    <div class="eyebrow">临床学习档案 · 会诊病例复盘</div>
+    <h1>北肿临床营养科会诊思维录</h1>
+    <p>疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘。从病例事实出发，沿着医生的判断路径，沉淀为下一次可以调用的临床行动。</p>
+    <div class="meta">
+      <div><small>会诊日期</small><b>2026.08.17</b></div>
+      <div><small>患者标签</small><b>食管鳞癌 · 迟发性腹泻 · 高钠脱水 · TPN定制</b></div>
+      <div><small>整理人</small><b>郭伟</b></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="页面目录">
+      <ol>
+        <li><a href="#overview">01 病例速览</a></li>
+        <li><a href="#evidence">02 原始会诊记录</a></li>
+        <li><a href="#opinion">03 原始会诊意见</a></li>
+        <li><a href="#reasoning">04 医生思维拆解</a></li>
+        <li><a href="#misconceptions">05 患者家属误区</a></li>
+        <li><a href="#review">06 学习成长记录</a></li>
+        <li><a href="#knowledge">07 本病例知识点</a></li>
+        <li><a href="#tree">08 临床思维路径图</a></li>
+      </ol>
+      <div class="legend">
+        <div class="label">内容来源与证据分层</div>
+        <span class="tag fact">【原始事实】</span>
+        <span class="tag plan">【临床方案计划】</span>
+        <span class="tag infer">【复盘推断】</span>
+        <span class="tag knowledge">【知识补充】</span>
+      </div>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- 01 病例速览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <span class="num">01</span>
+          <div>
+            <h2>病例速览</h2>
+            <p>70 岁男性，晚期食管鳞癌伴气管转移；二线伊立替康化疗后重度迟发性腹泻并IV度粒缺感染，继发严重高钠脱水、急性肾前性氮质血症与心功能不全，个体化全肠外营养（TPN）决策。</p>
+          </div>
+        </div>
+        
+        <div class="grid three">
+          <div class="card">
+            <div class="label"><span>患者与疾病</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">男，70 岁<br>确诊食管鳞癌 5 月余，病理鳞癌，cT3N0M1 IV期伴气管转移及气管旁沟淋巴结转移</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>治疗阶段与并发症</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">二线伊立替康化疗（C1D8）后<br>突发IV度迟发性腹泻（水样便 1000ml/d）、IV度骨髓抑制高热、高钠血症、阵发性房颤及急性肾功能不全</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养通路与摄入</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">绝对禁食水（口服微量温水即诱发恶心与剧烈腹泻）<br>近 5 日依赖海思 1440ml 工业三腔袋肠外支持，能量明显欠账</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>人体测量与诊断</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">170cm · 60.0kg · BMI 20.8<br>近期体重下降；NRS 2002 评分 4 分，GLIM 营养不良，极度全身乏力</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>核心化验（08.17）</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">Na 154↑ · UREA 44.62↑ · Crea 262↑ · ALB 29.6↓<br>CRP 47.2↑ · TnI 116.3↑ · PT 21.1s↑ · K 4.43 · P 1.00 · Mg 1.19↑ · WBC 10.16</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养治疗目标</span> <span class="tag plan">【临床方案计划】</span></div>
+            <div class="value">能量 1300–1900 kcal/d · 蛋白质 60–95 g/d · 液体 2500 ml 左右<br>经输液港定制全合一TPN，剔除NaCl，加用9AA及Vit B1，改善症状稳定体重</div>
+          </div>
+        </div>
+
+        <ul class="issues">
+          <li>
+            <span class="rank">P1</span>
+            <b>重度高钠血症（Na 154 mmol/L）与肾前性氮质血症（BUN 44.62, Crea 262）：弃用工业三腔袋，定制TPN彻底剔除NaCl，扩大无盐自由水补液至2500ml冲刷肾脏</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P2</span>
+            <b>化疗毒性致肠黏膜严重脱落（日排墨绿色便1000ml）：坚决禁食水制动肠道，全量营养转由中心静脉输液港（PORT）全肠外营养（TPN）承担</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P3</span>
+            <b>高分解代谢（ALB 29.6）与肾功能受损重叠：常规乐凡命联合 9AA（必需/支链氨基酸）促进内源尿素氮再利用，配合 SMOF 脂肪乳抗炎供能与肌注 Vit B1 代谢保护</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 02 原始会诊记录 -->
+      <section class="section" id="evidence">
+        <div class="section-head">
+          <span class="num">02</span>
+          <div>
+            <h2>第一部分 🎙 原始会诊记录</h2>
+            <p>完整保留患者基本信息、确诊疾病及治疗病史、营养相关现状与客观数据、现场讨论逐字稿及待确认内容。</p>
+          </div>
+        </div>
+
+        <!-- 1. 患者基本信息 -->
+        <div class="content-box">
+          <h4>1. 患者基本信息</h4>
+          <div class="grid">
+            <div class="card soft">
+              <div class="label"><span>患者</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">已去除姓名</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>性别与年龄</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">男，70岁</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>主要确诊疾病</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">食管鳞癌（确诊5月余）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>病理类型与分期</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">鳞状细胞癌；cT3N0M1 IV期</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>转移情况</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">气管转移，右侧气管旁沟淋巴结转移</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>重要合并症</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">IV度骨髓抑制（粒缺+血小板减低）、感染发热、重度腹泻（IV度）、高钠血症、急性肾前性氮质血症、阵发性房颤、低蛋白血症、糖耐量异常、凝血功能差、贫血</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>手术史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">无手术史（既往否认手术史）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>抗肿瘤治疗史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">一线白蛋白紫杉醇+顺铂+普特利单抗4周期；二线伊立替康（125mg/m²）C1D1、C1D8</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>当前治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">化疗后严重不良反应（粒缺发热、IV度腹泻、高钠脱水、房颤）综合支持救治期</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>本次就诊背景</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">伊立替康后突发重度腹泻（≥7次/d，1000ml/d）、发热39℃伴IV度粒缺，心肾受损入院</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>营养科会诊原因</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">禁食水下原海思1440三腔袋能量不足且存在高钠，心功能好转后申请扩大补液量定制TPN</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>核心营养问题</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">完全肠功能衰竭禁食水；高分解代谢极度乏力；高钠高渗脱水伴急性肾前性氮质血症</div>
+            </div>
+            <div class="card soft" style="grid-column: 1 / -1;">
+              <div class="label"><span>信息不确定项</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">卧床未测准确近期体重下降绝对公斤数（具体不详）；既往确切基线干体重</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 确诊疾病及治疗病史 -->
+        <div class="content-box">
+          <h4>2. 确诊疾病及治疗病史</h4>
+          <p>患者男，70岁，2026年1月出现进食哽噎伴左胸前区钝痛，2026年3月胃镜示距门齿23-29cm见溃疡状新生物，活检确诊食管鳞状细胞癌 <span class="tag fact">【原始事实】</span>。免疫组化：EGFR(90%强阳)、PD-L1(CPS&lt;1)、TROP2(90%强阳)、Claudin18.2(0%)、HER2(0)、pMMR；胸腹CT示食管上段管壁增厚伴右侧气管旁沟淋巴结增大（气管转移），临床分期 cT3N0M1 IV期 <span class="tag fact">【原始事实】</span>。一线行白蛋白紫杉醇+顺铂+普特利单抗4周期，因神经毒性停药 <span class="tag fact">【原始事实】</span>。2026-07-17入组经治晚期食管鳞癌III期临床试验对照组，于2026-07-30及2026-08-06行C1D1、C1D8伊立替康治疗 <span class="tag fact">【原始事实】</span>。2026-08-07（C1D8次日）出现腹泻4次伴发热38℃；08-08高热至39℃伴寒战腹胀、重度水样腹泻（≥7次/天）；08-09外院查WBC 0.41, ANC 0.26, PLT 59（IV度骨髓抑制）、K 3.0, Na 125, Crea 89.8, PCT 19.245；08-10出现阵发性房颤 <span class="tag fact">【原始事实】</span>。经升白、升板、抗感染、奥曲肽、冰冻血浆、免疫球蛋白及补液对症治疗后收治入院 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 3. 营养相关现状与客观数据 -->
+        <div class="content-box">
+          <h4>3. 营养相关现状与客观数据</h4>
+          <p><strong>体重和变化：</strong>身高170cm，体重60.0kg，BMI 20.8 kg/m²（查体记录） <span class="tag fact">【原始事实】</span>。因卧床未进行连续动态称重，病历明确记载近期体重有所下降具体不详 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>摄入情况与通路：</strong>现绝对禁食水，胃肠道处于严重炎性渗出与分泌亢进状态 <span class="tag fact">【原始事实】</span>。口服微量温水送服药物即诱发剧烈恶心与腹泻加重，完全丧失肠内营养吸收能力 <span class="tag fact">【原始事实】</span>。大便每日排泄约1000ml，呈墨绿色稀水便及透明胶冻样便 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养影响症状与查体：</strong>极度全身乏力，间断低热发热近10余天（会诊日37.3-37.5℃），偶有咳嗽咳白粘痰 <span class="tag fact">【原始事实】</span>。精神状态尚可，自主体位，左下腹轻压痛；查体见左脚踝及足部皮肤发亮、稍有水肿（右侧不明显），非要穿厚袜子自感体质发寒 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>既往及当前营养治疗：</strong>近5日给予工业化三腔袋肠外营养（海思1440ml + 谷氨酰胺20g + 水乐2支 + 维他利匹特10ml + 安达美10ml），但因海思仅提供约1000 kcal热量，无法满足重症高代谢消耗，患者极度乏力；且海思自带钠，加剧了高钠血症 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>实验室化验（2026-08-17）：</strong>ALB 29.6 g/L（重度低蛋白血症），UREA 44.62 mmol/L（尿素氮极度升高），Crea 262 μmol/L（急性肾损伤，前日290），UA 427 μmol/L，Na 154 mmol/L（严重高钠血症/高渗脱水），K 4.43 mmol/L（补钾后正常），Ca 2.29 mmol/L，P 1.00 mmol/L，Mg 1.19 mmol/L（轻度高镁），CRP 47.2 mg/L（高炎症），TnI-Ultra 116.3 pg/ml（心肌损伤），PT 21.1 s, PT% 43%（继发性凝血差），WBC 10.16×10^9/L, HGB 102 g/L, PLT 86×10^9/L <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养诊断状态：</strong>恶性肿瘤合并营养风险（NRS 2002：4分），营养不良（GLIM），高钠血症，高镁血症，炎症、肾功能不全、心功能不全，甲状腺功能减低、凝血功能差、糖耐量异常、感染性腹泻，贫血 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 4. 会诊现场顺序复盘 -->
+        <div class="content-box">
+          <h4>4. 会诊现场顺序复盘（六个核心讨论模块）</h4>
+          
+          <div class="dialogue-item">
+            <h4>模块一：容量矛盾、肾前性氮质血症与能量提升诉求</h4>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“他之前的话我们要控制液体量，但是他可能有一些肾前性的容量不足的，你发现他的肌酐和BUN还挺高的。但是肌酐的话也是降低的趋势，昨天290变成260，但病危还是很高。然后尿素还稍微有点高，所以说我们今天想重新把这个能量让他给他足一点，他现在一直乏力的特别厉害。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">营养科医生追问：</div>
+            <div class="quote">“他自己的乏力特别厉害。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确了前期因房颤严格限水导致肾脏低灌注与高分解氮质血症；当前肌酐开始回调，患者处于极度高消耗乏力状态，临床迫切需要提升能量供给。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块二：重症感染消耗、凝血障碍与心功能好转评估</h4>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“他现在是一个全身先有的电解质水的一个紊乱就后面继发的这些器官损伤。他现在心功能都恢复了，看指标好多了。感染指标其实也没有那么重但体温每天会有点波动，今天37度3、37度5左右……每天输血浆200到400毫升。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">营养科医生确认：</div>
+            <div class="quote">“他现在感染其实控制的还行是吧……这个难题很难。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>确认器官损伤与凝血异常继发于重症感染与水/电解质紊乱；心功能指标好转为放宽补液容量、加强营养支持打开了安全窗口。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块三：腹泻性状、大便丢失量与肠黏膜损伤判断</h4>
+            <div class="speaker-doc">营养科医生追问：</div>
+            <div class="quote">“他那个拉肚子是好点了没？似乎有多少毫升啊现在一天？就是水样便吗？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“拉肚子好的不明显似乎量有一点减少，一天1000左右吧。绿色绿色的绿色胶状样的那种墨绿墨绿色胶状样的水样便……骨髓功能慢慢恢复，肠粘膜的修复功能会一点点完善。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">营养科医生推断：</div>
+            <div class="quote">“那你这还是挺多的哈，看来还是有感染。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>日排泄墨绿色胶冻样便1000ml，证实伊立替康致肠黏膜严重坏死剥脱与分泌性肠炎，当前肠道完全不具备消化吸收功能。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块四：特殊氨基酸选用与肠内途径彻底排查</h4>
+            <div class="speaker-doc">营养科医生提议与关键追问：</div>
+            <div class="quote">“要不就给他要不给他弄点九AA（9AA）？他这个肠内现在一点东西都不可能上是吧怎么？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“肠内一点都不敢给。他稍微用用水送服点用用药他自己就成意思就是（恶心腹泻加重）……今天把B1也用上了，感觉就是属于高消耗的状态。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">营养科医生决断：</div>
+            <div class="quote">“哦哦那那算了吧。对。你就给他说给他那边加点那个（TPN）。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain-box info-gain"><strong>现场获得的信息：</strong>连喝水送药都无法耐受，果断彻底排除肠内营养（EN），确立全肠外营养（TPN）支持路径；提议引入9AA减轻肾脏排氮负担。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块五：床旁体征、单侧发亮水肿与低蛋白血症核实</h4>
+            <div class="speaker-doc">营养科医生查体观察：</div>
+            <div class="quote">“可是我看它脚感觉有点发亮它有点亮你看它脚是是觉得脚有点亮。我就觉得哈你看他这两只脚。这只脚没事。对，这个好像胖了，这个这个肿这个不肿。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“感觉还行蛋白稍微低一点啊，蛋白是二十八九反正每天往里打蛋白。非要穿袜子，而且在家都穿这么厚的袜子，还是觉得体质比较寒……黏膜渗出性分泌性腹泻特别多。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生识别单侧足踝部发亮凹陷性水肿，结合ALB 29.6g/L，明确系低蛋白血症致胶体渗透压降低漏出，并非全身容量过负荷。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块六：高钠血症纠治、剔除NaCl与全合一TPN大袋敲定</h4>
+            <div class="speaker-pat">病房主管医师：</div>
+            <div class="quote">“哦他还有高钠。嗯对是我看见了所以说把钠摘掉我们去完……钾每天泵两支钾入在两个大500液里，今天4.43……输液港这个外周是单独给他留着输血浆的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">营养科医生指令与决断：</div>
+            <div class="quote">“钠也对那那就别加了。对那不加了。钾是在4.0以上还挺好就是钠有点高。现在没问题了可以给一点了……那不行，这个人就单独给他配个袋子吧，是吧？可以，好吧，那就给他配一个吧。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>针对Na 154 mmol/L在配方中彻底剔除NaCl；心功能好转后放开液体至2500ml；经输液港配制个体化全合一TPN大袋。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 待确认内容 -->
+        <div class="content-box">
+          <h4>5. 待确认内容</h4>
+          <p>1. 卧床患者近期确切体重丢失绝对值：病历记录“体重近期有所下降具体不详”，待病情平稳后通过床旁电子秤核实准确干体重。 <span class="tag fact">【原始事实】</span></p>
+          <p>2. 单侧（左侧）足踝发亮水肿：结合肿瘤高凝状态（D-Dimer 3.30），建议完善下肢深静脉超声以排查下肢DVT。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 03 原始会诊意见 -->
+      <section class="section" id="opinion">
+        <div class="section-head">
+          <span class="num">03</span>
+          <div>
+            <h2>第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+            <p>依据原始营养会诊处理意见完整转录，诊断、目标、用量、频次、执行方法及监测建议按原有顺序全量保留。</p>
+          </div>
+        </div>
+
+        <div class="raw-opinion-container">
+          <div class="meta-notice">
+            以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+          </div>
+          <div class="raw-text-block">处理意见：患者老年男性，主诉：诊断食管鳞癌5月余，食管鳞癌 cT3N0M1 IV期 气管转移 PD-L1CPS<1，pMMR，HER2(0)，Claudin18.2(-) 粒缺伴发热 腹泻IV度 血小板减低 阵发性房颤 冠心病 高血压病3级(极高危) 糖耐量异常。目前二线入组临床研究，2026-07-30、2026-08-06行C1D1、C1D8伊立替康治疗。患者08-07出现腹泻，后逐步加重≥7次/分，伴IV度粒缺+发热，电解质紊乱、房颤、肾功能不全。目前一般可，临床予抗感染、升白、冰冻血浆、免疫球蛋白、优甲乐、PN等对症支持治疗；现禁食水，乏力，近10多天一直发热，今日37.3-37.5度，大便1000ml/d，绿色，近5日PN予海思1440+谷氨酰胺20g+水乐2支+维他利匹特10ml+安达美10ml支持无不适，现心功能较好转，体重近期有所下降具体不详。既往高血压、糖尿病史。化验血：ALB 29.6，UREA 44.62，Crea 262，UA 427，Na 154，K 4.43，Ca 2.29，P 1，Mg 1.19，CRP 47.2，TnI-Ultra 116.3，PT 21.1，PT% 43，白细胞总数10.16，血红蛋白102，血小板总数86。
+患者查体：患者精神状可，自主体位，左脚稍有水肿，现ht 1.70m，wt 60kg，BMI 20.8kg/m2。
+营养诊断：恶性肿瘤合并营养风险（NRS2002：4分），营养不良（GLIM），高钠，高镁，炎症、肾功能不全、心功能不全，甲状腺功能减低、凝血功能差、糖耐量异常、感染性腹泻，贫血。
+营养治疗目标：1.改善症状，加强营养，增加或稳定体重。每日推荐营养供给量：能量1300-1900kcal，蛋白60-95g，液体量2500ml左右。
+2. PN（输液港）：50%糖200ml+10%糖1000ml+乐凡命500ml+9AA 250-500ml+多种油脂肪乳250ml+水乐2支+维他利匹特10ml+安达美10ml+15%氯化钾20ml+格力福斯10ml+葡萄糖酸钙10ml+胰岛素25iu
+3 维生素B1 100mg，im，qd
+4. 适量活动；
+5. 监测体重、离子，肝肾功能、心功能、PALB，CRP等。</div>
+        </div>
+      </section>
+
+      <!-- 04 医生思维拆解 -->
+      <section class="section" id="reasoning">
+        <div class="section-head">
+          <span class="num">04</span>
+          <div>
+            <h2>第三部分 🧠 医生临床思维拆解</h2>
+            <p>深入剖析四大关键问诊点、医生想判断什么、完整临床推理链及从问诊到医嘱的全局决策映射。</p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 1 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 1：重度腹泻期坚决排查并排除肠内营养（EN），果断维持全肠外营养（TPN）</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“他这个肠内现在一点东西都不可能上是吧怎么？” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>病房提供了什么信息：</strong>连喝水送药都诱发剧烈恶心与腹泻；每日排泄墨绿色胶冻样便约1000ml。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估肠黏膜机械与吸收屏障受损程度，判断是否已达“完全肠功能衰竭期”。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>伊立替康后重度迟发性腹泻（1000ml/d），口服微量温水即恶心剧烈腹泻。</p>
+              </div>
+              <div class="step">
+                <b>② 机制原因</b>
+                <p>SN-38直接破坏隐窝细胞，黏膜广泛坏死脱落，消化酶与载体功能丧失。</p>
+              </div>
+              <div class="step">
+                <b>③ 风险判断</b>
+                <p>勉强给EN必致肠腔高渗性水肿、恶化脱水与电解质丢失，诱发肠麻痹坏死。</p>
+              </div>
+              <div class="step">
+                <b>④ 方案决策</b>
+                <p>彻底禁食水制动肠道，由输液港（PORT）全肠外营养（TPN）全面供能。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：伊立替康化疗后IV度腹泻（日排墨绿色便1000ml），喝水即恶心腹泻。<br>
+              ↓ 原因分析：活性代谢物SN-38导致肠上皮大面积坏死剥脱与严重分泌性肠炎。<br>
+              ↓ 风险判断：强行肠内喂养将加剧肠黏膜水肿与坏死，加重电解质紊乱。<br>
+              ↓ 医生实际决策：彻底禁食水，全量营养转由中心静脉全合一TPN承担 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终方案的影响：</strong>直接确立了全肠外营养支持路径，绝不勉强经口或管饲。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 2 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 2：高钠血症（154 mmol/L）与肾前性氮质血症的“零钠扩容”决策</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“（见Na 154）钠也对那那就别加了。对那不加了。”并确认心功能好转后“现在的话可以给一点了。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>病房提供了什么信息：</strong>血钠154 mmol/L，BUN 44.62 mmol/L，肌酐262 μmol/L；心功能已好转。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】鉴别高钠血症为大量丢失低渗消化液引起的高渗性脱水，评估心肌耐受力以决定补液扩容安全边界。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>Na 154 mmol/L，BUN 44.62 mmol/L，肌酐 262 μmol/L，心功能较前好转。</p>
+              </div>
+              <div class="step">
+                <b>② 机制原因</b>
+                <p>丢失大量低渗肠液致高渗脱水；前期限水致有效血容量不足、肾小球滤过率骤降。</p>
+              </div>
+              <div class="step">
+                <b>③ 风险判断</b>
+                <p>持续高钠致脑细胞脱水神经损伤；肾低灌注将转化为不可逆急性肾小管坏死。</p>
+              </div>
+              <div class="step">
+                <b>④ 方案决策</b>
+                <p>TPN中剔除一切外源NaCl，补液放宽至2500ml，以葡萄糖代谢自由水降钠冲肾。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：高钠血症（154 mmol/L）合并尿素氮飙升（44.62 mmol/L）与肌酐升高（262 μmol/L）。<br>
+              ↓ 原因分析：严重腹泻与高热致失水远多于失钠，前期过度限水加剧肾前性低灌注。<br>
+              ↓ 风险判断：高钠脑损伤及急性肾衰竭风险。<br>
+              ↓ 医生实际决策：TPN彻底不加氯化钠，总液量扩大至2500ml匀速泵入 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终方案的影响：</strong>在医嘱第2条TPN配方中严格不加NaCl，并设定总液量2280-2530ml达成目标。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 3 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 3：常规乐凡命联合 9AA（肾病必需/支链氨基酸）与肌注 Vit B1</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“要不就给他要不给他弄点九AA（9AA）？……今天把B1也用上了。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>病房提供了什么信息：</strong>肌酐262 μmol/L，BUN 44.62 mmol/L，极度乏力；白蛋白仅29.6 g/L。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】在急性肾功能不全合并严重高分解代谢负氮平衡下，如何既供足蛋白质又减少尿素生成。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>ALB 29.6 g/L，骨髓肠黏膜剧烈修复高消耗，肌酐 262，BUN 44.62。</p>
+              </div>
+              <div class="step">
+                <b>② 机制原因</b>
+                <p>高分解代谢需足量蛋白（60-95g），但普通氨基酸脱氨产生大量尿素加重肾负担。</p>
+              </div>
+              <div class="step">
+                <b>③ 风险判断</b>
+                <p>限蛋白致恶病质衰竭；高蛋白致尿毒症加重；高糖输注消耗Vit B1致乳酸酸中毒。</p>
+              </div>
+              <div class="step">
+                <b>④ 方案决策</b>
+                <p>乐凡命500ml + 9AA 250-500ml利用内源尿素合成蛋白；肌注Vit B1 100mg qd。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：严重低蛋白血症（29.6 g/L）与肾功能受损（Crea 262, BUN 44.62）并存。<br>
+              ↓ 原因分析：组织修复需氮源，但肾排氮功能受抑；大剂量葡萄糖代谢消耗焦磷酸硫胺素。<br>
+              ↓ 风险判断：负氮平衡恶化 vs 尿素氮堆积；再喂养乳酸酸中毒及韦尼克脑病。<br>
+              ↓ 医生实际决策：乐凡命联合9AA双氨基酸供氮，每日肌注Vit B1 100mg <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终方案的影响：</strong>体现在医嘱第2条与第3条，构建了高利用率氮源与糖代谢辅酶保护屏障。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 4 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 4：废弃工业三腔袋（海思1440），经输液港配制个体化“全合一”TPN大袋</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“那不行，这个人就单独给他配个袋子吧，是吧？可以，那就给他配一个吧。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>病房提供了什么信息：</strong>近5日用海思1440ml能量明显不足（极度乏力）；Na 154高钠；具备通畅输液港通路。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】预混三腔袋固定配比（能量不足、自带钠）无法应对复杂重症代谢紊乱，需定制全合一配方。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>海思 1440ml 仅供约 1000 kcal，热量严重欠账，且自带钠恶化高钠血症。</p>
+              </div>
+              <div class="step">
+                <b>② 机制原因</b>
+                <p>预混袋水-糖-脂-氮-电解质比例固定，无法满足高热高消耗及零钠扩容需求。</p>
+              </div>
+              <div class="step">
+                <b>③ 风险判断</b>
+                <p>继续使用预混袋将加重营养不良恶病质与电解质紊乱失衡。</p>
+              </div>
+              <div class="step">
+                <b>④ 方案决策</b>
+                <p>经输液港（PORT）单独配制个体化“全合一”大袋，全套营养素24小时匀速输入。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：海思1440ml无法满足高热重症消耗（极度乏力），且电解质配比冲突。<br>
+              ↓ 原因分析：工业预混袋缺乏灵活性，不能同时满足高能量、高蛋白、零外源钠要求。<br>
+              ↓ 风险判断：代谢紊乱持续恶化，多器官衰竭风险。<br>
+              ↓ 医生实际决策：由营养科单独配制全合一定制TPN大袋经输液港匀速输注 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终方案的影响：</strong>形成了第2条精准的个体化全合一TPN医嘱大配方。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- TPN精算与全局映射 -->
+        <div class="content-box">
+          <h4>从问诊到处理意见全局推导与 TPN 配方精算</h4>
+          <p><strong>会诊获得的信息：</strong>化疗后重度腹泻（1000ml/d）、Na 154、BUN 44.62、Crea 262、ALB 29.6、极度乏力、房颤心功能好转 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>医生识别的问题：</strong>胃肠道功能完全衰竭禁食水；高渗脱水伴肾前性氮质血症；重度感染高代谢负氮平衡 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>主要营养风险：</strong>高钠脑神经损伤、急性肾功能衰竭、恶病质不可逆消耗、乳酸酸中毒 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>原始处理意见方案精算（按医嘱第2条核算）：</strong>
+            <br>• <strong>糖源供能</strong>：50%糖200ml + 10%糖1000ml ＝ 葡萄糖 200g（<strong>800 kcal</strong>，占非蛋白热量 61.5%），配胰岛素 25 IU（糖胰比 8:1） <span class="tag plan">【临床方案计划】</span>。
+            <br>• <strong>脂源供能</strong>：SMOFlipid 20% 250ml ＝ 脂肪 50g（<strong>500 kcal</strong>，占非蛋白热量 38.5%），糖脂比 61.5% : 38.5% <span class="tag plan">【临床方案计划】</span>。
+            <br>• <strong>氮源供给</strong>：乐凡命500ml（42.5g AA, 7.23g N）+ 9AA 250~500ml（13.5~27.0g AA, 2.2~4.4g N）＝ 氨基酸总量 <strong>56.0 ~ 69.5 g</strong>（0.93 ~ 1.16 g/kg/d），总氮 <strong>9.43 ~ 11.63 g N</strong> <span class="tag plan">【临床方案计划】</span>。
+            <br>• <strong>热量与热氮比</strong>：非蛋白热量（NPC）<strong>1300 kcal</strong>（21.7 kcal/kg/d）；总热量 <strong>1524 ~ 1578 kcal</strong>（25.4 ~ 26.3 kcal/kg/d，精准命中目标 1300-1900 kcal）；NPC:N ＝ <strong>112:1 ~ 138:1</strong>（黄金热氮比） <span class="tag infer">【复盘推断】</span>。
+            <br>• <strong>液体总量与电解质</strong>：总液量 <strong>2280 ~ 2530 ml/d</strong>（达成目标 2500ml）；15% KCl 20ml（补钾40.2mmol）、格力福斯10ml（补有机磷10mmol）、葡萄糖酸钙10ml（补钙2.23mmol）、水乐2支+维他利匹特10ml+安达美10ml；全方<strong>零额外添加氯化钠</strong>，提供纯净自由水以水降钠、利尿护肾 <span class="tag plan">【临床方案计划】</span>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 患者及家属营养误区 -->
+      <section class="section" id="misconceptions">
+        <div class="section-head">
+          <span class="num">05</span>
+          <div>
+            <h2>第四部分 ⚠️ 患者及家属营养误区与健康教育</h2>
+            <p>提炼临床常见误区、医生现场纠正、深层病理生理机制与可复用宣教沟通话术。</p>
+          </div>
+        </div>
+
+        <!-- 误区 1 -->
+        <div class="misconception-card">
+          <h4>误区 1：高钠脱水合并腹泻时“因为有房颤病史就过度限水、害怕补液加重心脏负担”</h4>
+          <div class="misconception-quote">
+            <strong>病房主管医师/家属顾虑：</strong>“之前有那个房颤就控制就有点液体补液有点受限……他之前的话我们要控制液体量，导致肾前性容量不足……” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正与指导：</strong>医生明确指出矛盾转化——心功能已好转，而高钠（154 mmol/L）与尿素氮（44.62 mmol/L）暴增提示严重高渗脱水与肾脏低灌注，此时必须放开补液量（扩大至2500ml/d）并果断剔除钠盐，以水利尿，挽救肾功能。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>常将“心脏病/房颤”等同于“终身绝对限水”，在患者持续丢失大量低渗消化液时未能动态评估有效循环血容量，造成医源性脱水与肾前性氮质血症。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】严重腹泻（1000ml/d）伴高热属于低渗液丢失，血清呈高渗浓缩状态；有效循环血容量不足导致肾血管剧烈收缩。若机械限水，肾小球滤过率将进一步断崖式下跌，诱发不可逆急性肾小管坏死。在心功能监测许可下，经中心静脉24小时均匀滴注低钠全营养液，既不增加心脏瞬间容量负荷，又能迅速改善肾灌注。依据《重症患者液体治疗与营养支持专家共识》。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用营养宣教表达：</strong>
+            “咱们以前担心心脏负担不敢多输水，但现在患者拉肚子每天拉出1000毫升水，体内的水已经‘干涸’了，血里的盐分浓缩到了极点，把肾脏都‘渴坏’了，尿素氮都堆积在体内。现在心脏情况已经平稳，咱们通过输液港，用微电脑泵24小时非常均匀地把水和营养一点一滴输进去，既不会猛冲心脏，又能把肾脏冲刷干净、把高盐稀释下来，这是救命的关键。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 2 -->
+        <div class="misconception-card">
+          <h4>误区 2：单侧脚踝皮肤发亮浮肿就判定体内“水太多”，抵触补液与营养支持</h4>
+          <div class="misconception-quote">
+            <strong>现场查体表现与顾虑：</strong>“我看它脚感觉有点发亮……非要穿厚袜子……觉得体质比较寒……脚肿是不是水太多了？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正与分析：</strong>医生仔细比对双侧下肢：“这只脚没事，这个好像胖了，这个肿这个不肿……蛋白稍微低一点（ALB 29.6）。”指出下肢发亮浮肿不是全身水钠潴留，而是重度低蛋白血症导致血管内水分子往组织间隙渗漏，且单侧不对称需警惕局部循环或血管受压。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>见到下肢水肿就认为是“输液输多了”，从而要求停水停营养，导致低蛋白血症与血容量不足陷入恶性循环。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】白蛋白是维持血管内胶体渗透压的核心基石。当ALB降至29.6g/L时，水分从血管内漏出至疏松皮下组织导致凹陷性水肿（“血管内干渴、组织间隙水肿”）。此时单纯限水无法消肿，反而加剧肾前性肾衰；唯有通过TPN给予充足优质氨基酸并联合白蛋白/血浆输注，提升胶体渗透压，才能将组织间隙的水分拉回血管内并经肾脏排出。依据ESPEN重症临床营养指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用营养宣教表达：</strong>
+            “家属您看，老人脚踝发亮有一点肿，不是因为体内水喝多了，而是因为血液里的‘白蛋白’太低了。白蛋白就像一块‘海绵’，海绵少了，水就从血管里漏到了皮肤底下；但其实血管里面还是缺水的！咱们现在通过静脉把蛋白质和能量补足，把体内的‘海绵’造出来，血管就能把漏出去的水吸回来，水肿自然就消退了。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 3 -->
+        <div class="misconception-card">
+          <h4>误区 3：“大便呈墨绿色胶冻样就是消化道在大出血，吓得不敢给任何营养”</h4>
+          <div class="misconception-quote">
+            <strong>病房主管医师/家属描述：</strong>“大便……绿色绿色的绿色胶状样的那种墨绿墨绿色胶状样的那种……看来还是有感染。” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场分析：</strong>医生明确指出墨绿色胶冻样便并非上消化道大出血（柏油样黑便），而是伊立替康化疗后小肠及结肠黏膜坏死脱落、胆汁未及在肠道还原吸收即随大量炎性渗出物高速排出的特征性表现，提示肠道处于严重的渗出期。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>误区背后的顾虑：</strong>看到墨绿色大便误以为是内脏溃烂出血，陷入恐慌；临床可能因此不敢给予足量静脉代谢底物。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】伊立替康活性代谢产物SN-38在肠腔蓄积引起肠隐窝细胞凋亡与黏膜大面积炎性剥脱。肠蠕动急剧加快使胆绿素未能还原为胆红素即排出体外，混合脱落黏膜与渗出物形成“墨绿色胶冻便”。此时肠道不能进食，但骨髓中性粒细胞及肠干细胞的再生极度依赖外源性谷氨酰胺、葡萄糖与氨基酸。若因大便颜色恐慌而减少静脉营养，肠黏膜萎缩与细菌易位风险将成倍增加。依据ASCO化疗相关腹泻处理指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用营养宣教表达：</strong>
+            “家属不要恐慌，这个墨绿色胶冻样大便不是大出血，而是化疗药物刺激后，肠道黏膜脱落的一层‘坏死皮屑’混合着胆汁排了出来。这说明肠道正在经历一场大仗，这时候肠子不能吃东西，但身体其他部队修复肠道需要大量的能量。咱们在静脉里把营养给足，给身体造血和修复黏膜提供原材料，等新黏膜长好了，大便自然就会恢复正常黄色。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 我的学习成长记录 -->
+      <section class="section" id="review">
+        <div class="section-head">
+          <span class="num">06</span>
+          <div>
+            <h2>第五部分 💡 我的学习成长记录</h2>
+            <p>从“算够热量”转向“判断通路、耐受、代谢和电解质的完整闭环”，记录第一人称认知转变与思考沉淀。</p>
+          </div>
+        </div>
+
+        <div class="learning-box">
+          <h4>一、复盘前，我会如何判断这个问题？</h4>
+          <p>复盘前，如果面对这样一位化疗后重度腹泻、高钠血症（154 mmol/L）、肌酐（262 μmol/L）和尿素氮（44.62 mmol/L）极高，同时伴有阵发性房颤病史的危重肿瘤患者，我可能会陷入多重顾虑：一方面担心补液量过大诱发心力衰竭或加重房颤，倾向于保守限水；另一方面看到肌酐和尿素氮高，可能会过度限制氨基酸摄入量，甚至不敢足量给予静脉营养；在面对高钠血症时，可能会机械地等待口服饮水纠正，而忽略了患者胃肠道功能已经衰竭、连微量口服水都无法耐受的临床现实。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>二、今天新的认识（以下为复盘建议，供我确认和修改）</h4>
+          <p>1. <strong>危重症营养支持的首要前提是“敏锐辨析病理生理矛盾的主要方面”：</strong>本病例中，前期的房颤限水矛盾已经转化为高渗脱水导致的肾前性肾衰竭矛盾。心功能好转后，必须果断放宽液体至2500ml，以充足的水分冲刷肾脏、稀释高钠。 <span class="tag infer">【复盘推断】</span></p>
+          <p>2. <strong>工业化三腔袋绝不能在复杂重症患者中“一挂到底”：</strong>当患者出现严重电解质紊乱（如高钠、低钾、低磷）或器官功能障碍时，预混袋的固定配比（如自带钠、能量不足、氮源单一）会成为治疗的桎梏。必须建立由营养科医生主导、经中心静脉输注的个体化“全合一”大袋定制思维。 <span class="tag infer">【复盘推断】</span></p>
+          <p>3. <strong>特殊氨基酸在肾功能减退与高消耗重叠状态下的精准应用：</strong>常规平衡氨基酸提供全面氮源，而联合9AA（富含必需氨基酸与支链氨基酸）则能利用内源尿素氮合成蛋白质，既满足了骨髓与黏膜修复的高蛋白需求（60-95g/d），又减轻了肾脏排氮负担。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>三、最大收获（临床思维闭环提炼）</h4>
+          <p><strong>① 发现问题：</strong>识别食管鳞癌化疗后重度迟发性腹泻（1000ml/d）、Na 154 mmol/L高钠脱水、BUN 44.62与Crea 262肾前性氮质血症、ALB 29.6g/L低蛋白血症及极度乏力 <span class="tag fact">【原始事实】</span>。<br>
+          <strong>② 分析原因：</strong>伊立替康毒性导致肠黏膜广泛脱落与分泌性腹泻；大量丢失低渗液引发高渗脱水；前期心功能受限限水诱发肾前性低灌注；骨髓与组织剧烈修复产生极高分解代谢 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>③ 补充证据：</strong>查体确认左踝单侧水肿（低蛋白渗出而非全身容量超负荷）、核实心功能好转、排查胃肠道耐受（送药水均无法耐受） <span class="tag fact">【原始事实】</span>。<br>
+          <strong>④ 判断风险：</strong>高钠性脑水肿/神经损伤风险、急性肾衰转为不可逆肾实质损伤风险、恶病质衰竭风险 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>⑤ 选择干预：</strong>彻底禁食水；中心静脉输液港定制全合一TPN（双糖源800kcal + SMOF脂肪乳500kcal + 乐凡命联合9AA + 水乐/维他利匹特/安达美 + 15% KCl 20ml + 格力福斯10ml + 胰岛素25U + 零额外添加NaCl）；辅以肌注Vit B1 100mg qd；总液量2500ml左右 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑥ 明确执行：</strong>全合一静脉大袋经输液港24小时匀速泵入，外周静脉专供输注血浆与白蛋白 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑦ 监测复评：</strong>每日监测24h出入量、心功能体征；每24-48h动态复查血电解质（严密监控血钠下降斜率）、肌酐、尿素氮、血糖、CRP及前白蛋白 <span class="tag plan">【临床方案计划】</span>。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>四、大夫通俗原话与沟通技巧</h4>
+          <p><strong>【大夫通俗原话】：</strong>“（面对高钠与腹泻）钠也对那那就别加了。对那不加了……那不行，这个人就单独给他配个袋子吧，是吧？可以，那就给他配一个吧。” <span class="tag fact">【原始事实】</span><br>
+          <strong>【医学含义】：</strong>果断废除引起电解质矛盾的常规预混工业袋，根据患者高钠脱水及肾损伤的病理状态，从零开始量身定制全套静脉营养处方。<br>
+          <strong>【沟通技巧分析】：</strong>在多学科会诊与病房床旁沟通中，面对复杂的病情和多重矛盾，带教老师没有使用冗长晦涩的理论推演，而是以极其干脆、笃定的专业判断直接给出行动指令（“把钠摘掉”、“单独配个袋子”），迅速统一了主管医疗团队的治疗方向，极大地增强了医护团队与患者家属的安全感。<br>
+          <strong>【我以后可以怎样借鉴】：</strong>在面对合并多器官受损的危重患者会诊时，汇报病情要直切主要矛盾，给出方案要具体到制剂名称、用量、配伍及滴速，做到“指令清晰、因果明确、执行零歧义”。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>五、下次我会怎么问（重症肠外营养查房问诊结构链）</h4>
+          <p>1. <strong>筛查与生命体征：</strong>“患者近24小时体温最高是多少？心率和心律怎么样？有没有心悸或气促发作？” <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>胃肠道耐受边界：</strong>“目前有没有经口进食哪怕一勺水？喝水后有没有恶心、呕吐或剧烈腹痛腹泻？” <span class="tag infer">【复盘推断】</span><br>
+          3. <strong>液体平衡与丢失量：</strong>“昨天24小时总尿量是多少毫升？腹泻排便了几次、大便是什么颜色性状、总引流量估算有多少毫升？” <span class="tag infer">【复盘推断】</span><br>
+          4. <strong>容量与体征评估：</strong>“听诊肺底有没有湿罗音？双侧足踝部水肿是对称的还是单侧的、按压后回弹快不快？” <span class="tag infer">【复盘推断】</span><br>
+          5. <strong>电解质与代谢指标：</strong>“今天早晨最新的血钠、血钾、肌酐和尿素氮是多少？较前天比是上升还是下降趋势？” <span class="tag infer">【复盘推断】</span><br>
+          6. <strong>输液通路与外周保护：</strong>“输液港回抽是否通畅、局部皮下有没有红肿渗漏？全合一TPN袋设定了几小时输完、输注泵速是多少毫升/小时？” <span class="tag infer">【复盘推断】</span><br>
+          7. <strong>血糖与代谢监控：</strong>“输注全营养液期间有没有每4-6小时监测一次指尖血糖？血糖波动范围在多少？” <span class="tag infer">【复盘推断】</span><br>
+          8. <strong>特殊辅助药物落实：</strong>“肌注维生素B1每天有没有按时执行？保肝利胆及降钙素/甲状腺药物有没有同步配合？” <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>六、我仍然不会或不确定的地方</h4>
+          <p>1. <strong>高钠血症纠正速率的临床精准调控：</strong>在严重慢性/亚急性高渗脱水伴高钠（154 mmol/L）患者中，通过全合一TPN大袋输入大量无钠自由水时，如何通过微调泵速将每小时血钠下降速度严格锁定在0.5 mmol/L以内（24小时降幅&lt;8-10 mmol/L），需要向带教老师进一步请教具体的公式换算与床旁滴定法。 <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>伊立替康迟发性腹泻从完全TPN向滋养型EN过渡的时机指标：</strong>未来当患者大便次数减少至几次以下、性状转为糊状便且炎症指标CRP显著下降时，何时以及如何选用短肽或氨基酸单体配方启动肠道微量喂养（Trophic Feeding），需要进一步积累病例观察经验。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 07 本病例相关知识整理 -->
+      <section class="section" id="knowledge">
+        <div class="section-head">
+          <span class="num">07</span>
+          <div>
+            <h2>第六部分 📚 本病例相关知识整理</h2>
+            <p>总结化疗迟发性腹泻、高钠脱水TPN液体调配、特殊氨基酸与营养制剂选择的循证依据与应用边界。</p>
+          </div>
+        </div>
+
+        <!-- 知识点 1 -->
+        <div class="knowledge-box">
+          <h4>知识点 1：伊立替康所致迟发性腹泻（IID）的病理生理与营养干预阶梯</h4>
+          <p><strong>与本病例的关系：</strong>食管鳞癌二线化疗C1D8后突发剧烈水样腹泻（≥7次/天，墨绿色便1000ml/d），合并IV度粒缺性发热。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>伊立替康活性代谢物SN-38随胆汁排入肠道，肠道细菌β-葡萄糖醛酸酶将其解离为游离SN-38，直接破坏小肠与结肠隐窝细胞，引发肠黏膜广泛糜烂脱落、微绒毛萎缩及严重的分泌性与渗出性腹泻。① 急性重度期（排便&gt;1000ml或伴粒缺发热）：绝对禁食水，停止任何经口及管饲喂养；② 药物协同：大剂量易蒙停联合奥曲肽皮下注射；③ 营养支持：全面启用全肠外营养（TPN）维持代谢；待腹泻降至&lt;3-4次/天且性状成形后，再启动微量短肽肠内营养。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（已严格按规范采取禁食水、奥曲肽止泻及全肠外营养支持策略）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《中国临床肿瘤学会（CSCO）抗肿瘤治疗相关腹泻诊治指南》（2021/2023版）；ASCO抗肿瘤治疗相关胃肠道毒性管理指南。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 2 -->
+        <div class="knowledge-box">
+          <h4>知识点 2：高钠血症（高渗脱水）与肾前性氮质血症的 TPN 液体与电解质调配规范</h4>
+          <p><strong>与本病例的关系：</strong>患者血钠高达154 mmol/L，尿素氮44.62 mmol/L，肌酐262 μmol/L。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>大量丢失低渗消化液及高热不显性失水导致高渗性脱水与血液浓缩；有效循环血容量不足致肾小球滤过率骤降引起肾前性氮质血症。① 自由水计算：缺水量(L) ＝ 0.6 × 体重(kg) × [(实测血钠/140) - 1] ＝ 0.6 × 60 × [(154/140) - 1] ＝ 3.6 L，需在2-3天内平稳补足；② TPN调配法则：TPN大袋中<strong>绝不额外添加高渗氯化钠注射液</strong>，利用葡萄糖溶液代谢后产生的等效“无盐自由水”平稳稀释高钠；③ 严格控制血钠每24小时降幅&lt;10 mmol/L，防范脑水肿。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（医嘱完全剔除NaCl，并给予2500ml含葡萄糖TPN液体缓慢静滴）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《重症患者水电解质紊乱诊治专家共识》；ESPEN肠外营养临床指南（2020）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 3 -->
+        <div class="knowledge-box">
+          <h4>知识点 3：特殊氨基酸（9AA / 支链氨基酸 / 必需氨基酸）在肾功能受损与高代谢肿瘤中的代谢优势</h4>
+          <p><strong>与本病例的关系：</strong>高分解代谢（ALB 29.6g/L，极度乏力）与急性肾功能不全（肌酐262，BUN 44.62）重叠。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>9AA注射液严格配比8种人体必需氨基酸（EAA）与组氨酸；在高热量支持下可诱导机体利用内源性尿素氮中的氨合成非必需氨基酸，降低血尿素氮生成；其中的支链氨基酸（BCAA）可直接在骨骼肌线粒体脱氨氧化供能，并激活mTOR通路抑制肌肉分解，刺激肝脏合成白蛋白。在恶病质合并肾损时，以平衡氨基酸为基础叠加9AA，能最大化提高蛋白质合成效率并减轻肾脏排氮负担。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（医嘱明确采用乐凡命500ml + 9AA 250-500ml联合方案）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>CSPEN《肾脏疾病营养治疗指南》；ASPEN重症与肾衰竭营养支持临床指南。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 4：营养制剂选择深度拆解 -->
+        <div class="content-box">
+          <h4>💊 本病例营养产品与制剂选择逻辑深度拆解</h4>
+          <p><strong>1. 【乐凡命 8.5% 复方氨基酸注射液（18AA-II）】</strong>：500 ml 瓶装，提供氨基酸 42.5 g，总氮 7.23 g <span class="tag fact">【原始事实】</span>。提供全套18种氨基酸平衡基底，为骨髓造血恢复与免疫抗体合成提供全面原料底物 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>2. 【9AA 复方氨基酸注射液（肾病专用/支链氨基酸）】</strong>：250~500 ml，提供必需氨基酸及BCAA 13.5~27.0 g <span class="tag fact">【原始事实】</span>。针对Crea 262及BUN 44.62，利用必需氨基酸促进内源尿素氮再利用，在骨骼肌直接供能并阻止萎缩 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>3. 【多种油脂肪乳注射液（SMOFlipid 20%）】</strong>：250 ml（50g 脂肪，供能 500 kcal） <span class="tag fact">【原始事实】</span>。由大豆油、中链甘油三酯MCT、橄榄油及鱼油科学复配，富含EPA/DHA抗炎因子，极为适合CRP 47.2 mg/L的高炎症高代谢患者 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>4. 【水乐（水溶性维生素）与 维他利匹特（脂溶性维生素）】</strong>：水乐2支 + 维他利匹特10ml <span class="tag fact">【原始事实】</span>。全禁食下全面满足B族、Vit C及脂溶性维生素辅酶与抗氧化代谢需求 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>5. 【安达美（多种微量元素）】</strong>：10 ml / 日 <span class="tag fact">【原始事实】</span>。补充锌（促进黏膜修复）、硒（抗氧化应激）、铜、铁、锰等关键微量元素 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>6. 【格力福斯（甘油磷酸钠注射液 / 有机磷）】</strong>：10 ml（有机磷 10 mmol，含钠 20 mmol） <span class="tag fact">【原始事实】</span>。预防致死性再喂养低磷血症；有机磷不与葡萄糖酸钙发生难溶性沉淀 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>7. 【维生素 B1 注射液（肌注）】</strong>：100 mg，im，qd <span class="tag fact">【原始事实】</span>。每日输注200g葡萄糖负荷时充当丙酮酸脱氢酶辅酶，杜绝乳酸酸中毒与急性韦尼克脑病 <span class="tag infer">【复盘推断】</span>。</p>
+        </div>
+      </section>
+
+      <!-- 08 临床思维路径图 (Decision Tree) -->
+      <section class="section" id="tree">
+        <div class="section-head">
+          <span class="num">08</span>
+          <div>
+            <h2>第七部分 🌲 临床思维路径图 (Decision Tree) <span class="tag knowledge" style="margin-left:8px;">逻辑推演型 · 建立直觉</span></h2>
+            <p>将医生的临床推理链拆解为直观的“现象 → 机制分析 → 干预动作 → 后续转折”路径。</p>
+          </div>
+        </div>
+
+        <div class="tree-flow">
+          <!-- 第 1 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 1 步：危重线索捕捉与机制归因</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>线索 A：腹泻 1000ml + 禁食水</b>
+                <span>伊立替康致黏膜坏死剥脱 ➔ 肠功能完全衰竭，EN 耐受为零</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 B：Na 154 + BUN 44.62 + Crea 262</b>
+                <span>失水远多于失盐 + 前期限水 ➔ 高渗脱水与肾前性低灌注</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 C：ALB 29.6 + 极度乏力 + 房颤好转</b>
+                <span>高热高代谢负氮平衡 + 心肌稳定 ➔ 具备放宽补液加强营养条件</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 2 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 2 步：个体化全合一 TPN 精准干预匹配</span>
+            </div>
+            <div class="tree-branch-container">
+              <div class="tree-branch warning">
+                <b>针对高钠脱水与肾前性低灌注：</b>
+                <span>TPN 配方彻底剔除外源 NaCl，总液量放宽至 2500ml 匀速泵入，以水纠钠冲肾。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对高代谢消耗与肾排氮负荷：</b>
+                <span>乐凡命 500ml + 9AA 250-500ml 利用内源尿素氮促合成；SMOF 脂肪乳 500kcal 抗炎。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对再喂养与高糖代谢风险：</b>
+                <span>添加格力福斯 10ml 补有机磷防低磷；常规肌注 Vit B1 100mg qd 防乳酸酸中毒。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对微量营养素耗竭与凝血差：</b>
+                <span>水乐 2 支 + 维他利匹特 10ml + 安达美 10ml + 外周静脉输注血浆支持。</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 3 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 3 步：动态监测与分支转向</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>分支 1：血钠降至 &lt; 145 mmol/L？</b>
+                <span style="color:var(--blue); font-weight:600;">➔ 决策：全合一中适度恢复生理盐水基础维持</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 2：腹泻减少至 &lt; 3-4 次/d 且成形？</b>
+                <span style="color:var(--green); font-weight:600;">➔ 决策：启动微量低脂短肽滋养型肠内营养（TEN）</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 3：出现肺底湿罗音或房颤复发？</b>
+                <span style="color:var(--orange); font-weight:600;">➔ 决策：适度收紧输液泵速，利尿剂协同控制</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="takeaway">
+          <b>病例记忆点：</b> 化疗后重度腹泻禁食水，高钠肾衰房颤心好转；果断废除三腔袋，零钠扩容定制全合一TPN救心肾！ <span class="tag infer">【复盘推断】</span>
+        </p>
+      </section>
+
+      <div class="empty" id="empty">没有找到匹配内容，请换个关键词。</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    《北肿临床营养科会诊思维录》V2 病例复盘 · 原始事实、临床方案、复盘推断与知识补充分层记录 · 仅供临床进修学习参考
+  </footer>
+</div>
+
+<script>
+  const input = document.querySelector('#search');
+  const sections = [...document.querySelectorAll('.section')];
+  const empty = document.querySelector('#empty');
+
+  function clearMarks(root) {
+    root.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    root.normalize();
+  }
+
+  function highlight(root, q) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement.closest('script,style') || !n.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      let s = n.nodeValue, low = s.toLowerCase(), i;
+      while ((i = low.indexOf(q)) > -1) {
+        frag.append(s.slice(0, i));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(i, i + q.length);
+        frag.append(m);
+        s = s.slice(i + q.length);
+        low = s.toLowerCase();
+      }
+      frag.append(s);
+      n.replaceWith(frag);
+    });
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    sections.forEach(s => {
+      clearMarks(s);
+      const hit = !q || s.innerText.toLowerCase().includes(q);
+      s.style.display = hit ? '' : 'none';
+      if (hit) {
+        shown++;
+        if (q) {
+          highlight(s, q);
+          s.querySelectorAll('details').forEach(d => {
+            if (d.innerText.toLowerCase().includes(q)) d.open = true;
+          });
+        }
+      }
+    });
+    empty.style.display = shown ? 'none' : 'block';
+    if (q && shown) {
+      requestAnimationFrame(() => document.querySelector('.section mark')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
+
+  input.addEventListener('input', search);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  const links = [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70%' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
