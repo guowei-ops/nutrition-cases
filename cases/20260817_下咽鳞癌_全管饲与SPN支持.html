@@ -1,0 +1,1493 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#172a3a">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <meta name="description" content="北肿临床营养科会诊思维录 V2——下咽鳞癌放化疗合并食管癌术后全管饲与补充性肠外营养（SPN）联合支持病例复盘">
+  <title>北肿临床营养科会诊思维录 V2｜下咽鳞癌合并食管癌术后全管饲与SPN联合支持</title>
+  <style>
+    :root {
+      --ink: #172a3a;
+      --text: #263746;
+      --muted: #6f7c86;
+      --line: #e3e6e7;
+      --paper: #ffffff;
+      --bg: #f4f3ef;
+      --soft: #f7f8f8;
+      --green: #287a5b;
+      --green-bg: #eaf5ef;
+      --blue: #296b9b;
+      --blue-bg: #eaf3f9;
+      --orange: #a66019;
+      --orange-bg: #fff1df;
+      --purple: #714b91;
+      --purple-bg: #f2ebf7;
+      --shadow: 0 14px 40px rgba(23,42,58,.07);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px 80px;
+    }
+    
+    /* 顶部导航与搜索 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .search {
+      position: relative;
+      flex: 1;
+    }
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 11px 42px 11px 16px;
+      color: var(--ink);
+      outline: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search input:focus {
+      border-color: #a8b4bd;
+      box-shadow: 0 0 0 3px rgba(23,42,58,.06);
+    }
+    .search kbd {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    
+    /* Hero Header */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 18px;
+      padding: 42px 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "V2";
+      position: absolute;
+      right: 24px;
+      bottom: -42px;
+      font-size: 160px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.035);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .14em;
+      opacity: .65;
+      margin-bottom: 4px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 3.8vw, 40px);
+      line-height: 1.25;
+      margin: 8px 0 12px;
+      letter-spacing: -.03em;
+    }
+    .hero p {
+      max-width: 760px;
+      color: #c8d1d7;
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
+      margin-top: 28px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .meta div {
+      padding: 12px 15px;
+      background: rgba(255,255,255,.035);
+    }
+    .meta small {
+      display: block;
+      color: #9eacb6;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+    .meta b {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    
+    /* 页面两栏布局 */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .side {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+    }
+    .side ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-left: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    .side a:hover, .side a.active {
+      border-color: var(--ink);
+      color: var(--ink);
+      font-weight: 700;
+      background: rgba(23,42,58,0.03);
+    }
+    .side .legend {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+    .side .legend .label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side .legend .tag {
+      margin: 0 4px 6px 0;
+    }
+    
+    /* 核心内容区 */
+    .content { min-width: 0; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23,42,58,.025);
+      scroll-margin-top: 20px;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .num {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .section h2 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      font-size: 13.5px;
+    }
+    
+    /* 标签体系 */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .fact { color: var(--green); background: var(--green-bg); border: 1px solid #c8e6c9; }
+    .plan { color: var(--blue); background: var(--blue-bg); border: 1px solid #bbdefb; }
+    .infer { color: var(--orange); background: var(--orange-bg); border: 1px solid #ffe0b2; }
+    .knowledge { color: var(--purple); background: var(--purple-bg); border: 1px solid #e1bee7; }
+    
+    /* 卡片与网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .card.soft { background: var(--soft); }
+    
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .value {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    
+    /* 优先级问题列表 */
+    .issues {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .issues li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 14px;
+    }
+    .rank {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    
+    /* 结构化内容框 */
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .content-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .content-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .content-box p:last-child { margin-bottom: 0; }
+    
+    /* 对话与引用块 */
+    .dialogue-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      border: 1px solid var(--line);
+    }
+    .dialogue-item h4 {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .speaker-doc {
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .speaker-pat {
+      color: #455a64;
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .quote {
+      margin: 8px 0;
+      border-left: 3px solid #cbd3d8;
+      padding: 8px 14px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+      color: #37474f;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .info-gain {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: var(--blue-bg);
+      border-radius: 6px;
+      font-size: 13px;
+      color: #184a6e;
+      line-height: 1.6;
+    }
+    
+    /* 原始处理意见专用 */
+    .raw-opinion-container {
+      background: #fdfdfd;
+      border: 1px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .meta-notice {
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12.5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--green);
+      line-height: 1.6;
+    }
+    .raw-text-block {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: #263746;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      word-break: break-word;
+    }
+    
+    /* 医生思维拆解专属卡片 */
+    .mind-card {
+      background: #ffffff;
+      border: 1px solid #dbe0e3;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .mind-card-head {
+      background: var(--soft);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mind-card-head h4 {
+      margin: 0;
+      color: var(--green);
+      font-size: 15.5px;
+    }
+    .mind-card-body {
+      padding: 16px 18px;
+    }
+    .mind-card-body p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 14px;
+      margin: 12px 0;
+      background: #f9fbf9;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+    }
+    .step {
+      position: relative;
+      padding: 0 10px;
+    }
+    .step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -8px;
+      top: 14px;
+      color: #aab3ba;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .step b {
+      display: block;
+      color: var(--ink);
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .step p {
+      margin: 0;
+      color: #53616c;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .decision {
+      background: #f4f7f8;
+      border-left: 3px solid var(--ink);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      margin: 12px 0 6px;
+      line-height: 1.65;
+    }
+    
+    /* 误区卡片 */
+    .misconception-card {
+      background: var(--orange-bg);
+      border: 1px solid #ffccbc;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .misconception-card h4 {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .misconception-card p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .misconception-quote {
+      font-style: italic;
+      color: #5d4037;
+      background: rgba(255,255,255,0.75);
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 13px;
+      border-left: 3px solid var(--orange);
+    }
+    
+    /* 知识点卡片 */
+    .knowledge-box {
+      background: var(--purple-bg);
+      border: 1px solid #e1bee7;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .knowledge-box h4 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 15px;
+    }
+    .knowledge-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    
+    /* 学习成长记录卡片 */
+    .learning-box {
+      background: #fcfdfe;
+      border-left: 3px solid var(--blue);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .learning-box h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: var(--blue);
+    }
+    .learning-box p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .learning-box p:last-child { margin-bottom: 0; }
+    
+    /* 临床思维决策树专有样式 */
+    .tree-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tree-stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      background: #fafbfc;
+    }
+    .tree-stage-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tree-node-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .tree-node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tree-node b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+    .tree-arrow {
+      text-align: center;
+      color: #a0acb5;
+      font-size: 18px;
+      font-weight: bold;
+      margin: -6px 0;
+    }
+    .tree-branch-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tree-branch {
+      background: #fff;
+      border-left: 3px solid var(--green);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 15px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .tree-branch.warning {
+      border-left-color: var(--orange);
+    }
+    .tree-branch b {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .takeaway {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 15px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      color: var(--muted);
+    }
+    mark {
+      background: #fff0a8;
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 30px;
+    }
+    
+    /* 响应式与打印 */
+    @media(max-width: 880px) {
+      .shell { padding: 16px 12px 50px; }
+      .topbar { align-items: stretch; flex-direction: column; gap: 8px; }
+      .hero { padding: 28px 20px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .layout { display: block; }
+      .side { position: static; overflow: auto; margin: 0 0 16px; }
+      .side ol { display: flex; }
+      .side a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; }
+      .side .legend { display: none; }
+      .section { padding: 20px 15px; }
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 6px; }
+      .step { padding: 8px 0; }
+      .step:not(:last-child):after { content: "↓"; left: 0; right: auto; top: auto; bottom: -10px; }
+      .issues li { grid-template-columns: 28px 1fr; }
+      .issues .tag { display: none; }
+      .tree-node-grid, .tree-branch-container { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .topbar, .side { display: none; }
+      .hero { box-shadow: none; }
+      .layout { display: block; }
+      .section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">BEIZHONG · NUTRITION</div>
+    <div class="search">
+      <input id="search" type="search" placeholder="搜索症状、化验、方案、对话原话或知识点…" aria-label="全文搜索">
+      <kbd>⌘ K</kbd>
+    </div>
+  </div>
+  
+  <header class="hero">
+    <div class="eyebrow">临床学习档案 · 会诊病例复盘</div>
+    <h1>北肿临床营养科会诊思维录</h1>
+    <p>疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘。从病例事实出发，沿着医生的判断路径，沉淀为下一次可以调用的临床行动。</p>
+    <div class="meta">
+      <div><small>会诊日期</small><b>2026.08.17</b></div>
+      <div><small>患者标签</small><b>下咽鳞癌 · 放疗黏膜炎 · 全管饲 · 补充性肠外营养（SPN）</b></div>
+      <div><small>整理人</small><b>郭伟</b></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="页面目录">
+      <ol>
+        <li><a href="#overview">01 病例速览</a></li>
+        <li><a href="#evidence">02 原始会诊记录</a></li>
+        <li><a href="#opinion">03 原始会诊意见</a></li>
+        <li><a href="#reasoning">04 医生思维拆解</a></li>
+        <li><a href="#misconceptions">05 患者家属误区</a></li>
+        <li><a href="#review">06 学习成长记录</a></li>
+        <li><a href="#knowledge">07 本病例知识点</a></li>
+        <li><a href="#tree">08 临床思维路径图</a></li>
+      </ol>
+      <div class="legend">
+        <div class="label">内容来源与证据分层</div>
+        <span class="tag fact">【原始事实】</span>
+        <span class="tag plan">【临床方案计划】</span>
+        <span class="tag infer">【复盘推断】</span>
+        <span class="tag knowledge">【知识补充】</span>
+      </div>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- 01 病例速览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <span class="num">01</span>
+          <div>
+            <h2>病例速览</h2>
+            <p>63 岁男性，食管癌术后 4 年余确诊下咽鳞癌；放疗第 19 次重度黏膜炎致经口进食归零，空肠管饲严重欠量合并近 1 个月体重暴跌 4 kg（重度营养不良）。</p>
+          </div>
+        </div>
+        
+        <div class="grid three">
+          <div class="card">
+            <div class="label"><span>患者与疾病</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">男，63 岁<br>下咽中分化鳞癌 cT3N3bM0 III期（伴双颈及左锁骨上淋巴结转移）；食管胸下段鳞癌术后 ypT3N0M0 III期</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>手术与治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">2022-04 食管癌根治切除术后 4 年；下咽癌化疗+免疫 4 周期（PR），现根治性放疗（19/33次）+ 同步尼妥珠单抗靶向及卡铂化疗</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养通路与摄入</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">经口进食完全中断（0 kcal）<br>2026-08-10 置鼻空肠管，目前居家泵入瑞能 1000ml/d（泵速 125ml/h），日供能仅 1300 kcal、蛋白 60g</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>人体测量与诊断</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">181cm · 58kg · BMI 17.7 kg/m²<br>近 1 个月体重非自主下降 4kg（约 6.45%）；NRS 2002 评分 4 分，GLIM 重度营养不良</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>症状与生理耐受</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">重度口干、吞咽剧痛、痰多黏液多<br>空肠管 125ml/h 泵速耐受良好无腹胀腹泻，夜间反胃系黏液咽下刺激，日有效泵注仅 10–12h</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养治疗目标</span> <span class="tag plan">【临床方案计划】</span></div>
+            <div class="value">能量 1800–2200 kcal/d · 蛋白质 90–110 g/d · 液体 2500–3000 ml/d<br>住院期启动卡全 PICC 补充性肠外营养（SPN），出院强化瑞能 1500ml+20g 蛋白粉</div>
+          </div>
+        </div>
+
+        <ul class="issues">
+          <li>
+            <span class="rank">P1</span>
+            <b>重度营养不良合并进行性摄入巨额赤字：181cm 高身材日供仅 1300 kcal 无法维持基础代谢，住院期果断启动卡全 PICC 肠外营养（SPN）极速托底</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P2</span>
+            <b>就医放疗与夜间停泵导致日输注时间严重被压缩：深挖时间管理障碍，指导便携小背包带泵持续泵入+口罩遮管，打通移动管饲堵点</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P3</span>
+            <b>放疗重度放射性黏膜炎与高消耗应激：出院纯 EN 阶段锁定 3 袋瑞能（1500ml=1950kcal，含鱼油抗炎）底线，并额外追加 20g 蛋白粉推注达 110g 蛋白质</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 02 原始会诊记录 -->
+      <section class="section" id="evidence">
+        <div class="section-head">
+          <span class="num">02</span>
+          <div>
+            <h2>第一部分 🎙 原始会诊记录</h2>
+            <p>完整保留患者基本信息、确诊疾病及治疗病史、营养相关现状与客观数据、现场录音逐字稿及待确认内容。</p>
+          </div>
+        </div>
+
+        <!-- 1. 患者基本信息 -->
+        <div class="content-box">
+          <h4>1. 患者基本信息</h4>
+          <div class="grid">
+            <div class="card soft">
+              <div class="label"><span>患者</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">已去除姓名</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>性别与年龄</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">男，63岁</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>主要确诊疾病</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">下咽鳞癌（确诊5月余），食管鳞癌术后（术后4年余）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>病理类型与分期</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">下咽中分化鳞癌 cT3N3bM0 III期，PD-L1 CPS=1；食管胸下段鳞癌术后 ypT3N0M0 III期，PD-L1 CPS=3</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>转移情况</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">左锁骨上区、双侧颈部多发肿大淋巴结伴高代谢（转移）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>重要合并症</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">放射性口腔黏膜炎（重度进食痛、口干痰多）、高血压1级（控制可）、高脂血症、甲肝史（治愈）、视网膜脱离及白内障术后</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>手术史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">2022-04-28胸腹腔镜食管切除+食管胃颈部吻合术；2024-02-29吻合口扩张术；2026-08-10内镜下置空肠营养管术</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>抗肿瘤治疗史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">食管癌新辅助+手术+免疫1年；下咽癌化疗+免疫4周期（PR），现根治性放疗（19/33次）+同步靶向C1-4</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>当前治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">下咽癌根治性放疗期（第19次）+ 同步C5靶向及对症支持住院阶段</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>本次就诊背景</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">拟行同步C5靶向治疗及支持治疗入院，主诉放疗后口干、吞咽剧痛、口腔黏液增多，完全无法经口进食</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>营养科会诊原因</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">放化疗期重度吞咽困难致进食中断，置空肠管后全管饲仍摄入不足，近1月体重急剧下降4kg，申请营养指导</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>核心营养问题</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">全管饲输入总量严重不足（仅1000ml/d=1300kcal vs 目标1800-2200kcal），时间及就医冲突导致摄入断档，重度营养不良</div>
+            </div>
+            <div class="card soft" style="grid-column: 1 / -1;">
+              <div class="label"><span>信息不确定项</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">生化全套检验客观数据（会诊单记录“化验血：无”，需待抽血回报）；出院后居家便携背包配备情况需确认</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 确诊疾病及治疗病史 -->
+        <div class="content-box">
+          <h4>2. 确诊疾病及治疗病史</h4>
+          <p>患者男，63岁。2022年2月因进食哽咽感确诊食管胸下段中低分化鳞癌（cT3N1），经新辅助白紫+卡铂+替雷利珠单抗2周期后评效PR，于2022-04-28行经右胸上腹-左颈食管切除+食管胃颈部吻合术，术后病理ypT3N0M0 III期，术后完成信迪利单抗单免辅助治疗1年。2024-02因吻合口狭窄行扩张术 <span class="tag fact">【原始事实】</span>。</p>
+          <p>2025年12月自觉咽痛伴吞咽困难、分泌物增多，2026-03喉镜及病理会诊确诊为（环后梨状窝）下咽中分化鳞癌，PD-L1 CPS=1，PET-CT提示伴双侧颈部及左锁骨上淋巴结转移（cT3N3bM0 III期）。2026-03至06月行一线白紫+卡铂+替雷利珠单抗4周期治疗评效PR <span class="tag fact">【原始事实】</span>。</p>
+          <p>2026-06-23 MDT讨论后决定行根治性放疗。2026-07-20开始放疗（计划70Gy/33次，已完成19次）并联合尼妥珠单抗同步靶向治疗及卡铂化疗。放疗后出现重度口干、进食剧痛、口腔粘液增多，于2026-08-10行内镜下置空肠营养管鼻饲营养 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 3. 营养相关现状与客观数据 -->
+        <div class="content-box">
+          <h4>3. 营养相关现状与客观数据</h4>
+          <p><strong>体重和变化：</strong>身高181cm，当前体重58kg，BMI 17.7 kg/m²（严重低于18.5） <span class="tag fact">【原始事实】</span>。近1个月体重由62kg降至58kg，非自主性下降4kg（下降幅度约6.45%） <span class="tag fact">【原始事实】</span>。结合BMI显著偏低与近期快速体重下降，符合GLIM重度营养不良诊断 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>摄入情况与通路：</strong>目前经口进食完全停止（0 kcal） <span class="tag fact">【原始事实】</span>。完全依赖2026-08-10置入的经鼻空肠营养管（幽门下通路）进行肠内营养持续泵入，目前居家使用瑞能（500ml/袋，1.3 kcal/ml），实际仅泵入2袋（1000ml/d），日供能量仅1300 kcal，蛋白质仅60g <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养影响症状：</strong>放疗导致重度口腔黏膜炎，口干、进食吞咽剧痛、痰多、咽部粘液极多，夜间偶有反胃感（由于咽部大量粘稠分泌物咽下后引起反射性恶心反胃） <span class="tag fact">【原始事实】</span>。无发热、反酸、腹痛等不适 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>胃肠耐受与排便：</strong>肠内营养泵速目前设定为125 ml/h <span class="tag fact">【原始事实】</span>。置管初期曾有轻度腹泻，目前已缓解，大小便基本正常，无持续腹胀腹痛，空肠通路耐受良好 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>输注时间冲突与中断原因：</strong>患者夜间10-12点停泵，白天需前往医院放疗及外出办事（常在晚间7点多完成放疗），外出时不带泵，导致全天实际输注时间仅10-12小时，无法在有限时间内完成3袋（1500ml）的输注要求 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>水分与冲管：</strong>家属协助使用大注射器（约100ml）定期冲管，但总入水量依然不足 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养诊断与风险评估：</strong>NRS 2002 评分 4分（疾病3分+摄入及体重丢失1分），GLIM标准评定为重度营养不良，合并吞咽困难与放疗疼痛 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 4. 会诊现场顺序复盘 -->
+        <div class="content-box">
+          <h4>4. 会诊现场顺序复盘（六大关键对话模块）</h4>
+
+          <div class="dialogue-item">
+            <h4>模块一：空肠管耐受与胃肠道症状排查</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“你好你好，我是营养科大夫，请了个营养的会诊，没事您躺着我就问一些问题啊。现在咱们这个空肠的现在每天给的是什么呀？就是这个瑞能对吧？我看是8月10号做了个管是吧。这个耐受可以吗？有什么不舒服吗给上之后？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生追问：</div>
+            <div class="quote">“125（ml/h）。有感觉腹胀腹痛腹泻这种事情发生吗？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“腹泻那时候有，现在已经缓解过来了。缓解点，就到夜里有点反胃。因为这个液分泌的有时候有点多，就吐沫子，我吃不了东西，也吐不出来。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确8月10日刚建立空肠通路，使用瑞能且泵速已达125ml/h；排除了活动性腹泻与严重腹胀腹痛，夜间反胃主要系放射性口腔咽喉黏膜分泌物咽下刺激所致，胃肠道自身机械耐受良好。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块二：摄入欠量识别与体重进行性下降归因</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“但是这个空肠还可以，营养液给之后没有出现我刚才说的这种。现在目前来说，因为您的速度已经给的速度挺高了，已经给了125毫升的速度，但是量不够哦。你这个体重还在降是吧？对，量不够的哦。因为现在咱们不是给到1000毫升了吗？其他的营养都没有了，就是你口服现在不是不吃了吗？全是靠营养液。那么这营养液的话，它这1000毫升的话，只有一天1300大卡的能量，对于您这个身高啊其实它是维持不住的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“不是一天最起码我听徐大夫得三袋以上嗯。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生迅速定位核心矛盾：181cm的高身材处于严重负能量平衡，当前仅输入1000ml瑞能（1300kcal）根本无法满足消耗，是导致近1月体重暴跌4kg的直接元凶。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块三：输注时间瓶颈与外出断泵心理障碍深挖</h4>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“三袋我在家用泵的时候也用不了三袋，他2小时2小时时间来不及，有时候还得出去看病来不及。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生追问：</div>
+            <div class="quote">“你就感觉那个晚上有时候到几点你就停了是吗？十点多？昨天12点？到十二点，125毫升的话500毫升要4个小时下去，三四个小时……但是你那个泵是不能带出吗？对，你那泵是持续泵入的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“没带，能带。那你去哪有时候办事不方便，你弄一这个在某处有……外出有时候挺敬老去医院还乱七八糟的。今天晚上我又得停一下，晚上下去又得放疗去，放疗你就没……七点多，这一天就是除了这个也就10个小时，10到11、12个小时。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>深挖出执行障碍并非胃肠道“消化不了”，而是由于患者心理顾虑、外出就医放疗频繁中断输注，导致全天实际泵入时间被压缩至10-12小时，产生巨大的时间与剂量赤字。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块四：行为干预与移动便携背包出游指导</h4>
+            <div class="speaker-doc">医生指导与纠正：</div>
+            <div class="quote">“但是你这管平常不是还都是这么带着吗？只是说戴个口罩挡一挡，戴一戴，戴个口罩遮起来。然后这个小背包，这个管就封上了……去医院您可以带着呀！如果说去医院来回去医院其实这个还好，你就能背个小背包，就背着小背包出去了。除非说是你工作的话哎我感觉工作有点受影响你再考虑……如果可以的话还是背个小背包好吧。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生提供了极其具体的行为脱困方案：戴口罩遮挡外露鼻管+便携小背包随身带泵，将静止管饲转化为移动支持，扫清外出就医时的断档障碍。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块五：营养配方辨析与肿瘤专属抗炎优势讲解</h4>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“哎这个营养液还有别的吗？” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生解释：</div>
+            <div class="quote">“瑞能还有一个叫能全力能量密度会更高，它是一点五（1.5 kcal/ml），这是一点三（1.3 kcal/ml）。那个比如说1000毫升的话那是1500大卡，这个1000毫升是1300大卡，它会比这个多200大卡。但是量也不够呀！稍微多那么一点点……作用都差不多，稍微里面的营养成分稍微有点区别，像这个瑞能它是里面会有一些鱼油，它更适合肿瘤患者来说对吧，但是你们还是要想办法把总量提上来！” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生向患者澄清：营养改善的关键在于“总摄入量达标”而非寄希望于更换所谓更高浓度的制剂；同时强调瑞能富含鱼油（ω-3 PUFA）对于下咽癌高代谢状态的抗炎与促合成价值。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块六：住院期补充性肠外营养（卡全SPN）与出院长期肠内强化</h4>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“所以说徐大夫让我住院上了，然后说这个输……” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生解释与方案锁定：</div>
+            <div class="quote">“给你输了个卡全我看是吧，肠外的。但是你回家的是一个长期的，在咱们院里面只是短期的过渡一下营养。你能输到三袋就很不错了，最低不能低到三袋！三袋你看嘛，一袋是650大卡，三袋是1950大卡。因为你的身高太高了你知道吗，1950的能量才能维持住你这个体重的状况，你才1300根本就不够，你的基础代谢都不够，所以你一定是要加量的！” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-doc">医生进一步指导蛋白质强化：</div>
+            <div class="quote">“然后3袋的话除了这个我们还要看蛋白呢，这一袋是30克，3袋是90克。90克的话可以的话我还是建议你再给自己加20克的蛋白粉！蛋白粉你回家晚上和早上的时候融到温水里面推注就行，一次推10克一天两次，从你这个鼻子里这个管推进去。一次大勺子通常是10克，溶水推注进去。在这个基础上再去强化一个蛋白就可以了。三袋，加20克蛋白粉！” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“好，我记住了，谢谢大夫！必须得保证这个，不能光两袋不够。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生巧妙厘清了“住院期卡全SPN救急托底”与“出院后纯EN长期自立”的战术分工；锁定了出院后“3袋瑞能（1950kcal+90g蛋白）+ 20g蛋白粉（达110g蛋白）”的绝对底线目标。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 待确认内容 -->
+        <div class="content-box">
+          <h4>5. 待确认内容</h4>
+          <p>1. 入院生化全套（肝肾功能、电解质、CRP、前白蛋白）客观数值需待检验科出具后纳入动态复查档案。 <span class="tag fact">【原始事实】</span></p>
+          <p>2. 患者出院前需确认便携式肠内营养泵及专用背包的采购与携带熟练度，防范居家再次出现时间中断。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 03 原始会诊处理意见 -->
+      <section class="section" id="opinion">
+        <div class="section-head">
+          <span class="num">03</span>
+          <div>
+            <h2>第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+            <p>依据原始营养会诊处理意见完整转录，诊断、目标、用量、频次、执行方法及监测建议按原有顺序全量保留。</p>
+          </div>
+        </div>
+
+        <div class="raw-opinion-container">
+          <div class="meta-notice">
+            以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+          </div>
+          <div class="raw-text-block">处理意见：
+患者男性，63岁，食管癌术后4年余，确诊下咽鳞癌5月余。2026-7-20开始放疗，已放疗19次。2026-8-3、8-10于门诊行C3-4同步靶向治疗。患者目前口干，进食疼痛，痰多，口腔粘液多，于2026-8-10行内镜下置空肠营养管鼻饲营养，自述每天补充1000ml营养液瑞能，无不适反应。现为行同步C5靶向治疗及对症支持治疗入院，睡眠、精神可，大小便正常，体重近1个月减轻约4kg。
+化验血：无。
+营养查体：精神状态可，四肢无水肿，身高181cm，体重58kg，BMI 17.7。
+营养诊断：癌症合并营养风险（NRS2002 4分），重度营养不良，吞咽困难，疼痛。
+1. 营养诊疗计划：增加体重，目标能量1800kcal-2200kcal，蛋白质90-110g，液体2500-3000ml；
+2. 肠内营养制剂，瑞能，目标摄入量1500ml，经鼻饲营养管持续泵入；
+3. 肠外营养支持（PICC）：脂肪乳氨基酸葡萄糖注射液 卡全1026ml+复方氨基酸注射液250ml+水乐维他1支+维他利匹特10ml+微量营养素（安达美）1支+胰岛素10iu，速度120-130ml/h；根据肠内营养恢复情况调整PN方案；
+4. 维生素D（滴卓思）+维生素k2 5000iu/天，滴入汤粥、营养液随服或滴口含服，自备。
+5. 监测体重，血生化、血尿常规、肝肾功能、电解质、CRP PALB等</div>
+        </div>
+      </section>
+
+      <!-- 04 医生思维拆解 -->
+      <section class="section" id="reasoning">
+        <div class="section-head">
+          <span class="num">04</span>
+          <div>
+            <h2>第三部分 🧠 医生临床思维拆解</h2>
+            <p>深入剖析四大关键问诊点、医生想判断什么、完整临床推理链及从问诊到医嘱的全局决策映射。</p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 1 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 1：空肠喂养管机械耐受与 125ml/h 泵速评估</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“现在每天给的是什么呀？这个耐受可以吗？有什么不舒服吗给上之后？125ml/h速度给上之后？有感觉腹胀腹痛腹泻这种事情发生吗？” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>8月10日刚置管，目前给瑞能，泵速已调至125ml/h；前期有腹泻现已好转，夜间偶有反胃吐沫子，无腹痛剧烈腹胀。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】评估幽门下空肠喂养对高能量密度、高脂配方（瑞能）的消化道动力与渗透耐受阈值；排查有无机械性肠痉挛、倾倒综合征或肠麻痹。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>置空肠管1周，泵速已达125ml/h，腹泻好转，夜间反胃系分泌物刺激。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>小肠机械通过能力良好，已平稳度过初期胃肠道渗透适应期。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>排查严重腹胀腹泻；盲目怀疑耐受不良会导致不必要的降速或停喂。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>维持原量 vs 坚定提量；确定肠道生理耐受过关，具备提量至 1500ml 条件。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：置空肠管仅1周，泵速已调至125ml/h高位，腹泻已平稳缓解，夜间反胃系放疗黏膜分泌物咽下刺激。<br>
+              ↓ 可能原因：小肠直接接纳高能量营养液耐受良好，不存在吸收不良或动力障碍。<br>
+              ↓ 需要补充的证据：排便频率、性状及有无剧烈腹痛。<br>
+              ↓ 风险判断：若误判为“肠道不耐受”而随意停泵减速，将进一步加重能量欠账。<br>
+              ↓ 医生实际处理意见：肠内营养继续以瑞能为主体，目标摄入量锁定 1500ml/d 持续泵入 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>确立了肠内营养继续以瑞能为主体，并将目标摄入量坚定锁定为1500ml/d持续泵入（医嘱第2条）。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 2 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 2：输注时间瓶颈与外出就医放疗时间冲突</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“你感觉晚上有时候到几点停了？外出时间你……去医院您可以带着呀？你那泵是持续泵入的。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>夜间10-12点停泵，白天外出办事或去医院放疗（常在晚间7点多才放完），外出时不带泵，导致全天实际输注时间仅10-12小时；125ml/h速率下10小时正好只够输完1000ml。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】准确甄别导致摄入不足的根本原因是“生理不耐受”还是“行为依从性与时间管理脱节”，找出营养严重欠账的真实卡点。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>患者主诉吃不够、体重掉，追问发现外出与就医频繁中断泵入。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>全天中断达12-14小时，125ml/h速率下数学时间窗口仅能完成1000ml。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>患者存在社交心理顾虑；若不解决外出带泵，出院后必将再次陷入饥饿状态。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>指导便携小背包随身带泵+口罩遮挡管路，破除外出中断障碍。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：患者主诉吃不够、体重掉，追问发现每日外出就医放疗频繁停泵。<br>
+              ↓ 可能原因：全天输注时间被压缩至10-12小时，产生巨大的时间与剂量赤字。<br>
+              ↓ 风险判断：患者因病耻感或操作顾虑外出断泵，导致全天有一半时间处于“断粮”消耗。<br>
+              ↓ 医生实际处理意见：指导患者使用便携小背包随身带泵持续泵入，口罩遮挡鼻管，扫清出行障碍 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>现场完成具象化行为指导，打通出院后落实 1500ml 目标的核心执行通道。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 3 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 3：住院期启动卡全（SPN）补充性肠外营养决策</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“给你输了个卡全我看是吧，肠外的……但是你回家的是一个长期的，在咱们院里面只是短期的过渡一下营养。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>近1月体重暴跌4kg（现58kg，BMI 17.7），正处于放疗中程（19/33次）高消耗期，口服完全中断，肠内目前实际仅达1300kcal（缺口达500-900kcal）。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】重度营养不良合并进行性消耗期，单纯等待居家EN爬坡周期较长，极易发生放疗耐受性下降、感染甚至中断放疗；必须在住院期间利用静脉通路快速实施补充性肠外营养（SPN），阻止肌肉进一步崩解。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>重度营养不良（BMI 17.7，体重急降4kg）+ 放疗第19次高分解代谢。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>当前EN实际摄入仅1300kcal（<60%目标需求），面临严重负氮平衡。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>触发ESPEN关于SPN启动指征；放疗期骨骼肌严重崩解诱发恶病质与治疗中断。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>全合一三腔袋卡全1026ml+复方氨基酸250ml+全套微量元素PICC静滴托底。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：重度营养不良合并放疗高消耗，当前EN实际摄入仅1300kcal（<60%目标需求）。<br>
+              ↓ 可能原因：进食完全中断，肠内提量受限于就医作息，短期内能量蛋白缺口巨大。<br>
+              ↓ 风险判断：骨骼肌持续快速崩解，极易引发严重免疫抑制与放疗中断。<br>
+              ↓ 医生实际处理意见：卡全1026ml+复方氨基酸250ml+水乐维他+维他利匹特+安达美+胰岛素10iu PICC静滴（120-130ml/h） <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>直接形成处理意见第3条精细化肠外营养方案，并设立“根据肠内营养恢复情况调整PN方案”的动态出退机制。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 4 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 4：精准制定“3袋瑞能（1500ml）+ 20g蛋白粉”方案</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“你的身高太高了你知道吗……1950的能量才能维持住你这个体重的状况。3袋是90克蛋白，可以的话我还是建议你再给自己加20克的蛋白粉，早晚各10克温水推注。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>身高181cm，骨架大，体重持续下降，骨骼肌消耗显著。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】根据181cm身高的理想体重（约73kg）与放疗应激代谢，精准核算每日能量与氮源底线，打破“凭感觉随便喝两袋”的低效支持。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>身高181cm大体型、放疗期组织修复高需求，目标能量需1800-2200kcal。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>3袋瑞能提供1950kcal能量与90g蛋白，能量达标但蛋白处于下限。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>放疗创面愈合需极高正氮平衡；仅靠基础量蛋白修复速度偏慢。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>额外追加20g水解/乳清蛋白粉经空肠管分次推注，总蛋白达110g顶格保障。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              现象：身高181cm，目标能量1800-2200 kcal/d，蛋白质90-110 g/d。<br>
+              ↓ 分析：3袋瑞能提供1950 kcal + 90g蛋白，能量达标，蛋白质需进一步强化。<br>
+              ↓ 医生实际处理意见：出院纯EN以3袋瑞能为基底，早晚各追加10g蛋白粉温水推注，总蛋白直达110g <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            
+            <p><strong>对最终处理意见的影响：</strong>明确出院后纯EN阶段的每日绝对定量底线与蛋白粉冲配推注指令。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 全局决策映射 -->
+        <div class="content-box">
+          <h4>从问诊到处理意见全局推导</h4>
+          <p><strong>会诊获得的信息：</strong>下咽癌放疗19次+食管癌术后、经口进食中断、空肠管瑞能1000ml/d、夜间停泵+白天就医致日输注仅10h、1月掉秤4kg（BMI 17.7）、高身高181cm <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>医生识别的问题：</strong>【医生判断】严重的能量与蛋白质摄入赤字；就医时间管理障碍；重度营养不良合并高代谢消耗。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>主要营养风险：</strong>【复盘推断】恶病质不可逆恶化、骨骼肌重度萎缩、免疫衰竭并发严重感染、放疗耐受不良甚至中断治疗。</p>
+          <p><strong>原始处理意见方案逻辑：</strong>
+            能量目标1800-2200 kcal/d，蛋白质90-110 g/d，液体2500-3000 ml/d <span class="tag plan">【临床方案计划】</span>；
+            肠内选用高能量密度、富含鱼油的瑞能1500ml（提供1950kcal+90g蛋白）持续泵入 <span class="tag plan">【临床方案计划】</span>；
+            住院期间利用PICC启动卡全1026ml+复方氨基酸250ml+全套微量营养素SPN支持，快速消除热量蛋白欠账 <span class="tag plan">【临床方案计划】</span>；
+            口服/含服维生素D3+K2 5000iu/d调控骨肌代谢与钙磷平衡 <span class="tag plan">【临床方案计划】</span>；
+            指导便携背包带泵与早晚20g蛋白粉推注，为出院长期自立筑牢基础 <span class="tag plan">【临床方案计划】</span>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 患者及家属营养误区 -->
+      <section class="section" id="misconceptions">
+        <div class="section-head">
+          <span class="num">05</span>
+          <div>
+            <h2>第四部分 ⚠️ 患者及家属营养误区</h2>
+            <p>提炼患者及家属原话顾虑、医生现场纠正、临床机制解释与可复用宣教沟通话术。</p>
+          </div>
+        </div>
+
+        <!-- 误区 1 -->
+        <div class="misconception-card">
+          <h4>误区 1：认为外出看病、做放疗时路上不能带泵，只能暂停输注甚至大幅减量</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“他2小时2小时时间来不及，有时候还得出去看病来不及……那你去哪有时候办事不方便，你弄一这个在某处有……外出有时候挺敬老去医院还乱七八糟的。” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“去医院您可以带着呀！你这管平常不是还都是这么带着吗，只是说戴个口罩挡一挡遮起来，然后背个小背包，背着小背包就出去了。” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者认为身上挂着管子和营养泵出门行动不便、外观扎眼、怕引人注目，因此外出就医时主动断泵，导致全天有一半以上时间处于“断粮”状态。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】幽门下空肠喂养由于缺乏胃的容受缓冲功能，必须以恒定泵速持续输注。若频繁中断，患者为了补足总量不得不盲目调高瞬时泵速，极易诱发肠痉挛与剧烈腹泻。便携式带泵支持是保证全天匀速达标的关键手段。依据CSPEN指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “咱们这个小背包就像您的‘移动加油站’，戴个口罩把鼻管一遮，谁也看不出来。出门看病、排队放疗的时候，泵在包里悄悄匀速泵入，既不耽误办事，身体又能源源不断吸收能量，千万别因为出门把营养停掉！” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 2 -->
+        <div class="misconception-card">
+          <h4>误区 2：以为每天打1000ml（2袋）营养液就够了，困惑为什么体重依然进行性下降</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“现在不是给到1000毫升了吗……体重怎么还在降？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“因为您现在口服不吃了，全是靠营养液。这1000毫升只有1300大卡的能量，对于您181cm的身高来说，连基础代谢都不够维持，肯定要降！最低不能低到三袋（1950大卡）！” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者缺乏“体型与代谢需求匹配”的定量概念，以为只要插了管、每天输了营养液就不会消耗体重。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】身高181cm男性基础代谢率通常在1500-1600 kcal/d以上，加上放疗肿瘤高代谢应激，每日总消耗达1800-2200 kcal/d。每日仅摄入1300 kcal存在500-900 kcal的净亏空，机体必然被迫动员自身骨骼肌与脂肪分解供能。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “大货车的油耗肯定比小轿车大。您181cm的大身架，就像大货车一样，每天光跑空车就要耗费1500大卡以上。您每天只给加1300大卡的油，身体只能‘拆零件当柴烧’，这就是体重为什么一直掉。必须加到3袋，才能保住您的肌肉和本钱！” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 3 -->
+        <div class="misconception-card">
+          <h4>误区 3：以为换成其他更高能量浓度的制剂（如能全力）就能少输一点或解决所有问题</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“哎这营养液还有别的吗？……差不多吧这个，作用都差不多？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“能全力能量密度稍高一点（1.5 vs 1.3），1000毫升多200大卡，但是量不够还是不行！而且瑞能里面有鱼油，更适合肿瘤患者。关键在把总量提上来！” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者潜意识里希望找到一种“高浓缩神药”，通过喝更少容量来逃避长时间泵注的繁琐。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】肿瘤营养治疗的核心是“总能量与总氮量达标”以及“特殊免疫营养素抗炎”。能全力虽密度稍高，但缺乏针对肿瘤全身炎症的ω-3鱼油配比，且1000ml仅1500kcal依然未达1800-2200kcal目标。必须在保证适宜配方（瑞能）的基础上足量输注。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “换再浓的营养液，如果不喝够量也是杯水车薪。瑞能配方里专门添加了抗炎的鱼油，是对付肿瘤消耗最对症的武器，咱们的关键任务是把数量喝够，而不是盲目换药。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 4 -->
+        <div class="misconception-card">
+          <h4>误区 4：误以为住院输了静脉营养（卡全），回家就可以少管饲了</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“徐大夫让我住院上了，然后说这个输……” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“给你输了个卡全，肠外的。但是在咱们院里面只是短期的过渡一下营养，回家的长期营养还是得靠您肠内打够！” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者容易把静脉营养视作一劳永逸的万能疗法，从而放松对居家长期肠内管饲的自律与执行。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】静脉营养（PN）是肠内摄入严重受阻时的短期急救与补充手段（SPN）；但长期维持肠道微生态屏障、防止肠黏膜萎缩与细菌移位，必须坚定依赖肠内营养（EN）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “静脉输卡全是住院期间帮您紧急‘灭火’和‘垫底’的，好让您有体力扛过放疗；但出院回家后，肠内管饲才是您的‘日常饭碗’。肠道用进废退，必须坚持用管子打够瑞能！” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 我的学习成长记录 -->
+      <section class="section" id="review">
+        <div class="section-head">
+          <span class="num">06</span>
+          <div>
+            <h2>第五部分 💡 我的学习成长记录</h2>
+            <p>从“算够热量”转向“判断通路、耐受、代谢和电解质的完整闭环”，记录第一人称认知转变与思考沉淀。</p>
+          </div>
+        </div>
+
+        <div class="learning-box">
+          <h4>一、复盘前，我会如何判断这个问题？</h4>
+          <p>“如果仅听患者说‘每天已能打1000ml瑞能、没有腹泻’，我可能容易误判为其肠内喂养已经步入正轨；在面对体重持续下降时，可能会盲目怀疑是不是肿瘤进展或吸收不良，而忽略了去深挖患者居家每日究竟实际输注了几个小时、外出放疗时时间如何断档等行为层面的真实堵点。” <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>二、今天新的认识（以下为复盘建议，供我确认和修改）</h4>
+          <p>1. <strong>临床营养不仅是“开出目标”，更是“帮患者梳理24小时生活作息与执行动线”：</strong>医生的职责不仅是计算出需要1800kcal，更是要指导患者如何背着包外出、如何戴口罩遮管、如何在放疗间隙持续输注。 <span class="tag infer">【复盘推断】</span></p>
+          <p>2. <strong>高危高代谢期果断联用补充性肠外营养（SPN）是守住底线的关键：</strong>在重度营养不良患者肠内摄入严重欠账时，住院期间联用卡全快速托底，能为患者争取到宝贵的免疫与组织修复时间。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>三、最大收获（临床思维闭环提炼）</h4>
+          <p><strong>① 发现问题：</strong>181cm高身材患者全管饲日供仅1000ml（1300kcal），近1月暴跌4kg（BMI 17.7） <span class="tag fact">【原始事实】</span>。<br>
+          <strong>② 分析原因：</strong>夜间关泵+白天就医断泵，全天实际有效泵入时间仅10-12h，产生巨大时间与剂量赤字 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>③ 补充证据：</strong>核实泵速125ml/h耐受良好，大便正常，排查反胃系放疗分泌物咽下刺激而非肠道排斥 <span class="tag fact">【原始事实】</span>。<br>
+          <strong>④ 判断风险：</strong>放疗高应激下严重负氮平衡，骨骼肌快速崩解恶化为不可逆恶病质 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>⑤ 选择干预：</strong>住院期启动卡全PICC肠外营养（SPN）快速托底 + 出院后纯EN提量至3袋瑞能（1500ml）+ 20g蛋白粉 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑥ 明确执行：</strong>外出背便携小背包带泵持续泵入，早晚各10g蛋白粉温水推注，滴卓思D3+K2滴剂口服 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑦ 监测与复评：</strong>定期监测生化、血常规、电解质、CRP及前白蛋白，动态评估肠内提量进度以撤除PN <span class="tag plan">【临床方案计划】</span>。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>四、大夫通俗原话与沟通技巧深度解析</h4>
+          <p><strong>【原话 1】</strong>“对于您这个身高啊其实它是维持不住的，连基础代谢都不够。”<br>
+          <strong>医学含义：</strong>解释基础代谢与体表面积/身高的正相关性，说明1300kcal处于饥饿代谢状态。<br>
+          <strong>沟通技巧：</strong>绑定患者无法辩驳的身体特征（身高），建立直观因果，破除侥幸心理。<br>
+          <strong>借鉴表达：</strong>“您个子高架子大，就像大马力车，1300大卡连怠速都不够，必须加大油门！”</p>
+          
+          <p><strong>【原话 2】</strong>“最低不能低到三袋！不能再低了！”<br>
+          <strong>医学含义：</strong>划定每日必须摄入的能量与蛋白质刚性底线（1950kcal+90g蛋白）。<br>
+          <strong>沟通技巧：</strong>给出极其明确、不容讨价还价的底线指令，建立临床敬畏感与执行坚决度。<br>
+          <strong>借鉴表达：</strong>“每天3袋是咱们保命抗癌的底线数字，哪怕再忙，这个数绝对不能打折扣！”</p>
+
+          <p><strong>【原话 3】</strong>“你就背个小背包就背着出去了，戴个口罩遮起来，管子就封上了。”<br>
+          <strong>医学含义：</strong>指导管饲便携化与移动化，消除社交焦虑。<br>
+          <strong>沟通技巧：</strong>生活化场景模拟，将医学器械转化为日常随身穿搭，化解病耻感。<br>
+          <strong>借鉴表达：</strong>“小背包一背，口罩一戴，既体面又方便，走到哪营养就补到哪。”</p>
+
+          <p><strong>【原话 4】</strong>“在咱们院里面只是短期的过渡一下营养，回家的长期还是靠肠内。”<br>
+          <strong>医学含义：</strong>区分补充性肠外营养（救急）与肠内营养（长远基石）的定位。<br>
+          <strong>沟通技巧：</strong>先给予安全感，紧接着拉回长期自主责任，防止患者过度依赖静脉输液。<br>
+          <strong>借鉴表达：</strong>“住院输液是拉您一把，回家自己打管子才是长久过日子，咱们重点在练好管饲内功！”</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>五、下次我会怎么问（可直接复用的8步临床问诊链）</h4>
+          <p>1. <strong>[筛查输入量]</strong> “目前通过空肠管每天实际打了几袋营养液？每袋多少毫升？” <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>[时间线追踪]</strong> “从早上几点开始泵，晚上几点停？中间去放疗、看病或者外出时泵停不停？” <span class="tag infer">【复盘推断】</span><br>
+          3. <strong>[速度核算]</strong> “泵上的流速调在多少毫升每小时？一天算下来实际泵了几个小时？” <span class="tag infer">【复盘推断】</span><br>
+          4. <strong>[耐受排查]</strong> “打营养液的时候肚子胀不胀、痛不痛？有没有拉肚子？大便每天几次、成不成形？” <span class="tag infer">【复盘推断】</span><br>
+          5. <strong>[症状归因]</strong> “嘴里和嗓子感觉怎么样？咽口水疼不疼？口干多痰吗？反胃是吐营养液还是吐嘴里的粘沫子？” <span class="tag infer">【复盘推断】</span><br>
+          6. <strong>[出行阻碍]</strong> “出门看病的时候不带泵，是因为包太重、怕别人看，还是担心管子掉？” <span class="tag infer">【复盘推断】</span><br>
+          7. <strong>[水分冲管]</strong> “除了营养液，每次打完或吃药前后用温开水冲管吗？一次冲多少毫升？全天总共喝/冲多少水？” <span class="tag infer">【复盘推断】</span><br>
+          8. <strong>[组件执行]</strong> “如果额外给您加两勺蛋白粉，早晚各一次用温水溶开用注射器从管子里推注，家里操作有困难吗？” <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>六、我仍然不会或不确定的地方</h4>
+          <p>1. 放疗引起的口腔及下咽部大量粘稠分泌物（放射性黏液炎），临床上除雾化及吸痰外，营养科在液体黏稠度管理与体位配合上如何更深入协同缓解反射性恶心？ <span class="tag infer">【复盘推断】</span><br>
+          2. 住院期SPN向全EN过渡时，当患者肠内摄入达到多少百分比（如达到75%~80%）时开始启动静脉卡全的阶梯式减量及PICC拔管时机，需向带教老师进一步请教。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 07 本病例相关知识整理 -->
+      <section class="section" id="knowledge">
+        <div class="section-head">
+          <span class="num">07</span>
+          <div>
+            <h2>第六部分 📚 本病例相关知识整理</h2>
+            <p>总结放疗黏膜炎管饲、SPN 启动时机、瑞能鱼油配方、卡全三腔袋及维生素 D3/K2 的循证指南依据与应用边界。</p>
+          </div>
+        </div>
+
+        <!-- 知识点 1 -->
+        <div class="knowledge-box">
+          <h4>知识点 1：头颈部恶性肿瘤同步放化疗期重度黏膜炎与幽门下空肠置管喂养指征</h4>
+          <p><strong>与本病例的关系：</strong>下咽鳞癌放疗中程（19/33次）重度黏膜炎致经口摄入归零，2026-08-10置空肠管。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>高剂量放射线破坏口腔及下咽黏膜基底层，形成广泛溃疡伴剧烈进食痛及黏液高分泌。幽门下空肠喂养绕过病损区直接将营养递送至小肠，维持机体代谢。放疗期预计进食不足50%超过1周者应前瞻性建立肠内通道，合并食管手术史者首选内镜下幽门后置管。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（已成功置管并作为主体营养途径）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《头颈部肿瘤放疗患者营养治疗中国专家共识》（2022）；ESPEN癌症患者临床营养指南（2021）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 2 -->
+        <div class="knowledge-box">
+          <h4>知识点 2：肿瘤高代谢消耗期补充性肠外营养（SPN）的启动与撤退原则</h4>
+          <p><strong>与本病例的关系：</strong>重度营养不良（BMI 17.7），放疗期EN实际摄入仅1300kcal（缺口达500-900kcal）。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>当EN无法提供>60%目标需求超过48-72小时，或重度营养不良合并急性应激时，应果断启动SPN，利用全合一静脉营养直接补充糖、脂、氨基酸，防止恶病质快速恶化；当EN耐受并提升至>60%-80%目标时逐步撤除SPN。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（住院期间开具卡全PICC输注）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>ESPEN肿瘤患者临床营养指南（2021）；CSPEN《肿瘤患者补充性肠外营养专家共识》。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 3 -->
+        <div class="knowledge-box">
+          <h4>知识点 3：瑞能（Fresubin Heman）配方特点与肿瘤代谢重塑机制</h4>
+          <p><strong>与本病例的关系：</strong>晚期下咽癌放化疗高代谢期，全管饲首选瑞能1500ml/d。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>瑞能采用高能量密度（1.3 kcal/ml）、高脂肪低碳水化合物配比，减轻肿瘤患者糖代谢异常及CO₂生成负荷；富含ω-3多不饱和脂肪酸（EPA/DHA），特异性下调IL-6、TNF-α等系统性炎性因子，改善恶病质并维持瘦体重。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（现场明确处方瑞能1500ml持续泵入）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《肿瘤恶病质临床营养治疗指南》；ESPEN营养指南。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 4 -->
+        <div class="knowledge-box">
+          <h4>知识点 4：卡全三腔袋与滴卓思（D3+K2）在全管饲中的协同维持</h4>
+          <p><strong>与本病例的关系：</strong>住院期SPN方案（卡全1026ml+复方氨基酸250ml）及长期全管饲骨肌代谢保护。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心内容：</strong>卡全中/长链脂肪乳（MCT/LCT）氧化供能迅速且减轻肝脏负担，全合一配方配合微量营养素与胰岛素稳定代谢。长期全管饲患者缺乏自然日照与多样膳食，活性维生素D3（滴卓思）结合VDR受体促进骨骼肌蛋白合成，维生素K2协同活化骨钙素引导钙入骨，双向调控骨肌衰减。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（已严格按医嘱开具卡全PICC静滴及滴卓思D3+K2 5000iu/d）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>ASPEN肠外营养实践指南；《肌少症临床诊疗专家共识》。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+      </section>
+
+      <!-- 08 临床思维路径图 (Decision Tree) -->
+      <section class="section" id="tree">
+        <div class="section-head">
+          <span class="num">08</span>
+          <div>
+            <h2>第七部分 🌲 临床思维路径图 (Decision Tree) <span class="tag knowledge" style="margin-left:8px;">逻辑推演型 · 建立直觉</span></h2>
+            <p>将医生的临床推理链拆解为直观的“现象 → 机制分析 → 干预动作 → 后续转折”路径。</p>
+          </div>
+        </div>
+
+        <div class="tree-flow">
+          <!-- 第 1 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 1 步：临床线索捕捉与机制归因</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>线索 A：放疗第19次 + 进食归零</b>
+                <span>放射性黏膜炎导致重度进食痛 ➔ 必须依赖幽门下空肠喂养</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 B：1000ml/d + 1月降4kg</b>
+                <span>181cm大体型日供仅1300kcal ➔ 严重摄入赤字致肌肉快速分解</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 C：125ml/h + 日输注仅10h</b>
+                <span>肠道生理耐受良好 ➔ 根源在于就医放疗与夜间停泵导致时间中断</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 2 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 2 步：多维度精准干预匹配</span>
+            </div>
+            <div class="tree-branch-container">
+              <div class="tree-branch warning">
+                <b>针对住院期急性能量蛋白亏空：</b>
+                <span>启动卡全 1026ml + 复方氨基酸 250ml PICC 补充性肠外营养（SPN）极速托底。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对居家长期肠内摄入达标：</b>
+                <span>出院锁定瑞能 1500ml/d（1950kcal+90g蛋白）持续泵入 + 早晚各追加 10g 蛋白粉推注。</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="empty" id="empty">没有找到匹配内容，请换个关键词。</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    《北肿临床营养科会诊思维录》病例复盘 · 原始事实、临床方案、复盘推断与知识补充分层记录 · 仅供临床进修学习参考
+  </footer>
+</div>
+
+<script>
+  const input = document.querySelector('#search');
+  const sections = [...document.querySelectorAll('.section')];
+  const empty = document.querySelector('#empty');
+
+  function clearMarks(root) {
+    root.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    root.normalize();
+  }
+
+  function highlight(root, q) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement.closest('script,style') || !n.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      let s = n.nodeValue, low = s.toLowerCase(), i;
+      while ((i = low.indexOf(q)) > -1) {
+        frag.append(s.slice(0, i));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(i, i + q.length);
+        frag.append(m);
+        s = s.slice(i + q.length);
+        low = s.toLowerCase();
+      }
+      frag.append(s);
+      n.replaceWith(frag);
+    });
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    sections.forEach(s => {
+      clearMarks(s);
+      const hit = !q || s.innerText.toLowerCase().includes(q);
+      s.style.display = hit ? '' : 'none';
+      if (hit) {
+        shown++;
+        if (q) {
+          highlight(s, q);
+          s.querySelectorAll('details').forEach(d => {
+            if (d.innerText.toLowerCase().includes(q)) d.open = true;
+          });
+        }
+      }
+    });
+    empty.style.display = shown ? 'none' : 'block';
+    if (q && shown) {
+      requestAnimationFrame(() => document.querySelector('.section mark')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
+
+  input.addEventListener('input', search);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  const links = [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70%' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
