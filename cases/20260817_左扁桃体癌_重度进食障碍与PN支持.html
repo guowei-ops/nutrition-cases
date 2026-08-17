@@ -1,0 +1,1475 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#172a3a">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../favicon.svg">
+  <meta name="description" content="北肿临床营养科会诊思维录——左扁桃体癌术后放化疗期重度进食障碍与肠外营养支持管理病例复盘">
+  <title>北肿临床营养科会诊思维录｜左扁桃体癌术后放化疗期重度进食障碍与肠外营养支持管理</title>
+  <style>
+    :root {
+      --ink: #172a3a;
+      --text: #263746;
+      --muted: #6f7c86;
+      --line: #e3e6e7;
+      --paper: #ffffff;
+      --bg: #f4f3ef;
+      --soft: #f7f8f8;
+      --green: #287a5b;
+      --green-bg: #eaf5ef;
+      --blue: #296b9b;
+      --blue-bg: #eaf3f9;
+      --orange: #a66019;
+      --orange-bg: #fff1df;
+      --purple: #714b91;
+      --purple-bg: #f2ebf7;
+      --shadow: 0 14px 40px rgba(23,42,58,.07);
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 15px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    .shell {
+      max-width: 1200px;
+      margin: auto;
+      padding: 28px 24px 80px;
+    }
+    
+    /* 顶部导航与搜索 */
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .brand {
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      white-space: nowrap;
+    }
+    .search {
+      position: relative;
+      flex: 1;
+    }
+    .search input {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 11px 42px 11px 16px;
+      color: var(--ink);
+      outline: none;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .search input:focus {
+      border-color: #a8b4bd;
+      box-shadow: 0 0 0 3px rgba(23,42,58,.06);
+    }
+    .search kbd {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--soft);
+      padding: 2px 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    
+    /* Hero Header */
+    .hero {
+      background: var(--ink);
+      color: #fff;
+      border-radius: 18px;
+      padding: 42px 44px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero:after {
+      content: "V2";
+      position: absolute;
+      right: 24px;
+      bottom: -42px;
+      font-size: 160px;
+      line-height: 1;
+      font-weight: 900;
+      color: rgba(255,255,255,.035);
+    }
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: .14em;
+      opacity: .65;
+      margin-bottom: 4px;
+    }
+    .hero h1 {
+      font-size: clamp(26px, 3.8vw, 40px);
+      line-height: 1.25;
+      margin: 8px 0 12px;
+      letter-spacing: -.03em;
+    }
+    .hero p {
+      max-width: 760px;
+      color: #c8d1d7;
+      margin: 0;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.13);
+      border: 1px solid rgba(255,255,255,.13);
+      margin-top: 28px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .meta div {
+      padding: 12px 15px;
+      background: rgba(255,255,255,.035);
+    }
+    .meta small {
+      display: block;
+      color: #9eacb6;
+      font-size: 11.5px;
+      margin-bottom: 2px;
+    }
+    .meta b {
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    
+    /* 页面两栏布局 */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .side {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+    }
+    .side ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side a {
+      display: flex;
+      gap: 8px;
+      text-decoration: none;
+      padding: 9px 12px;
+      border-left: 2px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      transition: all .15s ease;
+    }
+    .side a:hover, .side a.active {
+      border-color: var(--ink);
+      color: var(--ink);
+      font-weight: 700;
+      background: rgba(23,42,58,0.03);
+    }
+    .side .legend {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 18px;
+    }
+    .side .legend .label {
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side .legend .tag {
+      margin: 0 4px 6px 0;
+    }
+    
+    /* 核心内容区 */
+    .content { min-width: 0; }
+    .section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+      margin-bottom: 22px;
+      box-shadow: 0 5px 18px rgba(23,42,58,.025);
+      scroll-margin-top: 20px;
+    }
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+    .num {
+      font-size: 12px;
+      font-weight: 800;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 6px;
+      padding: 3px 8px;
+      margin-top: 4px;
+      white-space: nowrap;
+    }
+    .section h2 {
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.3;
+      margin: 0;
+    }
+    .section-head p {
+      color: var(--muted);
+      margin: 4px 0 0;
+      font-size: 13.5px;
+    }
+    
+    /* 标签体系 */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+    .fact { color: var(--green); background: var(--green-bg); border: 1px solid #c8e6c9; }
+    .plan { color: var(--blue); background: var(--blue-bg); border: 1px solid #bbdefb; }
+    .infer { color: var(--orange); background: var(--orange-bg); border: 1px solid #ffe0b2; }
+    .knowledge { color: var(--purple); background: var(--purple-bg); border: 1px solid #e1bee7; }
+    
+    /* 卡片与网格 */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+    .card.soft { background: var(--soft); }
+    
+    .label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .value {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    
+    /* 优先级问题列表 */
+    .issues {
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--line);
+    }
+    .issues li {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+      align-items: center;
+      font-size: 14px;
+    }
+    .rank {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--muted);
+    }
+    
+    /* 结构化内容框 */
+    .content-box {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .content-box h4 {
+      margin: 0 0 10px;
+      font-size: 15px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .content-box p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--text);
+    }
+    .content-box p:last-child { margin-bottom: 0; }
+    
+    /* 对话与引用块 */
+    .dialogue-item {
+      margin-bottom: 16px;
+      padding: 14px 16px;
+      border-radius: 9px;
+      background: #fdfdfd;
+      border: 1px solid var(--line);
+    }
+    .dialogue-item h4 {
+      font-size: 14.5px;
+      color: var(--ink);
+      margin: 0 0 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .speaker-doc {
+      color: var(--green);
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .speaker-pat {
+      color: #455a64;
+      font-weight: 700;
+      margin-top: 6px;
+      font-size: 13.5px;
+    }
+    .quote {
+      margin: 8px 0;
+      border-left: 3px solid #cbd3d8;
+      padding: 8px 14px;
+      background: #f8f9fa;
+      border-radius: 0 6px 6px 0;
+      color: #37474f;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .info-gain {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: var(--blue-bg);
+      border-radius: 6px;
+      font-size: 13px;
+      color: #184a6e;
+      line-height: 1.6;
+    }
+    
+    /* 原始处理意见专用 */
+    .raw-opinion-container {
+      background: #fdfdfd;
+      border: 1px solid #c8e6c9;
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .meta-notice {
+      background: var(--green-bg);
+      color: var(--green);
+      font-size: 12.5px;
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin-bottom: 14px;
+      border-left: 3px solid var(--green);
+      line-height: 1.6;
+    }
+    .raw-text-block {
+      white-space: pre-wrap;
+      font-family: inherit;
+      font-size: 13.5px;
+      line-height: 1.85;
+      color: #263746;
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      word-break: break-word;
+    }
+    
+    /* 医生思维拆解专属卡片 */
+    .mind-card {
+      background: #ffffff;
+      border: 1px solid #dbe0e3;
+      border-radius: 12px;
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+    .mind-card-head {
+      background: var(--soft);
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .mind-card-head h4 {
+      margin: 0;
+      color: var(--green);
+      font-size: 15.5px;
+    }
+    .mind-card-body {
+      padding: 16px 18px;
+    }
+    .mind-card-body p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 14px;
+      margin: 12px 0;
+      background: #f9fbf9;
+      border-radius: 8px;
+      border: 1px solid #e8f5e9;
+      gap: 10px;
+    }
+    .step {
+      position: relative;
+      padding: 0 10px;
+    }
+    .step:not(:last-child):after {
+      content: "→";
+      position: absolute;
+      right: -8px;
+      top: 14px;
+      color: #aab3ba;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .step b {
+      display: block;
+      color: var(--ink);
+      font-size: 12.5px;
+      margin-bottom: 5px;
+    }
+    .step p {
+      margin: 0;
+      color: #53616c;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .decision {
+      background: #f4f7f8;
+      border-left: 3px solid var(--ink);
+      padding: 11px 14px;
+      font-size: 13.5px;
+      margin: 12px 0 6px;
+      line-height: 1.65;
+    }
+    
+    /* 误区卡片 */
+    .misconception-card {
+      background: var(--orange-bg);
+      border: 1px solid #ffccbc;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .misconception-card h4 {
+      margin: 0 0 10px;
+      color: var(--orange);
+      font-size: 15px;
+    }
+    .misconception-card p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .misconception-quote {
+      font-style: italic;
+      color: #5d4037;
+      background: rgba(255,255,255,0.75);
+      padding: 9px 13px;
+      border-radius: 6px;
+      margin: 8px 0;
+      font-size: 13px;
+      border-left: 3px solid var(--orange);
+    }
+    
+    /* 知识点卡片 */
+    .knowledge-box {
+      background: var(--purple-bg);
+      border: 1px solid #e1bee7;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+    }
+    .knowledge-box h4 {
+      margin: 0 0 10px;
+      color: var(--purple);
+      font-size: 15px;
+    }
+    .knowledge-box p {
+      margin: 0 0 10px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    
+    /* 学习成长记录卡片 */
+    .learning-box {
+      background: #fcfdfe;
+      border-left: 3px solid var(--blue);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-radius: 0 8px 8px 0;
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .learning-box h4 {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: var(--blue);
+    }
+    .learning-box p {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      line-height: 1.7;
+    }
+    .learning-box p:last-child { margin-bottom: 0; }
+    
+    /* 临床思维决策树专有样式 */
+    .tree-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .tree-stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px 20px;
+      background: #fafbfc;
+    }
+    .tree-stage-header {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tree-node-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .tree-node {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .tree-node b {
+      display: block;
+      color: var(--ink);
+      margin-bottom: 4px;
+      font-size: 13.5px;
+    }
+    .tree-arrow {
+      text-align: center;
+      color: #a0acb5;
+      font-size: 18px;
+      font-weight: bold;
+      margin: -6px 0;
+    }
+    .tree-branch-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .tree-branch {
+      background: #fff;
+      border-left: 3px solid var(--green);
+      border-top: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0 9px 9px 0;
+      padding: 12px 15px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .tree-branch.warning {
+      border-left-color: var(--orange);
+    }
+    .tree-branch b {
+      color: var(--ink);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .takeaway {
+      border-top: 1px solid var(--line);
+      margin-top: 18px;
+      padding-top: 15px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+    .empty {
+      display: none;
+      text-align: center;
+      padding: 34px;
+      color: var(--muted);
+    }
+    mark {
+      background: #fff0a8;
+      color: inherit;
+      border-radius: 2px;
+      padding: 0 2px;
+    }
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-top: 30px;
+    }
+    
+    /* 响应式与打印 */
+    @media(max-width: 880px) {
+      .shell { padding: 16px 12px 50px; }
+      .topbar { align-items: stretch; flex-direction: column; gap: 8px; }
+      .hero { padding: 28px 20px; }
+      .meta { grid-template-columns: repeat(2, 1fr); }
+      .layout { display: block; }
+      .side { position: static; overflow: auto; margin: 0 0 16px; }
+      .side ol { display: flex; }
+      .side a { border-left: 0; border-bottom: 2px solid var(--line); white-space: nowrap; }
+      .side .legend { display: none; }
+      .section { padding: 20px 15px; }
+      .grid, .grid.three { grid-template-columns: 1fr; }
+      .flow { grid-template-columns: 1fr; gap: 6px; }
+      .step { padding: 8px 0; }
+      .step:not(:last-child):after { content: "↓"; left: 0; right: auto; top: auto; bottom: -10px; }
+      .issues li { grid-template-columns: 28px 1fr; }
+      .issues .tag { display: none; }
+      .tree-node-grid, .tree-branch-container { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { max-width: none; padding: 0; }
+      .topbar, .side { display: none; }
+      .hero { box-shadow: none; }
+      .layout { display: block; }
+      .section { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">BEIZHONG · NUTRITION</div>
+    <div class="search">
+      <input id="search" type="search" placeholder="搜索症状、化验、方案、对话原话或知识点…" aria-label="全文搜索">
+      <kbd>⌘ K</kbd>
+    </div>
+  </div>
+  
+  <header class="hero">
+    <div class="eyebrow">临床学习档案 · 会诊病例复盘</div>
+    <h1>北肿临床营养科会诊思维录</h1>
+    <p>疾病背景 · 营养评估路径 · 问诊逻辑 · 临床决策复盘。从病例事实出发，沿着医生的判断路径，沉淀为下一次可以调用的临床行动。</p>
+    <div class="meta">
+      <div><small>会诊日期</small><b>2026.08.17</b></div>
+      <div><small>患者标签</small><b>左扁桃体癌 · 放化疗期重度进食障碍 · 肠外营养支持</b></div>
+      <div><small>整理人</small><b>郭伟</b></div>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="页面目录">
+      <ol>
+        <li><a href="#overview">01 病例速览</a></li>
+        <li><a href="#evidence">02 原始会诊记录</a></li>
+        <li><a href="#opinion">03 原始会诊意见</a></li>
+        <li><a href="#reasoning">04 医生思维拆解</a></li>
+        <li><a href="#misconceptions">05 患者家属误区</a></li>
+        <li><a href="#review">06 学习成长记录</a></li>
+        <li><a href="#knowledge">07 本病例知识点</a></li>
+        <li><a href="#tree">08 临床思维路径图</a></li>
+      </ol>
+      <div class="legend">
+        <div class="label">内容来源与证据分层</div>
+        <span class="tag fact">【原始事实】</span>
+        <span class="tag plan">【临床方案计划】</span>
+        <span class="tag infer">【复盘推断】</span>
+        <span class="tag knowledge">【知识补充】</span>
+      </div>
+    </nav>
+
+    <main class="content" id="content">
+      <!-- 01 病例速览 -->
+      <section class="section" id="overview">
+        <div class="section-head">
+          <span class="num">01</span>
+          <div>
+            <h2>病例速览</h2>
+            <p>56 岁女性，左扁桃体角化型鳞癌术后；放化疗中后期口咽深部黏膜水肿疼痛伴剧烈恶心干呕，经口进食几近停滞，全肠外营养支持管理。</p>
+          </div>
+        </div>
+        
+        <div class="grid three">
+          <div class="card">
+            <div class="label"><span>患者与疾病</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">女，56 岁<br>左扁桃体癌术后角化型鳞癌（cT2NxM0 II期，P16+，Ki67 50%，PD-L1 CPS=90）</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>手术与治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">2026-05-19 行低温等离子左扁桃体切除术<br>术后化疗+免疫，现为根治性放疗（已完成26次/共30次）同步卡铂化疗及尼妥珠单抗靶向</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养通路与摄入</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">经口摄入几近停滞（仅日饮极微量粥水）<br>PICC中心静脉输注（合并右侧贵要静脉血栓，导管室评估通畅可用）</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>人体测量与诊断</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">170cm · 56.5kg · BMI 19.6 kg/m²<br>近1~2月体重下降4~6kg；NRS 2002 评分 3 分，中度营养不良</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>核心化验与症状</span> <span class="tag fact">【原始事实】</span></div>
+            <div class="value">UREA ↑ · PALB ↓ · 化疗骨髓抑制2度<br>剧烈恶心干呕（2度）、口咽水肿、乏力虚脱、10余日无便、既往胰岛素低血糖史</div>
+          </div>
+          <div class="card">
+            <div class="label"><span>营养治疗目标</span> <span class="tag plan">【临床方案计划】</span></div>
+            <div class="value">能量 1500–1800 kcal/d · 蛋白质 80–95 g/d · 液体 2200–2500 ml/d<br>稳定并适当增加体重，ONS及PN补充营养</div>
+          </div>
+        </div>
+
+        <ul class="issues">
+          <li>
+            <span class="rank">P1</span>
+            <b>放化疗期经口摄入几近归零与外院断续输液：打破“打补丁式”输液习惯，确立住院期规律连续全肠外营养支持</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P2</span>
+            <b>消除“输营养液也恶心”心理致敏与容量恐惧：采用卡全1026ml基底外加250ml复方氨基酸及鱼油浓缩过渡，预设全量单袋</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+          <li>
+            <span class="rank">P3</span>
+            <b>长期极度饥饿状态下的胰岛素极度敏感性：常规8:1用量曾致低血糖，本次精细化减半至6 IU胰岛素并摇匀防贴壁</b>
+            <span class="tag infer">【复盘推断】</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 02 原始会诊记录 -->
+      <section class="section" id="evidence">
+        <div class="section-head">
+          <span class="num">02</span>
+          <div>
+            <h2>第一部分 🎙 原始会诊记录</h2>
+            <p>完整保留患者基本信息、确诊疾病及治疗病史、营养相关现状与客观数据、现场录音逐字稿及待确认内容。</p>
+          </div>
+        </div>
+
+        <!-- 1. 患者基本信息 -->
+        <div class="content-box">
+          <h4>1. 患者基本信息</h4>
+          <div class="grid">
+            <div class="card soft">
+              <div class="label"><span>患者</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">已去除姓名</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>性别与年龄</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">女，56岁</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>主要确诊疾病</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">左扁桃体癌术后角化型鳞癌（cT2NxM0 II期）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>病理类型与免疫组化</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">中分化角化型鳞癌，P16(+), P53(散在+), Ki67(50%), EGFR(2+), PD-L1 CPS=90, EBER(-)</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>转移情况</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">双侧颈部II区淋巴结性质待定，躯干及颅脑未见确切转移病灶</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>重要合并症</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">高血压1级、便秘、化疗骨髓抑制2度、右侧贵要静脉血栓形成（PICC相关）、皮疹</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>手术史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">2026-05-19行低温等离子左扁桃体切除术；既往子宫肌瘤、乳房增生、宫外孕、射频消融、腘窝囊肿、腰椎手术</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>抗肿瘤治疗史</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">白蛋白紫杉醇+顺铂+特瑞普利单抗；同步卡铂放化疗；尼妥珠单抗靶向；放疗已完成26次（共30次）</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>当前治疗阶段</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">根治性放化疗后期（剩余4次放疗+1次靶向），住院支持治疗阶段</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>本次就诊背景</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">放疗第26次，因重度恶心呕吐、进食困难、体重急剧下降入院进一步诊治</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>营养科会诊原因</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">放疗中后期经口进食停滞、外院间断补液不足、体重进行性丢失合并重度恶心与低血糖风险</div>
+            </div>
+            <div class="card soft">
+              <div class="label"><span>核心营养问题</span> <span class="tag infer">【复盘推断】</span></div>
+              <div class="value">重度进食障碍、急性严重能量与蛋白质赤字、严重恶心干呕、PICC合并血栓与低血糖隐患</div>
+            </div>
+            <div class="card soft" style="grid-column: 1 / -1;">
+              <div class="label"><span>信息不确定项</span> <span class="tag fact">【原始事实】</span></div>
+              <div class="value">体重丢失幅度在不同资料记录存在差异（入院记录近2月降6kg；会诊单近1月降4kg；申请单近降5斤），需动态监测</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. 确诊疾病及治疗病史 -->
+        <div class="content-box">
+          <h4>2. 确诊疾病及治疗病史</h4>
+          <p>患者于2025-05无明显诱因出现咽部疼痛、吞咽困难，逐渐出现异味，不伴发热 <span class="tag fact">【原始事实】</span>。于2026-05就诊于北京电力医院，2026-05-14耳鼻喉内窥镜见左扁桃体肿胀、光滑、充血 <span class="tag fact">【原始事实】</span>。2026-05-19行“低温等离子左侧扁桃体切除术”，术后病理示：大小2.5×1.3×0.9cm，（左扁桃体）角化型鳞状细胞癌 <span class="tag fact">【原始事实】</span>。我院病理会诊示：（左侧扁桃体部分组织）中分化鳞状细胞癌（角化型），IHC：P16(+)，P53(散在+，可能为野生型) <span class="tag fact">【原始事实】</span>。术后PET-CT（2026-05-25）示：左侧口咽部粘膜增厚伴代谢增高；左侧颈部II区代谢增高淋巴结；躯干及颅脑未见确切转移 <span class="tag fact">【原始事实】</span>。2026-06-18头颈增强MRI示扁桃体术后改变伴软组织肿物及散发淋巴结 <span class="tag fact">【原始事实】</span>。2026-06-29行化疗联合免疫治疗（白蛋白紫杉醇 400mg d1 + 顺铂 120mg d1 + 特瑞普利单抗 240mg d1，q21d） <span class="tag fact">【原始事实】</span>。2026-07-13开始根治性放疗（已完成26次/计划30次） <span class="tag fact">【原始事实】</span>。2026-07-24行C1同步放化疗（卡铂 380mg d1） <span class="tag fact">【原始事实】</span>。2026-08-05行C3同步靶向（尼妥珠单抗 200mg qw，已完成4次） <span class="tag fact">【原始事实】</span>。不良反应：白细胞减少2度，中性粒细胞减少2度，恶心2度，呕吐2度，皮疹，右侧贵要静脉血栓形成 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 3. 营养相关现状与客观数据 -->
+        <div class="content-box">
+          <h4>3. 营养相关现状与客观数据</h4>
+          <p><strong>体重和变化：</strong>身高170cm，当前体重56.5kg，BMI 19.6 kg/m²（会诊查体记录） <span class="tag fact">【原始事实】</span>。体重明显下降（入院记录记载近2月降6kg；会诊记录单记载近1月丢失约4kg；会诊申请单记载近期降5斤） <span class="tag fact">【原始事实】</span>。近1~2个月非自主性体重下降比例约为6.6%~9.6%，存在显著急性营养消耗 <span class="tag infer">【复盘推断】</span>。</p>
+          <p><strong>摄入情况：</strong>严重厌食，几乎无法经口进食正常固体或半流质食物，全天仅能勉强喝一小口粥水（“粥喝那么一小口一天嘛”），普通饮食摄入几近为零 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养影响症状：</strong>剧烈恶心、干呕（“不太出来什么就是特别恶心，然后就像要吐东西，出很多汗，就容易虚”），口咽深部黏膜水肿（“靠近喉咙深处，说话多了也会恶心”），刷牙刺激即诱发呕吐；活动后心慌头晕；10余日无便，强行用力排便致晕厥虚脱，服番泻叶后偶排稀便 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>既往营养治疗与代谢事件：</strong>外院间断输注卡全1026ml及力卡文1206ml；留置PICC导管（合并右侧贵要静脉血栓，评估通畅可用）；既往输注加入常规12 IU胰岛素的卡全后发生过低血糖发作 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>实验室化验：</strong>尿素氮升高（UREA ↑），前白蛋白降低（PALB ↓），化疗后骨髓抑制（白细胞/中性粒细胞2度减低） <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>营养诊断状态：</strong>NRS 2002评分3分（存在营养风险），中度营养不良，恶心，呕吐 <span class="tag fact">【原始事实】</span>。</p>
+        </div>
+
+        <!-- 4. 会诊现场顺序复盘 -->
+        <div class="content-box">
+          <h4>4. 会诊现场顺序复盘</h4>
+          
+          <div class="dialogue-item">
+            <h4>模块一：开场问诊与近1个月摄入及体重丢失核实</h4>
+            <div class="speaker-doc">医生：</div>
+            <div class="quote">“他不会正常来说，其实这个糖是在人的代谢的这个正常的范围……你好我营养科，我看是上个月的时候我们同事过来看过一次，然后当时也是比较恶心呀呕吐然后吃不下，所以当时那基础也是给那个肠外的营养……那等于这一个月的状况是什么情况？就体重一直在降。一直都喝不进去。那饭也吃不进去了。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“嗯就是粥喝那么一小口一天嘛。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生开场向前一位患者解答胰岛素配比后切入本例问诊；明确患者自上月会诊后恶心呕吐持续，经口进食几近停滞，体重呈进行性丢失。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块二：外院输液规格、连续性追问与症状确认</h4>
+            <div class="speaker-doc">医生追问与确认：</div>
+            <div class="quote">“在外院你有这段时间有做这种输液，输的是单瓶的还是输的大袋？输的多少的量你知道吗？那您这中间是断断续续支持，不是连续性的？就是感觉这几天状况不好了去输一次……现在还是恶心和呕吐反应比较大。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“1000零多少？1026的也是卡全。还有一个在四惠输了一次是1206……不太出来什么，就是特别恶心，然后就像要吐东西，出很多汗，就容易虚。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确外院输注卡全1026ml及力卡文1206ml，但属于断续“应急补丁式”输注，能量严重欠账；患者恶心主要表现为干呕、出汗虚脱。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块三：放疗疗程、血管通路评估与方案升级讨论</h4>
+            <div class="speaker-doc">医生追问与分析：</div>
+            <div class="quote">“现在是26次的放疗，你目前是……你有一个PICC是吧？那就用不了吗？可以用。那我们这个量可能会给你调一下，因为卡全的量很少，卡全只有1000大卡的能量……目前你的情况是全部靠肠外，所以我们这个可能要给你把量往上调一下，因为后期你应该有四天到五天全部都是要靠这个输的。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“我还有四次，我想把这个坚持完……然后我就PICC还血栓了，能用一直在用，导管室那块就可以用。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>明确放疗剩余4次及1次靶向，患者坚持治疗意愿强烈；确认PICC虽有血栓但通畅可用；医生指出单袋卡全1000kcal严重不足，需上调支持量。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块四：纠正“隔天输一次”误区与解释生理机制</h4>
+            <div class="speaker-doc">医生纠正与解释：</div>
+            <div class="quote">“你都几乎不吃东西那怎么能行呢！其实你几乎可以说是不吃东西，水都不带喝的。你再隔一天输一次你一天再进去500大卡，你说能受得了？你肯定一点劲儿都没有啊！按理说这个是不经胃肠道的，它不会引起你胃肠道反应的，可能现在你对这种都会有一些心理的阴影……药物蓄积慢慢代谢掉，但你要是不吃不喝液体也少，代谢就很慢。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者：</div>
+            <div class="quote">“我关键输那个我觉得也恶心……卡全他其实我觉得他给我这样隔天的支持我就够了，今天输一天明天停一停不行吗？我现在可能是口腔里面有水肿，靠近喉咙深处，说话多了也会恶心。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生用“隔天输日均仅500大卡”算清能量账，粉碎隔日输注危险念头；科学解释静脉输注不经消化道，揭示深喉部水肿是恶心根源。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+
+          <div class="dialogue-item">
+            <h4>模块五：排便常识纠偏、胰岛素精准减量与折中方案敲定</h4>
+            <div class="speaker-doc">医生通俗纠偏与方案确定：</div>
+            <div class="quote">“你都不吃东西哪有大便！……一般里面有94到96克糖，通常给12个单位胰岛素（按8:1）。但因为你几乎不吃东西，对胰岛素敏感性强……加了6个单位，加少了，这就可以！之前晃一晃是怕胰岛素贴壁到最后一下子全进去低血糖。那我们就不给你大幅调了，怕调了你说受不了，这里面给你加一个蛋白吧，加250毫升的复方氨基酸，只给你加一个蛋白质，把蛋白补上去。” <span class="tag fact">【原始事实】</span></div>
+            <div class="speaker-pat">患者与家属：</div>
+            <div class="quote">“十多天没有大便，努力想排出来就会晕厥没有力气……是不是还尽量自己能吃就吃？……有一次输完营养液低血糖了。” <span class="tag fact">【原始事实】</span></div>
+            <div class="info-gain"><strong>现场获得的信息：</strong>医生一语点醒“无进食则无大便”；解密饥饿致胰岛素敏感，方案精准减半至6 IU；采取“卡全1026ml+氨基酸250ml+鱼油”的浓缩强化折中方案。 <span class="tag infer">【复盘推断】</span></div>
+          </div>
+        </div>
+
+        <!-- 5. 待确认内容 -->
+        <div class="content-box">
+          <h4>5. 待确认内容</h4>
+          <p>1. <strong>药物转写确认：</strong>录音中患者述及“我现在用口蘑了” <span class="tag fact">【原始事实】</span>，结合放化疗黏膜炎常规处置，疑似康复新液或利多卡因含漱液口误转写，需结合病历医嘱确认。 <span class="tag infer">【复盘推断】</span></p>
+          <p>2. <strong>体重基准核实：</strong>入院记录（降6kg）、会诊单（降4kg）、申请单（降5斤）存在统计口径差异，需结合水化平衡持续监测净体重。 <span class="tag fact">【原始事实】</span></p>
+          <p>3. <strong>PICC血栓状态：</strong>右侧贵要静脉血栓需在输液全程密切关注肢体皮温与肿胀情况。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 03 原始会诊意见 -->
+      <section class="section" id="opinion">
+        <div class="section-head">
+          <span class="num">03</span>
+          <div>
+            <h2>第二部分 📋 原始营养会诊处理意见（去标识化转录）</h2>
+            <p>依据原始营养会诊处理意见完整转录，诊断、目标、用量、频次、执行方法及监测建议按原有顺序全量保留。</p>
+          </div>
+        </div>
+
+        <div class="raw-opinion-container">
+          <div class="meta-notice">
+            以下内容依据原始营养会诊处理意见进行去标识化转录，仅删除患者姓名、病例号、医院名称、医生签名等身份信息；诊断、目标、用量、频次、执行方法及监测建议按原有顺序保留。
+          </div>
+          <div class="raw-text-block">处理意见:
+病史同前, 患者女, 56岁, 主诉“咽部不适1年余, 左扁桃体癌术后2月余”, 患者于2025-5无明显诱因出现咽部疼痛、吞咽困难, 逐渐出现异味, 不伴发热, 于2026-5就诊于北京电力医院, 2026-05-19行“低温等离子左侧扁桃体切除术”手术治疗, 术后病理示: 大小2.5×1.3×0.9cm, (左扁桃体)角化型鳞状细胞癌。于2026-6-29行化疗联合免疫治疗, 具体: 白蛋白紫杉醇 240mg/m2 400mg d1, 顺铂 75mg/m2 120mg d1, 特瑞普利单抗 240mg d1, q21d。2026-7-13开始放疗, 已放疗26次, 现患者为进一步诊治入院。患者近2个月由于恶心, 呕吐, 几乎无法经口进食, 间断肠外营养支持, 体重近一个月丢失约4KG。化验血: UREA ↑, PALB ↓
+营养查体: 精神状态差, 无舌苔, 四肢无水肿, 身高170cm, 体重56.5kg, BMI: 19.6。
+营养诊断: 癌症合并营养风险(NRS2002 3分), 中度营养不良, 恶心, 呕吐。
+1. 营养诊疗计划: 稳定并适当增加体重, ONS及PN补充营养。目标能量1500kcal-1800kcal, 蛋白质80-95g, 液体2200-2500ml;
+2. 肠外营养支持(PICC): 卡全1026 ml +复方氨基酸注射液250ml+ω-3鱼油脂肪乳注射液(尤文)100ml+水乐维他2支+维他利匹特20ml+微量营养素(安达美)1支+维生素C注射液(双鹤) 0.5g+10%NaCl 20ml+15%KCl 30ml+胰岛素 6iu
+备注: 患者口述给与肠外营养后增加胃肠道不适反应, 因此建议先给与卡全1026ml, 如症状缓解, 可考虑: 50%葡萄糖注射液 250ml+10%葡萄糖注射液500ml+20%结构脂肪乳(力文) 250ml+复方氨基酸(乐凡命) 750ml+丙氨酰谷氨酰胺100ml+鱼油脂肪乳100ml+水溶性维生素10ml+脂溶性的维生素10ml+多种微量元素注射液(安达美) 10ml+10%NaCl 30ml+15%氯化钾20ml+葡萄糖酸钙注射液(10%) 1g+25%硫酸镁5ml+格列福斯10ml+ins 25iu, 提供能量1600kcal, 蛋白84g, 液体1900ml, 以150ml/h速度静脉滴注; 根据电解质、生化水平和肠内营养水平及时调整肠外营养方案
+3. 待能够经口进食后, 建议添加肠内营养制剂;
+4. 复合维生素B族(健美生75Complex) 1片/天, 自备;
+5. 维生素D(滴卓思)+维生素k2 5000iu/天, 滴入汤粥、营养液随服或滴口含服, 自备。
+6. 监测体重, 血生化、血尿常规、肝肾功能、电解质、CRP PALB等, 不适随诊。</div>
+        </div>
+      </section>
+
+      <!-- 04 医生思维拆解 -->
+      <section class="section" id="reasoning">
+        <div class="section-head">
+          <span class="num">04</span>
+          <div>
+            <h2>第三部分 🧠 医生临床思维拆解</h2>
+            <p>深入剖析四大关键问诊点、医生想判断什么、完整临床推理链及从问诊到医嘱的全局决策映射。</p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 1 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 1：追问外院输液规格与连续性（单瓶 vs 大袋三腔袋；间断 vs 连续）</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“你在外院输的是什么？输的是这种单瓶的还是输的大袋？输的多少的量你知道吗？那您这中间是断断续续支持，不是连续性的？” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>外院及四惠断续输注卡全1026ml及力卡文1206ml，难受了输一次，稍稳即停。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】核算真实摄入底色，确认断续输注是近1月体重丢失4kg与严重乏力虚脱的直接主因。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>经口仅日饮微量粥水，外院断续输注大袋三腔袋，体重近1月急降4kg伴严重乏力。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>非连续性输注导致实际日均摄入仅几百千卡，机体长期处于严重负能量平衡与肌肉自噬状态。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>核实外院输液频次；断续输注将导致恶病质加速恶化，无法耐受剩余放疗。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>维持断续 vs 住院期每日规律连续全肠外营养；最终确立每日连续静脉支持日程。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              经口进食几乎为零（日饮微量粥水） ——支持→ 已完全进入全肠外营养依赖状态；<br>
+              外院虽用三腔袋但断续输注 ——提示→ 实际日均能量仅几百千卡，引发中度营养不良与恶病质消耗；<br>
+              ——共同决定→ 必须彻底终止随意停输，在住院期建立每日规律连续的全肠外营养支持 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>确立了住院期间每日必输的基准医嘱，终结患者自行断续输液的危险行为。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 2 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 2：拆解“输营养液也恶心”的认知误区与容量恐惧，权衡方案强度</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“按理说这个是不经胃肠道的，它不会引起你胃肠道反应的……我觉得可能现在你对这种都会有一些心理阴影……那就是方案如果量大的话，你是接受不了的。” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>主诉输卡全也恶心，提出“隔天输一次就够了”；主诉深喉部黏膜水肿，说话多或刷牙即恶心。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】区分恶心是放疗局部黏膜炎/化疗药物蓄积，还是条件反射性抗拒；评估患者对大容量液体的心理与生理耐受极限。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>恶心干呕剧烈，患者误以为输液致吐并恐惧大容量液体，要求隔日输注。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>静脉输注不经消化道，恶心实为放疗照射野口咽深部黏膜水肿及化疗中枢毒性所致。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>强开1900ml全量单袋易致患者心理崩溃抗拒治疗；隔日输注则陷入自杀式饥饿。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>强推全量单袋 vs 浓缩折中强化；先给卡全1026ml+氨基酸250ml+鱼油，备注预设全量方案。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              静脉营养直接入血不刺激胃肠；恶心系深喉黏膜水肿与化疗毒性；<br>
+              但患者心理极度脆弱排斥大容量液体；<br>
+              ——决策权衡：采取“分步过渡与精准强化”策略——先以熟悉的卡全1026ml为基底，外加250ml复方氨基酸和鱼油，液体量控制在约1400ml内补充关键蛋白；备注预设全量单袋备选方案 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>形成了第2条“卡全+氨基酸+鱼油过渡方案”与“备注中全量单袋备选方案”的双层弹性架构。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 3 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 3：识别极度饥饿下的胰岛素极度敏感性，精细化下调胰岛素用量</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“那看给的是多少……通常我们会给12个单位的胰岛素。但这12个单位是按8比1的；因为你几乎不吃东西，对胰岛素敏感性强……加了6个单位，加少了，这就可以！” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>既往输注常规添加胰岛素的营养液后，在输注末期发生过严重低血糖发作。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】排查肠外营养糖-胰岛素配比与代谢应激的匹配度，防范致死性医源性低血糖。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>极度饥饿消瘦，既往按常规8:1配比加入12 IU胰岛素后发生过低血糖。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>长期饥饿导致肝糖原耗竭，内源性调节受损，外周受体对外源胰岛素极度敏感；胰岛素易贴壁。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>机械套用8:1公式极易再次诱发重度低血糖昏迷。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>常规12 IU vs 减半至6 IU；锁定胰岛素6 IU并叮嘱输注前充分混匀防贴壁。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              卡全1026ml含糖约94~96g，常规8:1应加12 IU胰岛素；<br>
+              但长期饥饿导致胰岛素极度敏感，且存在贴壁后集中释放风险；<br>
+              ——决策调整：胰岛素减半至6 IU（糖胰比降至约16:1），并在输注前充分摇匀，确保代谢安全 <span class="tag plan">【临床方案计划】</span>。
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>精准锁定医嘱第2条中的胰岛素剂量为“胰岛素 6iu”。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 关键问诊点 4 -->
+        <div class="mind-card">
+          <div class="mind-card-head">
+            <h4>关键问诊点 4：探查10余天无便根源，纠正便秘认知与盲目用力排便风险</h4>
+            <span class="tag infer">【复盘推断】</span>
+          </div>
+          <div class="mind-card-body">
+            <p><strong>医生怎么问：</strong>“你都不吃东西哪有大便！那最近有排便吗？” <span class="tag fact">【原始事实】</span></p>
+            <p><strong>患者提供了什么信息：</strong>因十多天无便极度焦虑，强行屏气排便致虚脱晕厥；服番泻叶后排出稀便。 <span class="tag fact">【原始事实】</span></p>
+            <p><strong>医生想判断什么：</strong>【医生判断】鉴别真性肠梗阻与“无摄入即无排渣”的生理现象，排查屏气排便的晕厥与电解质紊乱风险。 <span class="tag infer">【复盘推断】</span></p>
+            
+            <div class="flow">
+              <div class="step">
+                <b>① 现象</b>
+                <p>日进一小口粥水，十多天无便，用力排便致晕厥，滥用番泻叶腹泻。</p>
+              </div>
+              <div class="step">
+                <b>② 可能原因</b>
+                <p>缺乏食物残渣刺激肠道蠕动，无便系生理必然；屏气排便（Valsalva动作）致脑供血不足。</p>
+              </div>
+              <div class="step">
+                <b>③ 证据与风险</b>
+                <p>排除器质性肠梗阻；盲目用力与泻药滥用加剧脱水、低钾与虚脱跌倒。</p>
+              </div>
+              <div class="step">
+                <b>④ 可选干预与决策</b>
+                <p>大剂量通便药 vs 极简常识纠偏；以“不吃东西哪有大便”打破执念，焦点转向静脉营养。</p>
+              </div>
+            </div>
+
+            <div class="decision">
+              <strong>临床推理链：</strong><br>
+              无渣摄入则无粪便生成；用力屏气排便诱发脑供血不足晕厥；<br>
+              ——医生以通俗反问解除焦虑，制止强行排便与泻剂滥用 <span class="tag infer">【复盘推断】</span>。
+            </div>
+            <p><strong>对最终处理意见的影响：</strong>避免了不必要的强效泻药滥用，将重心聚焦于静脉补液与能量供给。 <span class="tag infer">【复盘推断】</span></p>
+          </div>
+        </div>
+
+        <!-- 全局决策映射 -->
+        <div class="content-box">
+          <h4>从问诊到处理意见全局推导</h4>
+          <p><strong>会诊获得的信息：</strong>放疗第26次、口咽深部黏膜水肿伴剧烈恶心干呕、经口进食停滞、近1月体重降4kg（BMI 19.6）、UREA↑、PALB↓、PICC血栓通畅可用、外院断续输卡全、胰岛素敏感史 <span class="tag fact">【原始事实】</span>。</p>
+          <p><strong>医生识别的问题：</strong>【医生判断】放化疗期急性重度进食障碍合并中度营养不良；外院断续支持量严重匮乏；胰岛素极度敏感；容量心理恐惧。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>主要营养风险：</strong>【复盘推断】抗肿瘤治疗非计划中断风险；进行性恶病质与骨骼肌耗竭；低血糖与电解质紊乱；用力排便晕厥风险。</p>
+          <p><strong>原始处理意见方案逻辑：</strong>
+            能量1500~1800 kcal/d（27~32 kcal/kg/d），蛋白质80~95g/d（1.4~1.7 g/kg/d），液体2200~2500ml/d <span class="tag plan">【临床方案计划】</span>；
+            以卡全1026ml为基底，外加复方氨基酸250ml（拉升蛋白质至~55g）及ω-3鱼油100ml（抗炎调节免疫），补充水乐维他、维他利匹特、安达美及电解质，胰岛素减半至6 IU防低血糖 <span class="tag plan">【临床方案计划】</span>；
+            备注预设全量单袋（1600kcal/84g蛋白/1900ml）待症状缓解后升级 <span class="tag plan">【临床方案计划】</span>；
+            待能够经口进食后添加ONS制剂，口服复合维生素B族及维生素D3+K2 5000 IU/d <span class="tag plan">【临床方案计划】</span>。
+          </p>
+        </div>
+      </section>
+
+      <!-- 05 患者家属误区 -->
+      <section class="section" id="misconceptions">
+        <div class="section-head">
+          <span class="num">05</span>
+          <div>
+            <h2>第四部分 ⚠️ 患者及家属营养误区</h2>
+            <p>提炼患者及家属原话顾虑、医生现场纠正、临床机制解释与可复用宣教沟通话术。</p>
+          </div>
+        </div>
+
+        <!-- 误区 1 -->
+        <div class="misconception-card">
+          <h4>误区 1：认为“输营养液也会引起恶心”，并主张“隔天输一次就够了”</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“我关键输那个我觉得也恶心，输卡全你也觉得恶心……卡全他其实我觉得他给我这样隔天的支持我就够了……今天输一天明天停一停不行吗？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“你都几乎不吃东西那怎么能行呢！其实你几乎可以说是不吃东西，水都不带喝的。你再隔一天输一次你一天再进去500大卡，你说能受得了？你肯定一点劲儿都没有啊！按理说这个是不经胃肠道的，它不会引起你胃肠道反应的，可能现在你对这种都会有一些心理的阴影。” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>患者将放化疗药物毒性、深喉水肿及心理条件反射引起的恶心，错误归咎于静脉营养液，试图自行减半输注。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】肠外营养液经中心静脉直接入血参与代谢，完全不经过胃肠道，不刺激消化道感受器。恶心系口咽黏膜放射性水肿及化疗药物中枢刺激所致。隔日输注1000kcal折合每日仅500kcal，远低于基础代谢率，会导致骨骼肌急剧自噬与免疫崩溃。依据《中国肿瘤营养治疗指南》2020/2023版。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “阿姨，静脉营养是直接进血管给各器官送能量的，根本不走嗓子和胃肠，生理上绝不会刺激胃吐。现在的恶心主要是放疗让深喉水肿了，加上化疗药在体内代谢慢。如果隔天输一次，平均一天才500大卡，连维持喘气心跳都不够，身体只能拆自己的肌肉当柴烧，只会越来越虚。咱们必须每天连续输，给身体备足弹药，才能把最后4次放疗扛过去！” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 2 -->
+        <div class="misconception-card">
+          <h4>误区 2：在极度进食不足的情况下，因10余天未排便而强行用力排便并滥用番泻叶</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“而且我前段时间就是十多天都没有大便……然后就会想要努力把肚子里面残留的东西排出来，就会晕厥，没有力气。然后医生让我吃番泻叶又怕这个拉的太多了……” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“你都不吃东西哪有大便！” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>受传统“每天必须排毒”观念影响，误以为腹内积存有害宿便，在极度虚弱脱水下强行屏气排便。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】粪便由食物残渣、脱落上皮与菌群构成。日进一口粥水时，肠腔无残渣形成，多日不排便属于正常生理现象。脱水乏力下用力屏气排便（Valsalva动作）会导致脑供血骤减诱发晕厥；滥用刺激性泻剂（番泻叶）会加剧电解质丢失与脱水。依据中华医学会消化病学分会便秘诊治指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “阿姨，排便的前提是肚子里得有吃进去的残渣。您每天就喝一小口粥，胃肠里根本没东西变成大便，十多天不拉完全正常！千万不能使劲硬拉，您本来就虚，用力会导致脑供血不足晕倒，特别危险。只要肚子不胀痛，几天不拉没关系；等放疗结束饭量恢复了，大便自然就正常了。” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+
+        <!-- 误区 3 -->
+        <div class="misconception-card">
+          <h4>误区 3：家属潜意识认为“光靠输营养液不行，必须逼患者多吃才能好”</h4>
+          <div class="misconception-quote">
+            <strong>患者/家属原话：</strong>“但是他就是一点都哎吃不了多少东西一天，你光靠这营养液也不行，是不是还尽量自己能吃就吃？” <span class="tag fact">【原始事实】</span>
+          </div>
+          <p><strong>医生现场纠正：</strong>“他如果说恶心的太厉害你让他吃他也吃不进去啊！就是我们正常人有时候是理解不了他们的难受的程度，就是说他们的这个是真的是恶心的你进不去。只要刺激到他的口腔他可能都会觉得有反应……肯定是大夫在止吐上什么的都用了，这改善症状的药都用了。” <span class="tag fact">【原始事实】</span></p>
+          <p><strong>误区背后的顾虑：</strong>家属固守“能吃才是福”的观念，不理解放射性黏膜水肿与化疗剧烈恶心的严重程度，盲目施压逼迫进食。 <span class="tag infer">【复盘推断】</span></p>
+          <p><strong>临床解释：</strong>【知识补充】头颈部放疗中后期口咽黏膜发生急性放射性黏膜炎伴深部水肿溃疡，吞咽如吞碎玻璃，强行喂食极易诱发剧烈呛咳、吸入性肺炎甚至窒息。全肠外营养是此时维持生命与完成抗肿瘤疗程的唯一安全有效通道。依据ESPEN癌症患者营养指南。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>可复用的营养宣教表达：</strong>
+            “叔叔，咱们正常人没经历过放化疗，很难体会她现在的难受。她现在嗓子深处全是水肿溃疡，一吞咽就像吞刀片，闻到味儿就想吐，这时候硬逼她吃，一旦呛咳吐出来引起吸入性肺炎就更麻烦了。现阶段输营养液就是救命的‘静脉吃饭’。等最后几天放疗做完水肿退了，咱们再一步步从清淡流质开始练习经口吃，现在别强求！” <span class="tag infer">【复盘推断】</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- 06 我的学习成长记录 -->
+      <section class="section" id="review">
+        <div class="section-head">
+          <span class="num">06</span>
+          <div>
+            <h2>第五部分 💡 我的学习成长记录</h2>
+            <p>从“机械套公式算热量”转向“兼顾代谢目标与患者脆弱耐受的完整闭环”，记录第一人称认知转变与思考沉淀。</p>
+          </div>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天之前我的理解</h4>
+          <p>复盘前，我会如何判断这个问题？（供我结合个人临床体验确认和修改） <span class="tag infer">【复盘推断】</span>：<br>
+          “复盘前，若看到患者已在外院输注卡全1026ml，我可能会认为已有肠外支持，只需继续按部就班开具；面对患者主诉输液恶心想隔天输，可能会误以为是代谢不耐受而盲目顺从减量；在胰岛素添加上可能会习惯性套用8:1常规公式，忽视长期极度饥饿下的低血糖风险；对多日无大便容易盲目开具通便药物，缺乏从摄入根本上解释因果的能力。”</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>今天新的认识（以下为复盘建议，供我确认和修改）</h4>
+          <p>1. <strong>全肠外营养必须强调“足量、规律与连续”：</strong>在经口进食停滞的肿瘤患者中，断续打补丁式输液等于慢性饥饿，必须用直观的“500大卡/天”帮患者算清能量账。 <span class="tag infer">【复盘推断】</span></p>
+          <p>2. <strong>临床决策必须兼顾“代谢目标”与“患者心理耐受极限”：</strong>在患者对大容量液体极度排斥时，采取“三腔袋+外加氨基酸与鱼油”的浓缩折中方案（~1400ml补充关键蛋白），是保证依从性的高明带教策略。 <span class="tag infer">【复盘推断】</span></p>
+          <p>3. <strong>极度饥饿状态下的胰岛素敏感性管理：</strong>长期严重热量摄入不足的患者对胰岛素极度敏感，常规8:1配比可致严重低血糖，必须个体化减量（如调至16:1或6 IU）并摇匀防贴壁。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>最大收获（临床思维闭环提炼）</h4>
+          <p><strong>① 发现问题：</strong>识别放化疗期口咽黏膜水肿导致的经口摄入归零，以及外院断续输注造成的隐匿性严重饥饿 <span class="tag fact">【原始事实】</span>。<br>
+          <strong>② 分析原因：</strong>区分局部放射性水肿、化疗中枢毒性与心理条件反射，揭示“不进食则无大便”的因果本质 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>③ 补充证据：</strong>核实放疗剩余4次进度、PICC血栓可用性及外院输注规格 <span class="tag fact">【原始事实】</span>。<br>
+          <strong>④ 判断风险：</strong>警惕日均500kcal恶病质消耗、常规胰岛素致死性低血糖及屏气排便晕厥风险 <span class="tag infer">【复盘推断】</span>。<br>
+          <strong>⑤ 确定干预：</strong>制定“卡全1026ml+氨基酸250ml+鱼油+减半胰岛素”过渡方案，预设二期全量单袋方案 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑥ 明确执行：</strong>匀速静脉滴注、充分混匀、转移注意力、床旁看护 <span class="tag plan">【临床方案计划】</span>。<br>
+          <strong>⑦ 监测与复评：</strong>每日监测血糖、尿量，3~5天复查生化、电解质、CRP、PALB与血栓状态 <span class="tag plan">【临床方案计划】</span>。</p>
+        </div>
+
+        <div class="learning-box">
+          <h4>大夫通俗原话与沟通技巧</h4>
+          <p><strong>【金句 1】</strong>“你都几乎不吃东西那怎么能行呢！你再隔一天输一次你一天再进去500大卡，你说能受得了？你肯定一点劲儿都没有啊！” <span class="tag fact">【原始事实】</span><br>
+          <strong>医学含义：</strong>隔日输注1000kcal导致日均能量仅500kcal，远低于基础代谢，加重恶病质消耗。 <span class="tag knowledge">【知识补充】</span><br>
+          <strong>沟通技巧：</strong>数字换算与反问法。将抽象营养学概念转化为直观的500大卡计算，击碎侥幸心理。 <span class="tag infer">【复盘推断】</span></p>
+
+          <p><strong>【金句 2】</strong>“按理说这个是不经胃肠道的，它不会引起你胃肠道反应的，它根本就不经过你的胃肠道消化。” <span class="tag fact">【原始事实】</span><br>
+          <strong>医学含义：</strong>静脉输注不经消化道物理刺激，消除心理致敏。 <span class="tag knowledge">【知识补充】</span><br>
+          <strong>沟通技巧：</strong>解剖常识生活化解释，将主观恶心感与静脉输液事实剥离，消除恐惧。 <span class="tag infer">【复盘推断】</span></p>
+
+          <p><strong>【金句 3】</strong>“你都不吃东西哪有大便！” <span class="tag fact">【原始事实】</span><br>
+          <strong>医学含义：</strong>无食物残渣摄入则无粪便生成，非器质性便秘。 <span class="tag knowledge">【知识补充】</span><br>
+          <strong>沟通技巧：</strong>极简常识反问法。瞬间打破执念，消除十余天积压的恐慌，制止危险的屏气排便。 <span class="tag infer">【复盘推断】</span></p>
+
+          <p><strong>【金句 4】</strong>“他如果说恶心的太厉害你让他吃他也吃不进去啊！就是我们正常人有时候是理解不了他们的难受的程度。” <span class="tag fact">【原始事实】</span><br>
+          <strong>医学含义：</strong>急性放射性黏膜炎与化疗剧烈呕吐是器质性屏障，强行进食有误吸风险。 <span class="tag knowledge">【知识补充】</span><br>
+          <strong>沟通技巧：</strong>医患同盟与家属共情。替虚弱患者发声，制止家属盲目逼饭，建立极高信任度。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>下次我会怎么问（可复用的问诊结构链）</h4>
+          <p>1. <strong>筛查摄入：</strong>“阿姨，现在一天24小时，水、粥、汤加起来，真正能咽下去的大概有几口？” <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>定位原因：</strong>“恶心是咽口水嗓子疼引起的，还是一天到晚干呕不停？吐出来的是胃液还是干呕？” <span class="tag infer">【复盘推断】</span><br>
+          3. <strong>核实通路与执行：</strong>“在外面输的是多大袋的营养液？是天天连续输，还是隔几天难受了才输一次？” <span class="tag infer">【复盘推断】</span><br>
+          4. <strong>排查代谢风险：</strong>“输营养液过程中有没有出现过心慌、手抖、出冷汗等低血糖反应？袋里加过胰岛素吗？” <span class="tag infer">【复盘推断】</span><br>
+          5. <strong>确认排便与活动：</strong>“最近几天排过大便吗？肚子胀不胀？下床走两步会不会头晕虚脱？” <span class="tag infer">【复盘推断】</span><br>
+          6. <strong>监测与依从性：</strong>“PICC置管的那条胳膊有没有肿胀发酸？每天输液能不能保证匀速输完？” <span class="tag infer">【复盘推断】</span></p>
+        </div>
+
+        <div class="learning-box">
+          <h4>我仍然不会或不确定的地方</h4>
+          <p>1. <strong>PICC合并静脉血栓时的营养液渗透压耐受：</strong>在右侧贵要静脉血栓背景下，输注高浓度氨基酸与电解质的高渗全肠外营养液是否会增加局部静脉炎风险，需向血管介入科请教。 <span class="tag infer">【复盘推断】</span><br>
+          2. <strong>放疗后口咽黏膜炎修复期的经口进食重建：</strong>放疗后2周内水肿达到峰值，何时由全肠外营养向全流质ONS过渡，需结合黏膜镜检进一步观察真实病例。 <span class="tag infer">【复盘推断】</span></p>
+        </div>
+      </section>
+
+      <!-- 07 本病例相关知识整理 -->
+      <section class="section" id="knowledge">
+        <div class="section-head">
+          <span class="num">07</span>
+          <div>
+            <h2>第六部分 📚 本病例相关知识整理</h2>
+            <p>总结放化疗黏膜炎全肠外营养指征、三腔袋蛋白质强化、饥饿胰岛素敏感性与相关产品特征。</p>
+          </div>
+        </div>
+
+        <!-- 知识点 1 -->
+        <div class="knowledge-box">
+          <h4>知识点 1：头颈部恶性肿瘤放化疗期重度进食障碍与跨阶全肠外营养指征</h4>
+          <p><strong>与本病例的关系：</strong>左扁桃体癌放疗第26次，口咽深部黏膜严重水肿伴剧烈恶心，经口摄入几近停滞。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心机制：</strong>头颈部放疗直接破坏口咽黏膜上皮导致广泛充血、水肿与溃疡（急性放射性黏膜炎），伴吞咽剧痛；化疗药物顺铂/卡铂刺激中枢CTZ引起剧烈恶心反射。当经口进食量低于目标量60%持续超过3~5天且鼻胃管极度排斥或无法耐受时，应果断跨阶启动全肠外营养（TPN），保障抗肿瘤治疗顺利完成。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（经口摄入几乎为0，完全符合全肠外营养指征）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>CSPEN《中国肿瘤营养治疗指南》（2020/2023版）；ESPEN癌症患者临床营养指南（2021）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 2 -->
+        <div class="knowledge-box">
+          <h4>知识点 2：工业化全合一三腔袋（卡全 1026ml）配方特征与蛋白质强化策略</h4>
+          <p><strong>与本病例的关系：</strong>外院及本院均使用卡全1026ml，单袋热量与蛋白质无法满足中度营养不良肿瘤患者需求。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心机制：</strong>卡全1026ml含能量约1000 kcal，葡萄糖约97g，脂肪约39g，氨基酸约34g（折合蛋白约34g）。对于56.5kg中度营养不良患者，目标蛋白为80~95g，单袋卡全提供的蛋白质仅占目标量35%~42%。通过“卡全1026ml + 复方氨基酸注射液250ml + ω-3鱼油100ml”模块化强化，可在~1400ml液体内提供~1200 kcal能量与~55g优质蛋白质，作为安全过渡。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（已严格按此方案开具医嘱）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>《临床营养诊疗指南》（中华医学会）；国家药监局卡全说明书。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+
+        <!-- 知识点 3 -->
+        <div class="knowledge-box">
+          <h4>知识点 3：肿瘤长期饥饿状态下的胰岛素极度敏感性与低血糖防范</h4>
+          <p><strong>与本病例的关系：</strong>既往输注加入常规12 IU胰岛素的卡全后发生过低血糖发作。 <span class="tag fact">【原始事实】</span></p>
+          <p><strong>核心机制：</strong>长期极度饥饿导致肝糖原耗竭，反向调节受损，外周受体对微量胰岛素高度敏感。常规8:1添加12 IU胰岛素在输液后期极易引发医源性低血糖。应将胰岛素比例降至16:1（添加6 IU），并在输液前充分摇晃混匀防止胰岛素贴壁。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>本病例能否直接应用：</strong>可以直接应用（医嘱中精准下调胰岛素至6 IU）。 <span class="tag knowledge">【知识补充】</span></p>
+          <p><strong>依据：</strong>ASPEN再喂养综合征预防与管理共识指南（2020）。 <span class="tag knowledge">【知识补充】</span></p>
+        </div>
+      </section>
+
+      <!-- 08 临床思维路径图 (Decision Tree) -->
+      <section class="section" id="tree">
+        <div class="section-head">
+          <span class="num">08</span>
+          <div>
+            <h2>第七部分 🌲 临床思维路径图 (Decision Tree) <span class="tag knowledge" style="margin-left:8px;">逻辑推演型 · 建立直觉</span></h2>
+            <p>将医生的临床推理链拆解为直观的“现象 → 机制分析 → 干预动作 → 后续转折”路径。</p>
+          </div>
+        </div>
+
+        <div class="tree-flow">
+          <!-- 第 1 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 1 步：临床线索捕捉与机制归因</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>线索 A：放疗26次 + 经口归零</b>
+                <span>口咽黏膜深部放射性水肿伴剧烈恶心 ➔ 无法经口进食，全肠外依赖</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 B：断续输液 + 体重急降4kg</b>
+                <span>外院打补丁式输注（日均仅~500kcal） ➔ 慢性极度饥饿与恶病质消耗</span>
+              </div>
+              <div class="tree-node">
+                <b>线索 C：常规加胰岛素致低血糖</b>
+                <span>长期饥饿致糖原耗竭与外周极度敏感 ➔ 常规8:1配比诱发医源性低血糖</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 2 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 2 步：多维度精准干预匹配</span>
+            </div>
+            <div class="tree-branch-container">
+              <div class="tree-branch">
+                <b>针对断续输注与严重能量饥饿：</b>
+                <span>终止断续输液，确立住院期间每日固定连续的全肠外营养支持日程。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对容量恐惧与蛋白质匮乏：</b>
+                <span>卡全1026ml基底 + 复方氨基酸250ml + ω-3鱼油100ml（~1400ml浓缩强化）。</span>
+              </div>
+              <div class="tree-branch warning">
+                <b>针对胰岛素极度敏感与低血糖史：</b>
+                <span>胰岛素精准减半至6 IU（糖胰比~16:1），输液前充分摇晃混匀防贴壁。</span>
+              </div>
+              <div class="tree-branch">
+                <b>针对排便焦虑与家属盲目逼饭：</b>
+                <span>以“不吃东西哪有大便”常识纠偏，医患同盟共情制止家属施压。</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tree-arrow">↓</div>
+
+          <!-- 第 3 步 -->
+          <div class="tree-stage">
+            <div class="tree-stage-header">
+              <span>第 3 步：动态监测与分支转向</span>
+            </div>
+            <div class="tree-node-grid">
+              <div class="tree-node">
+                <b>分支 1：恶心缓解且心理适应？</b>
+                <span style="color:var(--blue); font-weight:600;">➔ 决策：升级为备注全量单袋（1600kcal/84g蛋白/1900ml）</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 2：放疗结束黏膜水肿消退？</b>
+                <span style="color:var(--green); font-weight:600;">➔ 决策：逐步启动经口ONS清淡流质过渡并减少静脉量</span>
+              </div>
+              <div class="tree-node">
+                <b>分支 3：输液期出现血糖波动？</b>
+                <span style="color:var(--orange); font-weight:600;">➔ 决策：动态调整胰岛素用量并排查电解质紊乱</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="takeaway">
+          <b>病例记忆点：</b> 口咽放疗重度恶心绝不能隔日输液；三腔袋外加氨基酸兼顾容量耐受与高蛋白供给；饥饿状态胰岛素减半防低血糖。 <span class="tag infer">【复盘推断】</span>
+        </p>
+      </section>
+
+      <div class="empty" id="empty">没有找到匹配内容，请换个关键词。</div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    《北肿临床营养科会诊思维录》病例复盘 · 原始事实、临床方案、复盘推断与知识补充分层记录 · 仅供临床进修学习参考
+  </footer>
+</div>
+
+<script>
+  const input = document.querySelector('#search');
+  const sections = [...document.querySelectorAll('.section')];
+  const empty = document.querySelector('#empty');
+
+  function clearMarks(root) {
+    root.querySelectorAll('mark').forEach(m => m.replaceWith(document.createTextNode(m.textContent)));
+    root.normalize();
+  }
+
+  function highlight(root, q) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode: n => n.parentElement.closest('script,style') || !n.nodeValue.toLowerCase().includes(q) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      const frag = document.createDocumentFragment();
+      let s = n.nodeValue, low = s.toLowerCase(), i;
+      while ((i = low.indexOf(q)) > -1) {
+        frag.append(s.slice(0, i));
+        const m = document.createElement('mark');
+        m.textContent = s.slice(i, i + q.length);
+        frag.append(m);
+        s = s.slice(i + q.length);
+        low = s.toLowerCase();
+      }
+      frag.append(s);
+      n.replaceWith(frag);
+    });
+  }
+
+  function search() {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    sections.forEach(s => {
+      clearMarks(s);
+      const hit = !q || s.innerText.toLowerCase().includes(q);
+      s.style.display = hit ? '' : 'none';
+      if (hit) {
+        shown++;
+        if (q) {
+          highlight(s, q);
+          s.querySelectorAll('details').forEach(d => {
+            if (d.innerText.toLowerCase().includes(q)) d.open = true;
+          });
+        }
+      }
+    });
+    empty.style.display = shown ? 'none' : 'block';
+    if (q && shown) {
+      requestAnimationFrame(() => document.querySelector('.section mark')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    }
+  }
+
+  input.addEventListener('input', search);
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+    }
+  });
+
+  const links = [...document.querySelectorAll('.side a')];
+  const observer = new IntersectionObserver(es => {
+    es.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.hash === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-20% 0px -70%' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
